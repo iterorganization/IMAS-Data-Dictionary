@@ -50,6 +50,7 @@ jobs:
       
   publish-to-testpypi:
     name: Publish imas-data-dictionary distribution to TestPyPI
+    if: github.ref=='refs/heads/develop'  # only publish to TestPyPI on develop pushes
     needs:
     - build
     runs-on: ubuntu-latest

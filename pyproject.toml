@@ -29,6 +29,7 @@ homepage = "https://github.com/iterorganization/imas-data-dictionary"
 
 [tool.setuptools_scm]
 write_to = "data_dictionary/_version.py"
+local_scheme = "no-local-version"
 
 [tool.setuptools.packages.find]
 where = ["."]
