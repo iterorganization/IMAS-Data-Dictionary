@@ -644,6 +644,11 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="neutral_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Neutral type, in terms of energy. ID =1: cold; 2: thermal; 3: fast; 4: NBI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="electron_configuration">
 				<xs:annotation>
 					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
@@ -663,6 +668,11 @@
 			<xs:element name="energy" type="plasma_transport_model_3_energy">
 				<xs:annotation>
 					<xs:documentation>Transport quantities related to the energy equation of the charge state considered </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum" type="plasma_transport_model_momentum">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the momentum equations of the state considered. The various components two levels below this node refer to the momentum vector components, while their flux is given in the direction perpendicular to the edges or faces of the grid.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
