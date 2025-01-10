@@ -936,7 +936,7 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="ggd" type="edge_transport_model_ggd" maxOccurs="unbounded">
+			<xs:element name="ggd" type="plasma_transport_model_ggd" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Transport coefficients represented using the general grid description, for various time slices. Fluxes are given in the direction perpendicular to the edges or faces of the grid (flow crossing that surface divided by its actual area). Radial fluxes are positive when they are directed away from the magnetic axis. Poloidal fluxes are positive when they are directed in such a way that they travel clockwise around the magnetic axis (poloidal plane viewed such that the centerline of the tokamak is on the left). Parallel fluxes are positive when they are co-directed with the magnetic field. Toroidal fluxes are positive if travelling counter-clockwise when looking at the plasma from above</xs:documentation>
 					<xs:appinfo>
@@ -945,7 +945,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ggd_fast" type="edge_transport_model_ggd_fast" maxOccurs="unbounded">
+			<xs:element name="ggd_fast" type="plasma_transport_model_ggd_fast" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Quantities provided at a faster sampling rate than the full ggd quantities. These are either integrated quantities or local quantities provided on a reduced set of positions. Positions and integration domains are described by a set of grid_subsets (of size 1 for a position).  </xs:documentation>
 					<xs:appinfo>
