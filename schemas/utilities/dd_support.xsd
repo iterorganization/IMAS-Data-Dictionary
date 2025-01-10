@@ -7743,6 +7743,9 @@
 	<xs:complexType name="plasma_transport_model_energy">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients for energy equations.</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="d" type="generic_grid_scalar" maxOccurs="unbounded">
@@ -7846,6 +7849,9 @@
 	<xs:complexType name="plasma_transport_model_momentum">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients for momentum equations.</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="d" type="generic_grid_vector_components" maxOccurs="unbounded">
@@ -7949,6 +7955,9 @@
 	<xs:complexType name="plasma_transport_model_density">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients for energy equations.</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="d" type="generic_grid_scalar" maxOccurs="unbounded">
@@ -8052,6 +8061,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_neutral_state">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to a given state of the neutral species</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="name">
@@ -8127,6 +8139,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_ion_state">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to a given state of the ion species</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="z_min">
@@ -8221,6 +8236,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_neutral">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to a given neutral species</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
@@ -8295,6 +8313,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_fast_neutral">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to a given neutral species (fast sampled data)</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
@@ -8344,6 +8365,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_ion">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to a given ion species</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
@@ -8430,6 +8454,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_fast_ion">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to a given ion species (fast sampled data)</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
@@ -8491,6 +8518,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_electrons">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to electrons</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="particles" type="plasma_transport_model_density">
@@ -8508,6 +8538,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_fast_electrons">
 		<xs:annotation>
 			<xs:documentation>Transport coefficients related to electrons (fast sampled data)</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="particle_flux_integrated" type="generic_grid_scalar_single_position" maxOccurs="unbounded">
@@ -8533,6 +8566,9 @@
 	<xs:complexType name="plasma_transport_model_ggd_fast">
 		<xs:annotation>
 			<xs:documentation>Transport coefficient given on the ggd at a given time slice (fast sampled data)</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="electrons" type="plasma_transport_model_ggd_fast_electrons">
@@ -8597,6 +8633,9 @@
 	<xs:complexType name="plasma_transport_model_ggd">
 		<xs:annotation>
 			<xs:documentation>Transport coefficient given on the ggd at a given time slice</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="conductivity" type="generic_grid_vector_components" maxOccurs="unbounded">
