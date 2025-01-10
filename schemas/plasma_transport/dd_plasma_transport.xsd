@@ -682,7 +682,7 @@
 			</xs:element>
 			<xs:element name="z_ion">
 				<xs:annotation>
-					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed)</xs:documentation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>e</units>
@@ -907,7 +907,7 @@
 			</xs:element>
 			<xs:element name="ion" type="plasma_transport_model_ions" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Transport coefficients related to the various ion species, in the sense of isonuclear or isomolecular sequences. Ionisation states (and other types of states) must be differentiated at the state level below</xs:documentation>
+					<xs:documentation>Transport coefficients related to the various ion species, in the sense of isonuclear or isomolecular sequences. ionization states (and other types of states) must be differentiated at the state level below</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
@@ -1638,7 +1638,7 @@
 			</xs:element>
 			<xs:element name="z_ion">
 				<xs:annotation>
-					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed)</xs:documentation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>e</units>
@@ -1724,7 +1724,7 @@
 			</xs:element>
 			<xs:element name="z_ion">
 				<xs:annotation>
-					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed)</xs:documentation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>e</units>
@@ -1824,7 +1824,7 @@
 			</xs:element>
 			<xs:element name="ion" type="plasma_transport_model_ggd_fast_ion" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Transport coefficients and flux integrals related to the various ion species, in the sense of isonuclear or isomolecular sequences. Ionisation states (and other types of states) must be differentiated at the state level below</xs:documentation>
+					<xs:documentation>Transport coefficients and flux integrals related to the various ion species, in the sense of isonuclear or isomolecular sequences. ionization states (and other types of states) must be differentiated at the state level below</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
@@ -1907,7 +1907,7 @@
 			</xs:element>
 			<xs:element name="ion" type="plasma_transport_model_ggd_ion" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Transport coefficients related to the various ion species, in the sense of isonuclear or isomolecular sequences. Ionisation states (and other types of states) must be differentiated at the state level below</xs:documentation>
+					<xs:documentation>Transport coefficients related to the various ion species, in the sense of isonuclear or isomolecular sequences. ionization states (and other types of states) must be differentiated at the state level below</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
