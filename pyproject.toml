@@ -4,7 +4,7 @@ requires = ["setuptools>=64", "setuptools-scm>=8", "packaging"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "data_dictionary"
+name = "imas-data-dictionary"
 description ="The Data Dictionary is the implementation of the Data Model of ITER's Integrated Modelling & Analysis Suite (IMAS)"
 authors = [{name = "ITER Organization", email = "imas-support@iter.org"}]
 readme = {file = "README.md", content-type = "text/markdown"}
