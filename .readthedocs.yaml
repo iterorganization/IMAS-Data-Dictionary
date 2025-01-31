@@ -1,0 +1,27 @@
+version: 2
+
+build:
+  os: "ubuntu-22.04"
+  apt_packages:
+      - openjdk-21-jdk
+  tools:
+    python: "3.11"
+  jobs:
+    post_checkout:
+      - git fetch --unshallow || true
+    post_create_environment:
+      - mkdir -p ./saxonhe/
+      - wget -O ./saxonhe/Saxon-HE-12.4.jar "https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/12.4/Saxon-HE-12.4.jar"
+      - wget -O ./saxonhe/xmlresolver-4.5.0.jar "https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/4.5.0/xmlresolver-4.5.0.jar"
+      - ls -l ./saxonhe/
+
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - method: pip
+      path: .
+      
+sphinx:
+  builder: html
+  configuration: docs/conf.py
+  fail_on_warning: false
