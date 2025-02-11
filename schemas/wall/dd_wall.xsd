@@ -1946,6 +1946,26 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="b_field" type="generic_grid_vector_components_rphiz" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Magnetic field, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="em_force_density" type="generic_grid_vector_components_rphiz" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Electromagnetic force density computed with the cross-product of  j_total x b_field, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<units>N.m^-3</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="e_field" type="generic_grid_vector_components_rphiz" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Electric field, given on various grid subsets</xs:documentation>
@@ -2163,7 +2183,7 @@
 			<xs:appinfo>
 				<lifecycle_status>active</lifecycle_status>
 				<lifecycle_version>4.0.0</lifecycle_version>
-				<lifecycle_last_change>3.40.1</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
