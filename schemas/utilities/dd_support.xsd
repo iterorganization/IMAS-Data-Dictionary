@@ -2992,7 +2992,7 @@
 			</xs:element>
 			<xs:element name="time_measurement">
 				<xs:annotation>
-					<xs:documentation>Exact time slices used from the time array of the measurement source data. If the time slice does not exist in the time array of the source data, it means linear interpolation has been used</xs:documentation>
+					<xs:documentation>Exact time slices used from the time array of the measurement source data. The time slice is indicated for each measurement point considered in the fit since measurements may come from different and thus asynchronous diagnostics. If the time slice does not exist in the time array of the source data, it means linear interpolation has been used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>s</units>
