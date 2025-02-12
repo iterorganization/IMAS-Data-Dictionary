@@ -79,13 +79,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="momentum_tor">
+			<xs:element name="momentum_phi">
 				<xs:annotation>
 					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons </xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
 						<units>kg.m/s</units>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -235,13 +238,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="j_tor">
+			<xs:element name="j_phi">
 				<xs:annotation>
-					<xs:documentation>Total toroidal current density = average(J_Tor/R) / average(1/R)</xs:documentation>
+					<xs:documentation>Total toroidal current density = average(j_phi/R) / average(1/R)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<units>A/m^2</units>
 						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>j_tor</change_nbc_previous_name>						
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -492,7 +498,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.0.4</lifecycle_version>
-				<lifecycle_last_change>3.10.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
