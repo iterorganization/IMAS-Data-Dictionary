@@ -526,7 +526,7 @@ developer.
 
    *  -  R5.3
       -  Float and Complex data items shall have their units defined. If the
-         quantity is dimensionless, the units shall be ``-``. if the quantity has
+         quantity is dimensionless, the units shall be ``1``. if the quantity has
          mixed units, then the units shall be ``mixed``.
 
          If the quantity is implemented via a generic structure with its
@@ -537,7 +537,8 @@ developer.
          The units of a quantity shall be self-described in the Data Dictionary
          under the XML ``<appinfo>`` metadata using the SI system plus ``eV``,
          ``rad`` for angles, UTC for absolute time, days /weeks / months / years
-         for durations.
+         for durations. Units shall follow the `UDUNITS2
+         <https://docs.unidata.ucar.edu/udunits/current/>`__ convention.
 
          The XML syntax for units is :code:`<units>Wb</units>`.
          

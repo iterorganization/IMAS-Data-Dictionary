@@ -102,7 +102,7 @@
 					<xs:documentation>Time derivative of the full width of the mode</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>m/s</units>
+						<units>m.s^-1</units>
 						<coordinate1>../time_detailed</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -128,7 +128,7 @@
 					<xs:documentation>Time derivative of the phase of the mode</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>rad/s</units>
+						<units>rad.s^-1</units>
 						<coordinate1>../time_detailed</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -233,7 +233,7 @@
 					<xs:documentation>Normalized flux coordinate on which the mode is centred</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../time_detailed</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -434,7 +434,7 @@
 					<xs:documentation>Time derivative of the full width of the mode</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>m/s</units>
+						<units>m.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -458,7 +458,7 @@
 					<xs:documentation>Time derivative of the phase of the mode</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>rad/s</units>
+						<units>rad.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -558,7 +558,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized flux coordinate on which the mode is centred</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>

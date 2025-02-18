@@ -346,7 +346,7 @@
 				<xs:annotation>
 					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
 					<xs:appinfo>
-						<units>(photons).m^-2.s^-1.sr^-1.m^-1</units>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -356,7 +356,7 @@
 				<xs:annotation>
 					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
 					<xs:appinfo>
-						<units>(counts) s^-1</units>
+						<units>s^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>

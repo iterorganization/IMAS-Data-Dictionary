@@ -760,7 +760,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal flux coordinate at which the main deposition should occur</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -829,7 +829,7 @@
 				<xs:annotation>
 					<xs:documentation>Main parallel refractive index of the injected wave power spectrum</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1129,7 +1129,7 @@
 					<xs:documentation>Ion charge</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1266,7 +1266,7 @@
 				<xs:annotation>
 					<xs:documentation>Line averaged effective charge</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1290,7 +1290,7 @@
 				<xs:annotation>
 					<xs:documentation>Average ratio of tritium over deuterium density</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1298,7 +1298,7 @@
 				<xs:annotation>
 					<xs:documentation>Average ratio of hydrogen over deuterium density</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1369,7 +1369,7 @@
 				<xs:annotation>
 					<xs:documentation>Internal inductance</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1377,7 +1377,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal beta, defined as 100 * beta_tor * a[m] * B0 [T] / ip [MA]</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>beta_normal</change_nbc_previous_name>
@@ -1501,7 +1501,7 @@
 				<xs:annotation>
 					<xs:documentation>Additional resistance due to e.g. dynamically switchable resistors</xs:documentation>
 					<xs:appinfo>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1583,7 +1583,7 @@
 				<xs:annotation>
 					<xs:documentation>Elongation of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1592,7 +1592,7 @@
 				<xs:annotation>
 					<xs:documentation>Elongation (upper half w.r.t. geometric axis) of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1601,7 +1601,7 @@
 				<xs:annotation>
 					<xs:documentation>Elongation (lower half w.r.t. geometric axis) of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1610,7 +1610,7 @@
 				<xs:annotation>
 					<xs:documentation>Triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1619,7 +1619,7 @@
 				<xs:annotation>
 					<xs:documentation>Upper triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1628,7 +1628,7 @@
 				<xs:annotation>
 					<xs:documentation>Lower triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1637,7 +1637,7 @@
 				<xs:annotation>
 					<xs:documentation>Inner triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
@@ -1647,7 +1647,7 @@
 				<xs:annotation>
 					<xs:documentation>Outer triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
@@ -1657,7 +1657,7 @@
 				<xs:annotation>
 					<xs:documentation>Minor triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
@@ -1667,7 +1667,7 @@
 				<xs:annotation>
 					<xs:documentation>Upper outer squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1676,7 +1676,7 @@
 				<xs:annotation>
 					<xs:documentation>Upper inner squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1685,7 +1685,7 @@
 				<xs:annotation>
 					<xs:documentation>Lower outer squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1694,7 +1694,7 @@
 				<xs:annotation>
 					<xs:documentation>Lower inner squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>

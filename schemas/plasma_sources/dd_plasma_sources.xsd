@@ -258,7 +258,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -495,7 +495,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -507,7 +507,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -533,7 +533,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -647,7 +647,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1086,7 +1086,7 @@
 				<xs:annotation>
 					<xs:documentation>Total ion particle source (summed over ion  species)</xs:documentation>
 					<xs:appinfo>
-						<units>(ions).s^-1</units>
+						<units>s^-1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>

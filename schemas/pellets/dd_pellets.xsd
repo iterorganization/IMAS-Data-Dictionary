@@ -40,7 +40,7 @@
 					<xs:documentation>Number of molecules of the propellant gas injected in the vacuum vessel when launching the pellet</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -83,7 +83,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -95,7 +95,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -125,7 +125,7 @@
 					<xs:documentation>Material density of the species in the pellet</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>atoms.m^-3</units>
+						<units>m^-3</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -137,7 +137,7 @@
 					<xs:documentation>Atomic fraction of the species in the pellet</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -180,7 +180,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal coordinate along the pellet path </xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../distance</coordinate1>
 					</xs:appinfo>
@@ -258,7 +258,7 @@
 				<xs:annotation>
 					<xs:documentation>Number of ablated particles (electrons) along the pellet path </xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../distance</coordinate1>
 					</xs:appinfo>
@@ -271,7 +271,7 @@
 				<xs:annotation>
 					<xs:documentation>Difference to due ExB drifts between the ablation and the final deposition locations, in terms of the normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../distance</coordinate1>
 					</xs:appinfo>

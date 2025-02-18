@@ -135,7 +135,7 @@
 					<xs:documentation>Effective coefficient of physical sputtering for various neutral types (first dimension: 1: cold; 2: thermal; 3: fast), due to this incident species and for various energies (second dimension)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>../energies</coordinate2>
 						<coordinate3>/time</coordinate3>
@@ -150,7 +150,7 @@
 					<xs:documentation>Effective coefficient of chemical sputtering for various neutral types (first dimension: 1: cold; 2: thermal; 3: fast), due to this incident species</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>/time</coordinate2>
 					</xs:appinfo>
@@ -246,7 +246,7 @@
 					<xs:documentation>Wall inventory, i.e. cumulated exchange of neutral species between plasma and wall from t = 0, positive if a species has gone to the wall, for that species</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -259,7 +259,7 @@
 					<xs:documentation>Particle recycling coefficient corresponding to the conversion into various neutral types (first dimension: 1: cold; 2: thermal; 3: fast)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>/time</coordinate2>
 					</xs:appinfo>
@@ -273,7 +273,7 @@
 					<xs:documentation>Energy recycling coefficient corresponding to the conversion into various neutral types (first dimension: 1: cold; 2: thermal; 3: fast)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>/time</coordinate2>
 					</xs:appinfo>
@@ -761,7 +761,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -902,7 +902,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -914,7 +914,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -940,7 +940,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1008,7 +1008,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1180,7 +1180,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1321,7 +1321,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1333,7 +1333,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1359,7 +1359,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1427,7 +1427,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1574,7 +1574,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1614,7 +1614,7 @@
 					<xs:documentation>Recycling coefficient for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1663,7 +1663,7 @@
 					<xs:documentation>Recycling coefficient for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1697,7 +1697,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1709,7 +1709,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1735,7 +1735,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1770,7 +1770,7 @@
 					<xs:documentation>Recycling coefficient for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1794,7 +1794,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1831,7 +1831,7 @@
 					<xs:documentation>Recycling coefficient for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1991,7 +1991,7 @@
 					<xs:documentation>Resistivity, given on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>Ohm.m</units>
+						<units>ohm.m</units>
 						<introduced_after_version>3.39.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>

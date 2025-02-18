@@ -474,7 +474,7 @@
 				<xs:annotation>
 					<xs:documentation>Pertubed velocity for given toroidal mode number</xs:documentation>
 					<xs:appinfo>
-						<units>m/s</units>
+						<units>m.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -575,7 +575,7 @@
 					<xs:documentation>Dominant poloidal mode number defining the mode rational surface; for TAEs the lower of the two main m's has to be specified</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -595,7 +595,7 @@
 					<xs:documentation>Radial mode number</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

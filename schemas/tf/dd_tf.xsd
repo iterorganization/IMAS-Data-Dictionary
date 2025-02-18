@@ -75,7 +75,7 @@
 					<xs:documentation>conductor resistance</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -142,7 +142,7 @@
 					<xs:documentation>Number of total turns in a toroidal field coil. May be a fraction when describing the coil connections.</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -154,7 +154,7 @@
 					<xs:documentation>Coil resistance</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

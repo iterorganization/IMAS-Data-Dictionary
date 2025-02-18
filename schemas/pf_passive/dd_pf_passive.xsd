@@ -35,7 +35,7 @@
 					<xs:documentation>Passive loop resistance</xs:documentation>
 					<xs:appinfo>
 						<Type>static</Type>
-						<Units>Ohm</Units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -47,7 +47,7 @@
 					<xs:documentation>Passive loop resistivity</xs:documentation>
 					<xs:appinfo>
 						<Type>static</Type>
-						<Units>Ohm.m</Units>
+						<units>ohm.m</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
