@@ -102,7 +102,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -115,7 +115,7 @@
 					<xs:documentation>Normalized poloidal flux coordinate = sqrt((psi(rho)-psi(magnetic_axis)) / (psi(LCFS)-psi(magnetic_axis)))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -208,7 +208,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
 						<coordinate2>../../time</coordinate2>
@@ -223,7 +223,7 @@
 					<xs:documentation>Normalized poloidal flux coordinate = sqrt((psi(rho)-psi(magnetic_axis)) / (psi(LCFS)-psi(magnetic_axis)))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
 						<coordinate2>../../time</coordinate2>
@@ -260,7 +260,7 @@
 					<xs:documentation>Relative amplitude of the density fluctuations post-processed for swept and fixed frequency (profile/one point)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate2>../time</coordinate2>
 					</xs:appinfo>

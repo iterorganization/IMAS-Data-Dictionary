@@ -14,7 +14,7 @@
 					<xs:documentation>S0 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -26,7 +26,7 @@
 					<xs:documentation>S1 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -38,7 +38,7 @@
 					<xs:documentation>S2 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -50,7 +50,7 @@
 					<xs:documentation>S3 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -78,7 +78,7 @@
 					<xs:documentation>S0 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -90,7 +90,7 @@
 					<xs:documentation>S1 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -102,7 +102,7 @@
 					<xs:documentation>S2 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -114,7 +114,7 @@
 					<xs:documentation>S3 component of the unit Stokes vector</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

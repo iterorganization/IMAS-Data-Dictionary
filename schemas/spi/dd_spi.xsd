@@ -11,7 +11,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -23,7 +23,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -50,7 +50,7 @@
 					<xs:documentation>Density of the species</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>atoms.m^-3</units>
+						<units>m^-3</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -68,7 +68,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -80,7 +80,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -107,7 +107,7 @@
 					<xs:documentation>Atomic fraction of the species</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -259,7 +259,7 @@
 				<xs:annotation>
 					<xs:documentation>Total number of atoms of desublimated gas</xs:documentation>
 					<xs:appinfo>
-						<units>atoms</units>
+						<units>1</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -278,7 +278,7 @@
 				<xs:annotation>
 					<xs:documentation>Flow rate of the gas at the injector exit</xs:documentation>
 					<xs:appinfo>
-						<units>atoms.s^-1</units>
+						<units>s^-1</units>
 						<type>dynamic</type>
 						<coordinate1>/time</coordinate1>
 					</xs:appinfo>
@@ -299,7 +299,7 @@
 				<xs:annotation>
 					<xs:documentation>Total number of atoms of the gas</xs:documentation>
 					<xs:appinfo>
-						<units>atoms</units>
+						<units>1</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>

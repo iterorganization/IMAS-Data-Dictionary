@@ -14,7 +14,7 @@
 					<xs:documentation>normalized charge</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -26,7 +26,7 @@
 					<xs:documentation>normalized mass</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -38,7 +38,7 @@
 					<xs:documentation>normalized density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -50,7 +50,7 @@
 					<xs:documentation>normalized logarithmic gradient (with respect to r_minor_norm) of the density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -62,7 +62,7 @@
 					<xs:documentation>normalized temperature</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -74,7 +74,7 @@
 					<xs:documentation>normalized logarithmic gradient (with respect to r_minor_norm) of the temperature</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -86,7 +86,7 @@
 					<xs:documentation>Normalized gradient (with respect to r_minor_norm) of the toroidal velocity</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -98,7 +98,7 @@
 					<xs:documentation>normalized gradient (with respect to r_minor_norm) of the effective potential energy</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.39.0</introduced_after_version>
 						<coordinate1>../../species_all/angle_pol_equilibrium</coordinate1>
 					</xs:appinfo>
@@ -112,7 +112,7 @@
 					<xs:documentation>Effective potential energy determining the poloidal variation of the species background density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.39.0</introduced_after_version>
 						<coordinate1>../../species_all/angle_pol_equilibrium</coordinate1>
 					</xs:appinfo>
@@ -133,7 +133,7 @@
 					<xs:documentation>normalized minor radius of the flux surface of interest = 1/2 * (max(R) - min(R))/L_ref</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -145,7 +145,7 @@
 					<xs:documentation>Elongation</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -157,7 +157,7 @@
 					<xs:documentation>Derivative of the elongation with respect to r_minor_norm</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.36.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -170,7 +170,7 @@
 					<xs:documentation>Derivative of the major radius of the surface geometric axis with respect to r_minor</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.36.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -183,7 +183,7 @@
 					<xs:documentation>Derivative of the height of the surface geometric axis with respect to r_minor</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.36.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -196,7 +196,7 @@
 					<xs:documentation>Safety factor</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -208,7 +208,7 @@
 					<xs:documentation>Magnetic shear, defined as r_minor_norm/q . dq/dr_minor_norm (different definition from the equilibrium IDS)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -220,7 +220,7 @@
 					<xs:documentation>normalized pressure gradient (derivative with respect to r_minor_norm)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -232,7 +232,7 @@
 					<xs:documentation>Sign of the plasma current</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -244,7 +244,7 @@
 					<xs:documentation>Sign of the toroidal magnetic field</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -256,7 +256,7 @@
 					<xs:documentation>'c' coefficients in the formula defining the shape of the flux surface</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -269,7 +269,7 @@
 					<xs:documentation>Derivative of the 'c' shape coefficients with respect to r_minor_norm</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../shape_coefficients_c</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -282,7 +282,7 @@
 					<xs:documentation>'s' coefficients in the formula defining the shape of the flux surface</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -295,7 +295,7 @@
 					<xs:documentation>Derivative of the 's' shape coefficients with respect to r_minor_norm</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../shape_coefficients_s</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -315,7 +315,7 @@
 					<xs:documentation>Reference plasma beta (see detailed documentation at the root of the IDS)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -327,7 +327,7 @@
 					<xs:documentation>normalized toroidal velocity of species (all species are assumed to have a purely toroidal velocity with a common toroidal angular frequency)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -339,7 +339,7 @@
 					<xs:documentation>Debye length computed from the reference quantities (see detailed documentation at the root of the IDS)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -351,7 +351,7 @@
 					<xs:documentation>normalized ExB shearing rate (for non-linear runs only)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -560,7 +560,7 @@
 					<xs:documentation>normalized density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -575,7 +575,7 @@
 					<xs:documentation>normalized parallel current density</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -590,7 +590,7 @@
 					<xs:documentation>Normalized parallel pressure</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -605,7 +605,7 @@
 					<xs:documentation>Normalized perpendicular pressure</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -620,7 +620,7 @@
 					<xs:documentation>Normalised pressure, defined as the sum of pressure_parallel and pressure_perpendicular</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -636,7 +636,7 @@
 					<xs:documentation>Normalized parallel heat flux (integral of 0.5 * m * v_par * v^2)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -651,7 +651,7 @@
 					<xs:documentation>Normalized moment (integral over 0.5 * m * v_par * v_perp^2)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -666,7 +666,7 @@
 					<xs:documentation>Normalized moment (integral over 0.5 * m * v_perp^2 * v^2)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 						<coordinate2>../../angle_pol</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -689,7 +689,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -702,7 +702,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -715,7 +715,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -736,7 +736,7 @@
 						<type>constant</type>
 						<coordinate1>../../radial_wavevector_norm</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -750,7 +750,7 @@
 						<type>constant</type>
 						<coordinate1>../../radial_wavevector_norm</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -764,7 +764,7 @@
 						<type>constant</type>
 						<coordinate1>../../radial_wavevector_norm</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -785,7 +785,7 @@
 						<type>constant</type>
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -799,7 +799,7 @@
 						<type>constant</type>
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -813,7 +813,7 @@
 						<type>constant</type>
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -835,7 +835,7 @@
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
 						<coordinate3>../../angle_pol</coordinate3>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -850,7 +850,7 @@
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
 						<coordinate3>../../angle_pol</coordinate3>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -865,7 +865,7 @@
 						<coordinate1>../../binormal_wavevector_norm</coordinate1>
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
 						<coordinate3>../../angle_pol</coordinate3>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -888,7 +888,7 @@
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
 						<coordinate3>../../angle_pol</coordinate3>
 						<coordinate4>../../time_norm</coordinate4>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -904,7 +904,7 @@
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
 						<coordinate3>../../angle_pol</coordinate3>
 						<coordinate4>../../time_norm</coordinate4>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -920,7 +920,7 @@
 						<coordinate2>../../radial_wavevector_norm</coordinate2>
 						<coordinate3>../../angle_pol</coordinate3>
 						<coordinate4>../../time_norm</coordinate4>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -939,7 +939,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -952,7 +952,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -965,7 +965,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -978,7 +978,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -991,7 +991,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1004,7 +1004,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1017,7 +1017,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1030,7 +1030,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1043,7 +1043,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1056,7 +1056,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1069,7 +1069,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1082,7 +1082,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1102,7 +1102,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1116,7 +1116,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1130,7 +1130,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1144,7 +1144,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1158,7 +1158,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1172,7 +1172,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1186,7 +1186,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1200,7 +1200,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1214,7 +1214,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1228,7 +1228,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1242,7 +1242,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1256,7 +1256,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
 					</xs:appinfo>
@@ -1277,7 +1277,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1291,7 +1291,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1305,7 +1305,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1319,7 +1319,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1333,7 +1333,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1347,7 +1347,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1361,7 +1361,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1375,7 +1375,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1389,7 +1389,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1403,7 +1403,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1417,7 +1417,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1431,7 +1431,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 					</xs:appinfo>
@@ -1452,7 +1452,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalised particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1467,7 +1467,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalised particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1482,7 +1482,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalised particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1497,7 +1497,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalised energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1512,7 +1512,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalised energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1527,7 +1527,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalised energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1542,7 +1542,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalised toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1557,7 +1557,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalised toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1572,7 +1572,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalised toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1587,7 +1587,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalised toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1602,7 +1602,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalised toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1617,7 +1617,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalised toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../time_norm</coordinate3>
@@ -1639,7 +1639,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1654,7 +1654,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1669,7 +1669,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1684,7 +1684,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1699,7 +1699,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1714,7 +1714,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1729,7 +1729,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1744,7 +1744,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1759,7 +1759,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1774,7 +1774,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1789,7 +1789,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1804,7 +1804,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1826,7 +1826,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1842,7 +1842,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1858,7 +1858,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1874,7 +1874,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1890,7 +1890,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1906,7 +1906,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1922,7 +1922,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1938,7 +1938,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1954,7 +1954,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1970,7 +1970,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -1986,7 +1986,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2002,7 +2002,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2025,7 +2025,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2042,7 +2042,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2059,7 +2059,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2076,7 +2076,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2093,7 +2093,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2110,7 +2110,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2127,7 +2127,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2144,7 +2144,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2161,7 +2161,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2178,7 +2178,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2195,7 +2195,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2212,7 +2212,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>/species</coordinate1>
 						<coordinate2>../../binormal_wavevector_norm</coordinate2>
 						<coordinate3>../../radial_wavevector_norm</coordinate3>
@@ -2236,7 +2236,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2249,7 +2249,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2262,7 +2262,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2275,7 +2275,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2288,7 +2288,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2301,7 +2301,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2314,7 +2314,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2327,7 +2327,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2340,7 +2340,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2353,7 +2353,7 @@
 					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2366,7 +2366,7 @@
 					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2379,7 +2379,7 @@
 					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../../../../species</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2400,7 +2400,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../time_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2413,7 +2413,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../time_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2426,7 +2426,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../time_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2439,7 +2439,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../time_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2452,7 +2452,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../time_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2465,7 +2465,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../../time_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2479,7 +2479,7 @@
 						<type>constant</type>
 						<coordinate1>../../angle_pol</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2493,7 +2493,7 @@
 						<type>constant</type>
 						<coordinate1>../../angle_pol</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2507,7 +2507,7 @@
 						<type>constant</type>
 						<coordinate1>../../angle_pol</coordinate1>
 						<coordinate2>../../time_norm</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2537,7 +2537,7 @@
 					<xs:documentation>Growth rate</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2549,7 +2549,7 @@
 					<xs:documentation>Frequency</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2561,7 +2561,7 @@
 					<xs:documentation>Relative tolerance on the growth rate (convergence of the simulation)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2574,7 +2574,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2587,7 +2587,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2664,7 +2664,7 @@
 					<xs:documentation>normalized radial component of the wavevector</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2676,7 +2676,7 @@
 					<xs:documentation>normalized binormal component of the wavevector</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2705,7 +2705,7 @@
 						<type>constant</type>
 						<coordinate1>../../species</coordinate1>
 						<coordinate2>../../species</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2739,7 +2739,7 @@
 					<xs:documentation>Array of normalized binormal wavevectors</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2752,7 +2752,7 @@
 					<xs:documentation>Array of normalized radial wavevectors</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2766,7 +2766,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2779,7 +2779,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2791,7 +2791,7 @@
 					<xs:documentation>normalized time interval used to average fluxes in non-linear runs</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...2</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>

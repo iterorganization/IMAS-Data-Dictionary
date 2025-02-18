@@ -211,7 +211,7 @@
 					<xs:annotation>
 						<xs:documentation>Total number of electrons in the plasma, estimated from the line densities measured by the various channels</xs:documentation>
 						<xs:appinfo>
-							<units>-</units>
+							<units>1</units>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
