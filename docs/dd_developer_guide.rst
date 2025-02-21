@@ -544,13 +544,13 @@ The detailed meaning of each property can be found in the
 Conventions` and :ref:`List of the existing data types`.
 
 NB1: units are normally explicitly defined at the level of the leaf node.
-However, in the case of node belonging to a structure that can be used in different contexts,
+However, in the case of a node belonging to a structure that can be used in different contexts,
 it's possible to refer to the units of the parent node by indicating ``<units>as_parent</units>``.
-It's also possible to refer to the units of the grand-parent node with 
+It's also possible to refer to the units of the grandparent node with 
 ``<units>as_parent_level_2</units>``. The references will be explicitly resolved 
 when generating the ``dd_data_dictionary.xml`` file.
 
-NB2: ``FLT_*`` and ``CPX_*`` nodes will have sibling errorbar nodes automatically generated
+NB2: ``FLT_*`` and ``CPX_*`` nodes will have sibling errorbar nodes automatically created
 when generating the dd_data_dictionary.xml file. To avoid this, for performance reasons
 (e.g. in large size GGD objects), the data type of the leaf should be declared in a different way,
 using the simpleTypes defined in utilities.xsd (named flt_type and flt_nd_type). Example:
