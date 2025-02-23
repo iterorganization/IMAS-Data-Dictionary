@@ -10867,7 +10867,7 @@
 					<xs:documentation>Type of the description. index = 0 for the official single/multiple annular representation and 1 for the official block element representation for each unit. Additional representations needed on a code-by-code basis follow same incremental pair tagging starting on index=2</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="unit" type="vessel_2d_unit" maxOccurs="5">
+			<xs:element name="unit" type="vessel_2d_unit" maxOccurs="15">
 				<xs:annotation>
 					<xs:documentation>Set of units</xs:documentation>
 					<xs:appinfo>
