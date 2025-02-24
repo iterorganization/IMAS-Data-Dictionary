@@ -1028,7 +1028,7 @@ Suffixes
 
    *  -  ``*_tor[_], *_phi``
       -  ``rho_tor``
-      -  ``Toroidal. In the context of (r,phi,z) coordinate system, toroidal vector components are marked with the suffix _phi (instead of _tor) for similarity with the other components *_r, *_z.``
+      -  ``Toroidal. In the context of (r,phi,z) coordinate system, toroidal vector components (and toroidal mode numbers) are marked with the suffix _phi (instead of _tor) for similarity with the other components *_r, *_z.``
 
    *  -  ``*_pol``
       -  ``b_field_pol``
