@@ -1958,7 +1958,7 @@
 			</xs:element>
 			<xs:element name="em_force_density" type="generic_grid_vector_components_rphiz" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Electromagnetic force density computed with the cross-product of  j_total x b_field, given on various grid subsets</xs:documentation>
+					<xs:documentation>Electromagnetic force density computed by the cross-product of j_total x b_field and given on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<units>N.m^-3</units>
 						<coordinate1>1...N</coordinate1>
