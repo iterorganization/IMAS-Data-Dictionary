@@ -1608,6 +1608,21 @@
 					<xs:group ref="FLT_2D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>J.m^-3</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="current_phi">
 				<xs:annotation>
 					<xs:documentation>Total toroidal driven current density (including electron and thermal ion back-current, or drag-current)</xs:documentation>
@@ -2438,6 +2453,20 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>J.m^-3</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="current_phi">
 				<xs:annotation>
 					<xs:documentation>Total toroidal driven current density (including electron and thermal ion back-current, or drag-current)</xs:documentation>
@@ -2600,6 +2629,20 @@
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<units>J.m^-3</units>
 						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>J.m^-3</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2906,6 +2949,21 @@
 						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
 						<units>J.m^-3</units>
 						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>J.m^-3</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
