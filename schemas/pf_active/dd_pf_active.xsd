@@ -395,6 +395,14 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="geometry" type="outline_2d_geometry_static">
+				<xs:annotation>
+					<xs:documentation>Cross-sectional shape of the coil</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="current" type="signal_flt_1d">
 				<xs:annotation>
 					<xs:documentation>Current fed in the coil (for 1 turn, to be multiplied by the number of turns to obtain the generated magnetic field), positive when the current is counter-clockwise when seen from above.</xs:documentation>
@@ -513,7 +521,7 @@
 			<xs:appinfo>
 				<lifecycle_status>active</lifecycle_status>
 				<lifecycle_version>4.0.0</lifecycle_version>
-				<lifecycle_last_change>4.0.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
