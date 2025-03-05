@@ -1572,7 +1572,7 @@
 					<xs:appinfo>
 						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1586,7 +1586,7 @@
 					<xs:appinfo>
 						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1600,7 +1600,7 @@
 					<xs:appinfo>
 						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1614,7 +1614,7 @@
 					<xs:appinfo>
 						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
@@ -2419,7 +2419,7 @@
 					<xs:documentation>Pressure (thermal+non-thermal)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2432,7 +2432,7 @@
 					<xs:documentation>Pressure of fast particles</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2445,7 +2445,7 @@
 					<xs:documentation>Pressure of fast particles in the parallel direction</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2458,7 +2458,7 @@
 					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
@@ -2601,7 +2601,7 @@
 					<xs:documentation>Pressure (thermal+non-thermal)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2614,7 +2614,7 @@
 					<xs:documentation>Pressure of fast particles</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2627,7 +2627,7 @@
 					<xs:documentation>Pressure of fast particles in the parallel direction</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2640,7 +2640,7 @@
 					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
@@ -2919,7 +2919,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2933,7 +2933,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2947,7 +2947,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2961,7 +2961,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
-						<units>J.m^-3</units>
+						<units>Pa</units>
 						<type>dynamic</type>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
