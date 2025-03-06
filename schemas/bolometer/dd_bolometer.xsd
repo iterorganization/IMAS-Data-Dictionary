@@ -59,7 +59,7 @@
 			</xs:element>
 			<xs:element name="subcollimators_separation">
 				<xs:annotation>
-					<xs:documentation>Thickness of the plate separating the subcollimators</xs:documentation>
+					<xs:documentation>Thickness of separation between sub-collimators</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>m</units>
