@@ -57,7 +57,7 @@
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="subcollimators_plate_thickness">
+			<xs:element name="subcollimators_separation">
 				<xs:annotation>
 					<xs:documentation>Thickness of the plate separating the subcollimators</xs:documentation>
 					<xs:appinfo>
