@@ -47,7 +47,7 @@
 			</xs:element>
 			<xs:element name="subcollimators_n">
 				<xs:annotation>
-					<xs:documentation>Number of subcollimators</xs:documentation>
+					<xs:documentation>Number of sub-collimators</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>4.0.0</introduced_after_version>
