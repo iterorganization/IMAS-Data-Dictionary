@@ -136,7 +136,7 @@
 			</xs:element>
 			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Description, e.g. “camera viewing the upper divertor”</xs:documentation>
+					<xs:documentation>Description, e.g. “Camera viewing the upper divertor”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>3</introduced_after_version>
