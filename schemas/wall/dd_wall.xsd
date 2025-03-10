@@ -2032,6 +2032,41 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="wall_description_ggd_brdf">
+		<xs:annotation>
+			<xs:documentation>Bidirectional Reflectance Distribution Function of each wall surface element with GGD description</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="generic_grid_identifier" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The BRDF model type is described for various wall components (grid subsets), using the identifier convention below</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<doc_identifier>wall/wall_brdf_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parameters" type="generic_grid_vector" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Parameters of the BRDF model for various wall components (grid subsets)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../type</coordinate1>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="wall_description_ggd_material">
 		<xs:annotation>
 			<xs:documentation>Material forming the wall with GGD description</xs:documentation>
@@ -2146,6 +2181,17 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="brdf" type="wall_description_ggd_brdf" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Bidirectional Reflectance Distribution Function, given for each slice of the grid_ggd time base (the component description is not supposed to change, but grid_ggd may evolve with time)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<coordinate1_same_as>../grid_ggd</coordinate1_same_as>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="ggd" type="wall_description_ggd_ggd" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Wall physics quantities represented using the general grid description, for various time slices.</xs:documentation>
@@ -2163,7 +2209,7 @@
 			<xs:appinfo>
 				<lifecycle_status>active</lifecycle_status>
 				<lifecycle_version>4.0.0</lifecycle_version>
-				<lifecycle_last_change>3.40.1</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
