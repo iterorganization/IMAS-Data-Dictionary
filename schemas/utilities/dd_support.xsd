@@ -1785,6 +1785,14 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="library" type="library" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>List of external libraries used by the code that has produced this IDS</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="plasma_composition">
