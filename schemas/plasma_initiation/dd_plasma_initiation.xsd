@@ -171,6 +171,59 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="plasma_initiation_global_quantities_neutral">
+		<xs:annotation>
+			<xs:documentation>Various neutral global quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element_constant" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H, D, T, He, C, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ion_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../ion array</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged temperature of this neutral species (averaged over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="density_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged density of this neutral species (averaged over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="plasma_initiation_global_quantities_ion">
 		<xs:annotation>
 			<xs:documentation>Various ion global quantities</xs:documentation>
@@ -191,6 +244,28 @@
 						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
 			</xs:element>
 			<xs:element name="t_i_volume_average" type="signal_flt_1d">
 				<xs:annotation>
@@ -277,9 +352,17 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ion" type="plasma_initiation_global_quantities_ion" maxOccurs="20">
+			<xs:element name="ion" type="plasma_initiation_global_quantities_ion" maxOccurs="10">
 				<xs:annotation>
 					<xs:documentation>Quantities related to the different ion species, in the sense of isonuclear or isomolecular sequences</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neutral" type="plasma_initiation_global_quantities_neutral" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the different neutral species</xs:documentation>
 					<xs:appinfo>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
