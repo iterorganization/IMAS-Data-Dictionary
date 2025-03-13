@@ -50,7 +50,7 @@
 					<xs:documentation>Relative permeability of the iron segment</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../b_field</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>

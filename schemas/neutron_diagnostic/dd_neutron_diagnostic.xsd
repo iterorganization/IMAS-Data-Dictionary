@@ -162,7 +162,7 @@
 					<xs:documentation>Grouped neutron flux in the detector from one neutron energy bin emitted by the current plasma voxel towards the detector</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>m^-2.neutron^-1</units>
+						<units>m^-2</units>
 						<coordinate1>../../field_of_view/emission_grid/r</coordinate1>
 						<coordinate2>../../field_of_view/emission_grid/z</coordinate2>
 						<coordinate3>../../field_of_view/emission_grid/phi</coordinate3>
@@ -203,7 +203,7 @@
 					<xs:documentation>Number of events occurring in the detector from one neutron energy bin emitted by the current plasma voxel towards the detector</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>events.neutron^-1</units>
+						<units>1</units>
 						<coordinate1>../../field_of_view/emission_grid/r</coordinate1>
 						<coordinate2>../../field_of_view/emission_grid/z</coordinate2>
 						<coordinate3>../../field_of_view/emission_grid/phi</coordinate3>
@@ -467,7 +467,7 @@
 				<xs:annotation>
 					<xs:documentation>Detected counts per second as a function of time</xs:documentation>
 					<xs:appinfo>
-						<units>counts.s^-1</units>
+						<units>s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -476,7 +476,7 @@
 					<xs:documentation>Maximum count limit under which the detector response is linear</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>counts.s^-1</units>
+						<units>s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -488,7 +488,7 @@
 					<xs:documentation>Minimum count limit above which the detector response is linear</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>counts.s^-1</units>
+						<units>s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -500,7 +500,7 @@
 					<xs:documentation>Detected counts per second per energy channel as a function of time (in case of spectroscopic measurement mode)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../energy_band</coordinate1>
-						<units>counts.s^-1</units>
+						<units>s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

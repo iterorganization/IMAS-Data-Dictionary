@@ -14,7 +14,7 @@
 					<xs:documentation>Array of atomic masses</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -56,7 +56,7 @@
 					<xs:documentation>Atomic mass measured by this channel</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

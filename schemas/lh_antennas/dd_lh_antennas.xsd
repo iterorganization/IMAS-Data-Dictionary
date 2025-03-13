@@ -27,7 +27,7 @@
 				<xs:annotation>
 					<xs:documentation>Refraction index in the toroidal direction</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
@@ -40,7 +40,7 @@
 				<xs:annotation>
 					<xs:documentation>Refraction index in the poloidal direction. The poloidal angle is defined from the reference point; the angle at a point (R,Z) is given by atan((Z-Zref)/(R-Rref)), where Rref=reference_point/r and Zref=reference_point/z</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
@@ -145,7 +145,7 @@
 				<xs:annotation>
 					<xs:documentation>Power reflection coefficient</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -238,7 +238,7 @@
 				<xs:annotation>
 					<xs:documentation>Power reflection coefficient, averaged over modules</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -254,7 +254,7 @@
 				<xs:annotation>
 					<xs:documentation>Peak parallel refractive index of the launched wave spectrum (simple estimate based on the measured phase difference)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

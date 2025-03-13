@@ -243,7 +243,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -269,7 +269,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -348,10 +348,10 @@
 		<xs:sequence>
 			<xs:element name="measured">
 				<xs:annotation>
-					<xs:documentation>Measured values</xs:documentation>
+					<xs:documentation>Measured values. Units are: as_parent for a local measurement, as_parent.m for a line integrated measurement.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>as_parent for a local measurement, as_parent.m for a line integrated measurement</units>
+						<units>mixed</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -420,7 +420,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate of each measurement (local value for a local measurement, minimum value reached by the line of sight for a line measurement)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -433,7 +433,7 @@
 					<xs:documentation>Normalized poloidal flux coordinate of each measurement (local value for a local measurement, minimum value reached by the line of sight for a line measurement)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -446,7 +446,7 @@
 					<xs:documentation>Weight given to each measured value</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -456,10 +456,10 @@
 			</xs:element>
 			<xs:element name="reconstructed">
 				<xs:annotation>
-					<xs:documentation>Value reconstructed from the fit</xs:documentation>
+					<xs:documentation>Value reconstructed from the fit. Units are: as_parent for a local measurement, as_parent.m for a line integrated measurement.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>as_parent for a local measurement, as_parent.m for a line integrated measurement</units>
+						<units>mixed</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -472,7 +472,7 @@
 					<xs:documentation>Squared error normalized by the weighted standard deviation considered in the minimization process : chi_squared = weight^2 *(reconstructed - measured)^2 / sigma^2, where sigma is the standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -505,7 +505,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -517,7 +517,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -529,7 +529,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z of the charge state bundle, volume averaged over the plasma radius (equal to z_min if no bundle), = sum (Z*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -541,7 +541,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z square of the charge state bundle, volume averaged over the plasma radius (equal to z_min squared if no bundle), = sum (Z^2*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -554,7 +554,7 @@
 					<xs:documentation>Average charge profile of the charge state bundle (equal to z_min if no bundle), = sum (Z*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -567,7 +567,7 @@
 					<xs:documentation>Average square charge profile of the charge state bundle (equal to z_min squared if no bundle), = sum (Z^2*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -619,7 +619,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -786,7 +786,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed), volume averaged over plasma radius</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -823,7 +823,7 @@
 					<xs:documentation>Average charge of the ion species (sum of states charge weighted by state density and divided by ion density)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -836,7 +836,7 @@
 					<xs:documentation>Average square charge of the ion species (sum of states square charge weighted by state density and divided by ion density)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1065,7 +1065,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1519,7 +1519,7 @@
 					<xs:documentation>Collisionality normalized to the bounce frequency</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1589,7 +1589,7 @@
 					<xs:documentation>Ratio of total ion density (sum over species and charge states) over electron density. (thermal+non-thermal)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1632,7 +1632,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1643,7 +1643,7 @@
 				<xs:annotation>
 					<xs:documentation>Information on the fit used to obtain the zeff profile</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1704,7 +1704,7 @@
 					<xs:documentation>Total parallel current density = average(jtot.B) / B0, where B0 = edge_profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1730,7 +1730,7 @@
 					<xs:documentation>Total toroidal current density = average(J_phi/R) / average(1/R)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 						<change_nbc_version>3.42.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
@@ -1746,7 +1746,7 @@
 					<xs:documentation>Ohmic parallel current density = average(J_Ohmic.B) / B0, where B0 = edge_profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1759,7 +1759,7 @@
 					<xs:documentation>Non-inductive (includes bootstrap) parallel current density = average(jni.B) / B0, where B0 = edge_profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1772,7 +1772,7 @@
 					<xs:documentation>Bootstrap current density = average(J_Bootstrap.B) / B0, where B0 = edge_profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1834,7 +1834,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>edge_profiles.profiles_1d{i}.q</cocos_leaf_name_aos_indices>
@@ -1849,7 +1849,7 @@
 					<xs:documentation>Magnetic shear, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1902,7 +1902,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2036,7 +2036,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2048,7 +2048,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2060,7 +2060,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z of the state bundle (equal to z_min if no bundle), = sum (Z*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle, given on various grid subsets</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2069,7 +2069,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z square of the state bundle (equal to z_min if no bundle), = sum (Z^2*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle, given on various grid subsets</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2078,7 +2078,7 @@
 				<xs:annotation>
 					<xs:documentation>Cumulative and average ionization potential to reach a given bundle. Defined as sum (x_z* (sum of Epot from z'=0 to z-1)), where Epot is the ionization potential of ion Xz_+, and x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle, given on various grid subsets</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<coordinate1>1...N</coordinate1>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>aos_renamed</change_nbc_description>
@@ -2115,7 +2115,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2384,7 +2384,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2527,7 +2527,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2563,7 +2563,7 @@
 				<xs:annotation>
 					<xs:documentation>Particle content = total number of particles for this ion species in the volume of the grid subset, for various grid subsets</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2732,7 +2732,7 @@
 					<xs:documentation>Ratio of total ion density (sum over ion species) over electron density. (thermal+non-thermal), given on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2741,7 +2741,7 @@
 					<xs:documentation>Effective charge, given on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

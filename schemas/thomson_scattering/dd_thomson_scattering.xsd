@@ -46,7 +46,7 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>../wavelength_band</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -70,7 +70,7 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>../wavelength_band</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

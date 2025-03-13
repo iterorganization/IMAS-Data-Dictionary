@@ -523,7 +523,7 @@
 				<xs:annotation>
 					<xs:documentation>Number of counts detected on each pixel of the frame during one exposure time</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../wavelength_frames</coordinate1_same_as>
@@ -539,7 +539,7 @@
 				<xs:annotation>
 					<xs:documentation>Number of counts detected on each pixel/bin of the binned frame during one exposure time</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../wavelength_frames</coordinate1_same_as>
@@ -576,7 +576,7 @@
 				<xs:annotation>
 					<xs:documentation>Shortest distance in rho_tor_norm between lines of sight and magnetic axis, signed with following convention : positive (resp. negative) means the point of shortest distance is above (resp. below) the magnetic axis</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../lines_of_sight_second_point/r</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -762,7 +762,7 @@
 					<xs:documentation>Probability of detection of a photon impacting the detector as a function of its energy </xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../energies</coordinate1>
 						<introduced_after_version>3.34.0</introduced_after_version>
 					</xs:appinfo>
