@@ -10744,6 +10744,8 @@
 						<change_nbc_version>3.42.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>j_tor</change_nbc_previous_name>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
