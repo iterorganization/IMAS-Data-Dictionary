@@ -551,7 +551,7 @@
 			<xs:appinfo>
 				<lifecycle_status>active</lifecycle_status>
 				<lifecycle_version>3.24.0</lifecycle_version>
-				<lifecycle_last_change>3.33.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -574,6 +574,20 @@
 							<cocos_replace>b_field_pol</cocos_replace>
 						</xs:appinfo>
 					</xs:annotation>
+				</xs:element>
+				<xs:element name="b_field_pol_probe_redundancy">
+					<xs:annotation>
+						<xs:documentation>Indices of the poloidal field probes (from the b_field_pol_probe array) that differ only by their toroidal position, i.e. that have the same (R,Z) position and the same poloidal and toroidal angles. Common sets of (R,Z,poloidal_angle and toroidal_angle) values are listed along the first coordinate, then the coils sharing this poloidal position and angles are listed along the second coordinate</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+							<coordinate1>1...N</coordinate1>
+							<coordinate2>1...N</coordinate2>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_2D"/>
+					</xs:complexType>
 				</xs:element>
 				<xs:element name="b_field_phi_probe" type="magnetics_bpol_probe" maxOccurs="20">
 					<xs:annotation>
