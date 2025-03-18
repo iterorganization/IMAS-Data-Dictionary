@@ -85,7 +85,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -97,7 +97,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -134,7 +134,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -186,7 +186,7 @@
 					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -355,7 +355,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -367,7 +367,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -404,7 +404,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -499,7 +499,7 @@
 					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -806,7 +806,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -818,7 +818,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -855,7 +855,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1014,7 +1014,7 @@
 					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1762,7 +1762,7 @@
 						<coordinate2>1...N</coordinate2>
 						<coordinate1_same_as>../r</coordinate1_same_as>
 						<coordinate2_same_as>../r</coordinate2_same_as>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1844,7 +1844,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1856,7 +1856,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1893,7 +1893,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2004,7 +2004,7 @@
 					<xs:documentation>Ion charge (of the dominant ionisation state; lumped ions are allowed).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

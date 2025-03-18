@@ -495,7 +495,7 @@
 					<xs:documentation>Shunt resistance</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

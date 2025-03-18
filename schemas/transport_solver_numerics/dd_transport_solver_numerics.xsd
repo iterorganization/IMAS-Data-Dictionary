@@ -177,7 +177,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -189,7 +189,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -215,7 +215,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -290,7 +290,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -303,7 +303,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -314,7 +314,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -430,7 +430,7 @@
 					<xs:documentation>Value of the relative deviation</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

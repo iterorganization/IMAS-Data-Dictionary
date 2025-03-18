@@ -330,7 +330,7 @@
 					<xs:documentation>Value of the normalized poloidal flux at which the boundary is taken, the flux being normalized to its value at the separatrix (so psi_norm = 1 if the boundary is the separatrix)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -371,7 +371,7 @@
 					<xs:documentation>Elongation of the plasma boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -383,7 +383,7 @@
 				<xs:annotation>
 					<xs:documentation>Triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
@@ -396,7 +396,7 @@
 				<xs:annotation>
 					<xs:documentation>Upper triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
@@ -409,7 +409,7 @@
 				<xs:annotation>
 					<xs:documentation>Lower triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
@@ -423,7 +423,7 @@
 					<xs:documentation>Upper inner squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -437,7 +437,7 @@
 					<xs:documentation>Upper outer squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -451,7 +451,7 @@
 					<xs:documentation>Lower inner squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -465,7 +465,7 @@
 					<xs:documentation>Lower outer squareness of the plasma boundary (definition from T. Luce, Plasma Phys. Control. Fusion 55 (2013) 095009)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -612,7 +612,7 @@
 					<xs:documentation>Minimum q value</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.q_min.value</cocos_leaf_name_aos_indices>
@@ -627,7 +627,7 @@
 					<xs:documentation>Minimum q position in normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -639,7 +639,7 @@
 					<xs:documentation>Minimum q position in normalised poloidal flux</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.39.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -672,7 +672,7 @@
 					<xs:documentation>Poloidal beta. Defined as betap = 4 int(p dV) / [R_0 * mu_0 * Ip^2]</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -684,7 +684,7 @@
 					<xs:documentation>Toroidal beta, defined as the volume-averaged total perpendicular pressure divided by (B0^2/(2*mu0)), i.e. beta_toroidal = 2 mu0 int(p dV) / V / B0^2</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -696,7 +696,7 @@
 					<xs:documentation>Normalized toroidal beta, defined as 100 * beta_tor * a[m] * B0 [T] / ip [MA] </xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
 						<change_nbc_previous_name>beta_normal</change_nbc_previous_name>
@@ -726,7 +726,7 @@
 					<xs:documentation>Internal inductance</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -833,7 +833,7 @@
 					<xs:documentation>q at the magnetic axis</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.q_axis</cocos_leaf_name_aos_indices>
@@ -848,7 +848,7 @@
 					<xs:documentation>q at the 95% poloidal flux surface (only positive when toroidal current and magnetic field are in same direction)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.global_quantities.q_95</cocos_leaf_name_aos_indices>
@@ -980,7 +980,7 @@
 					<xs:documentation>Weight given to the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1079,7 +1079,7 @@
 					<xs:documentation>Weight given to the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1091,7 +1091,7 @@
 					<xs:documentation>Value calculated from the reconstructed equilibrium</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1171,7 +1171,7 @@
 					<xs:documentation>Weight given to the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1198,7 +1198,7 @@
 					<xs:documentation>Squared error normalized by the variance considered in the minimization process : chi_squared = weight^2 *(reconstructed - measured)^2 / sigma^2, where sigma is the standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1266,7 +1266,7 @@
 					<xs:documentation>Weight given to the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1293,7 +1293,7 @@
 					<xs:documentation>Squared error normalized by the variance considered in the minimization process : chi_squared = weight^2 *(reconstructed - measured)^2 / sigma^2, where sigma is the standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1361,7 +1361,7 @@
 					<xs:documentation>Weight given to the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1388,7 +1388,7 @@
 					<xs:documentation>Squared error normalized by the variance considered in the minimization process : chi_squared = weight^2 *(reconstructed - measured)^2 / sigma^2, where sigma is the standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1453,7 +1453,7 @@
 					<xs:documentation>Weight given to the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1477,7 +1477,7 @@
 					<xs:documentation>Squared error normalized by the variance considered in the minimization process : chi_squared = weight^2 *(reconstructed - measured)^2 / sigma^2, where sigma is the standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1666,7 +1666,7 @@
 					<xs:documentation>Set of safety factor estimates at various positions</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1713,7 +1713,7 @@
 					<xs:documentation>Sum of the chi_squared of all constraints used for the equilibrium reconstruction, divided by the number of degrees of freedom of the identification model</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.39.0</introduced_after_version>
 						<uri>https://arxiv.org/abs/1009.2755</uri>
 					</xs:appinfo>
@@ -1772,7 +1772,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<introduced_after_version>3.39.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1844,7 +1844,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>T^2.m^2/Wb</units>
+						<units>T^2.m^2.Wb^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1892,7 +1892,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_1d.q</cocos_leaf_name_aos_indices>
@@ -1907,7 +1907,7 @@
 					<xs:documentation>Magnetic shear, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1960,7 +1960,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1973,7 +1973,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>Wb/m</units>
+						<units>Wb.m^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1991,7 +1991,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2005,7 +2005,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2019,7 +2019,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<url>equilibrium/DefinitionEqBoundary.svg</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2033,7 +2033,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -2048,7 +2048,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -2063,7 +2063,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -2078,7 +2078,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<lifecycle_status>alpha</lifecycle_status>
 						<lifecycle_version>3.18.0</lifecycle_version>
 					</xs:appinfo>
@@ -2106,7 +2106,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2197,7 +2197,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2236,7 +2236,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2288,7 +2288,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2366,7 +2366,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../psi</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

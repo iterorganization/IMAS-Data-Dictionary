@@ -112,7 +112,7 @@
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -125,7 +125,7 @@
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -138,7 +138,7 @@
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -151,7 +151,7 @@
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -176,7 +176,7 @@
 					<xs:documentation>Volume average plasma effective charge, estimated from the flux consumption in the ohmic phase</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -189,7 +189,7 @@
 					<xs:documentation>Electron temperature peaking factor, defined as the Te value at the magnetic axis divided by the volume averaged Te (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -202,7 +202,7 @@
 					<xs:documentation>Ion temperature (averaged over ion species and states) peaking factor, defined as the Ti value at the magnetic axis divided by the volume averaged Ti (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -229,7 +229,7 @@
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -374,7 +374,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -386,7 +386,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -398,7 +398,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z of the charge state bundle, volume averaged over the plasma radius (equal to z_min if no bundle), = sum (Z*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -410,7 +410,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z square of the charge state bundle, volume averaged over the plasma radius (equal to z_min squared if no bundle), = sum (Z^2*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -462,7 +462,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -627,7 +627,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed), volume averaged over plasma radius</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -860,7 +860,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/dim1</coordinate1>
 						<coordinate2>../grid/dim2</coordinate2>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -906,7 +906,7 @@
 						<coordinate1>../grid/dim1</coordinate1>
 						<coordinate2>../grid/dim2</coordinate2>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

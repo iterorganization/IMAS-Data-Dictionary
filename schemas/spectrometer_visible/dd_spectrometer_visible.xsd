@@ -280,7 +280,7 @@
 					<xs:documentation>Values of the light collection efficiencies</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../positions/r</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -317,7 +317,7 @@
 					<xs:documentation>Ellipticity</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -386,7 +386,7 @@
 					<xs:documentation>Ratio of the density of neutrals of this isotope over the summed neutral densities of all other isotopes described in the ../isotope array</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -399,7 +399,7 @@
 					<xs:documentation>Fraction of cold neutrals for this isotope (n_cold_neutrals/(n_cold_neutrals+n_hot_neutrals))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -412,7 +412,7 @@
 					<xs:documentation>Fraction of hot neutrals for this isotope (n_hot_neutrals/(n_cold_neutrals+n_hot_neutrals))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -883,7 +883,7 @@
 				<xs:annotation>
 					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
 					<xs:appinfo>
-						<units>(photons).m^-2.s^-1.sr^-1.m^-1</units>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -893,7 +893,7 @@
 				<xs:annotation>
 					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
 					<xs:appinfo>
-						<units>(counts) s^-1</units>
+						<units>s^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -1026,7 +1026,7 @@
 					<xs:documentation>Etendue (geometric extent) of the channel's optical system</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>m^2.str</units>
+						<units>m^2.sr</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

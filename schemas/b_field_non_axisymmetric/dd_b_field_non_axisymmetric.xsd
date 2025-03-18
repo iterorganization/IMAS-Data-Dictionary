@@ -185,7 +185,7 @@
 					<xs:documentation>Value of (b_field_max-b_field_min)/(b_field_max+b_field_min), where b_field_max resp. b_field_min) is the maximum (resp. minimum) of the magnetic field amplitude over a 2pi rotation in toroidal angle phi at a given R, Z position. </xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../grid/r</coordinate1>
 						<coordinate2>../grid/z</coordinate2>
 					</xs:appinfo>

@@ -125,7 +125,7 @@
 					<xs:documentation>Average pitch angle of the runaways distribution function (v_parallel/|v|)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -361,7 +361,7 @@
 					<xs:documentation>Average pitch angle of the runaways distribution function (v_parallel/|v|), given on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -522,7 +522,7 @@
 					<xs:documentation>Average pitch angle of the runaways distribution function (v_parallel/|v|)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
