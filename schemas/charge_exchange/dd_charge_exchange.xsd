@@ -48,7 +48,7 @@
 				<xs:annotation>
 					<xs:documentation>Non-calibrated intensity (integrated over the spectrum for this line), i.e. number of photoelectrons detected by unit time, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
 					<xs:appinfo>
-						<units>(photonelectrons).s^-1</units>
+						<units>s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -142,7 +142,7 @@
 				<xs:annotation>
 					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
 					<xs:appinfo>
-						<units>(photoelectrons).s^-1</units>
+						<units>s^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -152,7 +152,7 @@
 				<xs:annotation>
 					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
 					<xs:appinfo>
-						<units>(photons) m^-2.s^-1.sr^-1.m^-1</units>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -222,7 +222,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom of the fast ion</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -235,7 +235,7 @@
 					<xs:documentation>Fast ion charge</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -246,7 +246,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge of the fast ion</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -287,7 +287,7 @@
 				<xs:annotation>
 					<xs:documentation>Calibrated radiance of the fast ion charge exchange spectrum assuming the shape is pre-defined (e.g. by the Fokker-Planck slowing-down function). Note: radiance is integrated over the sightline crossing the neutral beam</xs:documentation>
 					<xs:appinfo>
-						<units>(photons) m^-2.s^-1.sr^-1</units>
+						<units>m^-2.s^-1.sr^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -307,7 +307,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom of the ion</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -320,7 +320,7 @@
 					<xs:documentation>Ion charge</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -331,7 +331,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -408,7 +408,7 @@
 				<xs:annotation>
 					<xs:documentation>Ion concentration (ratio of the ion density over the electron density) at the channel measurement point</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -428,7 +428,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom of the diagnostic neutral beam particle</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -441,7 +441,7 @@
 					<xs:documentation>Ion charge of the diagnostic neutral beam particle</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -452,7 +452,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge of the diagnostic neutral beam particle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -509,7 +509,7 @@
 				<xs:annotation>
 					<xs:documentation>Calibrated intensities of the 9 splitted lines (Stark effect due to Lorentz electric field). Note: radiances are integrated over the sightline crossing the neutral beam</xs:documentation>
 					<xs:appinfo>
-						<units>(photons) m^-2.s^-1.sr^-1</units>
+						<units>m^-2.s^-1.sr^-1</units>
 						<coordinate1>1...9</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -567,7 +567,7 @@
 				<xs:annotation>
 					<xs:documentation>Local ionic effective charge at the channel measurement point</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -580,7 +580,7 @@
 				<xs:annotation>
 					<xs:documentation>Ionic effective charge, line average along the channel line-of-sight</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -663,7 +663,7 @@
 						<xs:documentation>Etendue (geometric extent) of the optical system</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
-							<units>m^2.str</units>
+							<units>m^2.sr</units>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>

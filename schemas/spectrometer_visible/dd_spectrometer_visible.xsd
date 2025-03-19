@@ -280,7 +280,7 @@
 					<xs:documentation>Values of the light collection efficiencies</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../positions/r</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -317,7 +317,7 @@
 					<xs:documentation>Ellipticity</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -386,7 +386,7 @@
 					<xs:documentation>Ratio of the density of neutrals of this isotope over the summed neutral densities of all other isotopes described in the ../isotope array</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -399,7 +399,7 @@
 					<xs:documentation>Fraction of cold neutrals for this isotope (n_cold_neutrals/(n_cold_neutrals+n_hot_neutrals))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -412,7 +412,7 @@
 					<xs:documentation>Fraction of hot neutrals for this isotope (n_hot_neutrals/(n_cold_neutrals+n_hot_neutrals))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -558,13 +558,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="e_field_lh_tor">
+			<xs:element name="e_field_lh_phi">
 				<xs:annotation>
 					<xs:documentation>Lower Hybrid electric field component in the toroidal direction</xs:documentation>
 					<xs:appinfo>
 						<units>V.m^-1</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>e_field_lh_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -880,7 +883,7 @@
 				<xs:annotation>
 					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
 					<xs:appinfo>
-						<units>(photons).m^-2.s^-1.sr^-1.m^-1</units>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -890,7 +893,7 @@
 				<xs:annotation>
 					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
 					<xs:appinfo>
-						<units>(counts) s^-1</units>
+						<units>s^-1</units>
 						<coordinate1>../wavelengths</coordinate1>
 						<coordinate2>time</coordinate2>
 					</xs:appinfo>
@@ -1023,7 +1026,7 @@
 					<xs:documentation>Etendue (geometric extent) of the channel's optical system</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>m^2.str</units>
+						<units>m^2.sr</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1146,7 +1149,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.3.1</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>

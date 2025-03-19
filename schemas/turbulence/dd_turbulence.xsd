@@ -104,7 +104,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed), volume averaged over plasma radius</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
