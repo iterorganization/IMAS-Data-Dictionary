@@ -152,7 +152,7 @@
 				<xs:annotation>
 					<xs:documentation>Ellipticity</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

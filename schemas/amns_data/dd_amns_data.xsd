@@ -117,7 +117,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of the participant</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>static</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -129,7 +129,7 @@
 				<xs:annotation>
 					<xs:documentation>Charge number of the participant</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>static</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -152,7 +152,7 @@
 				<xs:annotation>
 					<xs:documentation>Multiplicity in the reaction</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>static</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -208,7 +208,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>static</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -220,7 +220,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>static</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -601,7 +601,7 @@
 					<xs:annotation>
 						<xs:documentation>Nuclear charge</xs:documentation>
 						<xs:appinfo>
-							<units>Elementary Charge Unit</units>
+							<units>e</units>
 							<type>static</type>
 							<change_nbc_version>4.0.0</change_nbc_version>
 							<change_nbc_description>type_changed</change_nbc_description>
@@ -616,7 +616,7 @@
 					<xs:annotation>
 						<xs:documentation>Mass of atom</xs:documentation>
 						<xs:appinfo>
-							<units>Atomic Mass Unit</units>
+							<units>u</units>
 							<type>static</type>
 						</xs:appinfo>
 					</xs:annotation>

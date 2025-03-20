@@ -100,7 +100,7 @@
 							<coordinate2>1...N</coordinate2>
 							<coordinate2_same_as>../frame(itime)/counts_n OR 1...1</coordinate2_same_as>
 							<coordinate3>../photon_energy</coordinate3>
-							<units>-</units>
+							<units>1</units>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -204,7 +204,7 @@
 					<xs:annotation>
 						<xs:documentation>Fraction of humidity (0-1) measured at the detector level</xs:documentation>
 						<xs:appinfo>
-							<units>-</units>
+							<units>1</units>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>

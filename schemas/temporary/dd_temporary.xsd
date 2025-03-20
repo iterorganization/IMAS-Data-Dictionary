@@ -14,7 +14,7 @@
 					<xs:documentation>Value</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -84,7 +84,7 @@
 					<xs:documentation>Value</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>

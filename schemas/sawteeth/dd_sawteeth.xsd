@@ -71,7 +71,7 @@
 					<xs:documentation>Ratio of total ion density (sum over species and charge states) over electron density. (thermal+non-thermal)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -79,13 +79,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="momentum_tor">
+			<xs:element name="momentum_phi">
 				<xs:annotation>
 					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons </xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
-						<units>kg.m/s</units>
+						<units>kg.m.s^-1</units>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -98,7 +101,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -227,7 +230,7 @@
 					<xs:documentation>Total parallel current density = average(jtot.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -235,13 +238,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="j_tor">
+			<xs:element name="j_phi">
 				<xs:annotation>
-					<xs:documentation>Total toroidal current density = average(J_Tor/R) / average(1/R)</xs:documentation>
+					<xs:documentation>Total toroidal current density = average(j_phi/R) / average(1/R)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>j_tor</change_nbc_previous_name>						
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -253,7 +259,7 @@
 					<xs:documentation>Ohmic parallel current density = average(J_Ohmic.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -266,7 +272,7 @@
 					<xs:documentation>Non-inductive (includes bootstrap) parallel current density = average(jni.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -279,7 +285,7 @@
 					<xs:documentation>Bootstrap current density = average(J_Bootstrap.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -319,7 +325,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -331,7 +337,7 @@
 					<xs:documentation>Magnetic shear, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -399,7 +405,7 @@
 					<xs:documentation>Magnetic shear at surface q = 1, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -412,7 +418,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate at surface q = 1</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -425,7 +431,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate at inversion radius</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -438,7 +444,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate at mixing radius</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -492,7 +498,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.0.4</lifecycle_version>
-				<lifecycle_last_change>3.10.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>

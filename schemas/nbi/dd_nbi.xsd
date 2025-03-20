@@ -95,7 +95,7 @@
 					<xs:documentation>Fraction of power of a unit injected by each beamlet</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../positions/r</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -115,7 +115,7 @@
 					<xs:documentation>Fraction of injected particles in the component</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -364,7 +364,7 @@
 					<xs:appinfo>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>time</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -374,7 +374,7 @@
 					<xs:appinfo>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>time</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

@@ -73,7 +73,7 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
 <xsl:with-param name="error_description" select="'This field must have a units attribute'"/>
 </xsl:apply-templates>
 <!-- Test that INT and STR data have no "units" metadata (R5.3), although some exceptions are possible for specific cases (UTC, Elementary charge or atomic mass units) -->
-<xsl:apply-templates select=".//field[@units and not(@units='UTC' or @units='Atomic Mass Unit' or @units='Elementary Charge Unit') and (contains(@data_type,'STR_') or contains(@data_type,'INT_') or contains(@data_type,'str_') or contains(@data_type,'int_'))]">
+<xsl:apply-templates select=".//field[@units and not(@units='UTC' or @units='u' or @units='e') and (contains(@data_type,'STR_') or contains(@data_type,'INT_') or contains(@data_type,'str_') or contains(@data_type,'int_'))]">
 <xsl:with-param name="error_description" select="'This field should NOT have a units attribute'"/>
 </xsl:apply-templates>
 <!-- Test the presence of nested AoS 3 (illegal) -->

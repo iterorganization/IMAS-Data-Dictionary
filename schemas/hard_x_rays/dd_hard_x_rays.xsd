@@ -38,7 +38,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate grid</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -53,7 +53,7 @@
 						<type>dynamic</type>
 						<coordinate1>../rho_tor_norm</coordinate1>
 						<coordinate2>../time</coordinate2>
-						<units>(photons).m^-3.str^-1.s^-1</units>
+						<units>m^-3.sr^-1.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -65,7 +65,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate position at which the emissivity peaks</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -78,7 +78,7 @@
 					<xs:documentation>Internal (towards magnetic axis) half width of the emissivity peak (in normalized toroidal flux)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -91,7 +91,7 @@
 					<xs:documentation>External (towards separatrix) half width of the emissivity peak (in normalized toroidal flux)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -169,7 +169,7 @@
 					<xs:documentation>Etendue (geometric extent) of the channel's optical system</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>m^2.str</units>
+						<units>m^2.sr</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -209,7 +209,7 @@
 					<xs:appinfo>
 						<coordinate1>../energy_band</coordinate1>
 						<coordinate2>time</coordinate2>
-						<units>(photons).s^-1.m^-2.sr^-1</units>
+						<units>s^-1.m^-2.sr^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
