@@ -54,11 +54,11 @@
 			</xs:element>
 			<xs:element name="power_density_spectrum_1d">
 				<xs:annotation>
-					<xs:documentation>1D power density spectrum dP/dn_tor, as a function of time</xs:documentation>
+					<xs:documentation>1D power density spectrum dP/dn_phi, as a function of time</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
-						<coordinate1>../n_tor</coordinate1>
+						<coordinate1>../n_phi</coordinate1>
 						<coordinate2>../time</coordinate2>
 					</xs:appinfo>
 				</xs:annotation>
@@ -72,7 +72,7 @@
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
-						<coordinate1>../n_tor</coordinate1>
+						<coordinate1>../n_phi</coordinate1>
 						<coordinate2>../n_pol</coordinate2>
 						<coordinate3>../time</coordinate3>
 					</xs:appinfo>
