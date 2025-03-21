@@ -35,7 +35,7 @@
 					<xs:documentation>Passive loop resistance</xs:documentation>
 					<xs:appinfo>
 						<Type>static</Type>
-						<Units>Ohm</Units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -47,7 +47,7 @@
 					<xs:documentation>Passive loop resistivity</xs:documentation>
 					<xs:appinfo>
 						<Type>static</Type>
-						<Units>Ohm.m</Units>
+						<units>ohm.m</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -89,7 +89,7 @@
 	</xs:complexType>
 	<xs:element name="pf_passive">
 		<xs:annotation>
-			<xs:documentation>Description of the axisymmetric passive conductors, currents flowing in them</xs:documentation>
+			<xs:documentation>Description of the axisymmetric passive conductors, currents flowing in them. Electromagnetic simulations are expected to use only this IDS to describe passive conductors and their specific discretization, not the component-related IDS (e.g. wall) which are used to store e.g. the component machine description</xs:documentation>
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.0.0</lifecycle_version>

@@ -1121,7 +1121,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1129,7 +1129,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1156,7 +1156,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../../../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1228,7 +1228,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../../../../time</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1317,7 +1317,7 @@
 				<xs:annotation>
 					<xs:documentation>Effective charge</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1350,7 +1350,7 @@
 				<xs:annotation>
 					<xs:documentation>Safety factor (only positive when toroidal current and magnetic field are in same direction)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>IDSPATH.q.value</cocos_leaf_name_aos_indices>
@@ -1361,7 +1361,7 @@
 				<xs:annotation>
 					<xs:documentation>Magnetic shear, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1446,7 +1446,7 @@
 				<xs:annotation>
 					<xs:documentation>Effective charge</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1454,7 +1454,7 @@
 				<xs:annotation>
 					<xs:documentation>Magnetic flux expansion as defined by Stangeby : ratio between the poloidal field at the midplane separatrix and the poloidal field at the strike-point see formula attached, where u means upstream (midplane separatrix) and t means at divertor target (downstream).</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>divertors/flux_expansion.png</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1478,7 +1478,7 @@
 				<xs:annotation>
 					<xs:documentation>Effective helical ripple for 1/nu neoclassical regime (see [Beidler, C. D., and W. N. G. Hitchon, 1994, Plasma Phys. Control. Fusion 35, 317])</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1486,7 +1486,7 @@
 				<xs:annotation>
 					<xs:documentation>Plateau factor, as defined in equation (25) of reference [Stroth U. et al 1998 Plasma Phys. Control. Fusion 40 1551]</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1494,7 +1494,7 @@
 				<xs:annotation>
 					<xs:documentation>Rotational transform (1/q)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1554,7 +1554,7 @@
 				<xs:annotation>
 					<xs:documentation>Effective charge</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1587,7 +1587,7 @@
 				<xs:annotation>
 					<xs:documentation>Safety factor</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>IDSPATH.q.value</cocos_leaf_name_aos_indices>
@@ -1598,7 +1598,7 @@
 				<xs:annotation>
 					<xs:documentation>Magnetic shear, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1624,7 +1624,7 @@
 				<xs:annotation>
 					<xs:documentation>Critical normalized pressure gradient determined with self-consistent runs with an MHD stability code. Details of the method for scanning parameters in the series of runs must be described in the 'source' node</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1632,7 +1632,7 @@
 				<xs:annotation>
 					<xs:documentation>Ratio of alpha_critical over alpha_experimental</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1655,7 +1655,7 @@
 				<xs:annotation>
 					<xs:documentation>Experimental normalized pressure gradient reconstructed by an MHD stability code (with assumptions on the ion pressure). See definition in [Miller PoP 5 (1998),973,Eq. 42]</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1685,7 +1685,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal full width in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1693,7 +1693,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal position in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1728,7 +1728,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal full width in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1736,7 +1736,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal position in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1759,7 +1759,7 @@
 				<xs:annotation>
 					<xs:documentation>Position (in terms of normalized poloidal flux) of the maximum gradient of the parent quantity in the pedestal</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1784,7 +1784,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal full width in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1792,7 +1792,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal position in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1832,7 +1832,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal full width in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1840,7 +1840,7 @@
 				<xs:annotation>
 					<xs:documentation>Pedestal position in normalized poloidal flux</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1863,7 +1863,7 @@
 				<xs:annotation>
 					<xs:documentation>Position (in terms of normalized poloidal flux) of the maximum gradient of the parent quantity in the pedestal</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1926,7 +1926,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta at pressure pedestal top for electrons using the flux surface average magnetic poloidal field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1934,7 +1934,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta at pressure pedestal top for electrons using the low field side magnetic poloidal field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1942,7 +1942,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta at pressure pedestal top for electrons using the high field side magnetic poloidal field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1950,7 +1950,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized collisionality at pressure pedestal top for electrons</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1958,7 +1958,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized Larmor radius at pressure pedestal top for electrons using the low field side magnetic field (important for spherical tokamaks)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1966,7 +1966,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized Larmor radius at pressure pedestal top for electrons using the high field side magnetic field (important for spherical tokamaks)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1974,7 +1974,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized Larmor radius at pressure pedestal top for electrons using the magnetic field on the magnetic axis (definition used in most tokamak literature)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2044,7 +2044,7 @@
 				<xs:annotation>
 					<xs:documentation>Coulomb factor log(lambda) at the position of the pressure pedestal top (as determined by the fit)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2120,7 +2120,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum value in the pedestal of the alpha parameter for electron pressure (see [Miller PoP 5 (1998),973,Eq. 42])</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2128,7 +2128,7 @@
 				<xs:annotation>
 					<xs:documentation>Position in normalized poloidal flux of the maximum value in the pedestal of the alpha parameter for electron pressure (see [Miller PoP 5 (1998),973,Eq. 42])</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2136,7 +2136,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta at pressure pedestal top for electrons using the flux surface average magnetic poloidal field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2144,7 +2144,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta at pedestal top for electrons using the low field side magnetic poloidal field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2152,7 +2152,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta at pressure pedestal top for electrons using the high field side magnetic poloidal field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2160,7 +2160,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized collisionality at pressure pedestal top for electrons</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2168,7 +2168,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized Larmor radius at pressure pedestal top for electrons using the low field side magnetic field (important for spherical tokamaks)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2176,7 +2176,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized Larmor radius at pressure pedestal top for electrons using the high field side magnetic field (important for spherical tokamaks)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2184,7 +2184,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized Larmor radius at pressure pedestal top for electrons using the magnetic field on the magnetic axis (definition used in most tokamak litterature)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2254,7 +2254,7 @@
 				<xs:annotation>
 					<xs:documentation>Coulomb factor log(lambda) at the position of the pressure pedestal top (as determined by the fit)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2486,7 +2486,7 @@
 				<xs:annotation>
 					<xs:documentation>Time derivative of the electron density</xs:documentation>
 					<xs:appinfo>
-						<units>m^-3.s-1</units>
+						<units>m^-3.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2510,7 +2510,7 @@
 				<xs:annotation>
 					<xs:documentation>Effective charge</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2518,7 +2518,7 @@
 				<xs:annotation>
 					<xs:documentation>Effective mass of the hydrogenic species (MH. nH+MD.nD+MT.nT)/(nH+nD+nT)  </xs:documentation>
 					<xs:appinfo>
-						<units>amu</units>
+						<units>u</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2526,7 +2526,7 @@
 				<xs:annotation>
 					<xs:documentation>Fraction of hydrogen density among the hydrogenic species (nH/(nH+nD+nT))</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2621,7 +2621,7 @@
 				<xs:annotation>
 					<xs:documentation>Elongation of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2629,7 +2629,7 @@
 				<xs:annotation>
 					<xs:documentation>Upper triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2637,7 +2637,7 @@
 				<xs:annotation>
 					<xs:documentation>Lower triangularity of the plasma boundary</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2803,7 +2803,7 @@
 				<xs:annotation>
 					<xs:documentation>Internal inductance. The li_3 definition is used, i.e. li_3 = 2/R0/mu0^2/Ip^2 * int(Bp^2 dV).</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>li</change_nbc_previous_name>
@@ -2814,7 +2814,7 @@
 				<xs:annotation>
 					<xs:documentation>Internal inductance as determined by an equilibrium reconstruction code. Use this only when the li node above is used for another estimation method and there is a need to store a second value of li (determined by an equilibrium reconstruction code). The li_3 definition is used, i.e. li_3 = 2/R0/mu0^2/Ip^2 * int(Bp^2 dV).</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>li_mhd</change_nbc_previous_name>
@@ -2825,7 +2825,7 @@
 				<xs:annotation>
 					<xs:documentation>Toroidal beta, defined as the volume-averaged total perpendicular pressure divided by (B0^2/(2*mu0)), i.e. beta_toroidal = 2 mu0 int(p dV) / V / B0^2</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2833,7 +2833,7 @@
 				<xs:annotation>
 					<xs:documentation>Toroidal beta, using the pressure determined by an equilibrium reconstruction code</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2841,7 +2841,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal beta, defined as 100 * beta_tor * a[m] * B0 [T] / ip [MA] </xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2849,7 +2849,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal beta, using the pressure determined by an equilibrium reconstruction code</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2857,7 +2857,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal beta from thermal pressure only, defined as 100 * beta_tor_thermal * a[m] * B0 [T] / ip [MA] </xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2865,7 +2865,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta. Defined as betap = 4 int(p dV) / [R_0 * mu_0 * Ip^2]</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2873,7 +2873,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta estimated from the pressure determined by an equilibrium reconstruction code. Defined as betap = 4 int(p dV) / [R_0 * mu_0 * Ip^2]</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3001,7 +3001,7 @@
 				<xs:annotation>
 					<xs:documentation>Fusion gain : ratio of the power provided by fusion reactions to the auxiliary power needed to heat the plasma. Often noted as Q in the litterature.</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3009,7 +3009,7 @@
 				<xs:annotation>
 					<xs:documentation>Energy confinement time enhancement factor over the IPB98(y,2) scaling</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3049,7 +3049,7 @@
 				<xs:annotation>
 					<xs:documentation>Ratio of Helium confinement time to fuel confinement time</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3065,7 +3065,7 @@
 				<xs:annotation>
 					<xs:documentation>q at the 95% poloidal flux surface (only positive when toroidal current and magnetic field are in same direction)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>summary.global_quantities.q_95.value</cocos_leaf_name_aos_indices>
@@ -3148,7 +3148,7 @@
 				<xs:annotation>
 					<xs:documentation>Greenwald fraction =line_average/n_e/value divided by (global_quantities/ip/value *1e6 * pi * minor_radius^2)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3311,7 +3311,7 @@
 				<xs:annotation>
 					<xs:documentation>Number of runaway electrons</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3400,7 +3400,7 @@
 				<xs:annotation>
 					<xs:documentation>Fractions of beam current distributed among the different energies, the first index corresponds to the fast neutrals energy (1:full, 2: half, 3: one third)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3408,7 +3408,7 @@
 				<xs:annotation>
 					<xs:documentation>Fractions of beam power distributed among the different energies, the first index corresponds to the fast neutrals energy (1:full, 2: half, 3: one third)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3431,7 +3431,7 @@
 				<xs:annotation>
 					<xs:documentation>Position of the maximum of the ECRH power deposition, in rho_tor_norm</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3526,7 +3526,7 @@
 				<xs:annotation>
 					<xs:documentation>Position of the maximum of the LH power deposition, in rho_tor_norm</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3534,7 +3534,7 @@
 				<xs:annotation>
 					<xs:documentation>Main parallel refractive index of LH waves at launch</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3592,7 +3592,7 @@
 				<xs:annotation>
 					<xs:documentation>Position of the maximum of the ICRH power deposition, in rho_tor_norm</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3618,7 +3618,7 @@
 				<xs:annotation>
 					<xs:documentation>Average E+/E- power ratio of IC waves</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3749,7 +3749,7 @@
 				<xs:annotation>
 					<xs:documentation>Ratio of co-injected beam launched power to total NBI launched power. Is set to 1 for purely perpendicular injection</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -3804,7 +3804,7 @@
 				<xs:annotation>
 					<xs:documentation>User-defined parameter, see description of linear_custom</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3816,7 +3816,7 @@
 				<xs:annotation>
 					<xs:documentation>User-defined value, see description of linear_custom</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4074,7 +4074,7 @@
 					<xs:annotation>
 						<xs:documentation>Gas injection rates in equivalent electrons.s^-1</xs:documentation>
 						<xs:appinfo>
-							<units>electrons.s^-1</units>
+							<units>s^-1</units>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
@@ -4082,7 +4082,7 @@
 					<xs:annotation>
 						<xs:documentation>Accumulated injected gas since the plasma breakdown in equivalent electrons</xs:documentation>
 						<xs:appinfo>
-							<units>electrons</units>
+							<units>1</units>
 							<introduced_after_version>3.36.0</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>
@@ -4091,7 +4091,7 @@
 					<xs:annotation>
 						<xs:documentation>Accumulated injected gas during the prefill in equivalent electrons</xs:documentation>
 						<xs:appinfo>
-							<units>electrons</units>
+							<units>1</units>
 							<introduced_after_version>3.37.2</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>

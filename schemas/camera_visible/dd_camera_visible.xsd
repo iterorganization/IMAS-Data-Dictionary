@@ -201,7 +201,7 @@
 						<coordinate1_same_as>../image_raw</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
 						<coordinate2_same_as>../image_raw</coordinate2_same_as>
-						<units>photons.m^-2.s^-1.sr^-1</units>
+						<units>m^-2.s^-1.sr^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -284,7 +284,7 @@
 						<coordinate1_same_as>../frame(itime)/image_raw</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
 						<coordinate2_same_as>../frame(itime)/image_raw</coordinate2_same_as>
-						<units>photons.m^-2.s^-1.sr^-1.counts^-1</units>
+						<units>m^-2.s^-1.sr^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -308,7 +308,7 @@
 					<xs:documentation>Detector noise (e.g. read-out noise) (rms counts per second exposure time)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

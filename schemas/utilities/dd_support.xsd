@@ -379,7 +379,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate of the measurement</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -831,7 +831,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -843,7 +843,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -880,7 +880,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -935,7 +935,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -976,7 +976,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -988,7 +988,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1025,7 +1025,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1064,7 +1064,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1164,7 +1164,7 @@
 					<xs:documentation>Relative fraction of this species (in molecules) in the gas mixture</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1194,7 +1194,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -1245,7 +1245,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1257,7 +1257,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -1293,7 +1293,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>constant</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1305,7 +1305,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>constant</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -1341,7 +1341,7 @@
 				<xs:annotation>
 					<xs:documentation>Mass of atom</xs:documentation>
 					<xs:appinfo>
-						<units>Atomic Mass Unit</units>
+						<units>u</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -1353,7 +1353,7 @@
 				<xs:annotation>
 					<xs:documentation>Nuclear charge</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>type_changed</change_nbc_description>
@@ -1497,7 +1497,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../n_e/data</coordinate1_same_as>
 						<coordinate2>../../n_e/time</coordinate2>
@@ -1513,7 +1513,7 @@
 					<xs:documentation>Normalized poloidal flux coordinate = sqrt((psi(rho)-psi(magnetic_axis)) / (psi(LCFS)-psi(magnetic_axis)))</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../n_e/data</coordinate1_same_as>
 						<coordinate2>../../n_e/time</coordinate2>
@@ -1784,6 +1784,14 @@
 				<xs:complexType>
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
+			</xs:element>
+			<xs:element name="library" type="library" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>List of external libraries used by the code that has produced this IDS</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -2386,7 +2394,7 @@
 					<xs:documentation>conductor resistance</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2444,7 +2452,7 @@
 					<xs:documentation>Number of total turns in the coil. May be a fraction when describing the coil connections.</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2456,7 +2464,7 @@
 					<xs:documentation>Coil resistance</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2720,7 +2728,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2746,7 +2754,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../rho_pol_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2846,7 +2854,7 @@
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
 						<alternative_coordinate1>../rho_tor;../psi;../volume;../area;../surface;../rho_pol_norm</alternative_coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2872,7 +2880,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2967,10 +2975,10 @@
 		<xs:sequence>
 			<xs:element name="measured">
 				<xs:annotation>
-					<xs:documentation>Measured values</xs:documentation>
+					<xs:documentation>Measured values. Units are: as_parent for a local measurement, as_parent.m for a line integrated measurement.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>as_parent for a local measurement, as_parent.m for a line integrated measurement</units>
+						<units>mixed</units>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2992,7 +3000,7 @@
 			</xs:element>
 			<xs:element name="time_measurement">
 				<xs:annotation>
-					<xs:documentation>Exact time slices used from the time array of the measurement source data. If the time slice does not exist in the time array of the source data, it means linear interpolation has been used</xs:documentation>
+					<xs:documentation>Exact time slices used from the time array of the measurement source data. The time slice is indicated for each measurement point considered in the fit since measurements may come from different and thus asynchronous diagnostics. If the time slice does not exist in the time array of the source data, it means linear interpolation has been used</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>s</units>
@@ -3039,7 +3047,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate of each measurement (local value for a local measurement, minimum value reached by the line of sight for a line measurement)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3052,7 +3060,7 @@
 					<xs:documentation>Weight given to each measured value</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3062,10 +3070,10 @@
 			</xs:element>
 			<xs:element name="reconstructed">
 				<xs:annotation>
-					<xs:documentation>Value reconstructed from the fit</xs:documentation>
+					<xs:documentation>Value reconstructed from the fit. Units are: as_parent for a local measurement, as_parent.m for a line integrated measurement.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>as_parent for a local measurement, as_parent.m for a line integrated measurement</units>
+						<units>mixed</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3078,7 +3086,7 @@
 					<xs:documentation>Squared error normalized by the weighted standard deviation considered in the minimization process : chi_squared = weight^2 *(reconstructed - measured)^2 / sigma^2, where sigma is the standard deviation of the measurement error</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../measured</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3111,7 +3119,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3123,7 +3131,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3135,7 +3143,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z of the charge state bundle, volume averaged over the plasma radius (equal to z_min if no bundle), = sum (Z*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3147,7 +3155,7 @@
 				<xs:annotation>
 					<xs:documentation>Average Z square of the charge state bundle, volume averaged over the plasma radius (equal to z_min squared if no bundle), = sum (Z^2*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3160,7 +3168,7 @@
 					<xs:documentation>Average charge profile of the charge state bundle (equal to z_min if no bundle), = sum (Z*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3173,7 +3181,7 @@
 					<xs:documentation>Average square charge profile of the charge state bundle (equal to z_min squared if no bundle), = sum (Z^2*x_z) where x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3225,7 +3233,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3401,7 +3409,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed), volume averaged over plasma radius</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -3438,7 +3446,7 @@
 					<xs:documentation>Average charge of the ion species (sum of states charge weighted by state density and divided by ion density)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3451,7 +3459,7 @@
 					<xs:documentation>Average square charge of the ion species (sum of states square charge weighted by state density and divided by ion density)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -3680,7 +3688,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4134,7 +4142,7 @@
 					<xs:documentation>Collisionality normalized to the bounce frequency</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4204,7 +4212,7 @@
 					<xs:documentation>Ratio of total ion density (sum over species and charge states) over electron density. (thermal+non-thermal)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4247,7 +4255,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -4258,7 +4266,7 @@
 				<xs:annotation>
 					<xs:documentation>Information on the fit used to obtain the zeff profile</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -4319,7 +4327,7 @@
 					<xs:documentation>Total parallel current density = average(jtot.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4345,7 +4353,7 @@
 					<xs:documentation>Total toroidal current density = average(J_phi/R) / average(1/R)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 						<change_nbc_version>3.42.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
@@ -4361,7 +4369,7 @@
 					<xs:documentation>Ohmic parallel current density = average(J_Ohmic.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4374,7 +4382,7 @@
 					<xs:documentation>Non-inductive (includes bootstrap) parallel current density = average(jni.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4387,7 +4395,7 @@
 					<xs:documentation>Bootstrap current density = average(J_Bootstrap.B) / B0, where B0 = Core_Profiles/Vacuum_Toroidal_Field/ B0</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>A/m^2</units>
+						<units>A.m^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4449,7 +4457,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<cocos_label_transformation>q_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_q</cocos_transformation_expression>
 						<cocos_leaf_name_aos_indices>IDSPATH.q</cocos_leaf_name_aos_indices>
@@ -4464,7 +4472,7 @@
 					<xs:documentation>Magnetic shear, defined as rho_tor/q . dq/drho_tor</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4575,7 +4583,7 @@
 					<xs:documentation>Probability of detection of a photon impacting the detector as a function of its energy </xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../energies</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4632,7 +4640,7 @@
 					<xs:documentation>Probability of detection of a photon impacting the detector as a function of its wavelength </xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4689,7 +4697,7 @@
 					<xs:documentation>Probability of detection of a photon impacting the detector as a function of its wavelength </xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4739,7 +4747,7 @@
 						<coordinate1>../expressions</coordinate1>
 						<coordinate2>../../weights</coordinate2>
 						<coordinate3>../time_orbit</coordinate3>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4769,12 +4777,15 @@
 					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="n_tor">
+			<xs:element name="n_phi">
 				<xs:annotation>
-					<xs:documentation>Array of toroidal mode numbers, n_tor, where quantities vary as exp(i.n_tor.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
+					<xs:documentation>Array of toroidal mode numbers, where quantities vary as exp(i.n_phi.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -4814,7 +4825,7 @@
 						<coordinate3>../n_tor</coordinate3>
 						<coordinate4>../m_pol</coordinate4>
 						<coordinate5>../bounce_harmonics</coordinate5>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -4847,7 +4858,7 @@
 					<xs:documentation>Weight of the markers, i.e. number of real particles represented by each marker. The dimension of the vector correspond to the number of markers</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -7090,7 +7101,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -7186,7 +7197,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -7262,7 +7273,7 @@
 				<xs:annotation>
 					<xs:documentation>Minimum Z of the state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -7274,7 +7285,7 @@
 				<xs:annotation>
 					<xs:documentation>Maximum Z of the state bundle</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -7300,7 +7311,7 @@
 				<xs:annotation>
 					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
 					<xs:appinfo>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -7380,7 +7391,7 @@
 					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>Elementary Charge Unit</units>
+						<units>e</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -7782,7 +7793,7 @@
 					<xs:documentation>Normalized toroidal flux coordinate. The normalizing value for rho_tor_norm, is the toroidal flux coordinate at the equilibrium boundary (LCFS or 99.x % of the LCFS in case of a fixed boundary equilibium calculation, see time_slice/boundary/b_flux_pol_norm in the equilibrium IDS) </xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -8125,7 +8136,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -8216,7 +8227,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../time</coordinate1>
 						<utilities_aoscontext>yes</utilities_aoscontext>
@@ -9170,7 +9181,7 @@
 					<xs:documentation>Probability of absorbing a photon passing through the filter as a function of its wavelength </xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -9937,7 +9948,7 @@
 					<xs:documentation>Refractive index (for metal and dielectric)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -9950,7 +9961,7 @@
 					<xs:documentation>Extinction coefficient (for metal)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -9963,7 +9974,7 @@
 					<xs:documentation>Transmission coefficient (for dielectric)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -9976,7 +9987,7 @@
 					<xs:documentation>Roughness parameter of the material. Varies in range [0, 1]. 0 is perfectly specular, 1 is perfectly rough</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../wavelengths</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -10423,7 +10434,7 @@
 					<xs:documentation>Number of effective turns in the element for calculating the magnetic field from the coil/loop. Should be positive, unless the coil has elements going in opposite directions. </xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -10509,7 +10520,7 @@
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../bins</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -10736,6 +10747,8 @@
 						<change_nbc_version>3.42.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>j_tor</change_nbc_previous_name>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -10744,7 +10757,7 @@
 					<xs:documentation>Resistance of the block element</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>Ohm</units>
+						<units>ohm</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -11022,7 +11035,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized power flow in the direction perpendicular to the magnetic field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 					</xs:appinfo>
@@ -11035,7 +11048,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized power flow in the direction parallel to the magnetic field</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 					</xs:appinfo>
@@ -11145,7 +11158,7 @@
 					<xs:documentation>Normalised toroidal flux coordinate</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 						<coordinate1>../../length</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -11222,7 +11235,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized wave vector component in the major radius direction = k_r / norm(k)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 						<introduced_after_version>3.38.1</introduced_after_version>
@@ -11236,7 +11249,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized wave vector component in the vertical direction = k_z / norm(k)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 						<introduced_after_version>3.38.1</introduced_after_version>
@@ -11250,7 +11263,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalized wave vector component in the toroidal direction = k_phi / norm(k)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 						<change_nbc_version>3.42.0</change_nbc_version>
@@ -11266,7 +11279,7 @@
 				<xs:annotation>
 					<xs:documentation>Parallel refractive index</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 					</xs:appinfo>
@@ -11279,7 +11292,7 @@
 				<xs:annotation>
 					<xs:documentation>Perpendicular refractive index</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<type>dynamic</type>
 						<coordinate1>../../length</coordinate1>
 					</xs:appinfo>
