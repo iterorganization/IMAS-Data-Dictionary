@@ -108,7 +108,7 @@
 						<type>constant</type>
 						<lifecycle_status>obsolescent</lifecycle_status>
 						<lifecycle_version>3.42.0</lifecycle_version>
-				</xs:appinfo>
+					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="STR_0D"/>
@@ -178,13 +178,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="velocity_tor">
+			<xs:element name="velocity_phi">
 				<xs:annotation>
 					<xs:documentation>Toroidal component of the fragment velocity</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m.s^-1</units>
 						<coordinate1>/time</coordinate1>
+						<change_nbc_version>3.42.1</change_nbc_version> 						
+						<change_nbc_description>leaf_renamed</change_nbc_description> 						
+						<change_nbc_previous_name>velocity_tor</change_nbc_previous_name>					
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -383,13 +386,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="velocity_tor">
+			<xs:element name="velocity_phi">
 				<xs:annotation>
 					<xs:documentation>Toroidal component of the velocity of the centre of mass of the pellet</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m.s^-1</units>
 						<coordinate1>/time</coordinate1>
+						<change_nbc_version>3.42.1</change_nbc_version> 						
+						<change_nbc_description>leaf_renamed</change_nbc_description> 						
+						<change_nbc_previous_name>velocity_tor</change_nbc_previous_name>					
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -598,12 +604,15 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="velocity_mass_centre_fragments_tor">
+			<xs:element name="velocity_mass_centre_fragments_phi">
 				<xs:annotation>
 					<xs:documentation>Toroidal component of the velocity of the centre of mass of the fragments at the shattering cone origin</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>m.s^-1</units>
+						<change_nbc_version>3.42.1</change_nbc_version> 						
+						<change_nbc_description>leaf_renamed</change_nbc_description> 						
+						<change_nbc_previous_name>velocity_mass_centre_fragments_tor</change_nbc_previous_name>					
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -626,7 +635,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.40.0</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>3.42.1</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
