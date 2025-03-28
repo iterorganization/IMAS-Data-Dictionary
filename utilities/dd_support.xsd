@@ -5082,7 +5082,7 @@
 		<xs:sequence>
 			<xs:element name="expressions">
 				<xs:annotation>
-					<xs:documentation>List of the expressions f(n_tor,m_pol,k,q,...) used in the orbit integrals</xs:documentation>
+					<xs:documentation>List of the expressions f(n_phi,m_pol,k,q,...) used in the orbit integrals</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
@@ -5092,12 +5092,15 @@
 					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="n_tor">
+			<xs:element name="n_phi">
 				<xs:annotation>
-					<xs:documentation>Array of toroidal mode numbers, n_tor, where quantities vary as exp(i.n_tor.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
+					<xs:documentation>Array of toroidal mode numbers, n_phi, where quantities vary as exp(i.n_phi.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
+						<change_nbc_version>3.42.1</change_nbc_version> 						
+						<change_nbc_description>leaf_renamed</change_nbc_description> 						
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>					
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -5134,7 +5137,7 @@
 					<xs:appinfo>
 						<coordinate1>../expressions</coordinate1>
 						<coordinate2>../../weights</coordinate2>
-						<coordinate3>../n_tor</coordinate3>
+						<coordinate3>../n_phi</coordinate3>
 						<coordinate4>../m_pol</coordinate4>
 						<coordinate5>../bounce_harmonics</coordinate5>
 						<units>-</units>
@@ -5194,7 +5197,7 @@
 			</xs:element>
 			<xs:element name="orbit_integrals" type="distribution_markers_orbit">
 				<xs:annotation>
-					<xs:documentation>Integrals along the markers orbit. These dimensionless expressions are of the form: (1/tau) integral (f(n_tor,m_pol,k,eq,...) dt) from time - tau to time, where tau is the transit/trapping time of the marker and f() a dimensionless function (phase factor,drift,etc) of the equilibrium (e.g. q) and perturbation (Fourier harmonics n_tor,m_pol and bounce harmonic k) along the particles orbits. In fact the integrals are taken during the last orbit of each marker at the time value of the time node below</xs:documentation>
+					<xs:documentation>Integrals along the markers orbit. These dimensionless expressions are of the form: (1/tau) integral (f(n_phi,m_pol,k,eq,...) dt) from time - tau to time, where tau is the transit/trapping time of the marker and f() a dimensionless function (phase factor,drift,etc) of the equilibrium (e.g. q) and perturbation (Fourier harmonics n_phi,m_pol and bounce harmonic k) along the particles orbits. In fact the integrals are taken during the last orbit of each marker at the time value of the time node below</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="orbit_integrals_instant" type="distribution_markers_orbit_instant">
@@ -11379,7 +11382,7 @@
 			</xs:element>
 			<xs:element name="n_phi">
 				<xs:annotation>
-					<xs:documentation>Toroidal wave number, contains a single value if varying_ntor = 0 to avoid useless repetition constant values. The wave vector toroidal component is defined as k_phi = n_phi grad phi where phi is the toroidal angle so that a positive n_tor means a wave propagating in the positive phi direction</xs:documentation>
+					<xs:documentation>Toroidal wave number, contains a single value if varying_ntor = 0 to avoid useless repetition constant values. The wave vector toroidal component is defined as k_phi = n_phi grad phi where phi is the toroidal angle so that a positive n_phi means a wave propagating in the positive phi direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../../length OR 1...1</coordinate1>

@@ -23,13 +23,16 @@
 					<xs:documentation>Position of the middle on the row</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="n_tor">
+			<xs:element name="n_phi">
 				<xs:annotation>
 					<xs:documentation>Refraction index in the toroidal direction</xs:documentation>
 					<xs:appinfo>
 						<units>-</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
+						<change_nbc_version>3.42.1</change_nbc_version> 						
+						<change_nbc_description>leaf_renamed</change_nbc_description> 						
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>					
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -51,11 +54,11 @@
 			</xs:element>
 			<xs:element name="power_density_spectrum_1d">
 				<xs:annotation>
-					<xs:documentation>1D power density spectrum dP/dn_tor, as a function of time</xs:documentation>
+					<xs:documentation>1D power density spectrum dP/dn_phi, as a function of time</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
-						<coordinate1>../n_tor</coordinate1>
+						<coordinate1>../n_phi</coordinate1>
 						<coordinate2>../time</coordinate2>
 					</xs:appinfo>
 				</xs:annotation>
@@ -65,11 +68,11 @@
 			</xs:element>
 			<xs:element name="power_density_spectrum_2d">
 				<xs:annotation>
-					<xs:documentation>2D power density spectrum d2P/(dn_tor.dn_pol), as a function of time</xs:documentation>
+					<xs:documentation>2D power density spectrum d2P/(dn_phi.dn_pol), as a function of time</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
-						<coordinate1>../n_tor</coordinate1>
+						<coordinate1>../n_phi</coordinate1>
 						<coordinate2>../n_pol</coordinate2>
 						<coordinate3>../time</coordinate3>
 					</xs:appinfo>
@@ -316,7 +319,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.19.1</lifecycle_version>
-				<lifecycle_last_change>3.33.0</lifecycle_last_change>
+				<lifecycle_last_change>3.42.1</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
