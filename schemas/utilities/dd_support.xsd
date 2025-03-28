@@ -4822,7 +4822,7 @@
 					<xs:appinfo>
 						<coordinate1>../expressions</coordinate1>
 						<coordinate2>../../weights</coordinate2>
-						<coordinate3>../n_tor</coordinate3>
+						<coordinate3>../n_phi</coordinate3>
 						<coordinate4>../m_pol</coordinate4>
 						<coordinate5>../bounce_harmonics</coordinate5>
 						<units>1</units>

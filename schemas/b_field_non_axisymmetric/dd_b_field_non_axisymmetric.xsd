@@ -113,7 +113,7 @@
 						<type>dynamic</type>
 						<units>T</units>
 						<coordinate1>../outline/r</coordinate1>
-						<coordinate2>../n_tor</coordinate2>
+						<coordinate2>../n_phi</coordinate2>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
