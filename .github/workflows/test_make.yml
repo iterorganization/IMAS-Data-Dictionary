@@ -1,0 +1,20 @@
+name: test-make
+
+on: push
+
+jobs:
+  build:
+    name: Make
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 
+    - name: Install java and SaxonHE
+      run: |
+        sudo apt update
+        sudo apt install -y libsaxonhe-java
+    - name: Make
+      run: |
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make
