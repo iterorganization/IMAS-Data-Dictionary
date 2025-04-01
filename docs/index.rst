@@ -1,5 +1,5 @@
-IMAS Data Dictionary documentation
-==================================
+IMAS Data Dictionary documentation Version |version|
+====================================================
 
 The IMAS Data Dictionary (DD) defines the standardized data structures used
 for IMAS data. See :ref:`introduction` for more background about the Data

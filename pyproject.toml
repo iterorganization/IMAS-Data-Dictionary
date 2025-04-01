@@ -1,6 +1,6 @@
 
 [build-system]
-requires = ["setuptools>=64", "setuptools-scm>=8", "packaging"]
+requires = ["setuptools>=64", "setuptools-scm>=8", "packaging>=20", "saxonche"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,27 +8,27 @@ name = "imas-data-dictionary"
 description ="The Data Dictionary is the implementation of the Data Model of ITER's Integrated Modelling & Analysis Suite (IMAS)"
 authors = [{name = "ITER Organization", email = "imas-support@iter.org"}]
 readme = {file = "README.md", content-type = "text/markdown"}
-license = {file = "LICENSE.md"}
-keywords = ["Data Dictionary", "IDS"]
+license = "GPL-3.0-or-later AND LGPL-3.0-or-later"
+keywords = ["IMAS", "Data Dictionary", "IDS"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: Other/Proprietary License",
     "Programming Language :: Python :: 3",
     "Topic :: Scientific/Engineering :: Physics"
 ]
 dynamic = ["version"]
 dependencies = [
-    "packaging",
+    "packaging>=20",
     "setuptools_scm>=8"
 ]
 
 [project.urls]
-homepage = "https://imas.iter.org/"
+homepage = "https://github.com/iterorganization/IMAS-Data-Dictionary"
 
 [tool.setuptools_scm]
 write_to = "data_dictionary/_version.py"
+local_scheme = "no-local-version"
 
 [tool.setuptools.packages.find]
 where = ["."]
