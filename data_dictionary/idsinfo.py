@@ -44,7 +44,7 @@ edge_sources/grid_ggd
         source/ggd
 ...
 """
-from packaging.version import Version
+from ._version import version as __version__  # noqa: F401 # pylint: disable=import-error
 from pathlib import Path
 import os
 import re
@@ -79,17 +79,17 @@ class IDSInfo:
                     python_env_path = python_env
                     break
             if version_list is not None and len(version_list) != 0:
-                version_objects = [Version(version.replace("dd_", "")) for version in version_list]
-                latest_version = max(version_objects)
-                folder_to_look = os.path.join(python_env_path, "dd_" + str(latest_version))
-                for root, dirs, files in os.walk(folder_to_look):
-                    for file in files:
-                        if file.endswith("IDSDef.xml"):
-                            self.idsdef_path = os.path.join(root, file)
-                        if file.endswith("html_documentation.html"):
-                            self.legacy_doc_path = os.path.join(root, file)
-                        if root.endswith("sphinx") and file == "index.html":
-                            self.sphinx_doc_path = os.path.join(root, file)
+                version_objects = [version.replace("dd_", "") for version in version_list]
+                if __version__ in version_objects:
+                    folder_to_look = os.path.join(python_env_path, "dd_" + str(__version__))
+                    for root, dirs, files in os.walk(folder_to_look):
+                        for file in files:
+                            if file.endswith("IDSDef.xml"):
+                                self.idsdef_path = os.path.join(root, file)
+                            if file.endswith("html_documentation.html"):
+                                self.legacy_doc_path = os.path.join(root, file)
+                            if root.endswith("sphinx") and file == "index.html":
+                                self.sphinx_doc_path = os.path.join(root, file)
 
         # Search through higher level directories
         if not self.idsdef_path:

@@ -23,7 +23,7 @@ jobs:
         build
         --user
     - name: Set version for setuptools_scm
-      run: echo "SETUPTOOLS_SCM_PRETEND_VERSION=3.42.0" >> $GITHUB_ENV
+      run: echo "SETUPTOOLS_SCM_PRETEND_VERSION=3.42.0.post1" >> $GITHUB_ENV
     - name: Build a binary wheel and a source tarball
       run: python3 -m build
     - name: Store the distribution packages
