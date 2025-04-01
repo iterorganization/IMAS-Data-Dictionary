@@ -4,3 +4,5 @@ sphinx-immaterial >= 0.11.4, < 0.12.0
 setuptools_scm > 8
 # Git integration
 gitpython
+# To generate js query tool
+saxonche

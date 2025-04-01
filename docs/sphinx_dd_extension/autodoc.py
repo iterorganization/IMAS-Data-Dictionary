@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 # Utilities that are documented separately to reduce the size of the reference pages
-DOCUMENTED_UTILITIES = ["ids_properties"]
+DOCUMENTED_UTILITIES = ["ids_properties","code"]
 # Indentation character
 INDENT = " "
 # Cached DD XML element tree
@@ -73,7 +73,7 @@ def generate_dd_docs(app: Sphinx):
         update_file(docfile, util2rst(node))
 
     # Find all ../*/*_identifier.xml files
-    for identifier in Path.cwd().parent.glob("*/*_identifier.xml"):
+    for identifier in Path.cwd().parent.glob("schemas/*/*_identifier.xml"):
         iden_tree = ElementTree.parse(identifier)
         element = iden_tree.getroot()
         docfile = Path(f"generated/identifier/{identifier.stem}.rst")
@@ -331,6 +331,21 @@ def field2rst(
             result.append(f".. versionchanged:: {change_nbc_version}")
             previous_type = field.get("change_nbc_previous_type")
             result.append(f"  Type changed from ``{previous_type}``")
+        elif change_nbc_description == "repeat_children_first_point":
+            result.append(f".. versionchanged:: {change_nbc_version}")
+            result.append(f"  Since this describes a closed countour first point must now be repeated at the end of the coordinate arrays of the children")
+        elif change_nbc_description == "repeat_children_first_point_conditional":
+            result.append(f".. versionchanged:: {change_nbc_version}")
+            result.append(f"  When describing a closed countour (closed child flag = 1 in DDv3), the first point must now be repeated at the end of the coordinate arrays of the children")
+        elif change_nbc_description == "repeat_children_first_point_conditional_sibling":
+            result.append(f".. versionchanged:: {change_nbc_version}")
+            result.append(f"  When describing a closed countour (closed sibling flag = 1 in DDv3), the first point must now be repeated at the end of the coordinate arrays of the children")
+        elif change_nbc_description == "repeat_children_first_point_conditional_sibling_dynamic":
+            result.append(f".. versionchanged:: {change_nbc_version}")
+            result.append(f"  When describing a closed dynamic countour (closed sibling flag = 1 in DDv3), the first point must now be repeated at the end of the coordinate arrays of the children")
+        elif change_nbc_description == "remove_last_point_if_open_annular_centreline":
+            result.append(f".. versionchanged:: {change_nbc_version}")
+            result.append(f"  Specific case for wall annular thickness (which has a size equals to the contour size-1): remove the last point of a vector in case the ../centreline/closed flag is False in DDv3")
         else:
             logger.warning(
                 "Unknown nbc change %r, not documenting NBC change.",

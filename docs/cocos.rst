@@ -4,11 +4,10 @@ Coordinate conventions
 COCOS
 -----
 
-This version of the IMAS Data Dictionary follows the COCOS = |cocos| coordinate
-convention.
+This version of the IMAS Data Dictionary corresponds to COCOS = |cocos| coordinate convention.
 
 .. caution::
-    Major version 3 uses COCOS = 11, while major version 4 uses COCOS = 17.
+     Major version 4 corresponds to COCOS = 17, while major version 3 corresponds to COCOS = 11.
 
 The COCOS (Coordinate COnvetionS for 3D current and magnetic fields) conventions
 are described in detail in: `O. Sauter and S.Yu. Medvedev, Computer Physics

@@ -48,7 +48,7 @@ The repository contains:
 -  ``dd_data_dictionary.xml.xsd``: this is the root of the data dictionary tree,
    listing the IDS and their maximum occurrence number (has to be pre-declared,
    temporary limitation). Its root element also contains the information of
-   which COCOS convention is used in this version of the DD (``cocos=11`` in the
+   which COCOS convention is consistent with this version of the DD (``cocos=17`` in the
    example below):
 
    .. code-block:: xml
@@ -57,7 +57,7 @@ The repository contains:
          <xs:annotation>
             <xs:documentation>Root of the Physics Data Dictionary</xs:documentation>
             <xs:appinfo>
-               <cocos>11</cocos>
+               <cocos>17</cocos>
             </xs:appinfo>
          </xs:annotation>
       </xs:element>
@@ -543,7 +543,14 @@ The detailed meaning of each property can be found in the
 :ref:`dm_rules_guidelines`. In particular sections :ref:`Self-description
 Conventions` and :ref:`List of the existing data types`.
 
-NB: ``FLT_*`` and ``CPX_*`` nodes will have sibling errorbar nodes automatically generated
+NB1: units are normally explicitly defined at the level of the leaf node.
+However, in the case of a node belonging to a structure that can be used in different contexts,
+it's possible to refer to the units of the parent node by indicating ``<units>as_parent</units>``.
+It's also possible to refer to the units of the grandparent node with 
+``<units>as_parent_level_2</units>``. The references will be explicitly resolved 
+when generating the ``dd_data_dictionary.xml`` file.
+
+NB2: ``FLT_*`` and ``CPX_*`` nodes will have sibling errorbar nodes automatically created
 when generating the dd_data_dictionary.xml file. To avoid this, for performance reasons
 (e.g. in large size GGD objects), the data type of the leaf should be declared in a different way,
 using the simpleTypes defined in utilities.xsd (named flt_type and flt_nd_type). Example:
@@ -587,6 +594,9 @@ An example from the core_profiles IDS:
          </xs:documentation>
       </xs:annotation>
    </xs:element>
+
+Structure nodes shouldn't have units, unless these are refered to by descendent
+leaf nodes (see ``<units>as_parent</units>`` case above)
 
 Note that the previous (from DD tags 3.0.0 to 3.21.0) way of declaring
 signals (data, time structures with their own time bases) is deprecated.
@@ -781,7 +791,7 @@ absolute path when generating the dd_data_dictionary.xml file.
             <type>dynamic</type>
             <coordinate1>1...N</coordinate1>
             <alternative_coordinate1>../rho_tor;../psi;../volume;../area;../surface;../rho_pol_norm</alternative_coordinate1>
-            <units>-</units>
+            <units>1</units>
          </xs:appinfo>
       </xs:annotation>
       <xs:complexType>
@@ -821,6 +831,11 @@ Non-backward compatible changes in the DD can be marked as additional
 metadata, to allow for instance the Access Layer to deploy alternative
 strategies to read from IMAS files written with previous versions of the
 DD and map them to the loaded DD version.
+
+NB: when a new category of NBC metadata is introduced in the DD, 
+it should be also documented in ``docs/sphinx_dd_extension/autodoc.py``,
+otherwise the Sphinx documentation generation will not recognize it and
+will fail.
 
 The following use cases are implemented :
 
@@ -892,6 +907,39 @@ The following use cases are implemented :
       <change_nbc_version>3.39.0</change_nbc_version>
       <change_nbc_description>type_changed</change_nbc_description>
       <change_nbc_previous_type>generic_grid_scalar</change_nbc_previous_type>
+
+3. Characterize closed contours by repeating the last point. This change of convention (IMAS-5168) is documented to enable automated conversion (before closed countour were either implicit, or indicated by a ``closed`` node, and the first point was never repeated). The NBC tags must be placed at the level of the parent structure of the coordinates describing the countour (within ``<appinfo>``):
+
+   .. code-block:: xml
+      :caption: Example for an implicitly closed contour (the contour is always closed, so the first point must be repeated when doing the conversion)
+
+      <change_nbc_version>4</change_nbc_version>
+      <change_nbc_description>repeat_children_first_point</change_nbc_description>
+
+   .. code-block:: xml
+      :caption: Example for a contour that is not necessarily closed (the conversion tool will check the closed child flag in DDv3)
+
+      <change_nbc_version>4</change_nbc_version>
+      <change_nbc_description>repeat_children_first_point_conditional</change_nbc_description>
+
+   .. code-block:: xml
+      :caption: Example for a contour that is not necessarily closed (the conversion tool will check the closed sibling flag in DDv3)
+
+      <change_nbc_version>4</change_nbc_version>
+      <change_nbc_description>repeat_children_first_point_conditional_sibling</change_nbc_description>
+
+   .. code-block:: xml
+      :caption: Example for a dynamic contour that is not necessarily closed (the conversion tool will check the closed sibling flag in DDv3)
+
+      <change_nbc_version>4</change_nbc_version>
+      <change_nbc_description>repeat_children_first_point_conditional_sibling_dynamic</change_nbc_description>
+      
+   .. code-block:: xml
+      :caption: Specific case for wall annular thickness (which has a size equals to the contour size-1): remove the last point of a vector in case the ../centreline/closed flag is False in DDv3
+
+      <change_nbc_version>4</change_nbc_version>
+      <change_nbc_description>remove_last_point_if_open_annular_centreline</change_nbc_description>
+
 
 
 Attaching COCOS transformation metadata at the node level
@@ -997,10 +1045,10 @@ applying the same conversion on the errorbar nodes as on the main node.
 Adding node creation tag in the DD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Following the feature request `<https://jira.iter.org/browse/IMAS-3696>`_, it is
-decided to start introducing metadata indicating after which tag a node has been
-created/introduced in the DD. In case of a structure node, this information
-applies by default to all its descendants.
+Following a feature request, it was decided to introduce metadata
+indicating after which tag a node has been introduced into the DD. In
+case of a structure node, this information applies by default to all
+of its descendants.
 
 This done with the following metadata, to be located within the
 ``<appinfo>`` tag of the node:
@@ -1104,7 +1152,9 @@ following attributes:
 
 -  ``coordinate1`` ... ``coordinateN``: N attributes listing the coordinates of
    the node (absolute paths, i.e. relative to the root of the IDS)
--  ``units``: units of the node
+-  ``units``: units of the node. In case the units in the IDS schema refer 
+   to the parent or grandparent node, these references are explicitly resolved
+   in the ``dd_data_dictionary.xml`` file
 -  ``lifecycle_status``: lifecycle status as defined in the DD lifecycle
    document
 -  ``lifecycle_version``: version of the DD since which this node has this

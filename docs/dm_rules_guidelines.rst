@@ -526,7 +526,7 @@ developer.
 
    *  -  R5.3
       -  Float and Complex data items shall have their units defined. If the
-         quantity is dimensionless, the units shall be ``-``. if the quantity has
+         quantity is dimensionless, the units shall be ``1``. if the quantity has
          mixed units, then the units shall be ``mixed``.
 
          If the quantity is implemented via a generic structure with its
@@ -537,7 +537,8 @@ developer.
          The units of a quantity shall be self-described in the Data Dictionary
          under the XML ``<appinfo>`` metadata using the SI system plus ``eV``,
          ``rad`` for angles, UTC for absolute time, days /weeks / months / years
-         for durations.
+         for durations. Units shall follow the `UDUNITS2
+         <https://docs.unidata.ucar.edu/udunits/current/>`__ convention.
 
          The XML syntax for units is :code:`<units>Wb</units>`.
          
@@ -1028,7 +1029,7 @@ Suffixes
 
    *  -  ``*_tor[_], *_phi``
       -  ``rho_tor``
-      -  ``Toroidal. In the context of (r,phi,z) coordinate system, toroidal vector components are marked with the suffix _phi (instead of _tor) for similarity with the other components *_r, *_z.``
+      -  ``Toroidal. In the context of (r,phi,z) coordinate system, toroidal vector components (and toroidal mode numbers) are marked with the suffix _phi (instead of _tor) for similarity with the other components *_r, *_z.``
 
    *  -  ``*_pol``
       -  ``b_field_pol``
@@ -1099,7 +1100,7 @@ used by the IMAS is forbidden as a node name.
       -  Clarity of the naming
 
 A more exhaustive list of forbidden names can be found in `reserved_names.txt
-<https://git.iter.org/projects/IMAS/repos/data-dictionary/browse/reserved_names.txt>`__.
+<https://github.com/iterorganization/IMAS-Data-Dictionary/blob/develop/reserved_names.txt>`__.
 
 
 .. _`List of the existing data types`:
