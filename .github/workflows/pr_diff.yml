@@ -1,0 +1,69 @@
+name: DD XML diffs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  pull-requests: write  # Required to comment on PRs
+  issues: write         # Required for PR comments via issues API
+
+jobs:
+  build:
+    name: Generate diff
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # checkout full repository
+    - name: Install java and SaxonHE
+      run: |
+        sudo apt update
+        sudo apt install -y libsaxonhe-java
+    - name: Make (merged branch)
+      run: |
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make dd_data_dictionary.xml
+        mkdir build
+        mv dd_data_dictionary.xml build/merged.xml
+    - name: Make (base branch)
+      run: |
+        git checkout ${{ github.base_ref }}
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make dd_data_dictionary.xml
+        mv dd_data_dictionary.xml build/base.xml
+    - name: Text diff
+      id: text_diff
+      run: |
+        cd build
+
+        # Set up custom hunk headers for the diff
+        echo "*.xml diff=ddxml" > .gitattributes
+        git config --add diff.ddxml.xfuncname '(<(IDS|utilities).*)'
+
+        # Generate line diff
+        git diff --no-index -p base.xml merged.xml | tee diff.txt
+
+        # Display line diff in step summary
+        echo '### Changes in generated Data Dictionary XML file' >> $GITHUB_STEP_SUMMARY
+        echo '```diff' >> $GITHUB_STEP_SUMMARY
+        cat diff.txt >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+    - name: Comment on PR
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const jobs = await github.rest.actions.listJobsForWorkflowRunAttempt({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: ${{ github.run_id }},
+            attempt_number: ${{ github.run_attempt }}
+          })
+          let job = jobs.data.jobs[jobs.data.jobs.length - 1]
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `[Diff of generated Data Dictionary XML file](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}#summary-${job.id})`
+          })
