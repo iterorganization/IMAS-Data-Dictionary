@@ -365,7 +365,7 @@
 			</xs:element>
 			<xs:element name="pinhole" type="xyz0d_static">
 				<xs:annotation>
-					<xs:documentation>Pinhole position in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. </xs:documentation>
+					<xs:documentation>Pinhole position in the (X,Y,Z) coordinate system</xs:documentation>
 					<xs:appinfo>
 						<url>utilities/detector_aperture_coordinates.svg</url>
 					</xs:appinfo>
