@@ -687,12 +687,43 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_filter_filter">
+		<xs:annotation>
+			<xs:documentation>Filter description</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Central wavelength of the filter</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_width">
+				<xs:annotation>
+					<xs:documentation>Filter transmission function width (at 90% level)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="spectro_vis_channel_filter">
 		<xs:annotation>
 			<xs:documentation>Filter spectrometer</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="filter" type="filter_simple_static">
+			<xs:element name="filter" type="spectro_vis_channel_filter_filter">
 				<xs:annotation>
 					<xs:documentation>Filter description</xs:documentation>
 					<xs:appinfo>
