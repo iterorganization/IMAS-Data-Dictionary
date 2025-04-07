@@ -49,21 +49,3 @@ jobs:
         echo '```diff' >> $GITHUB_STEP_SUMMARY
         cat diff.txt >> $GITHUB_STEP_SUMMARY
         echo '```' >> $GITHUB_STEP_SUMMARY
-    - name: Comment on PR
-      uses: actions/github-script@v7
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const jobs = await github.rest.actions.listJobsForWorkflowRunAttempt({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            run_id: ${{ github.run_id }},
-            attempt_number: ${{ github.run_attempt }}
-          })
-          let job = jobs.data.jobs[jobs.data.jobs.length - 1]
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `[Diff of generated Data Dictionary XML file](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}#summary-${job.id})`
-          })
