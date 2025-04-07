@@ -79,6 +79,21 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="momentum_tor">
+				<xs:annotation>
+					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<type>dynamic</type>
+						<units>kg.m/s</units>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>3.42.1</lifecycle_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="momentum_phi">
 				<xs:annotation>
 					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons </xs:documentation>
@@ -86,9 +101,9 @@
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<type>dynamic</type>
 						<units>kg.m/s</units>
-						<change_nbc_version>3.42.1</change_nbc_version> 						
-						<change_nbc_description>leaf_renamed</change_nbc_description> 						
-						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>					
+						<change_nbc_version>3.42.1</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -238,6 +253,21 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="j_tor">
+				<xs:annotation>
+					<xs:documentation>Total toroidal current density = average(j_tor/R) / average(1/R)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>A/m^2</units>
+						<type>dynamic</type>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>3.42.1</lifecycle_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="j_phi">
 				<xs:annotation>
 					<xs:documentation>Total toroidal current density = average(j_phi/R) / average(1/R)</xs:documentation>
@@ -245,9 +275,9 @@
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<units>A/m^2</units>
 						<type>dynamic</type>
-						<change_nbc_version>3.42.1</change_nbc_version> 						
-						<change_nbc_description>leaf_renamed</change_nbc_description> 						
-						<change_nbc_previous_name>j_tor</change_nbc_previous_name>					
+						<change_nbc_version>3.42.1</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>j_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

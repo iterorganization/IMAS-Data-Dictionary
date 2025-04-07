@@ -23,6 +23,21 @@
 					<xs:documentation>Position of the middle on the row</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="n_tor">
+				<xs:annotation>
+					<xs:documentation>Refraction index in the toroidal direction</xs:documentation>
+					<xs:appinfo>
+						<units>-</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>3.42.1</lifecycle_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="n_phi">
 				<xs:annotation>
 					<xs:documentation>Refraction index in the toroidal direction</xs:documentation>
@@ -30,9 +45,9 @@
 						<units>-</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
-						<change_nbc_version>3.42.1</change_nbc_version> 						
-						<change_nbc_description>leaf_renamed</change_nbc_description> 						
-						<change_nbc_previous_name>n_tor</change_nbc_previous_name>					
+						<change_nbc_version>3.42.1</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
