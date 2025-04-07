@@ -604,9 +604,24 @@
 						<units>V.m^-1</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
-						<change_nbc_version>3.42.1</change_nbc_version> 						
-						<change_nbc_description>leaf_renamed</change_nbc_description> 						
-						<change_nbc_previous_name>e_field_lh_tor</change_nbc_previous_name>					
+						<change_nbc_version>3.42.1</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>e_field_lh_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_lh_tor">
+				<xs:annotation>
+					<xs:documentation>Lower Hybrid electric field component in the toroidal direction</xs:documentation>
+					<xs:appinfo>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>3.42.1</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
