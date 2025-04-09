@@ -4839,12 +4839,15 @@
 					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="n_tor">
+			<xs:element name="n_phi">
 				<xs:annotation>
-					<xs:documentation>Array of toroidal mode numbers, n_tor, where quantities vary as exp(i.n_tor.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
+					<xs:documentation>Array of toroidal mode numbers, where quantities vary as exp(i.n_phi.phi) and phi runs anticlockwise when viewed from above</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -4881,7 +4884,7 @@
 					<xs:appinfo>
 						<coordinate1>../expressions</coordinate1>
 						<coordinate2>../../weights</coordinate2>
-						<coordinate3>../n_tor</coordinate3>
+						<coordinate3>../n_phi</coordinate3>
 						<coordinate4>../m_pol</coordinate4>
 						<coordinate5>../bounce_harmonics</coordinate5>
 						<units>1</units>
@@ -10806,6 +10809,8 @@
 						<change_nbc_version>3.42.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>j_tor</change_nbc_previous_name>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
