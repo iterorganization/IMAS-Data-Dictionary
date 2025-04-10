@@ -86,6 +86,21 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="mask">
+				<xs:annotation>
+					<xs:documentation>Mask of the region of interest on the frame (0 = point outside the ROI, 1 = point inside the ROI)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../apparent_temperature</coordinate1_same_as>
+						<coordinate2>1...N</coordinate2>
+						<coordinate2_same_as>../../apparent_temperature</coordinate2_same_as>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="polygon" type="camera_ir_frame_roi_countour" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Set of polygons defining the region of interest</xs:documentation>
