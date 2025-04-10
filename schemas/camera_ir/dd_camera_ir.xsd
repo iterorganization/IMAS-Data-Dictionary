@@ -57,7 +57,7 @@
 			</xs:element>
 			<xs:element name="mask">
 				<xs:annotation>
-					<xs:documentation>Mask of the region of interest on the frame (0 = point outside the ROI, 1 = point inside the ROI)</xs:documentation>
+					<xs:documentation>Mask of the region of interest on the frame (0 = point outside the ROI, 1 = point inside the ROI). First dimension : row index (horizontal orientation). Second dimension: column index (vertical orientation)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
@@ -96,7 +96,7 @@
 			</xs:element>
 			<xs:element name="row_index_temperature_max">
 				<xs:annotation>
-					<xs:documentation>Maximum apparent temperature line index</xs:documentation>
+					<xs:documentation>Row index with maximum apparent temperature</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
