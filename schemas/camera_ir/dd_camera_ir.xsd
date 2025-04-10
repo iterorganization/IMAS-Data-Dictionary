@@ -4,37 +4,6 @@
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
-	<xs:complexType name="camera_ir_frame_roi_countour">
-		<xs:annotation>
-			<xs:documentation>Polygon countour</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="line_indices">
-				<xs:annotation>
-					<xs:documentation>Line indices of the points forming the polygon</xs:documentation>
-					<xs:appinfo>
-						<type>dynamic</type>
-						<coordinate1>1...N</coordinate1>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="INT_1D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="columns_indices">
-				<xs:annotation>
-					<xs:documentation>Column indices of the points forming the polygon</xs:documentation>
-					<xs:appinfo>
-						<type>dynamic</type>
-						<coordinate1>../line_indices</coordinate1>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="INT_1D"/>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="camera_ir_frame_roi">
 		<xs:annotation>
 			<xs:documentation>Region of interest</xs:documentation>
@@ -101,17 +70,9 @@
 					<xs:group ref="INT_2D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="polygon" type="camera_ir_frame_roi_countour" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Set of polygons defining the region of interest</xs:documentation>
-					<xs:appinfo>
-						<coordinate1>1...N</coordinate1>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="temperature_limit_max">
 				<xs:annotation>
-					<xs:documentation>Maximum allowed temperature in the region of interest. A machine protection message is triggered if this limit is exceeded</xs:documentation>
+					<xs:documentation>Maximum allowed apparent temperature in the region of interest. A machine protection message is triggered if this limit is exceeded</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>K</units>
@@ -123,7 +84,7 @@
 			</xs:element>
 			<xs:element name="temperature_max">
 				<xs:annotation>
-					<xs:documentation>Maximum temperature measured in the region of interest</xs:documentation>
+					<xs:documentation>Maximum apparent temperature measured in the region of interest</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>K</units>
@@ -135,7 +96,7 @@
 			</xs:element>
 			<xs:element name="temperature_max_line_index">
 				<xs:annotation>
-					<xs:documentation>Maximum temperature line index</xs:documentation>
+					<xs:documentation>Maximum apparent temperature line index</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
