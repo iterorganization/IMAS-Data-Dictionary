@@ -271,7 +271,7 @@
 			</xs:element>
 			<xs:element name="integration_time">
 				<xs:annotation>
-					<xs:documentation>Integration time per pixel. First dimension : line index (horizontal axis). Second dimension: column index (vertical axis). The size of this matrix is assumed to be constant over time. Allocate dimensions to 1 in case of uniform exposure time.</xs:documentation>
+					<xs:documentation>Integration time per pixel. First dimension : row index (horizontal axis). Second dimension: column index (vertical axis). The size of this matrix is assumed to be constant over time. Allocate dimensions to 1 in case of uniform exposure time.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
