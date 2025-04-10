@@ -56,6 +56,7 @@
 					<xs:documentation>Emissivity of the region of interest</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -165,9 +166,9 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<coordinate1_same_as>../../frame(itime)/surface_temperature</coordinate1_same_as>
+						<coordinate1_same_as>../../frame(1)/apparent_temperature</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<coordinate2_same_as>../../frame(itime)/surface_temperature</coordinate2_same_as>
+						<coordinate2_same_as>../../frame(1)/apparent_temperature</coordinate2_same_as>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -180,9 +181,9 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<coordinate1_same_as>../../frame(itime)/surface_temperature</coordinate1_same_as>
+						<coordinate1_same_as>../../frame(1)/apparent_temperature</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<coordinate2_same_as>../../frame(itime)/surface_temperature</coordinate2_same_as>
+						<coordinate2_same_as>../../frame(1)/apparent_temperature</coordinate2_same_as>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -195,9 +196,9 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<coordinate1_same_as>../../frame(itime)/surface_temperature</coordinate1_same_as>
+						<coordinate1_same_as>../../frame(1)/apparent_temperature</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<coordinate2_same_as>../../frame(itime)/surface_temperature</coordinate2_same_as>
+						<coordinate2_same_as>../../frame(1)/apparent_temperature</coordinate2_same_as>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

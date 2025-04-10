@@ -5375,7 +5375,8 @@
 					<xs:documentation>Interpolation coefficients, to be used for a high precision evaluation of the physical quantity with finite elements, provided per element in the grid subset (first dimension). Second dimension: vector component index. Third dimension: coefficient index</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<coordinate1>../values</coordinate1>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../values</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
 						<coordinate3>1...N</coordinate3>
 						<units>as_parent</units>

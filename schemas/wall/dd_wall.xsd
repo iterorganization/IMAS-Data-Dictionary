@@ -2070,9 +2070,7 @@
 				<xs:annotation>
 					<xs:documentation>Parameters of the BRDF model for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
-						<type>dynamic</type>
-						<coordinate1>../type</coordinate1>
-						<units>mixed</units>
+						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
