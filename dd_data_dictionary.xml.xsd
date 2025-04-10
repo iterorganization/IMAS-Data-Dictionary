@@ -13,6 +13,7 @@
 	<xs:include schemaLocation="schemas/barometry/dd_barometry.xsd"/>
 	<xs:include schemaLocation="schemas/b_field_non_axisymmetric/dd_b_field_non_axisymmetric.xsd"/>
 	<xs:include schemaLocation="schemas/bolometer/dd_bolometer.xsd"/>
+	<xs:include schemaLocation="schemas/breeding_blanket/dd_breeding_blanket.xsd"/>
 	<xs:include schemaLocation="schemas/bremsstrahlung_visible/dd_bremsstrahlung_visible.xsd"/>
 	<xs:include schemaLocation="schemas/calorimetry/dd_calorimetry.xsd"/>
 	<xs:include schemaLocation="schemas/camera_ir/dd_camera_ir.xsd"/>
@@ -100,9 +101,10 @@
 			<xs:sequence>
 				<xs:element ref="amns_data" maxOccurs="2"/>
 				<xs:element ref="balance_of_plant"/>
-                <xs:element ref="barometry" maxOccurs="2"/>
+				<xs:element ref="barometry" maxOccurs="2"/>
 				<xs:element ref="b_field_non_axisymmetric" maxOccurs="20"/>
 				<xs:element ref="bolometer" maxOccurs="2"/>
+				<xs:element ref="breeding_blanket"/>
 				<xs:element ref="bremsstrahlung_visible" maxOccurs="2"/>
 				<xs:element ref="calorimetry" maxOccurs="2"/>
 				<xs:element ref="camera_ir" maxOccurs="10"/>
