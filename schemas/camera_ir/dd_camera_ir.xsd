@@ -105,7 +105,7 @@
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="temperature_max_column_index">
+			<xs:element name="column_index_temperature_max">
 				<xs:annotation>
 					<xs:documentation>Maximum temperature column index</xs:documentation>
 					<xs:appinfo>
