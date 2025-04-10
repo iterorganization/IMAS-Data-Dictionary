@@ -94,7 +94,7 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="temperature_max_line_index">
+			<xs:element name="row_index_temperature_max">
 				<xs:annotation>
 					<xs:documentation>Maximum apparent temperature line index</xs:documentation>
 					<xs:appinfo>
