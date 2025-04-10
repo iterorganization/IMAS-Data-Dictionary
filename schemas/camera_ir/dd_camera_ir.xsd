@@ -257,7 +257,7 @@
 		<xs:sequence>
 			<xs:element name="apparent_temperature">
 				<xs:annotation>
-					<xs:documentation>Processed image in apparent temperature. First dimension : line index (horizontal axis). Second dimension: column index (vertical axis). The size of this matrix is assumed to be constant over time</xs:documentation>
+					<xs:documentation>Processed image in apparent temperature. First dimension : row index (horizontal orientation). Second dimension: column index (vertical orientation). The size of this matrix is assumed to be constant over time</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
