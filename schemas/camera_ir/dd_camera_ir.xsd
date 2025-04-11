@@ -107,7 +107,7 @@
 			</xs:element>
 			<xs:element name="column_index_temperature_max">
 				<xs:annotation>
-					<xs:documentation>Column index with maximum temperature</xs:documentation>
+					<xs:documentation>Column index with maximum apparent temperature</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
