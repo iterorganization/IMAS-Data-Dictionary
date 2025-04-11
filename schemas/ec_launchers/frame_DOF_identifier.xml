@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<constants name="mirror_degrees_of_freedom" identifier="yes" create_mapping_function="yes">
+<header>
+Description of degrees of freedom of a mirror
+</header>
+
+<ddInstance xpath="/ec_launchers/"/>
+
+<int name="fixed"        description="the mirror does not move" >0</int>
+<int name="translation"  description="the mirror can translate" >1</int>
+<int name="rotation"     description="the mirror can rotate" >2</int>
+<int name="both"         description="the mirror can both translate and rotate" >3</int>
+
+
+</constants>
