@@ -575,7 +575,7 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="b_field_pol_probe_redundancy">
+				<xs:element name="b_field_pol_probe_equivalent">
 					<xs:annotation>
 						<xs:documentation>Indices of equivalent poloidal field probes (from the b_field_pol_probe array) that differ only by their toroidal position and have the same (R,Z) position and the same coil orientation (poloidal and toroidal angles). Sets of equivalent probes (i.e. sets of (R, Z, poloidal_angle and toroidal_angle) values) are grouped by the first coordinate and the coils belonging to a given set are listed along the second coordinate. As an example, if there are N probes in a poloidal cross section that are replicated at the same poloidal positions and with the same orientation at 8 toroidal positions, the matrix will be of size Nx8.</xs:documentation>
 						<xs:appinfo>
