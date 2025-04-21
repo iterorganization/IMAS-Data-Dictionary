@@ -558,13 +558,16 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="e_field_lh_tor">
+			<xs:element name="e_field_lh_phi">
 				<xs:annotation>
 					<xs:documentation>Lower Hybrid electric field component in the toroidal direction</xs:documentation>
 					<xs:appinfo>
 						<units>V.m^-1</units>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>e_field_lh_tor</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -687,43 +690,12 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="spectro_vis_channel_filter_filter">
-		<xs:annotation>
-			<xs:documentation>Filter description</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="wavelength_central">
-				<xs:annotation>
-					<xs:documentation>Central wavelength of the filter</xs:documentation>
-					<xs:appinfo>
-						<type>static</type>
-						<units>m</units>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_0D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="wavelength_width">
-				<xs:annotation>
-					<xs:documentation>Filter transmission function width (at 90% level)</xs:documentation>
-					<xs:appinfo>
-						<type>static</type>
-						<units>m</units>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_0D"/>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="spectro_vis_channel_filter">
 		<xs:annotation>
 			<xs:documentation>Filter spectrometer</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="filter" type="spectro_vis_channel_filter_filter">
+			<xs:element name="filter" type="filter_simple_static">
 				<xs:annotation>
 					<xs:documentation>Filter description</xs:documentation>
 					<xs:appinfo>
@@ -1146,7 +1118,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.3.1</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
