@@ -2,16 +2,14 @@
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
-
-
-	<xs:complexType name="source_mode">
+	<xs:complexType name="ec_launchers_source_mode">
 		<xs:annotation>
-			<xs:documentation> radiation pattern at the source aperture, decomposed as sum of modes</xs:documentation>
+			<xs:documentation>Radiation pattern at the source aperture, decomposed as sum of modes</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="base">
 				<xs:annotation>
-					<xs:documentation> TEM|LP|HE|EH|TE|TM| ...</xs:documentation>
+					<xs:documentation>TEM|LP|HE|EH|TE|TM| ...</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 					</xs:appinfo>
@@ -47,7 +45,7 @@
 					<xs:documentation>(check description)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units></units>
+						<units/>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -80,8 +78,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-
-
 	<xs:complexType name="ec_launchers_beam_polarization">
 		<xs:annotation>
 			<xs:documentation> description of wave polarization</xs:documentation>
@@ -98,7 +94,7 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="psi" type="signal_flt_1d">
+			<xs:element name="psi">
 				<xs:annotation>
 					<xs:documentation>Poincare sphere angle for mixed mode</xs:documentation>
 					<xs:appinfo>
@@ -111,7 +107,7 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="chi" type="signal_flt_1d">
+			<xs:element name="chi">
 				<xs:annotation>
 					<xs:documentation>Poincare sphere angle for mixed mode</xs:documentation>
 					<xs:appinfo>
@@ -126,8 +122,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-		
-
 	<xs:complexType name="ec_launchers_source">
 		<xs:annotation>
 			<xs:documentation>Electron Cyclotron source</xs:documentation>
@@ -146,10 +140,9 @@
 			</xs:element>
 			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Radiation leaving the gyrotron”</xs:documentation>
+					<xs:documentation>Radiation leaving the gyrotron</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -164,7 +157,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="frequency" type="signal_flt_0d">
+			<xs:element name="frequency">
 				<xs:annotation>
 					<xs:documentation>Frequency</xs:documentation>
 					<xs:appinfo>
@@ -184,7 +177,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="mode" type="source_mode" maxOccurs="5">
+			<xs:element name="mode" type="ec_launchers_source_mode" maxOccurs="5">
 				<xs:annotation>
 					<xs:documentation>Radiation pattern at the source aperture decomposed as sum of modes</xs:documentation>
 					<xs:appinfo>
@@ -194,8 +187,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-
-
 	<xs:complexType name="ec_launchers_beam_wavevector">
 		<xs:annotation>
 			<xs:documentation>Structure for components of the wavevector at the launching position (kR, kphi, kz). Dynamic within a type 1 array of structure and with a common time base at the same level)</xs:documentation>
@@ -242,8 +233,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-
-
 	<xs:complexType name="ec_launchers_launching_position">
 		<xs:annotation>
 			<xs:documentation>Structure for R, Z, Phi positions and min max values of R (1D, dynamic within a type 1 array of structure and with a common time base at the same level)</xs:documentation>
@@ -384,7 +373,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-
 	<xs:complexType name="ec_launchers_frame">
 		<xs:annotation>
 			<xs:documentation>local frame to describe movements of the mirror</xs:documentation>
@@ -415,7 +403,7 @@
 			</xs:element>
 			<xs:element name="parent_id">
 				<xs:annotation>
-					<xs:documentation>array index in movable frame”</xs:documentation>
+					<xs:documentation>array index in movable frame</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>3</introduced_after_version>
@@ -485,7 +473,7 @@
 			</xs:element>
 			<xs:element name="time" type="flt_1d_type">
 				<xs:annotation>
-					<xs:documentation>Time base used for launching_position, o_mode_fraction, angle, spot and phase quantities</xs:documentation>
+					<xs:documentation>Time base used for the dynamic quantities at this level</xs:documentation>
 					<xs:appinfo>
 						<units>s</units>
 						<type>dynamic</type>
@@ -494,9 +482,7 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
-       </xs:complexType>
-
-
+	</xs:complexType>
 	<xs:complexType name="ec_launchers_mirror">
 		<xs:annotation>
 			<xs:documentation>Electron Cyclotron mirror</xs:documentation>
@@ -527,7 +513,7 @@
 			</xs:element>
 			<xs:element name="parent_frame_id">
 				<xs:annotation>
-					<xs:documentation>Array index in movable frame”</xs:documentation>
+					<xs:documentation>Array index in movable frame</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>3</introduced_after_version>
@@ -537,7 +523,7 @@
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="geometry" type="detector_aperture" maxOccurs="1">
+			<xs:element name="geometry" type="detector_aperture">
 				<xs:annotation>
 					<xs:documentation>Description of the geometry of the mirror</xs:documentation>
 					<xs:appinfo>
@@ -545,7 +531,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="curvature" type="curved_object_curvature_id" maxOccurs="1">
+			<xs:element name="curvature" type="identifier_static">
 				<xs:annotation>
 					<xs:documentation>Description of the curvature of the mirror</xs:documentation>
 					<xs:appinfo>
@@ -554,8 +540,6 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-		</xs:sequence>
-		<xs:sequence>
 			<xs:element name="principal_values">
 				<xs:annotation>
 					<xs:documentation>Principal curvatures. Positive means: surface normal points towards the center of curvature</xs:documentation>
@@ -741,7 +725,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="ids_properties"/>
-				<xs:element name="source" type="ec_launchers_source" maxOccurs="100">
+				<xs:element name="source" type="ec_launchers_source" maxOccurs="20">
 					<xs:annotation>
 						<xs:documentation>Set of sources associated with the launcher</xs:documentation>
 						<xs:appinfo>
@@ -750,7 +734,7 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="frame" type="ec_launchers_frame" maxOccurs="100">
+				<xs:element name="frame" type="ec_launchers_frame" maxOccurs="20">
 					<xs:annotation>
 						<xs:documentation>local reference onto which attach movable objects. Can be cascaded for composite movements.</xs:documentation>
 						<xs:appinfo>
@@ -759,7 +743,7 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="mirror" type="ec_launchers_mirror" maxOccurs="100">
+				<xs:element name="mirror" type="ec_launchers_mirror" maxOccurs="20">
 					<xs:annotation>
 						<xs:documentation>Set of mirrors associated with the launcher</xs:documentation>
 						<xs:appinfo>
@@ -768,7 +752,7 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="beam" type="ec_launchers_beam" maxOccurs="100">
+				<xs:element name="beam" type="ec_launchers_beam" maxOccurs="20">
 					<xs:annotation>
 						<xs:documentation>Set of Electron Cyclotron beams</xs:documentation>
 						<xs:appinfo>
