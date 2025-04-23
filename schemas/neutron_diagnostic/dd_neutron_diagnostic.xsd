@@ -806,7 +806,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-2.s^-1</units>
-						<coordinate1>../mode(1)/couting/time</coordinate1>
+						<coordinate1>../mode(1)/counting/time</coordinate1>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -820,7 +820,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-2.s^-1</units>
-						<coordinate1>../mode(1)/couting/time</coordinate1>
+						<coordinate1>../mode(1)/counting/time</coordinate1>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
