@@ -55,6 +55,201 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_emissivity">
+		<xs:annotation>
+			<xs:documentation>Reconstructed emissivity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="algorithm_type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Algorithm used to reconstruct the emissivity profile</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>neutron_diagnostic/neutron_algorithm_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rho_tor_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal flux coordinate. The normalizing value for rho_tor_norm, is the toroidal flux coordinate at the equilibrium boundary (LCFS or 99.x % of the LCFS in case of a fixed boundary equilibium calculation, see time_slice/boundary in the equilibrium IDS)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<alternative_coordinate1>../psi_norm</alternative_coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized poloidal flux coordinate for the reconstructed profiles, the flux being normalized to its value at the separatrix</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dd">
+				<xs:annotation>
+					<xs:documentation>Emissivity profile due to DD reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-3.s^-1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dt">
+				<xs:annotation>
+					<xs:documentation>Emissivity profile due to DT reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-3.s^-1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dd_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DD emissivity with respect to true DD emissivity. The accuracy is obtained by comparing the reconstructed emissivity profile and the emissivity profile input to the synthetic diagnostic calculation: relative error = (reconstruted-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dt_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DT emissivity with respect to true DT emissivity. The accuracy is obtained by comparing the reconstructed emissivity profile and the emissivity profile input to the synthetic diagnostic calculation: relative error = (reconstruted-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dd">
+				<xs:annotation>
+					<xs:documentation>Fusion power profile due to DD reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dt">
+				<xs:annotation>
+					<xs:documentation>Fusion power profile due to DT reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dd_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DD fusion power with respect to true DD fusion power. The accuracy is obtained by comparing the reconstructed profile and the profile input to the synthetic diagnostic calculation: relative error = (reconstruted-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dt_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DT fusion power with respect to true DT fusion power. The accuracy is obtained by comparing the reconstructed profile and the profile input to the synthetic diagnostic calculation: relative error = (reconstruted-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="t_i">
+				<xs:annotation>
+					<xs:documentation>Temperature profile of D and T ions (assumed to be equal)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>eV</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fuel_ratio">
+				<xs:annotation>
+					<xs:documentation>Radio of densities nT/nD</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detectors_used">
+				<xs:annotation>
+					<xs:documentation>1 if the detector is used for the emissivity reconstruction; 0 if the detector is not used</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../detector</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="neutron_diagnostic_event">
 		<xs:annotation>
 			<xs:documentation>Event in the detector</xs:documentation>
@@ -519,6 +714,18 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="line_of_sight_index">
+				<xs:annotation>
+					<xs:documentation>Number of the line of sight where the detector is mounted</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="geometry" type="detector_aperture">
 				<xs:annotation>
 					<xs:documentation>Detector geometry</xs:documentation>
@@ -593,6 +800,34 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="brightness">
+				<xs:annotation>
+					<xs:documentation>Line-integrated emissivity along the line of sight, deduced from the measurement of this detector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-2.s^-1</units>
+						<coordinate1>../mode(1)/couting/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutron_flux">
+				<xs:annotation>
+					<xs:documentation>Neutron flux impinging on the detector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-2.s^-1</units>
+						<coordinate1>../mode(1)/couting/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="adc" type="neutron_diagnostic_adc">
 				<xs:annotation>
 					<xs:documentation>Description of analogic-digital converter</xs:documentation>
@@ -641,7 +876,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.6.0</lifecycle_version>
-				<lifecycle_last_change>3.41.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -655,6 +890,14 @@
 							<change_nbc_version>3.41.0</change_nbc_version>
 							<change_nbc_description>aos_renamed</change_nbc_description>
 							<change_nbc_previous_name>detectors</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="reconstructed_emissivity" type="neutron_diagnostic_emissivity">
+					<xs:annotation>
+						<xs:documentation>Reconstructed emissivity parameters and data</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
