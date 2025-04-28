@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<constants name="wall_brdf" identifier="yes" create_mapping_function="yes">
+<header>
+Type of wall BRDF model
+</header>
+
+<ddInstance xpath="/wall/description_ggd/brdf/type"/>
+
+<int name="phong"          description="Phong model. The list of parameters must be given in this order : ks, kd, n" >0</int>
+<int name="phong_mirror"    description="Mirror Phong model. The list of parameters must be given in this order : ks, kd, km, n" >1</int>
+<int name="lambertian"     description="Lambertian model. The list of parameters must be given in this order : kd" >2</int>
+
+</constants>
