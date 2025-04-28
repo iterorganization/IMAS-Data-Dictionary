@@ -787,6 +787,23 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi_magnetic_axis">
+				<xs:annotation>
+					<xs:documentation>Poloidal flux at the magnetic axis</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>Wb</units>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>psi_axis</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

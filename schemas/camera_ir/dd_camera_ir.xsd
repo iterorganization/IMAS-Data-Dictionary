@@ -4,6 +4,120 @@
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="camera_ir_frame_roi">
+		<xs:annotation>
+			<xs:documentation>Region of interest</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity">
+				<xs:annotation>
+					<xs:documentation>Emissivity of the region of interest</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="surface_area">
+				<xs:annotation>
+					<xs:documentation>Area of the region of interest</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type">
+				<xs:annotation>
+					<xs:documentation>Type of the region of interest usage, physical or operational. When operational, it means machine protection is active on this region of interest</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mask">
+				<xs:annotation>
+					<xs:documentation>Mask of the region of interest on the frame (0 = point outside the ROI, 1 = point inside the ROI). First dimension : row index (horizontal orientation). Second dimension: column index (vertical orientation)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../apparent_temperature</coordinate1_same_as>
+						<coordinate2>1...N</coordinate2>
+						<coordinate2_same_as>../../apparent_temperature</coordinate2_same_as>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum allowed apparent temperature in the region of interest. A machine protection message is triggered if this limit is exceeded</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_max">
+				<xs:annotation>
+					<xs:documentation>Maximum apparent temperature measured in the region of interest</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="row_index_temperature_max">
+				<xs:annotation>
+					<xs:documentation>Row index with maximum apparent temperature</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="column_index_temperature_max">
+				<xs:annotation>
+					<xs:documentation>Column index with maximum apparent temperature</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="camera_ir_calibration">
 		<xs:annotation>
 			<xs:documentation>Calibration data</xs:documentation>
@@ -28,9 +142,9 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<coordinate1_same_as>../../frame(itime)/surface_temperature</coordinate1_same_as>
+						<coordinate1_same_as>../../frame(1)/apparent_temperature</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<coordinate2_same_as>../../frame(itime)/surface_temperature</coordinate2_same_as>
+						<coordinate2_same_as>../../frame(1)/apparent_temperature</coordinate2_same_as>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -43,9 +157,9 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<coordinate1_same_as>../../frame(itime)/surface_temperature</coordinate1_same_as>
+						<coordinate1_same_as>../../frame(1)/apparent_temperature</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<coordinate2_same_as>../../frame(itime)/surface_temperature</coordinate2_same_as>
+						<coordinate2_same_as>../../frame(1)/apparent_temperature</coordinate2_same_as>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -58,9 +172,9 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<coordinate1_same_as>../../frame(itime)/surface_temperature</coordinate1_same_as>
+						<coordinate1_same_as>../../frame(1)/apparent_temperature</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
-						<coordinate2_same_as>../../frame(itime)/surface_temperature</coordinate2_same_as>
+						<coordinate2_same_as>../../frame(1)/apparent_temperature</coordinate2_same_as>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -141,9 +255,23 @@
 			<xs:documentation>Frame of a camera</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="surface_temperature">
+			<xs:element name="apparent_temperature">
 				<xs:annotation>
-					<xs:documentation>Surface temperature image. First dimension : line index (horizontal axis). Second dimension: column index (vertical axis). The size of this matrix is assumed to be constant over time</xs:documentation>
+					<xs:documentation>Processed image in apparent temperature. First dimension : row index (horizontal orientation). Second dimension: column index (vertical orientation). The size of this matrix is assumed to be constant over time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="integration_time">
+				<xs:annotation>
+					<xs:documentation>Integration time per pixel. First dimension : row index (horizontal orientation). Second dimension: column index (vertical orientation). The size of this matrix is assumed to be constant over time. Allocate dimensions to 1 in case of uniform exposure time.</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
@@ -163,6 +291,151 @@
 						<units>s</units>
 						<type>dynamic</type>
 					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_ir_camera">
+		<xs:annotation>
+			<xs:documentation>Detector within a given line of sight</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calibration" type="camera_ir_calibration">
+				<xs:annotation>
+					<xs:documentation>Calibration data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="frame" type="camera_ir_frame" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of frames</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pinhole" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Pinhole position in the (X,Y,Z) coordinate system</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="direction" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Line of sight direction unit vector</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="up" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Detector orientation unit vector</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pixel_size">
+				<xs:annotation>
+					<xs:documentation>Sensor pixel size (square pixel assumed)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="field_of_view_horizontal">
+				<xs:annotation>
+					<xs:documentation>Field of view in the horizontal detector plane</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="field_of_view_vertical">
+				<xs:annotation>
+					<xs:documentation>Field of view in the vertical detector plane</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pixels_n_horizontal">
+				<xs:annotation>
+					<xs:documentation>Number of pixels in the horizontal direction (of the detector)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pixels_n_vertical">
+				<xs:annotation>
+					<xs:documentation>Number of pixels in the vertical direction (of the detector)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_ir_channel">
+		<xs:annotation>
+			<xs:documentation>Camera_ir channel, usually defined as a line of sight</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="camera" type="camera_ir_camera" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of cameras</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="target_surface_center" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the center of the targeted surface</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
