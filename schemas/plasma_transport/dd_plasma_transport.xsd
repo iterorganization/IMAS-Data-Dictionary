@@ -927,7 +927,7 @@
 		<xs:sequence>
 			<xs:element name="d" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity, on various grid subsets</xs:documentation>
+					<xs:documentation>Energy effective diffusivity, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -936,7 +936,7 @@
 			</xs:element>
 			<xs:element name="v" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection, on various grid subsets</xs:documentation>
+					<xs:documentation>Energy effective convection, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -945,7 +945,7 @@
 			</xs:element>
 			<xs:element name="flux" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux, on various grid subsets</xs:documentation>
+					<xs:documentation>Energy flux, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>W.m^-2</units>
@@ -954,7 +954,7 @@
 			</xs:element>
 			<xs:element name="flux_limiter" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux limiter coefficient, on various grid subsets</xs:documentation>
+					<xs:documentation>Energy flux limiter coefficient, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>1</units>
@@ -963,7 +963,7 @@
 			</xs:element>
 			<xs:element name="d_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the radial direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Energy effective diffusivity (in the radial direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -973,7 +973,7 @@
 			</xs:element>
 			<xs:element name="v_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the radial direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Energy effective convection (in the radial direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -983,7 +983,7 @@
 			</xs:element>
 			<xs:element name="flux_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the radial direction, on various grid subsets</xs:documentation>
+					<xs:documentation>Energy flux in the radial direction, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>W.m^-2</units>
@@ -993,7 +993,7 @@
 			</xs:element>
 			<xs:element name="d_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the poloidal direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Energy effective diffusivity (in the poloidal direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1003,7 +1003,7 @@
 			</xs:element>
 			<xs:element name="v_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the poloidal direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Energy effective convection (in the poloidal direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1013,11 +1013,41 @@
 			</xs:element>
 			<xs:element name="flux_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the poloidal direction, on various grid subsets</xs:documentation>
+					<xs:documentation>Energy flux in the poloidal direction, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>W.m^-2</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="d_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Energy effective diffusivity (in the parallel direction), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^2.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="v_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Energy effective convection (in the parallel direction), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="flux_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Energy flux in the parallel direction, on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>W.m^-2</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1030,7 +1060,7 @@
 		<xs:sequence>
 			<xs:element name="d" type="generic_grid_vector_components" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity, on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum effective diffusivity, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1039,7 +1069,7 @@
 			</xs:element>
 			<xs:element name="v" type="generic_grid_vector_components" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection, on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum effective convection, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1048,7 +1078,7 @@
 			</xs:element>
 			<xs:element name="flux" type="generic_grid_vector_components" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux, on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum flux, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>kg.m^-1.s^-2</units>
@@ -1057,7 +1087,7 @@
 			</xs:element>
 			<xs:element name="flux_limiter" type="generic_grid_vector_components" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux limiter coefficient, on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum flux limiter coefficient, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>1</units>
@@ -1066,7 +1096,7 @@
 			</xs:element>
 			<xs:element name="d_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the radial direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum effective diffusivity (in the radial direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1076,7 +1106,7 @@
 			</xs:element>
 			<xs:element name="v_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the radial direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum effective convection (in the radial direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1086,7 +1116,7 @@
 			</xs:element>
 			<xs:element name="flux_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the radial direction, on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum flux in the radial direction, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>kg.m^-1.s^-2</units>
@@ -1096,7 +1126,7 @@
 			</xs:element>
 			<xs:element name="d_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the poloidal direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum effective diffusivity (in the poloidal direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1106,7 +1136,7 @@
 			</xs:element>
 			<xs:element name="v_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the poloidal direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum effective convection (in the poloidal direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1116,7 +1146,7 @@
 			</xs:element>
 			<xs:element name="flux_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the poloidal direction, on various grid subsets</xs:documentation>
+					<xs:documentation>Momentum flux in the poloidal direction, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>kg.m^-1.s^-2</units>
@@ -1124,16 +1154,46 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="d_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Momentum effective diffusivity (in the parallel direction), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^2.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="v_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Momentum effective convection (in the parallel direction), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="flux_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Momentum flux in the parallel direction, on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>kg.m^-1.s^-2</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="plasma_transport_model_density">
 		<xs:annotation>
-			<xs:documentation>Transport coefficients for energy equations.</xs:documentation>
+			<xs:documentation>Transport coefficients for density equations.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="d" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the direction perpendicular to the edge of faces of the grid), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle effective diffusivity (in the direction perpendicular to the edge of faces of the grid), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1142,7 +1202,7 @@
 			</xs:element>
 			<xs:element name="v" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the direction perpendicular to the edge of faces of the grid), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle effective convection (in the direction perpendicular to the edge of faces of the grid), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1151,7 +1211,7 @@
 			</xs:element>
 			<xs:element name="flux" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the direction perpendicular to the edges or faces of the grid (flow crossing that surface divided by its actual area), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle flux in the direction perpendicular to the edges or faces of the grid (flow crossing that surface divided by its actual area), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^-2.s^-1</units>
@@ -1160,7 +1220,7 @@
 			</xs:element>
 			<xs:element name="flux_limiter" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux limiter coefficient, on various grid subsets</xs:documentation>
+					<xs:documentation>Particle flux limiter coefficient, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>1</units>
@@ -1169,7 +1229,7 @@
 			</xs:element>
 			<xs:element name="d_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the radial direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle effective diffusivity (in the radial direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1179,7 +1239,7 @@
 			</xs:element>
 			<xs:element name="v_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the radial direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle effective convection (in the radial direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1189,7 +1249,7 @@
 			</xs:element>
 			<xs:element name="flux_radial" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the radial direction, on various grid subsets</xs:documentation>
+					<xs:documentation>Particle flux in the radial direction, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^-2.s^-1</units>
@@ -1199,7 +1259,7 @@
 			</xs:element>
 			<xs:element name="d_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective diffusivity (in the poloidal direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle effective diffusivity (in the poloidal direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^2.s^-1</units>
@@ -1209,7 +1269,7 @@
 			</xs:element>
 			<xs:element name="v_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Effective convection (in the poloidal direction), on various grid subsets</xs:documentation>
+					<xs:documentation>Particle effective convection (in the poloidal direction), on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m.s^-1</units>
@@ -1219,11 +1279,41 @@
 			</xs:element>
 			<xs:element name="flux_pol" type="generic_grid_scalar" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Flux in the poloidal direction, on various grid subsets</xs:documentation>
+					<xs:documentation>Particle flux in the poloidal direction, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<units>m^-2.s^-1</units>
 						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="d_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Particle effective diffusivity (in the parallel direction), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^2.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="v_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Particle effective convection (in the parallel direction), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="flux_parallel" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Particle flux in the parallel direction, on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-2.s^-1</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1890,7 +1980,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.42.0</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 				<specific_validation_rules>yes</specific_validation_rules>
 			</xs:appinfo>
 		</xs:annotation>
