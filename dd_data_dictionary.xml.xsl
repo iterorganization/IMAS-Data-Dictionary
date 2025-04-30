@@ -337,6 +337,13 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 									<xsl:if test="contains(lower-case(name(.)),'coordinate') and (ends-with(.,'time') or ../../../@name='time')">
 										<xsl:attribute name="timebasepath"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/><xsl:with-param name="utilities_aoscontext" select="../utilities_aoscontext"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:attribute>
 									</xsl:if>
+									<!-- Add a coordinate_same_as attribute when the physical quantity has coordinate 1...N, to allow checking that the size of the errorbar is consistent with the size of the physical quantity see IMAS-5280 -->
+									<xsl:if test="contains(lower-case(name(.)),'coordinate') and contains(.,'...')">
+									<xsl:attribute name="{concat(lower-case(name(.)),'_same_as')}"><xsl:choose>
+										<xsl:when test="$currPath_doc=''"><xsl:value-of select="../../../@name"/></xsl:when>
+										<xsl:otherwise><xsl:value-of select="concat($currPath_doc,'/',../../../@name)"/></xsl:otherwise>
+									</xsl:choose></xsl:attribute>
+									</xsl:if>
 								</xsl:for-each>
 							</field>
 							<field>
@@ -362,6 +369,13 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 									<!-- Write a timebasepath attribute (coordinate path relative to the nearest AoS parent) in case the appinfo is a coordinate to a timebase -->
 									<xsl:if test="contains(lower-case(name(.)),'coordinate') and (ends-with(.,'time') or ../../../@name='time')">
 										<xsl:attribute name="timebasepath"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/><xsl:with-param name="utilities_aoscontext" select="../utilities_aoscontext"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:attribute>
+									</xsl:if>
+									<!-- Add a coordinate_same_as attribute when the physical quantity has coordinate 1...N, to allow checking that the size of the errorbar is consistent with the size of *_error_upper see IMAS-5280 -->
+									<xsl:if test="contains(lower-case(name(.)),'coordinate') and contains(.,'...')">
+									<xsl:attribute name="{concat(lower-case(name(.)),'_same_as')}"><xsl:choose>
+										<xsl:when test="$currPath_doc=''"><xsl:value-of select="concat(../../../@name,'_error_upper')"/></xsl:when>
+										<xsl:otherwise><xsl:value-of select="concat($currPath_doc,'/',../../../@name,'_error_upper')"/></xsl:otherwise>
+									</xsl:choose></xsl:attribute>
 									</xsl:if>
 								</xsl:for-each>
 							</field>
