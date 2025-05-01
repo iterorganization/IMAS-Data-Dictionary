@@ -1,4 +1,4 @@
-name: test-make
+name: test
 
 on: push
 
@@ -31,6 +31,8 @@ jobs:
         # until saxonche is available in 3.13
         # https://saxonica.plan.io/issues/6561
         python-version: "<3.13"
+    - name: Install python dependencies
+      run: pip install setuptools_scm saxonche
     - name: Generate DD and validation
       run: python generate.py
     - name: Validation results
