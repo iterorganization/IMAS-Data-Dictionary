@@ -36,4 +36,4 @@ jobs:
     - name: Generate DD and validation
       run: python generate.py
     - name: Validation results
-      run: grep -i -w Error dd_data_dictionary_validation.txt >&2 && exit 1 || grep valid dd_data_dictionary_validation.txt
+      run: grep -i -w Error dd_data_dictionary_validation.txt && exit 1 || grep valid dd_data_dictionary_validation.txt
