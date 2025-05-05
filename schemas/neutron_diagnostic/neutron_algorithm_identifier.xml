@@ -6,8 +6,8 @@ Translation table for type of algorithm used for emissivity reconstruction with 
 
 <ddInstance xpath="/neutron_diagnostic/reconstructed_emissivity/algorithm_type"/>
 
-<int name="tikhonov_1"          description="Tikhonov regularization with first derivative objective functional"       >1</int>
-<int name="tikhonov_2"                     description="Tikhonov regularization with second derivative objective functional"     >2</int>
-<int name="tikhonov_3"        description="Tikhonov regularization with Minimum Fischer objective functional"               >3</int>
+<int name="tikhonov_1" description="Tikhonov regularization with first derivative objective functional" >1</int>
+<int name="tikhonov_2" description="Tikhonov regularization with second derivative objective functional">2</int>
+<int name="tikhonov_3" description="Tikhonov regularization with Minimum Fischer objective functional"  >3</int>
 
 </constants>
