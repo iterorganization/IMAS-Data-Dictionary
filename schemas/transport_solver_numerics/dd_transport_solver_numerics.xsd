@@ -710,7 +710,6 @@
 					<xs:documentation>Boundary condition type</xs:documentation>
 					<xs:appinfo>
 						<doc_identifier>transport_solver_numerics/transport_solver_numerics_bc_type_identifier.xml</doc_identifier>
-						<doc_identifier>transport_solver_numerics/transport_solver_numerics_bc_type_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
