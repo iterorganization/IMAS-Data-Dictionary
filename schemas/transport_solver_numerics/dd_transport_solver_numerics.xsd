@@ -709,7 +709,8 @@
 				<xs:annotation>
 					<xs:documentation>Boundary condition type</xs:documentation>
 					<xs:appinfo>
-						<doc_identifier>transport_solver_numerics/transport_solver_numerics_bc_type.xml</doc_identifier>
+						<doc_identifier>transport_solver_numerics/transport_solver_numerics_bc_type_identifier.xml</doc_identifier>
+						<doc_identifier>transport_solver_numerics/transport_solver_numerics_bc_type_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -754,7 +755,7 @@
 				<xs:annotation>
 					<xs:documentation>Computation mode for this equation</xs:documentation>
 					<xs:appinfo>
-						<doc_identifier>transport_solver_numerics/transport_solver_numerics_computation_mode.xml</doc_identifier>
+						<doc_identifier>transport_solver_numerics/transport_solver_numerics_computation_mode_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

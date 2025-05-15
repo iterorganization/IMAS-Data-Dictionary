@@ -105,6 +105,7 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
 <xsl:apply-templates select=".//field[contains($reserved_names, concat('|', @name, '|'))]">
 <xsl:with-param name="error_description" select="'Illegal name: name is found in the list of reserved names (see `reserved_names.txt`)'"/>
 </xsl:apply-templates>
+<!-- Test that all identifier docs adhere to the pattern "*/*_identifier.xml" --><xsl:apply-templates select=".//field[@doc_identifier and not(matches(@doc_identifier, '^[^/]+/[^/]+_identifier\.xml$'))]"><xsl:with-param name="error_description" select="'Illegal metadata: identifier documentation should be stored in a file ending in `_identifier.xml`.'"/></xsl:apply-templates>
 <!-- Coordinate checks -->
 <xsl:apply-templates select="." mode="coordinate_validation"/>
 <!-- End of validation rules -->
