@@ -41,10 +41,14 @@ def install_sphinx_docs():
 
     if sourcedir.exists() and sourcedir.is_dir():
         if destdir.exists():
-            shutil.rmtree(destdir)  # Remove existing destination directory to avoid errors
+            shutil.rmtree(
+                destdir
+            )  # Remove existing destination directory to avoid errors
         shutil.copytree(sourcedir, destdir)
     else:
-        print("Proceeding with installation without the Sphinx documentation since it could not be found")
+        print(
+            "Proceeding with installation without the Sphinx documentation since it could not be found"
+        )
 
 
 def install_html_docs():
@@ -54,10 +58,14 @@ def install_html_docs():
     html_docs_dir = Path("html_documentation")
     if html_docs_dir.exists() and html_docs_dir.is_dir():
         if imas_dir.exists():
-            shutil.rmtree(imas_dir)  # Remove existing destination directory to avoid errors
+            shutil.rmtree(
+                imas_dir
+            )  # Remove existing destination directory to avoid errors
         shutil.copytree(html_docs_dir, imas_dir)
     else:
-        print("Proceeding with installation without the html documentation since it could not be found")
+        print(
+            "Proceeding with installation without the html documentation since it could not be found"
+        )
 
 
 def install_dd_files():
@@ -88,21 +96,28 @@ def create_idsdef_symlink():
 
 
 def ignored_files(adir, filenames):
-    return [filename for filename in filenames if not filename.endswith("_identifier.xml")]
+    return [
+        filename for filename in filenames if not filename.endswith("_identifier.xml")
+    ]
 
 
 def copy_utilities():
     print("copying utilities")
     if not os.path.exists(os.path.join(includedir, "utilities")):
-        shutil.copytree("schemas/utilities", os.path.join(includedir, "utilities"), ignore=ignored_files)
+        shutil.copytree(
+            "schemas/utilities",
+            os.path.join(includedir, "utilities"),
+            ignore=ignored_files,
+        )
 
 
 # Identifiers definition files
 def install_identifiers_files():
     print("installing identifier files")
-    exclude = set(["install", "data_dictionary", "dist", "build"])
+    exclude = set(["install", "imas_data_dictionary", "dist", "build"])
 
     ID_IDENT = []
+    
     for root, dirs, files in os.walk(".", topdown=True):
         dirs[:] = [d for d in dirs if d not in exclude]
         for filename in files:
