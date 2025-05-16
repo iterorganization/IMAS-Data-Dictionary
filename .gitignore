@@ -41,3 +41,4 @@ imas_data_dictionary/_version.py
 # virtual environment 
 .venv/
 
+uv.lock

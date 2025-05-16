@@ -79,6 +79,21 @@ def install_dd_files():
     for dd_file in dd_files:
         shutil.copy(dd_file, includedir)
 
+    # Create XML subfolder in resources directory for Python package access
+    resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
+    resources_dir.mkdir(parents=True, exist_ok=True)
+
+    xml_dir = resources_dir / "xml"
+    xml_dir.mkdir(parents=True, exist_ok=True)
+
+    print(
+        "Copying data dictionary files to resources/xml directory for importlib.resources access"
+    )
+    # Copy IDSDef.xml and other dictionary files to the xml subfolder
+    shutil.copy("IDSDef.xml", xml_dir / "IDSDef.xml")
+    for dd_file in dd_files:
+        shutil.copy(dd_file, xml_dir / dd_file)
+
 
 def create_idsdef_symlink():
     try:
@@ -117,7 +132,7 @@ def install_identifiers_files():
     exclude = set(["install", "imas_data_dictionary", "dist", "build"])
 
     ID_IDENT = []
-    
+
     for root, dirs, files in os.walk(".", topdown=True):
         dirs[:] = [d for d in dirs if d not in exclude]
         for filename in files:

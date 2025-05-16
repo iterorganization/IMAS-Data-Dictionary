@@ -104,12 +104,12 @@ $
 
 from xml.dom import minidom
 import argparse
+import importlib.resources
 import os
 import pathlib
 import re
 import subprocess
 import sys
-from importlib.resources import files
 
 
 def _domattr(element, attribute):
@@ -137,12 +137,15 @@ def _searchpath(filename, pathlist=None):
 def _get_python_strs():
     # First try the resources package
     try:
-        # Using importlib.resources.files (Python 3.9+)
-        data_package = "imas_data_dictionary.resources"
-        xml_path_resource = files(data_package) / "dd_data_dictionary.xml"
+        # Locate the IDSDef.xml file in the resources/xml subfolder
+        xml_path_resource = (
+            importlib.resources.files("imas_data_dictionary.resources.xml")
+            / "IDSDef.xml"
+        )
         # Convert the resource path to a filesystem path if possible
         if xml_path_resource.is_file():
             return xml_path_resource
+
     except (ImportError, ModuleNotFoundError):
         pass
 

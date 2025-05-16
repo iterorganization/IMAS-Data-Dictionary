@@ -19,7 +19,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 dynamic = ["version"]
-dependencies = ["packaging", "setuptools_scm>=8"]
+dependencies = ["packaging", "saxonche>=12.7.0", "setuptools_scm>=8"]
 
 [project.urls]
 homepage = "https://github.com/iterorganization/IMAS-Data-Dictionary"
@@ -29,8 +29,11 @@ write_to = "imas_data_dictionary/_version.py"
 local_scheme = "no-local-version"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = [""]
 include = ["imas_data_dictionary*"]
+
+[tool.setuptools.package-data]
+"imas_data_dictionary.resources" = ["*.xml"]
 
 [project.scripts]
 idsinfo = "imas_data_dictionary.idsinfo:main"

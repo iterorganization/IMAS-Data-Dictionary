@@ -10,6 +10,7 @@ sys.path.append(str(pathlib.Path(__file__).parent.resolve()))
 
 current_directory = pathlib.Path(__file__).parent.resolve()
 
+
 class CustomInstallCommand(install):
     description = "DD files generation"
     paths = []
@@ -55,9 +56,13 @@ class CustomInstallCommand(install):
         version = get_version()
         if os.path.exists("install"):
             for path, directories, filenames in os.walk("install"):
-                CustomInstallCommand.paths.append((path.replace("install", "dd_" + version), glob.glob(path + "/*.*")))
+                CustomInstallCommand.paths.append(
+                    (path.replace("install", "dd_" + version), glob.glob(path + "/*.*"))
+                )
         else:
-            raise Exception("Couldn't find IDSDef.xml, Can not install data dictionary python package")
+            raise Exception(
+                "Couldn't find IDSDef.xml, Can not install data dictionary python package"
+            )
 
 
 if __name__ == "__main__":
