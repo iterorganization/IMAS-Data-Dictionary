@@ -33,7 +33,12 @@ where = [""]
 include = ["imas_data_dictionary*"]
 
 [tool.setuptools.package-data]
-"imas_data_dictionary.resources" = ["*.xml"]
+"imas_data_dictionary" = [
+    "resources/**/*.xml",
+    "resources/**/*.txt",
+    "resources/**/*.xsd",
+    "resources/**/*.xsl",
+]
 
 [project.scripts]
 idsinfo = "imas_data_dictionary.idsinfo:main"
