@@ -25,6 +25,48 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="start_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the laser start point</xs:documentation>
+					<xs:appinfo>
+						<introduced-after-version>4.0.0</introduced-after-version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="end_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the laser end point</xs:documentation>
+					<xs:appinfo>
+						<introduced-after-version>4.0.0</introduced-after-version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelength">
+				<xs:annotation>
+					<xs:documentation>Laser wavelength</xs:documentation>
+					<xs:appinfo>
+						<introduced-after-version>4.0.0</introduced-after-version>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Laser cross sectional area</xs:documentation>
+					<xs:appinfo>
+						<introduced-after-version>4.0.0</introduced-after-version>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="thomson_scattering_polychromator">
