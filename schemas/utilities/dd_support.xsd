@@ -4650,6 +4650,68 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="filter_simple_static">
+		<xs:annotation>
+			<xs:documentation>Simple filter description (wavelength centre, width)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Central wavelength of the filter</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_width">
+				<xs:annotation>
+					<xs:documentation>Filter transmission function width (at 90% level)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="filter_simple_dynamic">
+		<xs:annotation>
+			<xs:documentation>Simple filter description (wavelength centre, width) within a dynamic array of structure</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Central wavelength of the filter</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_width">
+				<xs:annotation>
+					<xs:documentation>Filter transmission function width (at 90% level)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="filter_wavelength">
 		<xs:annotation>
 			<xs:documentation>Spectrocscopy filter wavelength range and detection efficiency</xs:documentation>
@@ -5313,7 +5375,8 @@
 					<xs:documentation>Interpolation coefficients, to be used for a high precision evaluation of the physical quantity with finite elements, provided per element in the grid subset (first dimension). Second dimension: vector component index. Third dimension: coefficient index</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<coordinate1>../values</coordinate1>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../values</coordinate1_same_as>
 						<coordinate2>1...N</coordinate2>
 						<coordinate3>1...N</coordinate3>
 						<units>as_parent</units>
@@ -6393,7 +6456,7 @@
 			</xs:element>
 			<xs:element name="path">
 				<xs:annotation>
-					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: 'wall:0/description_ggd(1)/grid_ggd', means that the grid is located in the wall IDS, occurrence 0, with ids path 'description_ggd(1)/grid_ggd'. See the link below for more details about IDS paths</xs:documentation>
+					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<url>utilities/IDS-path-syntax.md</url>
@@ -6440,9 +6503,10 @@
 			</xs:element>
 			<xs:element name="path">
 				<xs:annotation>
-					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: IDS::wall/0/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 0, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
+					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
+						<url>utilities/IDS-path-syntax.md</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -6492,9 +6556,10 @@
 			</xs:element>
 			<xs:element name="path">
 				<xs:annotation>
-					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: IDS::wall/0/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 0, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
+					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
+						<url>utilities/IDS-path-syntax.md</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

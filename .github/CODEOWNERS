@@ -8,7 +8,7 @@
 
 # Modification to schemas' definitions needs approval from a representative of 
 # each of the 7 ITER Members + the ITER Organization.
-schemas/  @DavidPCoster @simpla-fusion @aksinghh @SimonPinches @yegakjh @medvedevsyu @pankin   # EU CN IN IO KR RU US (still missing JP)
+schemas/  @DavidPCoster @simpla-fusion @aksinghh @SimonPinches @qsthayashi @yegakjh @medvedevsyu @pankin # EU CN IN IO JP KR RU US 
 
 # Modifications to CODEOWNERS and action workflows 
 .github/  @SimonPinches @olivhoenen
