@@ -402,7 +402,7 @@
 	</xs:complexType>
 	<xs:element name="balance_of_plant">
 		<xs:annotation>
-			<xs:documentation>Electricial and thermal power balance of the plant</xs:documentation>
+			<xs:documentation>Electrical and thermal power balance of the plant</xs:documentation>
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>4.1.0</lifecycle_version>
