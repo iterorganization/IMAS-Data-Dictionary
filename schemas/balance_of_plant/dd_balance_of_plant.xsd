@@ -231,7 +231,7 @@
 			</xs:element>
 			<xs:element name="power_electric_generated">
 				<xs:annotation>
-					<xs:documentation>The net electric power produced by the thermal plant, equal tot the power produced by turbines LESS the power consumed by pumps and compressors</xs:documentation>
+					<xs:documentation>Net electric power produced by thermal plant, equal to power produced by turbines LESS power consumed by pumps and compressors</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>/time</coordinate1>
