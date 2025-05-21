@@ -323,7 +323,7 @@
 	</xs:complexType>
 	<xs:complexType name="bop_power_electric_system">
 		<xs:annotation>
-			<xs:documentation>System involed in the electric power plant operation</xs:documentation>
+			<xs:documentation>System involved in electric power plant operation</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="name">
