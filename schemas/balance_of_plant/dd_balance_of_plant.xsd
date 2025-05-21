@@ -392,7 +392,7 @@
 			</xs:element>
 			<xs:element name="system" type="bop_power_electric_system" maxOccurs="10">
 				<xs:annotation>
-					<xs:documentation>Set of systems involved in  the electric plant operation</xs:documentation>
+					<xs:documentation>Set of systems involved in the electric plant operation</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
