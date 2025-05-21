@@ -440,7 +440,7 @@
 				</xs:element>
 				<xs:element name="thermal_efficiency_cycle">
 					<xs:annotation>
-						<xs:documentation>The fractional thermal effiency of the power cycle. Calculated as 1-Q_out/Q_in</xs:documentation>
+						<xs:documentation>The fractional thermal effiency of the power cycle. Calculated as 1 - Q_out/Q_in</xs:documentation>
 						<xs:appinfo>
 							<type>dynamic</type>
 							<units>1</units>
