@@ -195,7 +195,7 @@
 			</xs:element>
 			<xs:element name="fusion_power_dt_accuracy">
 				<xs:annotation>
-					<xs:documentation>Accuracy profile of reconstructed DT fusion power with respect to true DT fusion power. The accuracy is obtained by comparing the reconstructed profile and the profile input to the synthetic diagnostic calculation: relative error = (reconstruted-input)/input</xs:documentation>
+					<xs:documentation>Accuracy profile of reconstructed DT fusion power with respect to true DT fusion power. The accuracy is obtained by comparing the reconstructed profile and the profile input to the synthetic diagnostic calculation: relative error = (reconstructed-input)/input</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
