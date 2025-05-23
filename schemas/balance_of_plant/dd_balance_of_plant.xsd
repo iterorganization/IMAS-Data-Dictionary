@@ -23,7 +23,7 @@
 			</xs:element>
 			<xs:element name="mass_flow">
 				<xs:annotation>
-					<xs:documentation>Mass Flow rate of the fluid</xs:documentation>
+					<xs:documentation>Mass flow rate of the fluid</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>/time</coordinate1>
