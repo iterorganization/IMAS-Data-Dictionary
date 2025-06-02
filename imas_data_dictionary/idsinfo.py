@@ -1,12 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Usage
 
-$ python idsinfo metadata
+$ idsinfo metadata
 This is Data Dictionary version = 3.37.0, following COCOS = 11
 
-$ python idsinfo info amns_data ids_properties/comment -a
+$ idsinfo info amns_data ids_properties/comment -a
 name: comment
 path: ids_properties/comment
 path_doc: ids_properties/comment
@@ -14,27 +14,27 @@ documentation: Any comment describing the content of this IDS
 data_type: STR_0D
 type: constant
 
-$ python idsinfo info amns_data ids_properties/comment -m
+$ idsinfo info amns_data ids_properties/comment
 This is Data Dictionary version = 3.37.0, following COCOS = 11
 ==============================================================
 Any comment describing the content of this IDS
 $
 
-$ python idsinfo info amns_data ids_properties/comment -s data_type
+$ idsinfo info amns_data ids_properties/comment -s data_type
 STR_0D
 $
 
-$ python idsinfo idspath
-/home/ITER/sawantp1/.local/dd_3.37.1+54.g20c6794.dirty/include/IDSDef.xml
+$ idsinfo idspath
+/home/ITER/sawantp1/.local/dd_3.37.1/include/IDSDef.xml
 
-$ python idsinfo idsnames
+$ idsinfo idsnames
 amns_data
 barometry
 bolometer
 bremsstrahlung_visible
 ...
 
-$ python idsinfo search ggd
+$ idsinfo search ggd
 distribution_sources/source/ggd
 distributions/distribution/ggd
 edge_profiles/grid_ggd
