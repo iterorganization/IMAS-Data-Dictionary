@@ -82,13 +82,20 @@ class IDSInfo:
         except (ImportError, AttributeError, FileNotFoundError):
             # Fallback if resources are not available or file not found
             pass
+        current_fpath = os.path.dirname(os.path.realpath(__file__))
 
         # Check idsdef.xml is installed in the Python environment (system as well as local)
         if not self.idsdef_path:
+            _idsdef_path_newer = os.path.join(current_fpath, r"../../../../")
+            _idsdef_path_old = os.path.join(current_fpath, r"../../../")
             local_path = os.path.join(str(Path.home()), ".local")
             python_env_list = [sys.prefix]
             if os.path.exists(local_path):
                 python_env_list.append(local_path)
+            if os.path.isfile(_idsdef_path_newer):
+                python_env_list.append(_idsdef_path_newer)
+            if os.path.isfile(_idsdef_path_old):
+                python_env_list.append(_idsdef_path_old)
             reg_compile = re.compile("dd_*")
             version_list = None
             python_env_path = ""
@@ -120,7 +127,6 @@ class IDSInfo:
 
         # Search through higher level directories
         if not self.idsdef_path:
-            current_fpath = os.path.dirname(os.path.realpath(__file__))
             # Newer approach : IMAS/<VERSION>/lib/python3.8/site-packages/data_dictionary/idsinfo.py
             _idsdef_path = os.path.join(
                 current_fpath, r"../../../../include/IDSDef.xml"
