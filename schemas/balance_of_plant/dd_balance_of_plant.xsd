@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="bop_power_plant_system_component_port">
+		<xs:annotation>
+			<xs:documentation>Port of a component of a power conversion system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “input #1”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mass_flow">
+				<xs:annotation>
+					<xs:documentation>Mass flow rate of the fluid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>kg.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_mechanical">
+				<xs:annotation>
+					<xs:documentation>Shaft power associated with the component, (+) = into the system, (-) = out of the system</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Fluid pressure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>Pa</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature">
+				<xs:annotation>
+					<xs:documentation>Fluid temperature</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Heat transfer rate of the component, (+) = into the system, (-) = out of the system</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bop_power_plant_system_component">
+		<xs:annotation>
+			<xs:documentation>Component of a power conversion system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “compressor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="port" type="bop_power_plant_system_component_port" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Set of ports (input or output) of the component</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bop_power_plant_system">
+		<xs:annotation>
+			<xs:documentation>Subystem or circuit of the power conversion system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “divertor Helium cooling loop”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="component" type="bop_power_plant_system_component" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of components of the power conversion system</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bop_power_plant">
+		<xs:annotation>
+			<xs:documentation>Energy conversion</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="generator_conversion_efficiency">
+				<xs:annotation>
+					<xs:documentation>Conversion efficiency of thermal to electric power of the steam cycle</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="heat_load_breeder">
+				<xs:annotation>
+					<xs:documentation>Heat flow towards the breeder</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="heat_load_divertor">
+				<xs:annotation>
+					<xs:documentation>Heat flow towards the divertor</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="heat_load_wall">
+				<xs:annotation>
+					<xs:documentation>Heat flow towards the wall</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_cycle_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Type of the primary power cycle</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>balance_of_plant/power_cycle_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_electric_generated">
+				<xs:annotation>
+					<xs:documentation>Net electric power produced by thermal plant, equal to power produced by turbines LESS power consumed by pumps and compressors</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="total_heat_rejected">
+				<xs:annotation>
+					<xs:documentation>Total heat flow being rejected from the thermal plant</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="total_heat_supplied">
+				<xs:annotation>
+					<xs:documentation>Total heat flow being supplied to the thermal plant (fusion thermal power)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="system" type="bop_power_plant_system" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of subsystems or circuits of the power conversion system, connected by their edges, e.g. divertor cooling loop</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bop_power_electric_system_subsystem">
+		<xs:annotation>
+			<xs:documentation>Subsystem of the electric power system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “compressor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power">
+				<xs:annotation>
+					<xs:documentation>Electrical power used to operate the subsystem</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bop_power_electric_system">
+		<xs:annotation>
+			<xs:documentation>System involved in electric power plant operation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “divertor Helium cooling loop”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power">
+				<xs:annotation>
+					<xs:documentation>Electrical power used to operate the system</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="subsystem" type="bop_power_electric_system_subsystem" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of subsystems</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bop_power_electric">
+		<xs:annotation>
+			<xs:documentation>Electric operation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_total">
+				<xs:annotation>
+					<xs:documentation>Total electrical power used to operate the plant</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="system" type="bop_power_electric_system" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of systems involved in the electric plant operation</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="balance_of_plant">
+		<xs:annotation>
+			<xs:documentation>Electrical and thermal power balance of the plant</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>4.1.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="gain_plant">
+					<xs:annotation>
+						<xs:documentation>Electricity gain of the plant (ratio of net electric / plant electricity during operation)</xs:documentation>
+						<xs:appinfo>
+							<type>dynamic</type>
+							<units>1</units>
+							<coordinate1>../time</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="power_electricity_net">
+					<xs:annotation>
+						<xs:documentation>Net electric power</xs:documentation>
+						<xs:appinfo>
+							<type>dynamic</type>
+							<units>W</units>
+							<coordinate1>../time</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="thermal_efficiency_cycle">
+					<xs:annotation>
+						<xs:documentation>The fractional thermal effiency of the power cycle. Calculated as 1 - Q_out/Q_in</xs:documentation>
+						<xs:appinfo>
+							<type>dynamic</type>
+							<units>1</units>
+							<coordinate1>../time</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="thermal_efficiency_plant">
+					<xs:annotation>
+						<xs:documentation>The fractional thermal effiency of the entire BOP thermal plant, inlcudes all of the individual cycles. Calculated as 1 - Q_out/Q_in</xs:documentation>
+						<xs:appinfo>
+							<type>dynamic</type>
+							<units>1</units>
+							<coordinate1>../time</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="power_electric_plant_operation" type="bop_power_electric">
+					<xs:annotation>
+						<xs:documentation>Electric plant operation</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="power_plant" type="bop_power_plant">
+					<xs:annotation>
+						<xs:documentation>Energy conversion</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
