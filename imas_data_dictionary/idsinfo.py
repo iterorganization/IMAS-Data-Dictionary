@@ -86,16 +86,14 @@ class IDSInfo:
 
         # Check idsdef.xml is installed in the Python environment (system as well as local)
         if not self.idsdef_path:
-            _idsdef_path_newer = os.path.join(current_fpath, r"../../../../")
-            _idsdef_path_old = os.path.join(current_fpath, r"../../../")
+            _idsdef_path_newer = os.path.abspath(os.path.normpath(os.path.join(current_fpath, r"../../../../")))
+            _idsdef_path_old = os.path.abspath(os.path.normpath(os.path.join(current_fpath, r"../../../")))
             local_path = os.path.join(str(Path.home()), ".local")
             python_env_list = [sys.prefix]
             if os.path.exists(local_path):
                 python_env_list.append(local_path)
-            if os.path.isfile(_idsdef_path_newer):
-                python_env_list.append(_idsdef_path_newer)
-            if os.path.isfile(_idsdef_path_old):
-                python_env_list.append(_idsdef_path_old)
+            python_env_list.append(_idsdef_path_newer)
+            python_env_list.append(_idsdef_path_old)
             reg_compile = re.compile("dd_*")
             version_list = None
             python_env_path = ""
