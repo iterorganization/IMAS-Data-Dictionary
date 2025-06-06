@@ -38,6 +38,13 @@ include = ["imas_data_dictionary*"]
     "resources/**/*.txt",
     "resources/**/*.xsd",
     "resources/**/*.xsl",
+    "resources/**/*.html",
+    "resources/**/*.css",
+    "resources/**/*.js",
+    "resources/**/*.png",
+    "resources/**/*.svg",
+    "resources/**/*.pdf",
+    "resources/**/*.csv",
 ]
 
 [project.scripts]
@@ -46,3 +53,4 @@ idsinfo = "imas_data_dictionary.idsinfo:main"
 # Including script files
 [tool.setuptools]
 script-files = ["scripts/dd_doc", "scripts/dd_doclegacy"]
+include-package-data = true

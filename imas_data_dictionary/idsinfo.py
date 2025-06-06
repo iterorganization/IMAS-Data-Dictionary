@@ -45,13 +45,13 @@ edge_sources/grid_ggd
 ...
 """
 
+import importlib.resources
 import os
 import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-import importlib.resources
 from packaging.version import Version
 
 
@@ -72,7 +72,7 @@ class IDSInfo:
         try:
             # Try to locate IDSDef.xml using importlib.resources
             resources_path = (
-                importlib.resources.files("data_dictionary")
+                importlib.resources.files("imas_data_dictionary")
                 / "resources"
                 / "xml"
                 / "IDSDef.xml"
@@ -84,116 +84,16 @@ class IDSInfo:
             pass
         current_fpath = os.path.dirname(os.path.realpath(__file__))
 
-        # Check idsdef.xml is installed in the Python environment (system as well as local)
-        if not self.idsdef_path:
-            _idsdef_path_newer = os.path.abspath(os.path.normpath(os.path.join(current_fpath, r"../../../../")))
-            _idsdef_path_old = os.path.abspath(os.path.normpath(os.path.join(current_fpath, r"../../../")))
-            local_path = os.path.join(str(Path.home()), ".local")
-            python_env_list = [sys.prefix]
-            if os.path.exists(local_path):
-                python_env_list.append(local_path)
-            python_env_list.append(_idsdef_path_newer)
-            python_env_list.append(_idsdef_path_old)
-            reg_compile = re.compile("dd_*")
-            version_list = None
-            python_env_path = ""
-            for python_env in python_env_list:
-                version_list = [
-                    dirname
-                    for dirname in os.listdir(python_env)
-                    if reg_compile.match(dirname)
-                ]
-                if version_list:
-                    python_env_path = python_env
-                    break
-            if version_list is not None and len(version_list) != 0:
-                version_objects = [
-                    Version(version.replace("dd_", "")) for version in version_list
-                ]
-                latest_version = max(version_objects)
-                folder_to_look = os.path.join(
-                    python_env_path, "dd_" + str(latest_version)
-                )
-                for root, dirs, files in os.walk(folder_to_look):
-                    for file in files:
-                        if file.endswith("IDSDef.xml"):
-                            self.idsdef_path = os.path.join(root, file)
-                        if file.endswith("html_documentation.html"):
-                            self.legacy_doc_path = os.path.join(root, file)
-                        if root.endswith("sphinx") and file == "index.html":
-                            self.sphinx_doc_path = os.path.join(root, file)
-
-        # Search through higher level directories
-        if not self.idsdef_path:
-            # Newer approach : IMAS/<VERSION>/lib/python3.8/site-packages/data_dictionary/idsinfo.py
-            _idsdef_path = os.path.join(
-                current_fpath, r"../../../../include/IDSDef.xml"
+        self.legacy_doc_path = os.path.join(
+            current_fpath, "resources/share/doc/imas/html_documentation.html"
+        )
+        sphinx_doc = os.path.join(
+            current_fpath, "resources/share/doc/imas/sphinx/index.html"
+        )
+        if os.path.exists(sphinx_doc):
+            self.sphinx_doc_path = os.path.join(
+                current_fpath, "resources/share/doc/imas/sphinx/index.html"
             )
-            if os.path.isfile(_idsdef_path):
-                self.idsdef_path = os.path.abspath(_idsdef_path)
-            else:
-                # Legacy approach : IMAS/<VERSION>/python/lib/data_dictionary/idsinfo.py
-                _idsdef_path = os.path.join(
-                    current_fpath, r"../../../include/IDSDef.xml"
-                )
-                if os.path.isfile(_idsdef_path):
-                    self.idsdef_path = os.path.abspath(_idsdef_path)
-
-            _doc_path = os.path.join(
-                current_fpath, r"../../../../share/doc/imas/html_documentation.html"
-            )
-            if os.path.isfile(_doc_path):
-                self.legacy_doc_path = os.path.abspath(_doc_path)
-            else:
-                _doc_path = os.path.join(
-                    current_fpath, r"../../../share/doc/imas/html_documentation.html"
-                )
-                if os.path.isfile(_doc_path):
-                    self.legacy_doc_path = os.path.abspath(_doc_path)
-
-            _sphinxdoc_path = os.path.join(
-                current_fpath, r"../../../../share/doc/imas/sphinx/index.html"
-            )
-            if os.path.isfile(_sphinxdoc_path):
-                self.sphinx_doc_path = os.path.abspath(_sphinxdoc_path)
-            else:
-                _sphinxdoc_path = os.path.join(
-                    current_fpath, r"../../../share/doc/imas/sphinx/index.html"
-                )
-                if os.path.isfile(_sphinxdoc_path):
-                    self.sphinx_doc_path = os.path.abspath(_sphinxdoc_path)
-
-        # Search using IMAS_PREFIX env variable
-        if not self.idsdef_path:
-            if "IMAS_PREFIX" in os.environ:
-                _idsdef_path = os.path.join(
-                    os.environ["IMAS_PREFIX"], r"include/IDSDef.xml"
-                )
-                if os.path.isfile(_idsdef_path):
-                    self.idsdef_path = _idsdef_path
-
-        if not self.legacy_doc_path:
-            if "IMAS_PREFIX" in os.environ:
-                _doc_path = os.path.join(
-                    os.environ["IMAS_PREFIX"], r"share/doc/imas/html_documentation.html"
-                )
-                if os.path.isfile(_doc_path):
-                    self.legacy_doc_path = _doc_path
-
-        if not self.sphinx_doc_path:
-            if "IMAS_PREFIX" in os.environ:
-                _doc_path = os.path.join(
-                    os.environ["IMAS_PREFIX"], r"share/doc/imas/sphinx/index.html"
-                )
-                if os.path.isfile(_doc_path):
-                    self.sphinx_doc_path = _doc_path
-
-            # Search using IDSDEF_PATH env variable
-        if not self.idsdef_path:
-            if "IDSDEF_PATH" in os.environ:
-                _idsdef_path = os.environ["IDSDEF_PATH"]
-                if os.path.isfile(_idsdef_path):
-                    self.idsdef_path = os.environ["IDSDEF_PATH"]
 
         if not self.idsdef_path:
             raise Exception(
