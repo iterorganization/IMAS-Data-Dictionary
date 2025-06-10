@@ -59,12 +59,15 @@ Alternatively, use the provided `idsinfo` module for higher-level access:
 ```python
 from imas_data_dictionary import idsinfo
 
+# Create object of IDSInfo
+obj_ids_info = idsinfo.IDSInfo()
+
 # Get all IDS names
-all_ids = idsinfo.get_ids_names()
+all_ids = obj_ids_info.get_ids_names()
 print(all_ids)
 
 # Get info about a specific IDS
-info = idsinfo.get_ids_info("magnetics")
+info = obj_ids_info.get_ids_info("magnetics")
 print(info)
 ```
 
