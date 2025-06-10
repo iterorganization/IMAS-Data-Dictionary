@@ -64,24 +64,12 @@ class IDSInfo:
 
     def __init__(self):
         # Find and parse XML definitions
-        self.idsdef_path = ""
+        from imas_data_dictionary import get_xml_resource
+
+        self.idsdef_path = get_xml_resource("IDSDef.xml")
         self.legacy_doc_path = ""
         self.sphinx_doc_path = ""
 
-        # First approach: Use importlib.resources to locate IDSDef.xml in resources/xml
-        try:
-            # Try to locate IDSDef.xml using importlib.resources
-            resources_path = (
-                importlib.resources.files("imas_data_dictionary")
-                / "resources"
-                / "xml"
-                / "IDSDef.xml"
-            )
-            if resources_path.is_file():
-                self.idsdef_path = str(resources_path)
-        except (ImportError, AttributeError, FileNotFoundError):
-            # Fallback if resources are not available or file not found
-            pass
         current_fpath = os.path.dirname(os.path.realpath(__file__))
 
         self.legacy_doc_path = os.path.join(
