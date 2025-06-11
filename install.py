@@ -5,7 +5,7 @@ import pathlib
 import shutil
 
 DD_BUILD = pathlib.Path(__file__).parent.resolve()
-IMAS_INSTALL_DIR = os.path.join(DD_BUILD, "install")
+IMAS_INSTALL_DIR = os.path.join(DD_BUILD, "imas_data_dictionary/resources")
 
 DD_GIT_DESCRIBE = get_version()
 UAL_GIT_DESCRIBE = DD_GIT_DESCRIBE

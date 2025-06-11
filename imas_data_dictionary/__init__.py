@@ -5,9 +5,10 @@ This package provides access to the ITER IMAS Data Dictionary, which describes
 the structure and format of ITER's Interface Data Structures (IDSs).
 """
 
+import sys
+from contextlib import contextmanager
 from importlib import resources
 from pathlib import Path
-import sys
 
 from . import idsinfo
 
@@ -17,7 +18,8 @@ from ._version import version as __version__  # noqa: F401
 from ._version import version_tuple  # noqa: F401
 
 
-def get_resource_path(resource_name: str) -> Path:
+@contextmanager
+def get_resource_path(resource_name: str):
     """Return the path to a resource file in the package.
 
     Parameters
@@ -36,7 +38,7 @@ def get_resource_path(resource_name: str) -> Path:
             resources.files("imas_data_dictionary").joinpath(resource_name)
         ) as path:
             # Return a copy of the path to ensure it remains valid after the context manager exits
-            return Path(str(path))
+            yield Path(path)
     else:
         # For Python < 3.9
         package_parts = resource_name.split("/")
@@ -45,7 +47,7 @@ def get_resource_path(resource_name: str) -> Path:
         if package_parts:
             package_path = f"{package_path}.{'.'.join(package_parts)}"
         with resources.path(package_path, resource_file) as path:
-            return Path(str(path))
+            yield Path(path)
 
 
 def get_xml_resource(xml_filename: str) -> Path:
@@ -61,4 +63,5 @@ def get_xml_resource(xml_filename: str) -> Path:
     Path
         Path object to the XML file.
     """
-    return get_resource_path(f"resources/xml/{xml_filename}")
+    with get_resource_path(f"resources/xml/{xml_filename}") as path:
+        return path

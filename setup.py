@@ -28,6 +28,7 @@ class ResourceGeneratorMixin:
             generate_ids_cocos_transformations_symbolic_table,
             generate_idsdef_js,
             generate_idsnames,
+            generate_idsnames,
         )
         from install import install_dd_files
 
@@ -68,7 +69,6 @@ class CustomInstallCommand(install, ResourceGeneratorMixin):
         copy_utilities()
         install_identifiers_files()
 
-        self.set_data_files()
         super().run()
 
     def set_data_files(self):
@@ -107,7 +107,6 @@ class DevelopCommand(develop, ResourceGeneratorMixin):
 
 if __name__ == "__main__":
     setup(
-        data_files=CustomInstallCommand.paths,
         cmdclass={
             "install": CustomInstallCommand,
             "build_py": BuildPyCommand,
