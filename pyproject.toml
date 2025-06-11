@@ -1,6 +1,11 @@
 [build-system]
 requires = ["setuptools>=64", "setuptools-scm>=8", "packaging", "saxonche"]
-build-backend = "setuptools.build_meta"
+build-backend = "setuptools.build_meta:__legacy__"
+
+[tool.setuptools.cmdclass]
+install = "setup.CustomInstallCommand"
+build_py = "setup.BuildPyCommand"
+develop = "setup.DevelopCommand"
 
 [project]
 name = "imas-data-dictionary"
