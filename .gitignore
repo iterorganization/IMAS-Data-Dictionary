@@ -34,7 +34,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 imas_data_dictionary/_version.py
-
+imas_data_dictionary/resources
 # IDE
 .vscode/
 

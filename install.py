@@ -7,6 +7,10 @@ import shutil
 DD_BUILD = pathlib.Path(__file__).parent.resolve()
 IMAS_INSTALL_DIR = os.path.join(DD_BUILD, "imas_data_dictionary/resources")
 
+# Delete directory contents if it exists
+if os.path.exists(IMAS_INSTALL_DIR) and os.path.isdir(IMAS_INSTALL_DIR):
+    shutil.rmtree(IMAS_INSTALL_DIR)
+
 DD_GIT_DESCRIBE = get_version()
 UAL_GIT_DESCRIBE = DD_GIT_DESCRIBE
 
@@ -129,16 +133,17 @@ def copy_utilities():
 # Identifiers definition files
 def install_identifiers_files():
     print("installing identifier files")
-    exclude = set(["install", "imas_data_dictionary", "dist", "build"])
+    exclude = set(["imas_data_dictionary", "dist", "build"])
 
     ID_IDENT = []
 
-    for root, dirs, files in os.walk(".", topdown=True):
+    for root, dirs, files in os.walk("schemas", topdown=True):
         dirs[:] = [d for d in dirs if d not in exclude]
         for filename in files:
             if filename.endswith("_identifier.xml"):
                 ID_IDENT.append(os.path.join(root, filename))
 
+    print(ID_IDENT)
     for file_path in ID_IDENT:
         directory_path = os.path.dirname(file_path)
         directory_name = os.path.basename(directory_path)

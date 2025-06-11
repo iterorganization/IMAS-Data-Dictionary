@@ -12,10 +12,6 @@ jobs:
         fetch-depth: 0 
     - name: Set up Python
       uses: actions/setup-python@v5
-      with:
-        # until saxonche is available in 3.13
-        # https://saxonica.plan.io/issues/6561
-        python-version: "<3.13"
     - name: Install pypa/build
       run: >-
         python3 -m

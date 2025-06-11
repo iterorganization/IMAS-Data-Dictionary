@@ -22,10 +22,6 @@ jobs:
         token: ${{ secrets.IMAS_DATA_DICTIONARIES_SECRET }}
     - name: Set up Python
       uses: actions/setup-python@v5
-      with:
-        # until saxonche is available in 3.13
-        # https://saxonica.plan.io/issues/6561
-        python-version: "<3.13"
     - name: Install python dependencies
       run: pip install setuptools_scm saxonche
     - name: Generate DD and validation
