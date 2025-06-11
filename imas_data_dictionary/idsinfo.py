@@ -66,33 +66,20 @@ class IDSInfo:
         # Find and parse XML definitions
         from imas_data_dictionary import get_xml_resource
 
-        self.idsdef_path = get_xml_resource("IDSDef.xml")
-        self.legacy_doc_path = ""
-        self.sphinx_doc_path = ""
+        self.idsdef_path = ""
+        self.root = None
+        self.version = ""
+        self.cocos = ""
+        with get_xml_resource("IDSDef.xml") as path:
+            self.idsdef_path = path
 
-        current_fpath = os.path.dirname(os.path.realpath(__file__))
+            if not self.idsdef_path:
+                raise Exception(f"Error accessing IDSDef.xml.  {self.idsdef_path}")
 
-        self.legacy_doc_path = os.path.join(
-            current_fpath, "resources/share/doc/imas/html_documentation.html"
-        )
-        sphinx_doc = os.path.join(
-            current_fpath, "resources/share/doc/imas/sphinx/index.html"
-        )
-        if os.path.exists(sphinx_doc):
-            self.sphinx_doc_path = os.path.join(
-                current_fpath, "resources/share/doc/imas/sphinx/index.html"
-            )
-
-        if not self.idsdef_path:
-            raise Exception(
-                "Error accessing IDSDef.xml.  Make sure its location is defined in your environment, e.g. by"
-                "loading an IMAS module."
-            )
-
-        tree = ET.parse(self.idsdef_path)
-        self.root = tree.getroot()
-        self.version = self.root.findtext("./version", default="N/A")
-        self.cocos = self.root.findtext("./cocos", default="N/A")
+            tree = ET.parse(self.idsdef_path)
+            self.root = tree.getroot()
+            self.version = self.root.findtext("./version", default="N/A")
+            self.cocos = self.root.findtext("./cocos", default="N/A")
 
     def get_idsdef_path(self):
         "Get selected idsdef.xml path"
@@ -267,14 +254,6 @@ def main():
         default=None,
         help="Path for field of interest within the IDS",
     )
-    doc_command_parser = subparsers.add_parser(
-        "doc", help="Show documentation in the browser"
-    )
-    doc_command_parser.set_defaults(cmd="doc")
-
-    doc_command_parser.add_argument(
-        "-l", "--legacy", action="store_true", help="Show legacy documentation"
-    )
     opt = info_command_parser.add_mutually_exclusive_group()
     opt.add_argument("-a", "--all", action="store_true", help="Print all attributes")
     opt.add_argument(
@@ -312,21 +291,6 @@ def main():
     elif args.cmd == "idsnames":
         for name in idsinfoObj.get_ids_names():
             print(name)
-    elif args.cmd == "doc":
-        if args.legacy:
-            url = idsinfoObj.legacy_doc_path
-        else:
-            url = idsinfoObj.sphinx_doc_path
-            if not url:
-                print(
-                    "Could not find sphinx documentation. falling back to legacy documentation"
-                )
-                url = idsinfoObj.legacy_doc_path
-        if url:
-            print("Showing documentation from : " + url)
-            import webbrowser
-
-            webbrowser.open(url)
     elif args.cmd == "search":
         if args.text not in ["", None]:
             print(f"Searching for '{args.text}'.")
