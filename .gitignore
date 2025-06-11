@@ -33,6 +33,12 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+imas_data_dictionary/_version.py
 
 # IDE
 .vscode/
+
+# virtual environment 
+.venv/
+
+uv.lock
