@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constants create_mapping_function="yes" identifier="yes" name="power_cycle_type">
+<header>Power cycle type</header>
+<ddInstance xpath="/balance_of_plant/power_plant/power_cycle_type"/>
+
+<int name="brayton"  description="Brayton cycle (gas)">0</int>
+<int name="rankine"  description="Rankine cycle (steam)">1</int>
+
+</constants>

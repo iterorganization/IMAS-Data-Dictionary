@@ -1,0 +1,52 @@
+name: Push release to archive repository
+
+on:
+  push:
+    tags:
+      - '*' # This triggers the workflow on any tag push
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: IMAS-Data-Dictionaries
+
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v4
+    - name: Checkout destination repository
+      uses: actions/checkout@v4
+      with:
+        repository: iterorganization/IMAS-Data-Dictionaries
+        path: _destination
+        ref: main
+        token: ${{ secrets.IMAS_DATA_DICTIONARIES_SECRET }}
+    - name: Set up Python
+      uses: actions/setup-python@v5
+    - name: Install python dependencies
+      run: pip install setuptools_scm saxonche
+    - name: Generate DD and validation
+      run: python generate.py
+    - name: Copy files to archive repository
+      run: |
+        # Copy Data Dictionary definitions:
+        cp IDSDef.xml '_destination/data-dictionary/${{ github.ref_name }}.xml'
+        # Synchronize identifiers
+        cp -f schemas/*/*_identifier.xml _destination/identifiers
+    - name: Create PR
+      env:
+        GITHUB_TOKEN: ${{ secrets.IMAS_DATA_DICTIONARIES_SECRET }}
+      run: |
+        cd _destination
+        
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "github-actions@github.com"
+
+        git checkout -b 'release/${{ github.ref_name }}'
+        git add -A
+        git commit \
+          -m "🤖 Upload Data Dictionary release: ${{ github.ref_name }}" \
+          -m "Automatic upload triggered by a (new) tag on ${{ github.repository }}."
+
+        # Use a force push in case the tag is moved
+        git push -f origin 'release/${{ github.ref_name }}'
+        gh pr create --base main --fill --head 'release/${{ github.ref_name }}'

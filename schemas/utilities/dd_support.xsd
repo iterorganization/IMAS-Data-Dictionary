@@ -6456,7 +6456,7 @@
 			</xs:element>
 			<xs:element name="path">
 				<xs:annotation>
-					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: 'wall:0/description_ggd(1)/grid_ggd', means that the grid is located in the wall IDS, occurrence 0, with ids path 'description_ggd(1)/grid_ggd'. See the link below for more details about IDS paths</xs:documentation>
+					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<url>utilities/IDS-path-syntax.md</url>
@@ -6503,9 +6503,10 @@
 			</xs:element>
 			<xs:element name="path">
 				<xs:annotation>
-					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: IDS::wall/0/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 0, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
+					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
+						<url>utilities/IDS-path-syntax.md</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -6555,9 +6556,10 @@
 			</xs:element>
 			<xs:element name="path">
 				<xs:annotation>
-					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: IDS::wall/0/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 0, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
+					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
+						<url>utilities/IDS-path-syntax.md</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
