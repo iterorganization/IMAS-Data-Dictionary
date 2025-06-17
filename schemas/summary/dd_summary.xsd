@@ -275,6 +275,37 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="summary_constant_flt_1d_compo">
+		<xs:annotation>
+			<xs:documentation>Summary constant FLT_1D + source information, composition-specific coordinate check</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Value</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>-</units>
+						<coordinate1>../../names/value</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="source">
+				<xs:annotation>
+					<xs:documentation>Source of the data (any comment describing the origin of the data : code, path to diagnostic signals, processing method, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="summary_constant_str_0d">
 		<xs:annotation>
 			<xs:documentation>Summary constant STR_0D + source information</xs:documentation>
@@ -289,6 +320,36 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="source">
+				<xs:annotation>
+					<xs:documentation>Source of the data (any comment describing the origin of the data : code, path to diagnostic signals, processing method, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="summary_constant_str_1d">
+		<xs:annotation>
+			<xs:documentation>Summary constant STR_1D + source information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Value</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="source">
@@ -1141,6 +1202,23 @@
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>label</change_nbc_previous_name>
 					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="summary_composition">
+		<xs:annotation>
+			<xs:documentation>Plasma composition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="names" type="summary_constant_str_1d">
+				<xs:annotation>
+					<xs:documentation>List of ion species entering the plasma composition (e.g. H, D, T, C, W, ...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i_over_n_e" type="summary_constant_flt_1d_compo">
+				<xs:annotation>
+					<xs:documentation>Ratios of the density of each ion species to the electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -4019,6 +4097,14 @@
 						<xs:appinfo>
 							<doc_identifier>utilities/midplane_identifier.xml</doc_identifier>
 							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="composition" type="summary_composition">
+					<xs:annotation>
+						<xs:documentation>Plasma composition (list of ion species and density ratios)</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
