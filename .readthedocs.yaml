@@ -7,13 +7,13 @@ build:
   jobs:
     post_checkout:
       - git fetch --unshallow || true
-    
+
 python:
   install:
-    - requirements: docs/requirements.txt
+    - requirements: docs/requirements-changelog.txt
     - method: pip
       path: .
-      
+
 sphinx:
   builder: html
   configuration: docs/conf.py
