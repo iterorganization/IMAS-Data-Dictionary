@@ -40,7 +40,7 @@ language = "en"
 #
 # Note: these can be enabled/disabled to generate the IDS reference and changelog!
 #   For example: SPHINXOPTS="-D dd_changelog_generate=1 -D dd_autodoc_generate=1"
-dd_changelog_generate = False
+dd_changelog_generate = True
 dd_autodoc_generate = True
 
 
