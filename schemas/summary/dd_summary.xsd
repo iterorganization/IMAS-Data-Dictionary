@@ -3998,6 +3998,89 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="summary_epoch_time">
+		<xs:annotation>
+			<xs:documentation>Epoch time represented as two integers, since for the moment IMAS is missing 64bits long integers to represent epoch time with nanoseconds resolution</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="seconds">
+				<xs:annotation>
+					<xs:documentation>Elapsed seconds since the Unix Epoch time (01/01/1970 00:00:00 UTC)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nanoseconds">
+				<xs:annotation>
+					<xs:documentation>Elapsed nanoseconds since the time in seconds indicated above</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="summary_simulation">
+		<xs:annotation>
+			<xs:documentation>Description of the general simulation characteristics, if this data entry has been produced by a simulation. Several nodes describe typical time-dependent simulation with a time evolution as the main loop</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="time_begin">
+				<xs:annotation>
+					<xs:documentation>Start time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_step">
+				<xs:annotation>
+					<xs:documentation>Time interval between main steps, e.g. storage step (if relevant and constant)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_end">
+				<xs:annotation>
+					<xs:documentation>Stop time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="workflow">
+				<xs:annotation>
+					<xs:documentation>Description of the workflow which has been used to produce this data entry</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:element name="summary">
 		<xs:annotation>
 			<xs:documentation>Summary of physics quantities from a simulation or an experiment. Dynamic quantities are either taken at given time slices (indicated in the "time" vector) or time-averaged over an interval (in such case the "time_width" of the interval is indicated and the "time" vector represents the end of each time interval).</xs:documentation>
@@ -4010,6 +4093,111 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="ids_properties"/>
+				<xs:element name="type" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Type of data contained in the dataset</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>utilities/data_type_identifier.xml</doc_identifier>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="machine">
+					<xs:annotation>
+						<xs:documentation>Name of the experimental device to which this data is related (if relevant)</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pulse">
+					<xs:annotation>
+						<xs:documentation>Pulse number to which this data is related (if relevant)</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pulse_time_begin">
+					<xs:annotation>
+						<xs:documentation>Date and time (UTC) at which the pulse started on the experiment (if relevant), expressed in a human readable form (ISO 8601) : the format of the string shall be : YYYY-MM-DDTHH:MM:SSZ. Example : 2020-07-24T14:19:00Z</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pulse_time_begin_epoch" type="summary_epoch_time">
+					<xs:annotation>
+						<xs:documentation>Time at which the pulse started on the experiment (if relevant), expressed in Unix Epoch time. Temporarily represented as two integers, since for the moment IMAS is missing 64bits long integers to represent epoch time with nanoseconds resolution</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="pulse_time_end_epoch" type="summary_epoch_time">
+					<xs:annotation>
+						<xs:documentation>Time at which the pulse ended on the experiment (if relevant), expressed in Unix Epoch time. Temporarily represented as two integers, since for the moment IMAS is missing 64bits long integers to represent epoch time with nanoseconds resolution</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="pulse_processing_time_begin">
+					<xs:annotation>
+						<xs:documentation>For experimental processed data, date and time (UTC) at which the pulse data processing started on the experiment (if relevant), expressed in a human readable form (ISO 8601) : the format of the string shall be : YYYY-MM-DDTHH:MM:SSZ. Example : 2020-07-24T14:19:00Z</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="description_before">
+					<xs:annotation>
+						<xs:documentation>Description recorded when preparing a simulation or a pulse</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="description_after">
+					<xs:annotation>
+						<xs:documentation>Description of the outcome of the simulation or pulse,  recorded after the end of a simulation or a pulse.</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="simulation" type="summary_simulation">
+					<xs:annotation>
+						<xs:documentation>Description of the general simulation characteristics, if this dataset has been produced by a simulation. Several nodes describe typical time-dependent simulation with a time evolution as the main loop</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="tag" type="entry_tag">
 					<xs:annotation>
 						<xs:documentation>Tag qualifying this data entry (or a list of data entries)</xs:documentation>
