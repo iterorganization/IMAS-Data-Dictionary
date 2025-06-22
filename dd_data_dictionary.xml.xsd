@@ -27,7 +27,6 @@
 	<xs:include schemaLocation="schemas/core_sources/dd_core_sources.xsd"/>
 	<xs:include schemaLocation="schemas/core_transport/dd_core_transport.xsd"/>
 	<xs:include schemaLocation="schemas/cryostat/dd_cryostat.xsd"/>
-	<xs:include schemaLocation="schemas/dataset_description/dd_dataset_description.xsd"/>
 	<xs:include schemaLocation="schemas/dataset_fair/dd_dataset_fair.xsd"/>
 	<xs:include schemaLocation="schemas/disruption/dd_disruption.xsd"/>
 	<xs:include schemaLocation="schemas/distribution_sources/dd_distribution_sources.xsd"/>
@@ -118,7 +117,6 @@
 				<xs:element ref="core_sources" maxOccurs="15"/>
 				<xs:element ref="core_transport" maxOccurs="10"/>
 				<xs:element ref="cryostat"/>
-				<xs:element ref="dataset_description"/>
 				<xs:element ref="dataset_fair"/>
 				<xs:element ref="disruption"/>
 				<xs:element ref="distribution_sources" maxOccurs="4"/>
