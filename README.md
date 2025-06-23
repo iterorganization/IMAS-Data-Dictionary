@@ -6,9 +6,13 @@ structuring and naming of data (as a set of Interface Data Structures
 or IDSs) being used for both simulated and experimental data in a
 machine agnostic manner.
 
+[![PyPI][pypi-badge]][pypi-url]
 
+[pypi-badge]: https://img.shields.io/pypi/v/imas-data-dictionary.svg
+[pypi-url]: https://pypi.org/project/imas-data-dictionary/
 
 ## Installation
+
 It's possible to install the Data Dictionary within a Python environment.
 
 > Prerequisite : A Python interpreter is all you need
@@ -19,11 +23,53 @@ cd imas-data-dictionary
 pip install . [--user]
 ```
 
-After the install, you will get a directory with the version/tag information 
+After the install, you will get a directory with the version/tag information
 prefixed with `dd_` e.g. `dd_4.0.0`. It has an `include` directory with a few
-XML files (`IDSdef.xml` is the main source of information for the definition 
-of IDSs and `*_indentifier.xml` are listing common identifiers) and a `share` 
+XML files (`IDSdef.xml` is the main source of information for the definition
+of IDSs and `*_indentifier.xml` are listing common identifiers) and a `share`
 directory with html documentation.
+
+The package also installs the Data Dictionary XML files as package resources, making them accessible from Python code without needing to know their filesystem location.
+
+### Accessing the Data Dictionary from Python
+
+You can access the Data Dictionary directly from Python using the `importlib.resources` API:
+
+```python
+import importlib.resources
+import xml.etree.ElementTree as ET
+
+# Access the IDSDef.xml file from the package resources
+xml_path = importlib.resources.files("imas_data_dictionary.resources.xml") / "IDSDef.xml"
+
+# Read the content
+if xml_path.is_file():
+    # Parse the XML content
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    # Now you can work with the ElementTree
+    # For example, find all IDS elements:
+    for ids in root.findall(".//IDS"):
+        print(f"Found IDS: {ids.get('name')}")
+```
+
+Alternatively, use the provided `idsinfo` module for higher-level access:
+
+```python
+from imas_data_dictionary import idsinfo
+
+# Create object of IDSInfo
+obj_ids_info = idsinfo.IDSInfo()
+
+# Get all IDS names
+all_ids = obj_ids_info.get_ids_names()
+print(all_ids)
+
+# Get info about a specific IDS
+info = obj_ids_info.get_ids_info("magnetics")
+print(info)
+```
 
 ### Documentation (Sphinx)
 
@@ -35,15 +81,14 @@ pip install -r docs/requirements.txt
 python generate_docs.py
 pip install .
 ```
+
 After this step you can open the documentation pages via the `dd_doc` command (or the `dd_doclegacy` for the simpler static html version).
 
 ### `idsinfo` tool
 
-The installation also provides a small utility script in Python which can be 
-used from the command line to obtain some information from the installed 
+The installation also provides a small utility script in Python which can be
+used from the command line to obtain some information from the installed
 Data Dictionary. Type `idsinfo -h` for more info on this tool's options.
-
-
 
 ## Collaboration
 
@@ -56,24 +101,22 @@ to contribute to the improvement of the Data Dictionary, either as a
 developer, a specific system/area specialist or an occasional user
 providing feedback, please see the [contributing guidelines](CONTRIBUTING.md).
 
-
-
 ## Legal
-Copyright 2012-2024, ITER Organization, Route de Vinon-sur-Verdon, CS 90 046, 
+
+Copyright 2012-2024, ITER Organization, Route de Vinon-sur-Verdon, CS 90 046,
 13067 St-Paul-lez-Durance Cedex, France.
 
-This repository contains data schemas and software that are subject to different 
+This repository contains data schemas and software that are subject to different
 licenses:
 
-* The data schemas are licensed under the Creative Commons 
-Attribution-Noderivatives 4.0 International License (CC-BY-ND 4.0) which permits 
-use and distribution as long as appropriate credit is given to the original source, 
-but does not permit adaptations, as the main goal of these schemas is to serve as 
-a standard for the community. 
-Details can be found in [LICENSE-CC-BY-ND](LICENSE-CC-BY-ND).
+- The data schemas are licensed under the Creative Commons
+  Attribution-Noderivatives 4.0 International License (CC-BY-ND 4.0) which permits
+  use and distribution as long as appropriate credit is given to the original source,
+  but does not permit adaptations, as the main goal of these schemas is to serve as
+  a standard for the community.
+  Details can be found in [LICENSE-CC-BY-ND](LICENSE-CC-BY-ND).
 
-* The software is licensed under the LGPLv3 License which allows for extensive 
-freedom in using, modifying, and distributing it, provided that the license terms 
-are met. 
-Details can be found in [LICENSE-LGPL](LICENSE-LGPL).
-
+- The software is licensed under the LGPLv3 License which allows for extensive
+  freedom in using, modifying, and distributing it, provided that the license terms
+  are met.
+  Details can be found in [LICENSE-LGPL](LICENSE-LGPL).
