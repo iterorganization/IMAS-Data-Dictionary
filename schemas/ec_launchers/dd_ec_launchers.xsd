@@ -65,26 +65,47 @@
 				<xs:annotation>
 					<xs:documentation>polarization mode, O|X|mixed</xs:documentation>
 					<xs:appinfo>
-						<type>static</type>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:group ref="STR_0D"/>
+					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="psi" type="signal_flt_1d">
+			<xs:element name="psi">
 				<xs:annotation>
 					<xs:documentation>Poincare sphere angle for mixed mode</xs:documentation>
 					<xs:appinfo>
+						<type>dynamic</type>
 						<units>rad</units>
+						<coordinate1>../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
 			</xs:element>
-			<xs:element name="chi" type="signal_flt_1d">
+			<xs:element name="chi">
 				<xs:annotation>
 					<xs:documentation>Poincare sphere angle for mixed mode</xs:documentation>
 					<xs:appinfo>
+						<type>dynamic</type>
 						<units>rad</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time base used for polarization quantities</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -616,7 +637,7 @@
 			</xs:element>
 			<xs:element name="time" type="flt_1d_type">
 				<xs:annotation>
-					<xs:documentation>Time base used for launching_position, o_mode_fraction, angle, spot and phase quantities</xs:documentation>
+					<xs:documentation>Time base used for launching_position, angle, spot and phase quantities</xs:documentation>
 					<xs:appinfo>
 						<units>s</units>
 						<type>dynamic</type>
