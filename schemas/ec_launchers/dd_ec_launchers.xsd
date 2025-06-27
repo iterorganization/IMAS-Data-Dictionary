@@ -7,27 +7,31 @@
 			<xs:documentation>Radiation pattern at the source aperture, decomposed as sum of modes</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="base">
+			<xs:element name="base" type="identifier">
 				<xs:annotation>
 					<xs:documentation>TEM|LP|HE|EH|TE|TM| ...</xs:documentation>
-					<xs:appinfo>
-						<type>constant</type>
-					</xs:appinfo>
 				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="STR_0D"/>
-				</xs:complexType>
 			</xs:element>
-			<xs:element name="relative_amplitude">
+			<xs:element name="horizontal_index">
 				<xs:annotation>
-					<xs:documentation>(check description)</xs:documentation>
+					<xs:documentation>Horizontal or azimuthal index</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:group ref="FLT_0D"/>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+						<xs:element name="vertical_index">
+				<xs:annotation>
+					<xs:documentation>Vertical or radial index</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="angle">
@@ -111,6 +115,36 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="ec_launchers_launcher">
+		<xs:annotation>
+			<xs:documentation>EC wave launcher</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="ec_launchers_source">
 		<xs:annotation>
 			<xs:documentation>Electron Cyclotron source</xs:documentation>
@@ -166,6 +200,19 @@
 						<units>W</units>
 					</xs:appinfo>
 				</xs:annotation>
+			</xs:element>
+			<xs:element name="transverse_reference">
+				<xs:annotation>
+					<xs:documentation>Reference direction for the polarization in the (x1, x2, x3) frame (see the ../geometry structure for the definition of these axes)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>1...3</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
 			</xs:element>
 			<xs:element name="mode" type="ec_launchers_source_mode" maxOccurs="5">
 				<xs:annotation>
@@ -363,22 +410,11 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="ec_launchers_frame">
+	<xs:complexType name="ec_launchers_movement">
 		<xs:annotation>
-			<xs:documentation>local frame to describe movements of the mirror</xs:documentation>
+			<xs:documentation>Description of movements of the mirror</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="name">
-				<xs:annotation>
-					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
-					<xs:appinfo>
-						<type>static</type>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="STR_0D"/>
-				</xs:complexType>
-			</xs:element>
 			<xs:element name="description">
 				<xs:annotation>
 					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
@@ -391,19 +427,7 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="parent_id">
-				<xs:annotation>
-					<xs:documentation>array index in movable frame</xs:documentation>
-					<xs:appinfo>
-						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="STR_0D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="movements" type="identifier">
+			<xs:element name="degrees_of_freedom" type="identifier">
 				<xs:annotation>
 					<xs:documentation>Definition of the degrees of freedom of the mirror</xs:documentation>
 					<xs:appinfo>
@@ -501,17 +525,10 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="parent_frame_id">
+			<xs:element name="movement" type="ec_launchers_movement">
 				<xs:annotation>
-					<xs:documentation>Array index in movable frame</xs:documentation>
-					<xs:appinfo>
-						<type>static</type>
-						<introduced_after_version>3</introduced_after_version>
-					</xs:appinfo>
+					<xs:documentation>local reference onto which attach movable objects. Can be cascaded for composite movements.</xs:documentation>
 				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="INT_0D"/>
-				</xs:complexType>
 			</xs:element>
 			<xs:element name="geometry" type="curved_object">
 				<xs:annotation>
@@ -660,18 +677,18 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="ids_properties"/>
-				<xs:element name="source" type="ec_launchers_source" maxOccurs="20">
+				<xs:element name="launcher" type="ec_launchers_launcher" maxOccurs="5">
 					<xs:annotation>
-						<xs:documentation>Set of sources associated with the launcher</xs:documentation>
+						<xs:documentation>Set of launchers</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="frame" type="ec_launchers_frame" maxOccurs="20">
+				<xs:element name="source" type="ec_launchers_source" maxOccurs="20">
 					<xs:annotation>
-						<xs:documentation>local reference onto which attach movable objects. Can be cascaded for composite movements.</xs:documentation>
+						<xs:documentation>Radiation leaving the gyrotron</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_after_version>4.0.0</introduced_after_version>
