@@ -545,9 +545,77 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="aperture" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Description of the collimating aperture for this channel</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="etendue">
+				<xs:annotation>
+					<xs:documentation>Etendue (geometric extent) of the optical system for this channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2.sr</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etendue_method" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Method used to calculate the etendue. Index = 0 : exact calculation with a 4D integral; 1 : approximation with first order formula (detector surface times solid angle subtended by the apertures); 2 : other methods</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="focal_length">
+				<xs:annotation>
+					<xs:documentation>Focal length of the collector lens</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cone_diameter">
+				<xs:annotation>
+					<xs:documentation>Diameter of the base of the optical cone at the entrance pupil</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="image_diameter">
+				<xs:annotation>
+					<xs:documentation>Diameter at the image plane (typically the diameter of the optical fibre)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="position" type="rphiz1d_dynamic_aos1">
 				<xs:annotation>
-					<xs:documentation>Position of the measurements</xs:documentation>
+					<xs:documentation>Position of the measurements (assuming point emission)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="t_i_average" type="signal_flt_1d">
@@ -647,7 +715,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.0.4</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -655,12 +723,12 @@
 				<xs:element ref="ids_properties"/>
 				<xs:element name="aperture" type="detector_aperture">
 					<xs:annotation>
-						<xs:documentation>Description of the collimating aperture of the diagnostic, relevant to all lines-of-sight (channels)</xs:documentation>
+						<xs:documentation>Description of the collimating aperture of the diagnostic, fill if relevant to all lines-of-sight (channels)</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="etendue">
 					<xs:annotation>
-						<xs:documentation>Etendue (geometric extent) of the optical system</xs:documentation>
+						<xs:documentation>Etendue (geometric extent) of the optical system, fill if relevant to all lines-of-sight (channels)</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
 							<units>m^2.sr</units>
