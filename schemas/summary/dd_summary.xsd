@@ -1218,7 +1218,7 @@
 			</xs:element>
 			<xs:element name="n_i_over_n_e" type="summary_constant_flt_1d_compo">
 				<xs:annotation>
-					<xs:documentation>Ratios of the volume average density of each ion species to the volume average electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
+					<xs:documentation>Ratios of the volume average density (inside LCFS) of each ion species to the volume average electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -4138,7 +4138,7 @@
 				</xs:element>
 				<xs:element name="volume_average" type="summary_average_quantities">
 					<xs:annotation>
-						<xs:documentation>Volume average plasma parameters</xs:documentation>
+						<xs:documentation>Volume average plasma parameters (average over the confined plasma volume, i.e. inside the LCFS)</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="disruption" type="summary_disruption">
