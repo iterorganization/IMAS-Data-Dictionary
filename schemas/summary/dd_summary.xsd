@@ -1376,6 +1376,23 @@
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>b_field</change_nbc_previous_name>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_phi" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Toroidal magnetic field</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+						<cocos_label_transformation>b0_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.b_field.value</cocos_leaf_name_aos_indices>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>b_field_tor</change_nbc_previous_name>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

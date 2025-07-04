@@ -25,6 +25,48 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="start_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the laser start point</xs:documentation>
+					<xs:appinfo>
+						<introduced-after-version>4.0.0</introduced-after-version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="end_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the laser end point</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelength">
+				<xs:annotation>
+					<xs:documentation>Laser wavelength</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Laser cross sectional area</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="thomson_scattering_polychromator">
@@ -152,16 +194,17 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="width_z">
+			<xs:element name="scattering_length">
 				<xs:annotation>
-					<xs:documentation>Full width of the light collection area along the Z coordinate</xs:documentation>
+					<xs:documentation>Length of the light scattering volume (full width) along the laser beam path, for this line of sight (i.e. length of the intersection between the laser beam and the viewing cone). This is a time average value in case of different lasers fired at different times</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<introduced_after_version>3.41.0</introduced_after_version>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:group ref="INT_0D"/>
+					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="solid_angle">
