@@ -7,6 +7,8 @@ build:
   jobs:
     post_checkout:
       - git fetch --unshallow || true
+    pre_build:
+      - python generate.py
 
 python:
   install:
