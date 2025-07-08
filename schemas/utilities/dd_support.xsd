@@ -1481,7 +1481,7 @@
 					<xs:documentation>Poloidal flux</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>W</units>
+						<units>Wb</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../n_e/data</coordinate1_same_as>
 						<coordinate2>../../n_e/time</coordinate2>
