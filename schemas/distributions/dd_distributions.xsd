@@ -2885,6 +2885,36 @@
 					<xs:documentation>Grid. The grid has to be rectangular in a pair of coordinates, as specified in type</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius (for plotting purposes, if the 2D grid is not given in (R,Z))</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>m^-3</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Height (for plotting purposes, if the 2D grid is not given in (R,Z))</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>m^-3</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="density">
 				<xs:annotation>
 					<xs:documentation>Density (thermal+non-thermal)</xs:documentation>
