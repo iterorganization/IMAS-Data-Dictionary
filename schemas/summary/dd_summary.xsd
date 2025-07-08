@@ -275,37 +275,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="summary_constant_flt_1d_compo">
-		<xs:annotation>
-			<xs:documentation>Summary constant FLT_1D + source information, composition-specific coordinate check</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="value">
-				<xs:annotation>
-					<xs:documentation>Value</xs:documentation>
-					<xs:appinfo>
-						<type>constant</type>
-						<units>-</units>
-						<coordinate1>../../names/value</coordinate1>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_1D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="source">
-				<xs:annotation>
-					<xs:documentation>Source of the data (any comment describing the origin of the data : code, path to diagnostic signals, processing method, ...)</xs:documentation>
-					<xs:appinfo>
-						<type>constant</type>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="STR_0D"/>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="summary_constant_str_0d">
 		<xs:annotation>
 			<xs:documentation>Summary constant STR_0D + source information</xs:documentation>
@@ -320,36 +289,6 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="STR_0D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="source">
-				<xs:annotation>
-					<xs:documentation>Source of the data (any comment describing the origin of the data : code, path to diagnostic signals, processing method, ...)</xs:documentation>
-					<xs:appinfo>
-						<type>constant</type>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="STR_0D"/>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="summary_constant_str_1d">
-		<xs:annotation>
-			<xs:documentation>Summary constant STR_1D + source information</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="value">
-				<xs:annotation>
-					<xs:documentation>Value</xs:documentation>
-					<xs:appinfo>
-						<type>constant</type>
-						<coordinate1>1...N</coordinate1>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="source">
@@ -467,6 +406,98 @@
 				<xs:complexType>
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="summary_species_constant">
+		<xs:annotation>
+			<xs:documentation>List of ion species used in summary, for constant quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="hydrogen" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Hydrogen (H)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deuterium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Deuterium (D)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tritium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Tritium (T)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="helium_3" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Helium isotope with 3 nucleons (3He)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="helium_4" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Helium isotope with 4 nucleons (4He)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beryllium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Beryllium (Be)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lithium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Lithium (Li)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="carbon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Carbon (C)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nitrogen" type="summary_constant_flt_0d">
+				<xs:annotation>
+					<xs:documentation>Nitrogen (N)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Neon (Ne)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="argon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Argon (Ar)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xenon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Xenon (Xe)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="oxygen" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Oxygen (O)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tungsten" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Tungsten (W)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iron" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Iron (Fe)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="krypton" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Krypton (Kr)</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -1202,23 +1233,6 @@
 						<change_nbc_description>structure_renamed</change_nbc_description>
 						<change_nbc_previous_name>label</change_nbc_previous_name>
 					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="summary_composition">
-		<xs:annotation>
-			<xs:documentation>Plasma composition</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="names" type="summary_constant_str_1d">
-				<xs:annotation>
-					<xs:documentation>List of ion species entering the plasma composition (e.g. H, D, T, C, W, ...)</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="n_i_over_n_e" type="summary_constant_flt_1d_compo">
-				<xs:annotation>
-					<xs:documentation>Ratios of the volume average density (inside LCFS) of each ion species to the volume average electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -4100,11 +4114,12 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="composition" type="summary_composition">
+				<xs:element name="composition" type="summary_species_constant">
 					<xs:annotation>
-						<xs:documentation>Plasma composition (list of ion species and density ratios)</xs:documentation>
+						<xs:documentation>Ratios of the volume average density (inside LCFS) of each ion species to the volume average electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
 						<xs:appinfo>
 							<introduced_after_version>4.0.0</introduced_after_version>
+							<units>1</units>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
