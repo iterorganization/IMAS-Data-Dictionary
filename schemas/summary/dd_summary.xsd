@@ -4192,7 +4192,7 @@
 				</xs:element>
 				<xs:element name="simulation" type="summary_simulation">
 					<xs:annotation>
-						<xs:documentation>Description of the general simulation characteristics, if this dataset has been produced by a simulation. Several nodes describe typical time-dependent simulation with a time evolution as the main loop</xs:documentation>
+						<xs:documentation>Description of the general characteristics of the simulation, if this dataset has been produced by a simulation</xs:documentation>
 						<xs:appinfo>
 							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
