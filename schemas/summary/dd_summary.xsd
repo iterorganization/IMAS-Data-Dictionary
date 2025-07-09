@@ -4016,7 +4016,7 @@
 			</xs:element>
 			<xs:element name="nanoseconds">
 				<xs:annotation>
-					<xs:documentation>Elapsed nanoseconds since the time in seconds indicated above</xs:documentation>
+					<xs:documentation>Elapsed nanoseconds since Unix Epoch time in seconds</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 					</xs:appinfo>
