@@ -4148,7 +4148,7 @@
 				</xs:element>
 				<xs:element name="pulse_time_end_epoch" type="summary_epoch_time">
 					<xs:annotation>
-						<xs:documentation>Time at which the pulse ended on the experiment (if relevant), expressed in Unix Epoch time. Temporarily represented as two integers, since for the moment IMAS is missing 64bits long integers to represent epoch time with nanoseconds resolution</xs:documentation>
+						<xs:documentation>Time at which the pulse ended on the experiment (if relevant), expressed in Unix Epoch time represented as two integers: seconds, plus additionally elapsed nanoseconds</xs:documentation>
 						<xs:appinfo>
 							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
