@@ -4034,7 +4034,7 @@
 		<xs:sequence>
 			<xs:element name="time_begin">
 				<xs:annotation>
-					<xs:documentation>Start time</xs:documentation>
+					<xs:documentation>Start time (relative to the beginning of the pulse)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>s</units>
@@ -4058,7 +4058,7 @@
 			</xs:element>
 			<xs:element name="time_end">
 				<xs:annotation>
-					<xs:documentation>Stop time</xs:documentation>
+					<xs:documentation>Stop time (relative to the beginning of the pulse)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>s</units>
