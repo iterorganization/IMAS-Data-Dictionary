@@ -75,7 +75,7 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>../material</coordinate1>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -301,7 +301,7 @@
 					<xs:documentation>Number of tritium atoms created for each fusion neutron (TBR)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -429,7 +429,7 @@
 					<xs:documentation>Number of tritium atoms created for each fusion neutron (TBR)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -441,7 +441,7 @@
 					<xs:documentation>Energy multiplication factor</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -527,7 +527,7 @@
 						<xs:documentation>Fraction of Li6 isotope over the total amount of Li in the blanket</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
-							<units>-</units>
+							<units>1</units>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>

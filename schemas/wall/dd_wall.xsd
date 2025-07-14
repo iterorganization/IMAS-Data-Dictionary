@@ -2071,6 +2071,7 @@
 					<xs:documentation>Parameters of the BRDF model for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
+						<units>mixed</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
