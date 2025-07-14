@@ -1211,7 +1211,7 @@ Example:
       data_type="FLT_1D"
       type="dynamic"
       coordinate1="1...N"
-      units="-" />
+      units="1" />
 
 
 Applying the XSL Transforms
