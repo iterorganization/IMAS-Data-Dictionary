@@ -102,7 +102,7 @@ def install_dd_files():
     print(
         "Copying data dictionary files to resources/schemas directory for importlib.resources access"
     )
-    # exclude the IDSDef.xml file. This file is a copy of data_dictionary.xml
+    # Exclude the IDSDef.xml file. This file is a copy of data_dictionary.xml
     # shutil.copy("IDSDef.xml", schemas_dir / "IDSDef.xml")
 
     # Copy schema files to the schemas subfolder
