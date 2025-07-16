@@ -11,7 +11,7 @@ import sys
 
 from . import idsinfo
 
-__all__ = ["idsinfo", "get_resource_path", "get_xml_resource"]
+__all__ = ["idsinfo", "get_resource_path", "get_schema"]
 
 from ._version import version as __version__  # noqa: F401
 from ._version import version_tuple  # noqa: F401
@@ -24,7 +24,7 @@ def get_resource_path(resource_name: str) -> Path:
     ----------
     resource_name : str
         Path to the resource relative to the package root.
-        Example: "resources/xml/IDSDef.xml"
+        Example: "resources/schemas/data_dictionary.xml"
 
     Returns
     -------
@@ -48,17 +48,18 @@ def get_resource_path(resource_name: str) -> Path:
             return Path(str(path))
 
 
-def get_xml_resource(xml_filename: str) -> Path:
-    """Get path to an XML resource file.
+def get_schema(schema_path: str) -> Path:
+    """Get path to a schema resource file.
 
     Parameters
     ----------
-    xml_filename : str
-        Name of the XML file in the resources/xml directory.
+    schema_path : str
+        Name of the schema file in the resources/schemas directory.
+        Can include subdirectories, e.g., "utilities/coordinate_identifier.xml"
 
     Returns
     -------
     Path
-        Path object to the XML file.
+        Path object to the schema file.
     """
-    return get_resource_path(f"resources/xml/{xml_filename}")
+    return get_resource_path(f"resources/schemas/{schema_path}")

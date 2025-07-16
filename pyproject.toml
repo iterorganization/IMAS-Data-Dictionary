@@ -24,7 +24,11 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 dynamic = ["version"]
+requires-python = ">=3.8"
 dependencies = ["packaging", "saxonche>=12.7.0", "setuptools_scm>=8"]
+
+[project.optional-dependencies]
+test = ["pytest>=6.0", "pytest-cov"]
 
 [project.urls]
 homepage = "https://github.com/iterorganization/IMAS-Data-Dictionary"
@@ -39,16 +43,12 @@ include = ["imas_data_dictionary*"]
 
 [tool.setuptools.package-data]
 "imas_data_dictionary" = [
-    "resources/**/*.xml",
-    "resources/**/*.txt",
-    "resources/**/*.xsd",
-    "resources/**/*.xsl",
-    "resources/include/**/*.xml",
+    "resources/schemas/**/*.xml",
+    "resources/include/*.txt",
 ]
 
 [project.scripts]
 idsinfo = "imas_data_dictionary.idsinfo:main"
 
-# Including script files
-[tool.setuptools]
-include-package-data = true
+[tool.pytest.ini_options]
+testpaths = ["imas_data_dictionary/test"]
