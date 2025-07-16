@@ -25,7 +25,7 @@ pip install . [--user]
 
 After the install, you will get a directory with the version/tag information
 prefixed with `dd_` e.g. `dd_4.0.0`. It has an `include` directory with a few
-XML files (`IDSdef.xml` is the main source of information for the definition
+XML files (`data_dictionary.xml` is the main source of information for the definition
 of IDSs and `*_indentifier.xml` are listing common identifiers) and a `share`
 directory with html documentation.
 
@@ -39,8 +39,8 @@ You can access the Data Dictionary directly from Python using the `importlib.res
 import importlib.resources
 import xml.etree.ElementTree as ET
 
-# Access the IDSDef.xml file from the package resources
-xml_path = importlib.resources.files("imas_data_dictionary.resources.xml") / "IDSDef.xml"
+# Access the data_dictionary.xml file from the package resources
+xml_path = importlib.resources.files("imas_data_dictionary.resources.schemas") / "data_dictionary.xml"
 
 # Read the content
 if xml_path.is_file():

@@ -1,6 +1,7 @@
 *~
 dd_data_dictionary.xml
 dd_data_dictionary_validation.txt
+data_dictionary.xml
 IDSDef.xml
 IDSNames.txt
 html_documentation/*.html
@@ -42,3 +43,4 @@ imas_data_dictionary/resources
 .venv/
 
 uv.lock
+install.log
