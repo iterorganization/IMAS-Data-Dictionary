@@ -25,7 +25,7 @@ classifiers = [
 ]
 dynamic = ["version"]
 requires-python = ">=3.8"
-dependencies = ["packaging", "saxonche>=12.7.0", "setuptools_scm>=8"]
+dependencies = ["packaging"]
 
 [project.optional-dependencies]
 test = ["pytest>=6.0", "pytest-cov"]
