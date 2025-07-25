@@ -37,15 +37,14 @@ homepage = "https://github.com/iterorganization/IMAS-Data-Dictionary"
 write_to = "imas_data_dictionary/_version.py"
 local_scheme = "no-local-version"
 
-[tool.setuptools.packages.find]
-where = [""]
-include = ["imas_data_dictionary*"]
-exclude = ["imas_data_dictionary.resources.*"]
+[tool.setuptools]
+packages = ["imas_data_dictionary"]
 
 [tool.setuptools.package-data]
 "imas_data_dictionary" = [
     "resources/schemas/**/*.xml",
-    "resources/include/*.txt",
+    "resources/include/*.txt",  # note: kept for backward compatibility. 
+    # TODO develop a more robust testing solution that does not rely on checking for `ERROR` in the inputs/dd_data_dictionary_validation.txt file
 ]
 
 [project.scripts]
