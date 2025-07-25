@@ -40,6 +40,7 @@ local_scheme = "no-local-version"
 [tool.setuptools.packages.find]
 where = [""]
 include = ["imas_data_dictionary*"]
+exclude = ["imas_data_dictionary.resources.*"]
 
 [tool.setuptools.package-data]
 "imas_data_dictionary" = [
