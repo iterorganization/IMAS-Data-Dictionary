@@ -56,7 +56,7 @@ from packaging.version import Version
 
 
 class IDSInfo:
-    """Simple class which allows to query meta-data from the definition of IDSs as expressed in IDSDef.xml."""
+    """Simple class which allows to query meta-data from the definition of IDSs as expressed in data_dictionary.xml."""
 
     root = None
     version = None
@@ -64,17 +64,17 @@ class IDSInfo:
 
     def __init__(self):
         # Find and parse XML definitions
-        from imas_data_dictionary import get_xml_resource
+        from imas_data_dictionary import get_schema
 
         self.idsdef_path = ""
         self.root = None
         self.version = ""
         self.cocos = ""
-        with get_xml_resource("IDSDef.xml") as path:
+        with get_schema("data_dictionary.xml") as path:
             self.idsdef_path = path
 
             if not self.idsdef_path:
-                raise Exception(f"Error accessing IDSDef.xml.  {self.idsdef_path}")
+                raise Exception(f"Error accessing data_dictionary.xml.  {self.idsdef_path}")
 
             tree = ET.parse(self.idsdef_path)
             self.root = tree.getroot()
@@ -82,7 +82,7 @@ class IDSInfo:
             self.cocos = self.root.findtext("./cocos", default="N/A")
 
     def get_idsdef_path(self):
-        "Get selected idsdef.xml path"
+        "Get selected data_dictionary.xml path"
         return self.idsdef_path
 
     def get_version(self):

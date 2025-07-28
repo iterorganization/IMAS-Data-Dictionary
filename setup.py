@@ -27,7 +27,7 @@ class ResourceGeneratorMixin:
             generate_dd_data_dictionary_validation,
             generate_idsnames,
         )
-        from install import install_dd_files
+        from install import install_dd_files, install_identifiers_files
 
         # Generate the data dictionary files
         generate_dd_data_dictionary()
@@ -36,6 +36,7 @@ class ResourceGeneratorMixin:
 
         # Create the resources directory in the package
         install_dd_files()
+        install_identifiers_files()
 
 
 class CustomInstallCommand(install, ResourceGeneratorMixin):
@@ -46,8 +47,6 @@ class CustomInstallCommand(install, ResourceGeneratorMixin):
 
     def run(self):
         from install import (
-            copy_utilities,
-            create_idsdef_symlink,
             install_identifiers_files,
         )
 
@@ -55,8 +54,6 @@ class CustomInstallCommand(install, ResourceGeneratorMixin):
         self.generate_resources()
 
         # Additional install steps specific to full installation
-        create_idsdef_symlink()
-        copy_utilities()
         install_identifiers_files()
 
         super().run()
