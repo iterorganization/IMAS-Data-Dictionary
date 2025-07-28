@@ -72,10 +72,9 @@
 				<xs:annotation>
 					<xs:documentation>Normalized toroidal flux coordinate. The normalizing value for rho_tor_norm, is the toroidal flux coordinate at the equilibrium boundary (LCFS or 99.x % of the LCFS in case of a fixed boundary equilibium calculation, see time_slice/boundary in the equilibrium IDS)</xs:documentation>
 					<xs:appinfo>
-						<type>dynamic</type>
+						<type>constant</type>
 						<coordinate1>1...N</coordinate1>
 						<alternative_coordinate1>../psi_norm</alternative_coordinate1>
-						<coordinate2>/time</coordinate2>
 						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
@@ -87,9 +86,8 @@
 				<xs:annotation>
 					<xs:documentation>Normalized poloidal flux coordinate for the reconstructed profiles, the flux being normalized to its value at the separatrix</xs:documentation>
 					<xs:appinfo>
-						<type>dynamic</type>
+						<type>constant</type>
 						<coordinate1>../rho_tor_norm</coordinate1>
-						<coordinate2>/time</coordinate2>
 						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
