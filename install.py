@@ -32,7 +32,6 @@ libexecdir = os.path.join(exec_prefix, "libexec")
 datarootdir = os.path.join(prefix, "share")
 datadir = datarootdir
 sysconfdir = os.path.join(prefix, "etc")
-includedir = os.path.join(prefix, "include")
 docdir = os.path.join(datarootdir, "doc")
 htmldir = docdir
 sphinxdir = os.path.join(docdir, "imas/sphinx")
@@ -83,14 +82,9 @@ def install_html_docs():
 
 def install_dd_files():
     print("installing dd files")
-    Path(includedir).mkdir(parents=True, exist_ok=True)
     dd_files = [
         "dd_data_dictionary.xml",
-        "IDSNames.txt",
-        "dd_data_dictionary_validation.txt",
     ]
-    for dd_file in dd_files:
-        shutil.copy(dd_file, includedir)
 
     # Create schemas subfolder in resources directory for Python package access
     resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
@@ -120,35 +114,10 @@ def install_dd_files():
         logger.info(f"Renamed {data_dictionary_path} to {new_data_dictionary_path}")
 
 
-def create_idsdef_symlink():
-    try:
-        if not os.path.exists(os.path.join(includedir, "IDSDef.xml")):
-            os.symlink(
-                "dd_data_dictionary.xml",
-                os.path.join(includedir, "IDSDef.xml"),
-            )
-
-    except Exception as _:  # noqa: F841
-        shutil.copy(
-            "dd_data_dictionary.xml",
-            os.path.join(includedir, "IDSDef.xml"),
-        )
-
-
 def ignored_files(adir, filenames):
     return [
         filename for filename in filenames if not filename.endswith("_identifier.xml")
     ]
-
-
-def copy_utilities():
-    print("copying utilities")
-    if not os.path.exists(os.path.join(includedir, "utilities")):
-        shutil.copytree(
-            "schemas/utilities",
-            os.path.join(includedir, "utilities"),
-            ignore=ignored_files,
-        )
 
 
 # Identifiers definition files
@@ -165,17 +134,6 @@ def install_identifiers_files():
                 ID_IDENT.append(os.path.join(root, filename))
 
     logger.debug(f"Found {len(ID_IDENT)} identifier files: {ID_IDENT}")
-
-    # Copy to includedir (existing functionality)
-    logger.debug("Copying identifier files to includedir")
-    for file_path in ID_IDENT:
-        directory_path = os.path.dirname(file_path)
-        directory_name = os.path.basename(directory_path)
-        target_dir = Path(includedir + "/" + directory_name)
-        target_dir.mkdir(parents=True, exist_ok=True)
-        target_file = os.path.join(includedir, directory_name)
-        shutil.copy(file_path, target_file)
-        logger.debug(f"Copied {file_path} to {target_file}")
 
     # Also copy identifier files to schemas_dir for importlib.resources access
     logger.info(
@@ -203,6 +161,4 @@ if __name__ == "__main__":
     install_html_docs()
     install_sphinx_docs()
     install_dd_files()
-    create_idsdef_symlink()
-    copy_utilities()
     install_identifiers_files()

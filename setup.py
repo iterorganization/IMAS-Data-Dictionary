@@ -47,8 +47,6 @@ class CustomInstallCommand(install, ResourceGeneratorMixin):
 
     def run(self):
         from install import (
-            copy_utilities,
-            create_idsdef_symlink,
             install_identifiers_files,
         )
 
@@ -56,8 +54,6 @@ class CustomInstallCommand(install, ResourceGeneratorMixin):
         self.generate_resources()
 
         # Additional install steps specific to full installation
-        create_idsdef_symlink()
-        copy_utilities()
         install_identifiers_files()
 
         super().run()
