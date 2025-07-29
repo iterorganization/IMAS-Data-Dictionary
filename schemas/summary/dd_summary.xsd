@@ -4116,7 +4116,7 @@
 				</xs:element>
 				<xs:element name="composition" type="summary_species_constant">
 					<xs:annotation>
-						<xs:documentation>Ratios of the volume average density (inside LCFS) of each ion species to the volume average electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
+						<xs:documentation>Ratios of the volume-averaged density (inside LCFS) of each ion species to the volume-averaged electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
 						<xs:appinfo>
 							<introduced_after_version>4.0.0</introduced_after_version>
 							<units>1</units>
