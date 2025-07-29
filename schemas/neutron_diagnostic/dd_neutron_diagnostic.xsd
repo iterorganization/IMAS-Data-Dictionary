@@ -84,7 +84,7 @@
 			</xs:element>
 			<xs:element name="psi_norm">
 				<xs:annotation>
-					<xs:documentation>Normalized poloidal flux coordinate for the reconstructed profiles, the flux being normalized to its value at the separatrix</xs:documentation>
+					<xs:documentation>Normalized poloidal flux coordinate for the reconstructed profiles, the flux being normalized to run from 0 at the magnetic axis to 1 at the separatrix</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>../rho_tor_norm</coordinate1>
