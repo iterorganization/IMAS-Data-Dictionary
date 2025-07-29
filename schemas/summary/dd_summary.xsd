@@ -4153,7 +4153,7 @@
 				</xs:element>
 				<xs:element name="volume_average" type="summary_average_quantities">
 					<xs:annotation>
-						<xs:documentation>Volume average plasma parameters (average over the confined plasma volume, i.e. inside the LCFS)</xs:documentation>
+						<xs:documentation>Volume-averaged plasma parameters (averaged over the confined plasma volume, i.e. inside the LCFS)</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="disruption" type="summary_disruption">
