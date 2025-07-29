@@ -303,7 +303,7 @@
 					<xs:documentation>Quantities related to electrons</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="neutral" type="wall_global_quantitites_neutral" maxOccurs="5">
+			<xs:element name="neutral" type="wall_global_quantitites_neutral" maxOccurs="12">
 				<xs:annotation>
 					<xs:documentation>Quantities related to the various neutral species</xs:documentation>
 					<xs:appinfo>

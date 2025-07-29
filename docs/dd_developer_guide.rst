@@ -71,7 +71,7 @@ The repository contains:
    that can be reused in various parts of the DD.
 
 -  Three XSL transforms (``.xsl`` files) for generating the documentation,
-   the DD validation report and the IDSDef.xml file. A Makefile is
+   the DD validation report and the data_dictionary.xml file. A Makefile is
    provided to execute these XSLT transforms.
 
 -  Two documentation folders:
@@ -79,7 +79,7 @@ The repository contains:
    -  ``html_documentation`` contains the legacy generated HTML documentation.
    -  ``docs`` contains the Sphinx-based documentation.
 
--  ``dd_data_dictionary.xml`` (previously ``IDSDef.xml``): this is a single file
+-  ``data_dictionary.xml`` (previously ``IDSDef.xml``): this is a single file
    containing the XML description of the whole Data Dictionary,
    self-generated from the XSD files. This is a useful intermediate step
    of the XSD processing for some applications (e.g. generation of
