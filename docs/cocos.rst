@@ -1,8 +1,24 @@
 Coordinate conventions
 ======================
 
+Cylindrical coordinate convention
+---------------------------------
+
+For conversion between cylindrical :math:`(R,\phi,Z)` and Cartesian
+:math:`(X,Y,Z)` coordinates, IMAS follows the `ISO 31-11 standard
+<https://en.wikipedia.org/wiki/ISO_31-11>`_: the origin and Z axis align
+and the X axis corresponds to :math:`\phi=0`.
+
+Sign convention
+---------------------------------
+
+:math:`(R,\phi,Z)` is a right-handed coordinate system, so :math:`\phi` is counter-clockwise when seen from above.
+
+:math:`(\rho,\theta,\phi)` is a right-handed coordinate system, so :math:`\theta` is clockwise from looking at the right poloidal cross section from front.
+
+    
 COCOS
------
+---------------------------------
 
 This version of the IMAS Data Dictionary corresponds to COCOS = |cocos| coordinate convention.
 
@@ -18,20 +34,8 @@ More information is also available on `the web page of O. Sauter
 <https://crppwww.epfl.ch/~sauter/COCOS/>`_.
 
 
-Cylindrical coordinate convention
+Flux surface average
 ---------------------------------
 
-For conversion between cylindrical :math:`(R,\phi,Z)` and Cartesian
-:math:`(X,Y,Z)` coordinates, IMAS follows the `ISO 31-11 standard
-<https://en.wikipedia.org/wiki/ISO_31-11>`_: the origin and Z axis align
-and the X axis corresponds to :math:`\phi=0`.
-
-
-.. todo::
-    Add transformations to reference
-
-    -   cocos_alias
-    -   cocos_label_transformation
-    -   cocos_leaf_name_aos_indices
-    -   cocos_replace
-    -   cocos_transformation_expression
+Flux-surface average is defined as described `here
+<https://wiki.fusion.ciemat.es/wiki/Flux_coordinates#Flux_Surface_Average>`_.
