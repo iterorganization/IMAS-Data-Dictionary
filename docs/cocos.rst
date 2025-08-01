@@ -14,7 +14,7 @@ Sign convention
 
 :math:`(R,\phi,Z)` is a right-handed coordinate system, so :math:`\phi` is counter-clockwise when seen from above.
 
-:math:`(\rho,\theta,\phi)` is a right-handed coordinate system, so :math:`\theta` is clockwise from looking at the right poloidal cross section from front.
+:math:`(\rho,\theta,\phi)` is a right-handed coordinate system, so :math:`\theta` is clockwise when looking at the righthand poloidal cross-section from the front.
 
     
 COCOS
