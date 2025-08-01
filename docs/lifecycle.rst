@@ -12,7 +12,7 @@ Introduction and essential lifecycle principles
 ===============================================
 
 The data dictionary (DD) will be at the core of most of the code
-development related to the ITER IM Programme. Since ITER will span a
+development related to the ITER Integrated Modelling Programme. Since ITER will span a
 long time period, it needs to be able to evolve on a timescale
 "consistent" with users' expectations in order to keep users' software
 contributions active. At the same time, ITER involves many different
