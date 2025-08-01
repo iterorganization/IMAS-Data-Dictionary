@@ -34,7 +34,7 @@ An even faster possibility for users needing to transfer or store a new
 quantity is to use a generic container IDS, the “temporary” IDS, that is
 been included in the DD since v2.0. It contains fixed fields for
 various data types. It is immediately available to users, although its
-fields do not have a fixed definition, so their usage will have to be
+fields do not have a fixed definition, so their usage has to be
 agreed between restricted sets of users on a case-by-case basis.
 Different users may of course use that IDS for different purposes / with
 different definitions.
