@@ -48,12 +48,9 @@ for example:
 The Access Layer has interfaces for the following programming languages. Click
 on the link to go to the respective documentation pages:
 
-.. todo::
-    Update links once AL docs are deployed for more HLIs
-
 - `Python
   <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/python/latest.html>`_
-- `C++ <https://user.iter.org/default.aspx?uid=YSQENW>`_
-- `Fortran <https://user.iter.org/default.aspx?uid=YSQENW>`_
-- `Java <https://user.iter.org/default.aspx?uid=YSQENW>`_
-- `MATLAB <https://user.iter.org/default.aspx?uid=YSQENW>`_
+- `C++ <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/cpp/latest.html>`_
+- `Fortran <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/fortran/latest.html>`_
+- `Java <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/java/latest.html>`_
+- `MATLAB <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/matlab/latest.html>`_
