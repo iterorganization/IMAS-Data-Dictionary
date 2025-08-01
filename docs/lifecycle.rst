@@ -1,3 +1,7 @@
+=========================
+Data Dictionary lifecycle
+=========================
+
 **Source**: this document is a shorter and updated version of the
 initial report proposing the Data Dictionary Lifecycle rules, ITER IDM
 reference QQYMUK v1.0, authors Olivier Sauter (CRPP), Basil Duval
