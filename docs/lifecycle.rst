@@ -18,7 +18,7 @@ long time period, it needs to be able to evolve on a timescale
 contributions active. At the same time, ITER involves many different
 contributors and users, therefore data dictionary and software
 infrastructure need to be stable. Flexibility and stability need to be
-integrated in the lifecycle treatment of the data dictionary.
+integrated into the lifecycle treatment of the data dictionary.
 
 Various parts of the data dictionary need different weighting of the
 flexibility and stability requirements: rapid developments of new parts
