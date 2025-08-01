@@ -24,7 +24,7 @@ Various parts of the data dictionary need different weighting of the
 flexibility and stability requirements: rapid developments of new parts
 of the DD shared among a small number of persons should have high
 flexibility and low stability requirements. Well established, widely
-used parts of the DD should have high stability while still have a
+used parts of the DD should have high stability while still have the
 possibility to evolve, with a strict procedure and a high level of
 governance. Two different evolution procedures will regulate these two
 cases. The application domain of each procedure is defined unambiguously
