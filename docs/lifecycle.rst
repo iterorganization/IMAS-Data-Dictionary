@@ -31,7 +31,7 @@ cases. The application domain of each procedure is defined unambiguously
 as a function of a lifecycle_status property defined at the node level.
 
 An even faster possibility for users needing to transfer or store a new
-quantity is to use a generic container IDS, the “temporary” IDS, that is
+quantity is to use a generic container IDS, the “temporary” IDS, that has
 been included in the DD since v2.0. It contains fixed fields for
 various data types. It is immediately available to users, although its
 fields do not have a fixed definition, so their usage has to be
