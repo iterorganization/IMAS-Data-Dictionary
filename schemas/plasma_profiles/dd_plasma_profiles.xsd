@@ -3769,7 +3769,7 @@
 			</xs:element>
 			<xs:element name="velocity_mass_centre" type="generic_grid_vector_components" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Velocity of the centre of mass of all the species (see equation 2 in the paper linked below), given on various grid subsets</xs:documentation>
+					<xs:documentation>Velocity of the centre of mass of all the species (see equation 2 in the paper linked below), given on various grid subsets. It is defined as : rho.velocity_mass_centre = sum over all species (rho_species.velocity_species), where rho_species is the mass density of each species and rho = sum over all species (rho_species)</xs:documentation>
 					<xs:appinfo>
 						<units>m.s^-1</units>
 						<coordinate1>1...N</coordinate1>
