@@ -26,7 +26,7 @@ of the DD shared among a small number of persons should have high
 flexibility and low stability requirements. Well established, widely
 used parts of the DD should have high stability while still have the
 possibility to evolve, with a strict procedure and a high level of
-governance. Two different evolution procedures will regulate these two
+governance. Two different evolution procedures regulate these two
 cases. The application domain of each procedure is defined unambiguously
 as a function of a lifecycle_status property defined at the node level.
 
