@@ -409,6 +409,103 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="summary_species_constant">
+		<xs:annotation>
+			<xs:documentation>List of ion species used in summary, for constant quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="hydrogen" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Hydrogen (H)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deuterium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Deuterium (D)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tritium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Tritium (T)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="helium_3" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Helium isotope with 3 nucleons (3He)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="helium_4" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Helium isotope with 4 nucleons (4He)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beryllium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Beryllium (Be)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boron" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Boron (B)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lithium" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Lithium (Li)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="carbon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Carbon (C)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nitrogen" type="summary_constant_flt_0d">
+				<xs:annotation>
+					<xs:documentation>Nitrogen (N)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Neon (Ne)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="argon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Argon (Ar)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xenon" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Xenon (Xe)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="oxygen" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Oxygen (O)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tungsten" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Tungsten (W)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iron" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Iron (Fe)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="krypton" type="summary_constant_flt_0d_2">
+				<xs:annotation>
+					<xs:documentation>Krypton (Kr)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="summary_species_tor_angle">
 		<xs:annotation>
 			<xs:documentation>List of ion species used in summary with tor_angle cocos transform</xs:documentation>
@@ -420,7 +517,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.hydrogen.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.hydrogen.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -430,7 +527,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.deuterium.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.deuterium.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -440,7 +537,18 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.tritium.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.tritium.value</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.deuterium_tritium.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -450,7 +558,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.helium_3.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.helium_3.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -460,7 +568,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.helium_4.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.helium_4.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -470,7 +578,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.beryllium.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.beryllium.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -480,7 +588,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.lithium.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.lithium.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -490,7 +598,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.carbon.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.carbon.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -500,7 +608,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.nitrogen.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.nitrogen.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -510,7 +618,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.neon.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.neon.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -520,7 +628,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.argon.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.argon.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -530,7 +638,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.xenon.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.xenon.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -540,7 +648,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.oxygen.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.oxygen.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -550,7 +658,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.tungsten.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.tungsten.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -560,7 +668,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.iron.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.iron.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -570,7 +678,7 @@
 					<xs:appinfo>
 						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
 						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>IDSPATH.velocity_tor.krypton.value</cocos_leaf_name_aos_indices>
+						<cocos_leaf_name_aos_indices>IDSPATH.velocity_phi.krypton.value</cocos_leaf_name_aos_indices>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -594,6 +702,14 @@
 			<xs:element name="tritium" type="summary_dynamic_flt_1d_root_parent_2">
 				<xs:annotation>
 					<xs:documentation>Tritium (T)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deuterium_tritium" type="summary_dynamic_flt_1d_root_parent_2">
+				<xs:annotation>
+					<xs:documentation>Fictitious DT single species with mass 2.5, used in some simulations</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="helium_3" type="summary_dynamic_flt_1d_root_parent_2">
@@ -4227,6 +4343,15 @@
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
+				<xs:element name="composition" type="summary_species_constant">
+					<xs:annotation>
+						<xs:documentation>Ratios of the volume-averaged density (inside LCFS) of each ion species to the volume-averaged electron density, taken at the time of maximum electron density during the pulse</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+							<units>1</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="global_quantities" type="summary_global_quantities">
 					<xs:annotation>
 						<xs:documentation>Various global quantities derived from the profiles</xs:documentation>
@@ -4257,7 +4382,7 @@
 				</xs:element>
 				<xs:element name="volume_average" type="summary_average_quantities">
 					<xs:annotation>
-						<xs:documentation>Volume average plasma parameters</xs:documentation>
+						<xs:documentation>Volume-averaged plasma parameters (averaged over the confined plasma volume, i.e. inside the LCFS)</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="disruption" type="summary_disruption">
