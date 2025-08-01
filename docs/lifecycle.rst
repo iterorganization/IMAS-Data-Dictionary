@@ -126,7 +126,7 @@ The lifecycle_status is defined as follows
 
 - Alpha: the nodes are under development. These nodes are, like the
   others, opened to all users but this lifecycle status indicates that
-  they could still undergo rapid and non backward compatible changes.
+  they could still undergo rapid and non-backward compatible changes.
   The microrevision number will be used to version the alpha nodes
   modifications.
 
