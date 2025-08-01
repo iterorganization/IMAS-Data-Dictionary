@@ -32,7 +32,7 @@ as a function of a lifecycle_status property defined at the node level.
 
 An even faster possibility for users needing to transfer or store a new
 quantity is to use a generic container IDS, the “temporary” IDS, that is
-already included in the DD since v2.0. It contains fixed fields for
+been included in the DD since v2.0. It contains fixed fields for
 various data types. It is immediately available to users, although its
 fields do not have a fixed definition, so their usage will have to be
 agreed between restricted sets of users on a case-by-case basis.
