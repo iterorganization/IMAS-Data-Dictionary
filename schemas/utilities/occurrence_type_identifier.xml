@@ -3,9 +3,13 @@
 <header>List of possible occurrence types</header>
 <ddInstance xpath="ids_properties/occurrence_type"/>
 
-<!-- So far, we have defined an initial occurrence type list for the Equilibrium IDS only -->
+<!-- Initial occurrence type list for the Equilibrium IDS only -->
 <int name="reconstruction"  description="Equilibrium reconstruction">1</int>
 <int name="prediction_fixed"  description="Equilibrium prediction, fixed boundary">2</int>
 <int name="prediction_free"  description="Equilibrium prediction, free boundary">3</int>
 <int name="mapping"  description="Used for mapping equilibrium results from one grid type / resolution to another, or for including variables not present in the first set such as the calculation of magnetic field of other derived parameters">4</int>
+<!-- To distinguish between experimental and simulated data -->
+<int name="experimental"  description="Data coming from an experiment (contains only data from an experimental database)">5</int>
+<int name="simulation"  description="Data coming from a simulation (may still use or refer to an experiment)">6</int>
+
 </constants>
