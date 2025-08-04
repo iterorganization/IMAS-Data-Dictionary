@@ -166,7 +166,7 @@
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
-						<coordinate2>/time</coordinate2>
+						<coordinate1>/time</coordinate1>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
