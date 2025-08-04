@@ -49,7 +49,7 @@ The Access Layer has interfaces for the following programming languages. Click
 on the link to go to the respective documentation pages:
 
 - `Python
-  <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/python/latest.html>`_
+  <https://imas-python.readthedocs.io/en/stable/api.html>`_
 - `C++ <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/cpp/latest.html>`_
 - `Fortran <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/fortran/latest.html>`_
 - `Java <https://sharepoint.iter.org/departments/POP/CM/IMDesign/Code%20Documentation/ACCESS-LAYER-doc/java/latest.html>`_
