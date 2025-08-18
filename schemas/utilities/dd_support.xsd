@@ -5006,7 +5006,7 @@
 		<xs:sequence>
 			<xs:element name="type" type="identifier">
 				<xs:annotation>
-					<xs:documentation>Process type. index=1 for NBI; index=2 for nuclear reaction (reaction unspecified); index=3 for nuclear reaction: T(d,n)4He [D+T->He4+n]; index=4 for nuclear reaction: He3(d,p)4He [He3+D->He4+p]; index=5 for nuclear reaction: D(d,p)T [D+D->T+p]; index=6 for nuclear reaction: D(d,n)3He [D+D->He3+n]; index=7 for runaway processes</xs:documentation>
+					<xs:documentation>Process type. index=1 for NBI; index=2 for nuclear reaction (reaction unspecified); index=3 for nuclear reaction: T(d,n)4He [D+T->4He+n]; index=4 for nuclear reaction: 3He(d,p)4He [3He+D->4He+p]; index=5 for nuclear reaction: D(d,p)T [D+D->T+p]; index=6 for nuclear reaction: D(d,n)3He [D+D->3He+n]; index=7 for runaway processes</xs:documentation>
 					<xs:appinfo>
 						<doc_identifier>utilities/distribution_source_identifier.xml</doc_identifier>
 					</xs:appinfo>
