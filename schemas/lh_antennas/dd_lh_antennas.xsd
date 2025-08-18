@@ -100,7 +100,7 @@
 		<xs:sequence>
 			<xs:element name="name">
 				<xs:annotation>
-					<xs:documentation>Name of the module</xs:documentation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 					</xs:appinfo>
@@ -109,11 +109,12 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="identifier">
+			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Identifier of the module</xs:documentation>
+					<xs:documentation>Description, e.g. “Top module”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
