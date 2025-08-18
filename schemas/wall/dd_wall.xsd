@@ -146,7 +146,7 @@
 			</xs:element>
 			<xs:element name="sputtering_physical">
 				<xs:annotation>
-					<xs:documentation>Effective coefficient of physical sputtering due to this incident species. It assumed that all sputtered neutrals from the wall have the wall temperature (cold neutrals)</xs:documentation>
+					<xs:documentation>Effective coefficient of physical sputtering due to this incident species. It is assumed that all sputtered neutrals from the wall have the wall temperature (cold neutrals)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>1</units>
