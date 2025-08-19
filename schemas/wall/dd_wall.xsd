@@ -464,6 +464,8 @@
 						<coordinate1>../../time</coordinate1>
 						<units>W</units>
 						<type>dynamic</type>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -477,6 +479,8 @@
 						<coordinate1>../../time</coordinate1>
 						<units>W</units>
 						<type>dynamic</type>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -490,6 +494,8 @@
 						<coordinate1>../../time</coordinate1>
 						<units>W</units>
 						<type>dynamic</type>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
