@@ -23,7 +23,7 @@
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
 			</xs:element>
-						<xs:element name="vertical_index">
+			<xs:element name="vertical_index">
 				<xs:annotation>
 					<xs:documentation>Vertical or radial index</xs:documentation>
 					<xs:appinfo>
@@ -133,7 +133,7 @@
 			</xs:element>
 			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:documentation>Description, e.g. “Upper launcher”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>3</introduced_after_version>
@@ -427,17 +427,37 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="degrees_of_freedom" type="identifier">
+			<xs:element name="type" type="identifier">
 				<xs:annotation>
-					<xs:documentation>Definition of the degrees of freedom of the mirror</xs:documentation>
+					<xs:documentation>Type of movement</xs:documentation>
 					<xs:appinfo>
 						<doc_identifier>ec_launchers/frame_DOF_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="direction" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Unit vector indicating the direction of the translation or the rotation axis at "home" position</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="translation_max">
 				<xs:annotation>
-					<xs:documentation>maximum displacement with respect to reference position, along the direction vector</xs:documentation>
+					<xs:documentation>Maximum displacement with respect to reference position, along the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="translation_min">
+				<xs:annotation>
+					<xs:documentation>Minimum displacement with respect to reference position, along the direction vector</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>m</units>
@@ -449,7 +469,19 @@
 			</xs:element>
 			<xs:element name="rotation_angle_max">
 				<xs:annotation>
-					<xs:documentation>maximum angular displacement with respect to the reference position, measured around the axis of rotation</xs:documentation>
+					<xs:documentation>Maximum angular displacement with respect to the reference position, counter-clockwise around the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rotation_angle_min">
+				<xs:annotation>
+					<xs:documentation>Minimum angular displacement with respect to the reference position, counter-clockwise around the direction vector</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -461,7 +493,7 @@
 			</xs:element>
 			<xs:element name="translation">
 				<xs:annotation>
-					<xs:documentation>linear displacement from reference position, along the direction vector</xs:documentation>
+					<xs:documentation>Linear displacement from reference position, along the direction vector</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m</units>
@@ -474,7 +506,7 @@
 			</xs:element>
 			<xs:element name="rotation_angle">
 				<xs:annotation>
-					<xs:documentation>angular displacement with respect to the reference position, CCW around direction vector </xs:documentation>
+					<xs:documentation>Angular displacement with respect to the reference position, counter-clockwise around the direction vector </xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -525,14 +557,17 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="movement" type="ec_launchers_movement">
-				<xs:annotation>
-					<xs:documentation>local reference onto which attach movable objects. Can be cascaded for composite movements.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="geometry" type="curved_object">
 				<xs:annotation>
 					<xs:documentation>Description of the geometry of the mirror</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="movement" type="ec_launchers_movement" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Set of degrees of freedom for this mirror. Local reference onto which attach movable objects. Can be cascaded for composite movements.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
@@ -688,7 +723,7 @@
 				</xs:element>
 				<xs:element name="source" type="ec_launchers_source" maxOccurs="20">
 					<xs:annotation>
-						<xs:documentation>Radiation leaving the gyrotron</xs:documentation>
+						<xs:documentation>Radiation leaving the source, for example an individual gyrotron or a magnetron</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_after_version>4.0.0</introduced_after_version>
