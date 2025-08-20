@@ -36,7 +36,7 @@
 			</xs:element>
 			<xs:element name="angle">
 				<xs:annotation>
-					<xs:documentation>CCW rotation around direction from transverse_reference to local base for mode decomposition</xs:documentation>
+					<xs:documentation>Counter-clockwise rotation around direction from transverse_reference to local base for mode decomposition</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -143,6 +143,15 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="mirror" type="ec_launchers_mirror" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of mirrors associated with the launcher</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="ec_launchers_source">
@@ -186,7 +195,7 @@
 					<xs:documentation>Maximum power that can be delivered by the source</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>J</units>
+						<units>W</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -619,15 +628,30 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="parent_tl_index">
+			<xs:element name="source_indices">
 				<xs:annotation>
-					<xs:documentation>integer indicating the array index in the transmission line where this beam generates. A 0-length transmission line, with a source as feed and no elements can be used to attach a source directly to a gaussian beam, e.g. in the case of a source directly facing the plasma.</xs:documentation>
+					<xs:documentation>Indices of the sources (in the source array of structure) that drive this beam</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:group ref="INT_0D"/>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mirror_indices">
+				<xs:annotation>
+					<xs:documentation>Indices of the mirrors (in the mirror array of structure) on which this beam has been reflected</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="launching_position" type="ec_launchers_launching_position">
@@ -724,15 +748,6 @@
 				<xs:element name="source" type="ec_launchers_source" maxOccurs="20">
 					<xs:annotation>
 						<xs:documentation>Radiation leaving the source, for example an individual gyrotron or a magnetron</xs:documentation>
-						<xs:appinfo>
-							<coordinate1>1...N</coordinate1>
-							<introduced_after_version>4.0.0</introduced_after_version>
-						</xs:appinfo>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="mirror" type="ec_launchers_mirror" maxOccurs="20">
-					<xs:annotation>
-						<xs:documentation>Set of mirrors associated with the launcher</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_after_version>4.0.0</introduced_after_version>
