@@ -67,7 +67,7 @@
 					<xs:documentation>component along the major radius</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>m_1</units>
+						<units>m^-1</units>
 						<coordinate1>../../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -80,7 +80,7 @@
 					<xs:documentation>component along the vertical direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>m_1</units>
+						<units>m^-1</units>
 						<coordinate1>../../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
@@ -93,7 +93,7 @@
 					<xs:documentation>component along the toroidal direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>m_1</units>
+						<units>m^-1</units>
 						<coordinate1>../../time</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
