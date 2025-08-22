@@ -6485,7 +6485,7 @@
 					<xs:documentation>Set of grid spaces</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<url_protected>https://confluence.iter.org/download/attachments/178133297/GGDguide.pdf</url_protected>
+						<url>https://imas-data-dictionary.readthedocs.io/en/latest/ggd_guide/doc.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

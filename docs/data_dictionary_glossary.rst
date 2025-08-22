@@ -11,6 +11,7 @@ Glossary
    coordinates
    units
    errorbars
+   lifecycle
    nbc
    identifiers
    cocos
