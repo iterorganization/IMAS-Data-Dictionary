@@ -250,7 +250,7 @@
 		<xs:sequence>
 			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:documentation>Description, e.g. “Core mirror steering”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>3</introduced_after_version>
