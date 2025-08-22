@@ -557,7 +557,7 @@
 				</xs:element>
 				<xs:element name="beam" type="ec_launchers_beam" maxOccurs="20">
 					<xs:annotation>
-						<xs:documentation>Set of Electron Cyclotron beams</xs:documentation>
+						<xs:documentation>Set of Electron Cyclotron beam segments, including between mirrors</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_after_version>3.36.0</introduced_after_version>
