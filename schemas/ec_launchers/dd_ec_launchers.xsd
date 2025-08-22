@@ -64,7 +64,7 @@
 		<xs:sequence>
 			<xs:element name="kr">
 				<xs:annotation>
-					<xs:documentation>component along the major radius</xs:documentation>
+					<xs:documentation>Component along the major radius</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-1</units>
