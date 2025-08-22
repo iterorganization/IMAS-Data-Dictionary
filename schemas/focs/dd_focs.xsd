@@ -284,6 +284,9 @@
 						<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
+							<change_nbc_version>4.1.0</change_nbc_version>
+							<change_nbc_description>leaf_renamed</change_nbc_description>
+							<change_nbc_previous_name>id</change_nbc_previous_name>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:complexType>
@@ -295,6 +298,9 @@
 						<xs:documentation>Description, e.g. “Current sensor installed around vacuum vessel sector #5”</xs:documentation>
 						<xs:appinfo>
 							<type>static</type>
+							<change_nbc_version>4.1.0</change_nbc_version>
+							<change_nbc_description>leaf_renamed</change_nbc_description>
+							<change_nbc_previous_name>name</change_nbc_previous_name>
 							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>
