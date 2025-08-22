@@ -77,7 +77,7 @@
 			</xs:element>
 			<xs:element name="kz">
 				<xs:annotation>
-					<xs:documentation>component along the vertical direction</xs:documentation>
+					<xs:documentation>Component along the vertical direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-1</units>
