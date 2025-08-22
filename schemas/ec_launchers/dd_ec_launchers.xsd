@@ -59,7 +59,7 @@
 	</xs:complexType>
 	<xs:complexType name="ec_launchers_beam_wavevector">
 		<xs:annotation>
-			<xs:documentation>Structure for components of the wavevector at the launching position (kR, kphi, kz). Dynamic within a type 1 array of structure and with a common time base at the same level)</xs:documentation>
+			<xs:documentation>Structure for components of the wavevector at the launching position (kR, kphi, kz). Dynamic within a type 1 array of structure and with a common time base at the same level.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="kr">
