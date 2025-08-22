@@ -90,7 +90,7 @@
 			</xs:element>
 			<xs:element name="kphi">
 				<xs:annotation>
-					<xs:documentation>component along the toroidal direction</xs:documentation>
+					<xs:documentation>Component along the toroidal direction</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-1</units>
