@@ -19,9 +19,9 @@
 					<xs:group ref="STR_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="psi">
+			<xs:element name="azimuthal_angle">
 				<xs:annotation>
-					<xs:documentation>Poincare sphere angle for mixed mode</xs:documentation>
+					<xs:documentation>Poincare sphere angle psi for mixed mode</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
@@ -32,9 +32,9 @@
 					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="chi">
+			<xs:element name="ellipticity_angle">
 				<xs:annotation>
-					<xs:documentation>Poincare sphere angle for mixed mode</xs:documentation>
+					<xs:documentation>Poincare sphere angle chi for mixed mode</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>rad</units>
