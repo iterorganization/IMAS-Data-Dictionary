@@ -4,7 +4,7 @@
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
 	<xs:complexType name="ec_launchers_beam_polarization">
 		<xs:annotation>
-			<xs:documentation> description of wave polarization</xs:documentation>
+			<xs:documentation>Description of wave polarization</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="mode">
