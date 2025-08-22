@@ -380,7 +380,7 @@
 			</xs:element>
 			<xs:element name="description">
 				<xs:annotation>
-					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:documentation>Description, e.g. “Mirror in upper port 12”</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<introduced_after_version>3</introduced_after_version>
