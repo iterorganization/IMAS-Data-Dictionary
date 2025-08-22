@@ -3,6 +3,15 @@ from setuptools_scm import get_version
 import os
 import pathlib
 import shutil
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler(), logging.FileHandler("install.log")],
+)
+logger = logging.getLogger(__name__)
 
 DD_BUILD = pathlib.Path(__file__).parent.resolve()
 IMAS_INSTALL_DIR = os.path.join(DD_BUILD, "imas_data_dictionary/resources")
@@ -23,7 +32,6 @@ libexecdir = os.path.join(exec_prefix, "libexec")
 datarootdir = os.path.join(prefix, "share")
 datadir = datarootdir
 sysconfdir = os.path.join(prefix, "etc")
-includedir = os.path.join(prefix, "include")
 docdir = os.path.join(datarootdir, "doc")
 htmldir = docdir
 sphinxdir = os.path.join(docdir, "imas/sphinx")
@@ -74,44 +82,36 @@ def install_html_docs():
 
 def install_dd_files():
     print("installing dd files")
-    Path(includedir).mkdir(parents=True, exist_ok=True)
     dd_files = [
         "dd_data_dictionary.xml",
-        "IDSNames.txt",
-        "dd_data_dictionary_validation.txt",
     ]
-    for dd_file in dd_files:
-        shutil.copy(dd_file, includedir)
 
-    # Create XML subfolder in resources directory for Python package access
+    # Create schemas subfolder in resources directory for Python package access
     resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
     resources_dir.mkdir(parents=True, exist_ok=True)
 
-    xml_dir = resources_dir / "xml"
-    xml_dir.mkdir(parents=True, exist_ok=True)
+    schemas_dir = resources_dir / "schemas"
+    schemas_dir.mkdir(parents=True, exist_ok=True)
 
     print(
-        "Copying data dictionary files to resources/xml directory for importlib.resources access"
+        "Copying data dictionary files to resources/schemas directory for importlib.resources access"
     )
-    # Copy IDSDef.xml and other dictionary files to the xml subfolder
-    shutil.copy("IDSDef.xml", xml_dir / "IDSDef.xml")
+    # Exclude the IDSDef.xml file. This file is a copy of data_dictionary.xml
+    # shutil.copy("IDSDef.xml", schemas_dir / "IDSDef.xml")
+
+    # Copy schema files to the schemas subfolder
     for dd_file in dd_files:
-        shutil.copy(dd_file, xml_dir / dd_file)
+        shutil.copy(dd_file, schemas_dir / dd_file)
 
-
-def create_idsdef_symlink():
-    try:
-        if not os.path.exists(os.path.join(includedir, "IDSDef.xml")):
-            os.symlink(
-                "dd_data_dictionary.xml",
-                os.path.join(includedir, "IDSDef.xml"),
-            )
-
-    except Exception as _:  # noqa: F841
-        shutil.copy(
-            "dd_data_dictionary.xml",
-            os.path.join(includedir, "IDSDef.xml"),
-        )
+    # rename schemas/dd_data_dictionary.xml to schemas/data_dictionary.xml
+    data_dictionary_path = schemas_dir / "dd_data_dictionary.xml"
+    if data_dictionary_path.exists():
+        new_data_dictionary_path = schemas_dir / "data_dictionary.xml"
+        # Remove target file if it exists to avoid rename error
+        if new_data_dictionary_path.exists():
+            new_data_dictionary_path.unlink()
+        data_dictionary_path.rename(new_data_dictionary_path)
+        logger.info(f"Renamed {data_dictionary_path} to {new_data_dictionary_path}")
 
 
 def ignored_files(adir, filenames):
@@ -120,19 +120,9 @@ def ignored_files(adir, filenames):
     ]
 
 
-def copy_utilities():
-    print("copying utilities")
-    if not os.path.exists(os.path.join(includedir, "utilities")):
-        shutil.copytree(
-            "schemas/utilities",
-            os.path.join(includedir, "utilities"),
-            ignore=ignored_files,
-        )
-
-
 # Identifiers definition files
 def install_identifiers_files():
-    print("installing identifier files")
+    logger.info("Installing identifier files")
     exclude = set(["imas_data_dictionary", "dist", "build"])
 
     ID_IDENT = []
@@ -143,18 +133,32 @@ def install_identifiers_files():
             if filename.endswith("_identifier.xml"):
                 ID_IDENT.append(os.path.join(root, filename))
 
-    print(ID_IDENT)
+    logger.debug(f"Found {len(ID_IDENT)} identifier files: {ID_IDENT}")
+
+    # Also copy identifier files to schemas_dir for importlib.resources access
+    logger.info(
+        "Copying identifier files to resources/schemas directory for importlib.resources access"
+    )
+    resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
+    schemas_dir = resources_dir / "schemas"
+
     for file_path in ID_IDENT:
         directory_path = os.path.dirname(file_path)
         directory_name = os.path.basename(directory_path)
-        Path(includedir + "/" + directory_name).mkdir(parents=True, exist_ok=True)
-        shutil.copy(file_path, os.path.join(includedir, directory_name))
+
+        # Create subdirectory in schemas_dir to maintain folder structure
+        schemas_subdir = schemas_dir / directory_name
+        schemas_subdir.mkdir(parents=True, exist_ok=True)
+
+        # Copy the identifier file to the schemas subdirectory
+        filename = os.path.basename(file_path)
+        target_path = schemas_subdir / filename
+        shutil.copy(file_path, target_path)
+        logger.debug(f"Copied {file_path} to {target_path}")
 
 
 if __name__ == "__main__":
     install_html_docs()
     install_sphinx_docs()
     install_dd_files()
-    create_idsdef_symlink()
-    copy_utilities()
     install_identifiers_files()

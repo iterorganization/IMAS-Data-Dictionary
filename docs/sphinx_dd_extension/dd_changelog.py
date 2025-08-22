@@ -29,9 +29,9 @@ except Exception as _:
     is_gitrepo = False
     
 try:
-    from imaspy import IDSFactory
-    from imaspy.dd_zip import dd_xml_versions
-    from imaspy.ids_convert import DDVersionMap
+    from imas import IDSFactory
+    from imas.dd_zip import dd_xml_versions
+    from imas.ids_convert import DDVersionMap
 
     has_imaspy = True
 except ImportError:
