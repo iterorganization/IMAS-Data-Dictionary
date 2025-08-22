@@ -9,7 +9,7 @@
 		<xs:sequence>
 			<xs:element name="mode">
 				<xs:annotation>
-					<xs:documentation>polarization mode, O|X|mixed</xs:documentation>
+					<xs:documentation>Polarization mode, O|X|mixed</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>../time</coordinate1>
