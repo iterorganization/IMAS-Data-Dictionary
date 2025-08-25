@@ -692,7 +692,7 @@
 			</xs:element>
 			<xs:element name="brightness">
 				<xs:annotation>
-					<xs:documentation>Line-integrated emissivity along the line of sight, deduced from the measured count rate of this detector (relevant only when mode/identifier/index = 1)</xs:documentation>
+					<xs:documentation>Line-integrated emissivity along the line of sight, deduced from the measured count-rate of this detector (relevant only when mode/identifier/index = 1)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-2.s^-1</units>
