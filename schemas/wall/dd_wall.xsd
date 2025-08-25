@@ -119,7 +119,7 @@
 			</xs:element>
 			<xs:element name="angles">
 				<xs:annotation>
-					<xs:documentation>Array of incident angles of this incident species, on which the sputtering coefficients are tabulated</xs:documentation>
+					<xs:documentation>Array of incident angles of this incident species, on which the physical sputtering coefficient is tabulated</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>rad</units>
@@ -133,7 +133,7 @@
 			</xs:element>
 			<xs:element name="energies">
 				<xs:annotation>
-					<xs:documentation>Array of energies of this incident species, on which the sputtering_physical coefficient is tabulated</xs:documentation>
+					<xs:documentation>Array of energies of this incident species, on which the physical sputtering coefficient is tabulated</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>eV</units>
