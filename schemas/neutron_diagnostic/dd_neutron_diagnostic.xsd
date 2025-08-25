@@ -706,7 +706,7 @@
 			</xs:element>
 			<xs:element name="neutron_flux">
 				<xs:annotation>
-					<xs:documentation>Neutron flux impinging on the detector, deduced from the measured count rate of this detector (relevant only when mode/identifier/index = 1)</xs:documentation>
+					<xs:documentation>Neutron flux impinging on the detector, deduced from the measured count-rate (relevant only when mode/identifier/index = 1)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>m^-2.s^-1</units>
