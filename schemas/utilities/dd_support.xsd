@@ -2418,9 +2418,27 @@
 		<xs:sequence>
 			<xs:element name="name">
 				<xs:annotation>
-					<xs:documentation>Name of the coil</xs:documentation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>identifier</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Coil between sector 1 and 2”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>name</change_nbc_previous_name>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2432,6 +2450,8 @@
 					<xs:documentation>Alphanumeric identifier of coil</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -6471,7 +6491,7 @@
 					<xs:documentation>Set of grid spaces</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<url_protected>https://confluence.iter.org/download/attachments/178133297/GGDguide.pdf</url_protected>
+						<url>https://imas-data-dictionary.readthedocs.io/en/latest/ggd_guide/doc.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

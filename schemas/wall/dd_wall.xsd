@@ -2119,6 +2119,7 @@
 					<xs:documentation>Parameters of the BRDF model for various wall components (grid subsets)</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
+						<units>mixed</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -2303,9 +2304,18 @@
 				</xs:element>
 				<xs:element name="first_wall_power_flux_peak" type="signal_flt_1d">
 					<xs:annotation>
-						<xs:documentation>Peak power flux on the first wall</xs:documentation>
+						<xs:documentation>Peak power flux on the first wall (including divertors)</xs:documentation>
 						<xs:appinfo>
 							<units>W.m^-2</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="first_wall_power_flux_peak_outside_divertors" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Peak power flux on the first wall (excluding the divertors surface)</xs:documentation>
+						<xs:appinfo>
+							<units>W.m^-2</units>
+							<introduced_after_version>4.0.0</introduced_after_version>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>
