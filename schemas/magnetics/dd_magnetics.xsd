@@ -142,10 +142,10 @@
 			</xs:element>
 			<xs:element name="indices_differential">
 				<xs:annotation>
-					<xs:documentation>Indices (from the flux_loop array of structure) of the two flux loops used to build the flux difference flux(second index) - flux(first index). Use only if ../type/index = 6, leave empty otherwise</xs:documentation>
+					<xs:documentation>Indices (from the flux_loop array of structure) of the two flux loops used to build the flux difference flux(second index) - flux(first index). If the non-substracted flux loop isn't listed in the flux_loop array (e.g. because its signal is not available in the experiment database), it is possible to indicate only the index of the substracted reference flux loop (in such case, allocate to size 1). Use only if ../type/index = 6 or 7, leave empty otherwise.</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<coordinate1>1...2</coordinate1>
+						<coordinate1>1...1 OR 1...2</coordinate1>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
