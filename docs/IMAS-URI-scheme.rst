@@ -19,7 +19,7 @@ IMAS URI structure
 ------------------
 
 The IMAS data-entry URI follows the general idea from URI standard definition from `RFC-3986 <https://www.rfc-editor.org/rfc/rfc3986.html>`_,
-but does not aim at being publickly registered. For reference, the general URI structure is the following: ``scheme:[//authority]path[?query][#fragment]``.
+but does not aim at being publicly registered. For reference, the general URI structure is the following: ``scheme:[//authority]path[?query][#fragment]``.
 
 For sake of clarity and coherence, it was decided to define a single unified ``scheme`` for IMAS data resources (named ``imas``)
 instead of defining different scheme for each backend. This implies that the backend needs to be specified in another manner.
