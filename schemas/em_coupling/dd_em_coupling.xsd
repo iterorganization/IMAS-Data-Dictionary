@@ -32,7 +32,7 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<url>utilities/IMAS-URI-scheme.md</url>
+						<url>../../IMAS-URI-scheme.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -45,7 +45,7 @@
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
-						<url>utilities/IMAS-URI-scheme.md</url>
+						<url>../../IMAS-URI-scheme.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

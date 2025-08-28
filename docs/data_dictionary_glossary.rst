@@ -15,3 +15,5 @@ Glossary
    nbc
    identifiers
    cocos
+   IMAS-URI-scheme
+   IDS-path-syntax
