@@ -61,7 +61,7 @@ The structure of the ``host`` is **//[user@]server[:port]/**, where:
 - **server** is the address of the server (typically the fully qualified domain name or the IP of the server);
 - **port** is optional and can be used to specify a port number onto which sending the requests to the server.
 
-When the data is stored locally the ``host`` (localhost) is omitted. 
+When the data is stored locally, the ``host`` (localhost) is omitted. 
 
 Example: a ``host`` would typically be the address of a UDA server, with which the UDA backend of the Access-Layer
 will send requests for data over the netwrok. A URI would then look like: ``imas://uda.iter.org/uda?...``.
