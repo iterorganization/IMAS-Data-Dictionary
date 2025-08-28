@@ -3526,7 +3526,7 @@
 			</xs:element>
 			<xs:element name="current_phi_max" type="summary_constant_flt_0d">
 				<xs:annotation>
-					<xs:documentation>Maximum toroidal current driven by the runaway electrons during the pulse</xs:documentation>
+					<xs:documentation>Maximum toroidal current carried by runaway electrons during the pulse</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
 						<introduced_after_version>4.0.0</introduced_after_version>
