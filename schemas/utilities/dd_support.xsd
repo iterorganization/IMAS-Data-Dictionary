@@ -4533,7 +4533,7 @@
 					<xs:appinfo>
 						<type>constant</type>
 						<coordinate1>1...N</coordinate1>
-						<url>utilities/IMAS-URI-scheme.md</url>
+						<url>../../IMAS-URI-scheme.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -6479,7 +6479,7 @@
 					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -6526,7 +6526,7 @@
 					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -6579,7 +6579,7 @@
 					<xs:documentation>Path of the grid, including the IDS name, in case of implicit reference to a grid_ggd node described in another IDS. To be filled only if the grid is not described explicitly in this grid_ggd structure. Example syntax: #wall:2/description_ggd(1)/grid_ggd, means that the grid is located in the wall IDS, occurrence 2, with relative path description_ggd(1)/grid_ggd, using Fortran index convention (here : first index of the array)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -10691,7 +10691,7 @@
 					<xs:documentation>Path of the quantity within the IDS, following the syntax given in the link below</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -10718,7 +10718,7 @@
 					<xs:documentation>Path of the quantity within the IDS, following the syntax given in the link below</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -11504,7 +11504,7 @@
 					<xs:documentation>Path of the node within the IDS, following the syntax given in the link below. If empty, means the plugin applies to the whole IDS.</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -11602,7 +11602,7 @@
 					<xs:documentation>Path of the node within the IDS, following the syntax given in the link below. If empty, means the provenance information applies to the whole IDS.</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
-						<url>utilities/IDS-path-syntax.md</url>
+						<url>../../IDS-path-syntax.html</url>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -11614,7 +11614,7 @@
 					<xs:documentation>List of references used to populate or calculate this node, identified as explained below. In case the node is the result of of a calculation / data processing, the reference is an input to the process described in the "code" structure at the root of the IDS. The reference can be an IDS (identified by a URI or a persitent identifier, see syntax in the link below) or non-IDS data imported directly from an non-IMAS database (identified by the command used to import the reference, or the persistent identifier of the data reference). Often data are obtained by a chain of processes, however only the last process input are recorded here. The full chain of provenance has then to be reconstructed recursively from the provenance information contained in the data references.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<url>utilities/IMAS-URI-scheme.md</url>
+						<url>../../IMAS-URI-scheme.html</url>
 						<introduced_after_version>3.41.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
