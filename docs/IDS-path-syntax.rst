@@ -30,7 +30,7 @@ An IDS *path* is represented by a string that respects the following rules:
 
 
 Index and range specifiers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Data-Dictionary is using a **1-based indexing** (as in Fortran) and this is also the case for the indices in IDS paths.
 
