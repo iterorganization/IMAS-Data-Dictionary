@@ -71,7 +71,7 @@ Refer to `URI syntax <IMAS-URI-scheme.html>`_ documentation for more information
 
 
 *idspath* in URI fragment
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When *idspath* is given as a part of an IMAS URI, it is always contains the specific IDS (and optionally its occurrence) 
 and follows the syntax ``#ids[:occurrence][/idspath]`` described in the `URI syntax <IMAS-URI-scheme.html>`_ documentation.
