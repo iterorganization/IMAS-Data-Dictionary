@@ -690,6 +690,34 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="brightness">
+				<xs:annotation>
+					<xs:documentation>Line-integrated emissivity along the line of sight, deduced from the measured count-rate of this detector (relevant only when mode/identifier/index = 1)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-2.s^-1</units>
+						<coordinate1>../counting/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutron_flux">
+				<xs:annotation>
+					<xs:documentation>Neutron flux impinging on the detector, deduced from the measured count-rate (relevant only when mode/identifier/index = 1)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-2.s^-1</units>
+						<coordinate1>../counting/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="spectrum" type="signal_flt_2d">
 				<xs:annotation>
 					<xs:documentation>Detected counts per second per energy channel as a function of time (in case of spectroscopic measurement mode)</xs:documentation>
@@ -798,34 +826,6 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="FLT_0D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="brightness">
-				<xs:annotation>
-					<xs:documentation>Line-integrated emissivity along the line of sight, deduced from the measurement of this detector</xs:documentation>
-					<xs:appinfo>
-						<type>dynamic</type>
-						<units>m^-2.s^-1</units>
-						<coordinate1>../mode(1)/counting/time</coordinate1>
-						<introduced_after_version>4.0.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_1D"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="neutron_flux">
-				<xs:annotation>
-					<xs:documentation>Neutron flux impinging on the detector</xs:documentation>
-					<xs:appinfo>
-						<type>dynamic</type>
-						<units>m^-2.s^-1</units>
-						<coordinate1>../mode(1)/counting/time</coordinate1>
-						<introduced_after_version>4.0.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="adc" type="neutron_diagnostic_adc">
