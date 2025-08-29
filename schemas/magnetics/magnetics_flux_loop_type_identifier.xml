@@ -10,6 +10,5 @@ Type of flux loop
 <int name="diamagnetic_internal" description="Diamagnetic internal loop"                   >3</int>
 <int name="diamagnetic_external" description="Diamagnetic external loop"                  >4</int>
 <int name="diamagnetic_compensation" description="Diamagnetic compensation loop" >5</int>
-<int name="diamagnetic_differential"   description="Diamagnetic differential loop"          >6</int>
-<int name="poloidal_flux_differential"    description="Poloidal flux differential loop"        >7</int>
+<int name="flux_differential"           description="Differential flux loop"                     >6</int>
 </constants>
