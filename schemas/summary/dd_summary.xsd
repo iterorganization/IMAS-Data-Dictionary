@@ -3450,59 +3450,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="summary_pre_disruptive">
-		<xs:annotation>
-			<xs:documentation>Relevant quantities right at the start of the disruption</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="ip" type="summary_constant_flt_0d">
-				<xs:annotation>
-					<xs:documentation>Total plasma current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
-					<xs:appinfo>
-						<units>A</units>
-						<cocos_label_transformation>ip_like</cocos_label_transformation>
-						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>summary.disruption.pre_disruptive_values.ip.value</cocos_leaf_name_aos_indices>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="r0" type="summary_constant_flt_0d">
-				<xs:annotation>
-					<xs:documentation>Reference major radius where the vacuum toroidal magnetic field is given (usually a fixed position such as the middle of the vessel at the equatorial midplane)</xs:documentation>
-					<xs:appinfo>
-						<units>m</units>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="b0" type="summary_constant_flt_0d">
-				<xs:annotation>
-					<xs:documentation>Vacuum toroidal field at R0. Positive sign means anti-clockwise when viewed from above. The product R0B0 must be consistent with the b_tor_vacuum_r field of the tf IDS.</xs:documentation>
-					<xs:appinfo>
-						<units>T</units>
-						<cocos_label_transformation>b0_like</cocos_label_transformation>
-						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
-						<cocos_leaf_name_aos_indices>summary.disruption.pre_disruptive_values.b0.value</cocos_leaf_name_aos_indices>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="energy_total" type="summary_constant_flt_0d">
-				<xs:annotation>
-					<xs:documentation>Plasma energy content = 3/2 * integral over the plasma volume of the total kinetic pressure</xs:documentation>
-					<xs:appinfo>
-						<units>J</units>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="n_e_line_average" type="summary_constant_flt_0d">
-				<xs:annotation>
-					<xs:documentation>Line average electron density</xs:documentation>
-					<xs:appinfo>
-						<units>m^-3</units>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="summary_runaways">
 		<xs:annotation>
 			<xs:documentation>Runaway electrons</xs:documentation>
@@ -4166,14 +4113,6 @@
 			<xs:element name="halo_current" type="summary_halo">
 				<xs:annotation>
 					<xs:documentation>Characteristics of halo current</xs:documentation>
-					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="pre_disruptive_values" type="summary_pre_disruptive">
-				<xs:annotation>
-					<xs:documentation>Relevant quantities right at the start of the disruption</xs:documentation>
 					<xs:appinfo>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
