@@ -19,7 +19,7 @@ It's possible to install the Data Dictionary within a Python environment.
 
 ```sh
 git clone git@github.com:iterorganization/IMAS-Data-Dictionary.git
-cd imas-data-dictionary
+cd IMAS-Data-Dictionary
 pip install . [--user]
 ```
 
