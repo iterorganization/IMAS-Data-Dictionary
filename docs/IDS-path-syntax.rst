@@ -54,7 +54,7 @@ Use cases and examples
 An IDS *path* can be used in the following cases: 
 
 - alone, it can be used as a value of some fields (string) in IDSs or as an argument of a ``partial_get`` operation from a data-access library;
-- as part of a URI fragment to identify a specific subset of a given IDS in a given data-entry.
+- as part of a URI fragment to identify a specific subset of a given IDS in a given `data-entry <./dataentry_and_occurrence.html#data-entry>`_.
 
 
 *idspath* or *fragment* as ``path`` field in IDSs
@@ -64,7 +64,7 @@ In several places in the Data-Dictionary, specific string fields of an IDS allow
 This is the case for instance of the field ``/ids_properties/provenance/node(:)/path``. In this field, an idspath is expected to point 
 to a subset of the current IDS.
 
-In other cases, the reference ``path`` field allows to point to a different IDS within the same data-entry (e.g in ``grid_ggd(:)/path``). 
+In other cases, the reference ``path`` field allows to point to a different IDS within the same `data-entry <./dataentry_and_occurrence.html#data-entry>`_ (e.g in ``grid_ggd(:)/path``). 
 In such a case, the string following the syntax of idspath can point to a subset of the same IDS, or a subset of another IDS.
 In the latter case, ``path`` can contain a *same-document* URI fragment (i.e. following the syntax ``#ids[:occurrence][/idspath]``). 
 Refer to `URI syntax <IMAS-URI-scheme.html>`_ documentation for more information.
@@ -73,7 +73,7 @@ Refer to `URI syntax <IMAS-URI-scheme.html>`_ documentation for more information
 *idspath* in URI fragment
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When *idspath* is given as a part of an IMAS URI, it is always contains the specific IDS (and optionally its occurrence) 
+When *idspath* is given as a part of an IMAS URI, it is always contains the specific IDS (and optionally its `occurrence <./dataentry_and_occurrence.html#occurrence>`_) 
 and follows the syntax ``#ids[:occurrence][/idspath]`` described in the `URI syntax <IMAS-URI-scheme.html>`_ documentation.
 
 
