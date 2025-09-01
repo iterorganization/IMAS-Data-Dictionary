@@ -4111,9 +4111,18 @@
 		<xs:sequence>
 			<xs:element name="time" type="summary_constant_flt_0d">
 				<xs:annotation>
-					<xs:documentation>Time of the disruption</xs:documentation>
+					<xs:documentation>Time of the disruption =  min(t_TQ, t_VDE), where t_TQ and t_VDE are the times at which the Thermal Quench (TQ) and the Vertical Displacement Event (VDE) are detected by their respective detectors</xs:documentation>
 					<xs:appinfo>
 						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_predisruption" type="summary_constant_flt_0d">
+				<xs:annotation>
+					<xs:documentation>Pre-disruption time = disruption.time - t_pre, where t_pre[s] = 0.0025 * R0[m]^2 and R0 is the major radius where the toroidal field is defined (../../global_quantities/r0)</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
