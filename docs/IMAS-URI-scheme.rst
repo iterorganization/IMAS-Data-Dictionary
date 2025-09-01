@@ -8,17 +8,17 @@ IMAS Access-Layer URI Scheme Documentation
 Introduction
 ------------
 
-An IMAS URI is used to identify without ambiguity a given IMAS data-entry, or part of its data (see the Fragment_ section). 
+An IMAS URI is used to identify without ambiguity a given IMAS `data-entry <./dataentry_and_occurrence.html#data-entry>`_, or part of its data (see the Fragment_ section). 
 The URI scheme follows a specific syntax, but is encoded into a single string in order to allow a very simple API in associated data-access
 software. It also allows to further extend the capabilities by refining the scheme syntax without any impact on the API.
-The following section describes the chosen URI scheme in details. A reminder of historical data-entry identification can be found in the 
+The following section describes the chosen URI scheme in details. A reminder of historical `data-entry <./dataentry_and_occurrence.html#data-entry>`_ identification can be found in the 
 `Legacy identifiers`_ section, with explanation of the associated limitations that this URI scheme addresses.
 
 
 IMAS URI structure
 ------------------
 
-The IMAS data-entry URI follows the general idea from URI standard definition from `RFC-3986 <https://www.rfc-editor.org/rfc/rfc3986.html>`_,
+The IMAS `data-entry <./dataentry_and_occurrence.html#data-entry>`_ URI follows the general idea from URI standard definition from `RFC-3986 <https://www.rfc-editor.org/rfc/rfc3986.html>`_,
 but does not aim at being publicly registered. For reference, the general URI structure is the following: ``scheme:[//authority]path[?query][#fragment]``.
 
 For the sake of clarity and coherence, it was decided to define a single unified ``scheme`` for IMAS data resources (named ``imas``)
@@ -80,7 +80,7 @@ Query
 A ``query`` is mandatory. It starts with ``?`` and is composed of a list of semi-colon ``;`` (or ampersand ``&``) separated ``key=value`` pairs. The following keys are standard and recognized by all backends:
 
 - ``path``: absolute path on the localhost where the data is stored (e.g. ``path=/project/run`` or ``path=./localrun``);
-- ``pulse``, ``run``, ``user``, ``database``, ``version``: allowed for compatibility with historical data-entry identifiers (e.g. ``pulse=123;run=2;user=me;database=test;version=3``).
+- ``pulse``, ``run``, ``user``, ``database``, ``version``: allowed for compatibility with historical `data-entry <./dataentry_and_occurrence.html#data-entry>`_ identifiers (e.g. ``pulse=123;run=2;user=me;database=test;version=3``).
 
 .. note:: If `Legacy identifiers`_ are provided, they are always transformed into a standard ``path`` before the query is passed to the backend.
 
@@ -90,13 +90,13 @@ Other keys may exist, both optional and mandatory for a given backend. Please re
 Fragment
 ~~~~~~~~
 
-In order to identify a subset from a given data-entry, a ``fragment`` can be added to the URI. 
+In order to identify a subset from a given `data-entry <./dataentry_and_occurrence.html#data-entry>`_, a ``fragment`` can be added to the URI. 
 Such a ``fragment``, which starts with a hash ``#``, is optional and allows to identify a specific IDS, or a part of an IDS.
 
 The structure of the fragment is **#idsname[:occurrence][/idspath]**, where:
 
 - **idsname** is the type name of the IDS, given in lower case, is mandatory in fragments and comes directly after the ``#`` delimiter;
-- **occurrence** is the occurrence of the IDS (refer to the `Access-Layer User Guide <https://user.iter.org/?uid=YSQENW&action=get_document>`_ for more information), is optional and comes after a colon ``:`` delimiter that links the occurrence to the IDS specified before the delimiter;
+- **occurrence** is the `occurrence <./dataentry_and_occurrence.html#occurrence>`_ of the IDS (refer to the `Access-Layer User Guide <https://user.iter.org/?uid=YSQENW&action=get_document>`_ for more information), is optional and comes after a colon ``:`` delimiter that links the occurrence to the IDS specified before the delimiter;
 - **idspath** is the path from IDS root to the IDS subset that needs to be identified, and is optional (in such case the fragment identifies the entire IDS structure). Refer to the `IDS path syntax <IDS-path-syntax.html>`_ document for more information.
 
 
