@@ -15,6 +15,9 @@
 						<units>1</units>
 						<coordinate1>../time</coordinate1>
 						<introduced_after_version>4.0.0</introduced_after_version>
+						<change_nbc_version>4.1.0</change_nbc_version>
+                        <change_nbc_description>leaf_renamed</change_nbc_description>
+                        <change_nbc_previous_name>../o_mode_fraction</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
