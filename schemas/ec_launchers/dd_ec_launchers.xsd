@@ -7,16 +7,18 @@
 			<xs:documentation>Description of wave polarization</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="mode">
+			<xs:element name="o_mode_fraction">
 				<xs:annotation>
-					<xs:documentation>Polarization mode, O|X|mixed</xs:documentation>
+					<xs:documentation>Fraction of EC beam power launched in ordinary (O) mode. If all power is launched in ordinary mode (O-mode), o_mode_fraction = 1.0. If all  power is launched in extraordinary mode (X-mode), o_mode_fraction = 0.0</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
+						<units>1</units>
 						<coordinate1>../time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:group ref="STR_1D"/>
+					<xs:group ref="FLT_1D"/>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="azimuthal_angle">
