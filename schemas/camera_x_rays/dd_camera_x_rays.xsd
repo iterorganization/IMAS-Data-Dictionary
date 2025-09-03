@@ -39,7 +39,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.35.0</lifecycle_version>
-				<lifecycle_last_change>3.35.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
@@ -74,6 +74,15 @@
 						<xs:appinfo>
 							<coordinate1>time</coordinate1>
 							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="t_e_magnetic_axis" type="signal_flt_1d_validity">
+					<xs:annotation>
+						<xs:documentation>Electron temperature at the magnetic axis, inferred from ratios of soft x-rays emissivity at different energies</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+							<units>eV</units>
 						</xs:appinfo>
 					</xs:annotation>
 				</xs:element>

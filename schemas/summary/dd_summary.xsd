@@ -4282,21 +4282,9 @@
 						<xs:group ref="STR_0D"/>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="description_before">
+				<xs:element name="description">
 					<xs:annotation>
-						<xs:documentation>Description recorded when preparing a simulation or a pulse</xs:documentation>
-						<xs:appinfo>
-							<type>constant</type>
-							<introduced_after_version>4.0.0</introduced_after_version>
-						</xs:appinfo>
-					</xs:annotation>
-					<xs:complexType>
-						<xs:group ref="STR_0D"/>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="description_after">
-					<xs:annotation>
-						<xs:documentation>Description of the outcome of the simulation or pulse, recorded after the end of a simulation or a pulse.</xs:documentation>
+						<xs:documentation>Description of the simulation or the pulse</xs:documentation>
 						<xs:appinfo>
 							<type>constant</type>
 							<introduced_after_version>4.0.0</introduced_after_version>

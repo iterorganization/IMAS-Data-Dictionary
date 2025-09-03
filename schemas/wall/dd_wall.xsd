@@ -117,13 +117,57 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="angles">
+				<xs:annotation>
+					<xs:documentation>Array of incident angles of this incident species, on which the physical sputtering coefficient is tabulated</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="energies">
 				<xs:annotation>
-					<xs:documentation>Array of energies of this incident species, on which the sputtering_physical_coefficient is tabulated</xs:documentation>
+					<xs:documentation>Array of energies of this incident species, on which the physical sputtering coefficient is tabulated</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<units>eV</units>
 						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sputtering_physical">
+				<xs:annotation>
+					<xs:documentation>Effective coefficient of physical sputtering due to this incident species. It is assumed that all sputtered neutrals from the wall have the wall temperature (cold neutrals)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../angles</coordinate1>
+						<coordinate2>../energies</coordinate2>
+						<coordinate3>/time</coordinate3>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sputtering_chemical">
+				<xs:annotation>
+					<xs:documentation>Effective coefficient of chemical sputtering due to this incident species. It is assumed that all sputtered neutrals from the wall have the wall temperature (cold neutrals)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -139,6 +183,8 @@
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>../energies</coordinate2>
 						<coordinate3>/time</coordinate3>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -153,6 +199,8 @@
 						<units>1</units>
 						<coordinate1>1...3</coordinate1>
 						<coordinate2>/time</coordinate2>
+						<lifecycle_status>obsolescent</lifecycle_status>
+						<lifecycle_version>4.1.0</lifecycle_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
