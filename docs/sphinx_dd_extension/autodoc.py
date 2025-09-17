@@ -406,7 +406,7 @@ def identifier2rst(element: ElementTree.Element, fname: Path) -> str:
     """
     # Construct CSV
     csv_items = "\n".join(
-        f'"{ele.get("name")}","{ele.text}","{ele.get("description")}"'
+        f'"{ele.get("name")}","{ele.text}","{ele.get("description")}","{ele.get("units")}","{ele.get("alias")}"'
         for ele in element.iterfind("int")
     )
 
@@ -421,7 +421,7 @@ def identifier2rst(element: ElementTree.Element, fname: Path) -> str:
         result.append(line.strip())
     result.append("")
     result.append(".. csv-table::")
-    result.append(f'{INDENT}:header: "Name","Index","Description"')
+    result.append(f'{INDENT}:header: "Name","Index","Description","Units","Alias"')
     result.append("")
     result.append(indent(csv_items, INDENT))
     result.append("")
