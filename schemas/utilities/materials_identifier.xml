@@ -36,8 +36,8 @@ Materials used in the device mechanical structures
 <int name="HPGe"              description="High Purity Germanium">26</int>
 <int name="CeBr"              description="Cesium bromide">27</int>
 <int name="CZT"              description="Cadmium zinc telluride">28</int>
-<int name="115In"    alias="115In"          description="Indium 115 isotope">29</int>
-<int name="4He"  alias="4He"               description="Helium 4 isotope">30</int>
+<int name="115In"    alias="In_115"          description="Indium 115 isotope">29</int>
+<int name="4He"  alias="He_4"               description="Helium 4 isotope">30</int>
 
 
 </constants>
