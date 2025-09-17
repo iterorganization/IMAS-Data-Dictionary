@@ -769,6 +769,14 @@ It must have the following structure:
 The "name" and "description" attributes correspond to the "name" and "description" nodes in the DD identifier structure.
 The "index" is given by the int value.
 
+If the value of the identifier determines the units of other nodes in the IDS, this is documented by adding a <units_paths> tag below the <ddInstance> tag. The path of the related node is indicated relatively to the identifier node. If more than one node has its units determined by the value of the identifier, paths are separated by a comma. Example : <units_paths>../grid/dim1,../grid/dim2</units_paths>. Then, a "units" attribute is added for each possible identifier value, containing the actual units for this identifier value (separated by a comma in case of multiple nodes) e.g. : 
+
+.. code-block:: xml
+
+<int name="rectangular"
+     description="Cylindrical R,Z ala eqdsk (R=dim1, Z=dim2). In this case the position arrays should not be filled since they are redundant with grid/dim1 and dim2." units="m,m" 
+     >1</int> 
+
 For the sake of backward compatibility, it is possible to specify old values 
 of the "name" field by introducing at the corresponding line an "alias" attribute, 
 for example (below two aliases are given, separated by a comma):
