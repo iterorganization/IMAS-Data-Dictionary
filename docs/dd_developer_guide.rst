@@ -749,6 +749,34 @@ of "identifier" complex type. For example:
       </xs:annotation>
    </xs:element>
 
+The XML file listing the recognized values should be located in the folder of the IDS
+or in the "utilities" folder if it's used by more than one IDS.
+It must have the following structure:
+
+.. code-block:: xml
+
+<?xml version="1.0"?>
+<constants name="equilibrium_profiles_2d_identifier" identifier="yes" create_mapping_function="yes">
+<header>Various contributions to the B, j, and psi 2D maps</header>
+<ddInstance xpath="/equilibrium/time_slice/profiles_2d/type"/>
+<int name="total" description="Total fields">0</int>
+<int name="vacuum" description="Vacuum fields (without contribution from plasma)">1</int>
+<int name="pf_active" description="Contribution from active coils only to the fields (pf_active IDS)">2</int>
+<int name="pf_passive" description="Contribution from passive elements only to the fields (pf_passive IDS)">3</int>
+<int name="plasma"  description="Plasma contribution to the fields">4</int>
+</constants>
+
+The "name" and "description" attributes correspond to the "name" and "description" nodes in the DD identifier structure.
+The "index" is given by the int value.
+
+For the sake of backward compatibility, it is possible to specify old values 
+of the "name" field by introducing at the corresponding line an "alias" attribute, 
+for example (below two aliases are given, separated by a comma):
+
+.. code-block:: xml
+
+<int name="4He"  alias="4He,Helium_4"  description="Helium 4 isotope">30</int>
+
 
 .. _`dev alternative_coordinate1`:
 

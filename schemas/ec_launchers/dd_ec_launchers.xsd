@@ -2,6 +2,112 @@
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="ec_launchers_beam_polarization">
+		<xs:annotation>
+			<xs:documentation>Description of wave polarization</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="o_mode_fraction">
+				<xs:annotation>
+					<xs:documentation>Fraction of EC beam power launched in ordinary (O) mode. If all power is launched in ordinary mode (O-mode), o_mode_fraction = 1.0. If all  power is launched in extraordinary mode (X-mode), o_mode_fraction = 0.0</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<change_nbc_version>4.1.0</change_nbc_version>
+                        <change_nbc_description>leaf_renamed</change_nbc_description>
+                        <change_nbc_previous_name>../o_mode_fraction</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="azimuthal_angle">
+				<xs:annotation>
+					<xs:documentation>Poincare sphere angle psi for mixed mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ellipticity_angle">
+				<xs:annotation>
+					<xs:documentation>Poincare sphere angle chi for mixed mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time base used for polarization quantities</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ec_launchers_beam_wavevector">
+		<xs:annotation>
+			<xs:documentation>Structure for components of the wavevector at the launching position (kR, kphi, kz). Dynamic within a type 1 array of structure and with a common time base at the same level.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="kr">
+				<xs:annotation>
+					<xs:documentation>Component along the major radius</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-1</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="kz">
+				<xs:annotation>
+					<xs:documentation>Component along the vertical direction</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-1</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="kphi">
+				<xs:annotation>
+					<xs:documentation>Component along the toroidal direction</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-1</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="ec_launchers_launching_position">
 		<xs:annotation>
 			<xs:documentation>Structure for R, Z, Phi positions and min max values of R (1D, dynamic within a type 1 array of structure and with a common time base at the same level)</xs:documentation>
@@ -142,6 +248,171 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="ec_launchers_movement">
+		<xs:annotation>
+			<xs:documentation>Description of movements of the mirror</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Core mirror steering”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Type of movement</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>ec_launchers/frame_DOF_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="direction" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Unit vector indicating the direction of the translation or the rotation axis at "home" position (i.e. ../../geometry/centre)</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="translation_max">
+				<xs:annotation>
+					<xs:documentation>Maximum displacement with respect to reference position, along the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="translation_min">
+				<xs:annotation>
+					<xs:documentation>Minimum displacement with respect to reference position, along the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rotation_angle_max">
+				<xs:annotation>
+					<xs:documentation>Maximum angular displacement with respect to the reference position, counter-clockwise around the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rotation_angle_min">
+				<xs:annotation>
+					<xs:documentation>Minimum angular displacement with respect to the reference position, counter-clockwise around the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="translation">
+				<xs:annotation>
+					<xs:documentation>Linear displacement from reference position, along the direction vector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rotation_angle">
+				<xs:annotation>
+					<xs:documentation>Angular displacement with respect to the reference position, counter-clockwise around the direction vector </xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time base used for the dynamic quantities at this level</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ec_launchers_mirror">
+		<xs:annotation>
+			<xs:documentation>Electron Cyclotron mirror</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Mirror in upper port 12”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="geometry" type="curved_object">
+				<xs:annotation>
+					<xs:documentation>Description of the geometry of the mirror, in its reference position</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="movement" type="ec_launchers_movement" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Set of degrees of freedom for this mirror, allowing the mirror to move around its reference position indicated in ../geometry. Can be cascaded for composite movements.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="ec_launchers_beam">
 		<xs:annotation>
 			<xs:documentation>Electron Cyclotron beam</xs:documentation>
@@ -186,34 +457,34 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="mode">
+			<xs:element name="mirror_index">
 				<xs:annotation>
-					<xs:documentation>Identifier for the main plasma wave mode excited by the EC beam. For the ordinary mode (O-mode), mode=1. For the extraordinary mode (X-mode), mode=-1</xs:documentation>
+					<xs:documentation>Index of the mirror (in the mirror array of structure) on which this beam has been reflected</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="o_mode_fraction">
-				<xs:annotation>
-					<xs:documentation>Fraction of EC beam power launched in ordinary (O) mode. If all power is launched in ordinary mode (O-mode), o_mode_fraction = 1.0. If all  power is launched in extraordinary mode (X-mode), o_mode_fraction = 0.0</xs:documentation>
-					<xs:appinfo>
-						<type>dynamic</type>
-						<units>1</units>
-						<coordinate1>../time</coordinate1>
-						<introduced_after_version>3.39.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:group ref="FLT_1D"/>
-				</xs:complexType>
-			</xs:element>
 			<xs:element name="launching_position" type="ec_launchers_launching_position">
 				<xs:annotation>
 					<xs:documentation>Launching position of the beam</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="direction" type="ec_launchers_beam_wavevector">
+				<xs:annotation>
+					<xs:documentation>Wavevector at launch point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="polarization" type="ec_launchers_beam_polarization">
+				<xs:annotation>
+					<xs:documentation>Wave polarization</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="steering_angle_pol">
@@ -257,7 +528,7 @@
 			</xs:element>
 			<xs:element name="time" type="flt_1d_type">
 				<xs:annotation>
-					<xs:documentation>Time base used for launching_position, o_mode_fraction, angle, spot and phase quantities</xs:documentation>
+					<xs:documentation>Time base used for launching_position, angle, spot and phase quantities</xs:documentation>
 					<xs:appinfo>
 						<units>s</units>
 						<type>dynamic</type>
@@ -273,16 +544,25 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.7.0</lifecycle_version>
-				<lifecycle_last_change>3.40.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="ids_properties"/>
-				<xs:element name="beam" type="ec_launchers_beam" maxOccurs="100">
+				<xs:element name="mirror" type="ec_launchers_mirror" maxOccurs="20">
 					<xs:annotation>
-						<xs:documentation>Set of Electron Cyclotron beams</xs:documentation>
+						<xs:documentation>Set of mirrors associated with the launcher</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="beam" type="ec_launchers_beam" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>Set of Electron Cyclotron beam segments, including between mirrors</xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 							<introduced_after_version>3.36.0</introduced_after_version>

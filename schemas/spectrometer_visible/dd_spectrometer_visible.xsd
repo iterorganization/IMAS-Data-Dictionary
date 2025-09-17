@@ -369,7 +369,7 @@
 			</xs:element>
 			<xs:element name="name">
 				<xs:annotation>
-					<xs:documentation>String identifying the species (H, D, T, He3, He4)</xs:documentation>
+					<xs:documentation>String identifying the species (H, D, T, 3He, 4He)</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<change_nbc_version>3.42.0</change_nbc_version>

@@ -70,16 +70,16 @@ class IDSInfo:
         self.root = None
         self.version = ""
         self.cocos = ""
-        with get_schema("data_dictionary.xml") as path:
-            self.idsdef_path = path
+        schema_path = get_schema("data_dictionary.xml")
+        self.idsdef_path = schema_path
 
-            if not self.idsdef_path:
-                raise Exception(f"Error accessing data_dictionary.xml.  {self.idsdef_path}")
+        if not self.idsdef_path:
+            raise Exception(f"Error accessing data_dictionary.xml.  {self.idsdef_path}")
 
-            tree = ET.parse(self.idsdef_path)
-            self.root = tree.getroot()
-            self.version = self.root.findtext("./version", default="N/A")
-            self.cocos = self.root.findtext("./cocos", default="N/A")
+        tree = ET.parse(self.idsdef_path)
+        self.root = tree.getroot()
+        self.version = self.root.findtext("./version", default="N/A")
+        self.cocos = self.root.findtext("./cocos", default="N/A")
 
     def get_idsdef_path(self):
         "Get selected data_dictionary.xml path"
