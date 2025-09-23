@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<constants name="disruption_type_identifier" identifier="yes" create_mapping_function="yes">
+<header>
+  Disruption type table
+</header>
+
+<ddInstance xpath="/dataset_description/type"/>
+
+<int name="major" description="Thermal quench precedes the vertical displacement">1</int>
+<int name="vde"   description="Vertical displacement precedes the thermal quench">2</int>
+
+</constants>
