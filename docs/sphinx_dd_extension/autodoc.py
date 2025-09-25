@@ -323,7 +323,7 @@ def field2rst(
     if "change_nbc_description" in field.keys():
         change_nbc_description = field.get("change_nbc_description")
         change_nbc_version = field.get("change_nbc_version")
-        renames = ("aos_renamed", "leaf_renamed", "structure_renamed")
+        renames = ("aos_renamed", "leaf_renamed", "structure_renamed", "ids_renamed")
         if change_nbc_description in renames:
             result.append(f".. versionchanged:: {change_nbc_version}")
             result.append(f"  Renamed from ``{field.get('change_nbc_previous_name')}``")
