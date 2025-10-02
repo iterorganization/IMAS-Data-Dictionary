@@ -2891,7 +2891,7 @@
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
-						<units>m^-3</units>
+						<units>m</units>
 						<type>dynamic</type>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
