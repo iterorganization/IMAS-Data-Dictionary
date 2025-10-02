@@ -2995,7 +2995,7 @@
 		<xs:sequence>
 			<xs:element name="measured">
 				<xs:annotation>
-					<xs:documentation>Measured values. Units are: as_parent for a local measurement, as_parent.m for a line integrated measurement.</xs:documentation>
+					<xs:documentation>Measured values</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>mixed</units>
@@ -3039,7 +3039,6 @@
 			<xs:element name="time_measurement_width">
 				<xs:annotation>
 					<xs:documentation>In case the measurements are averaged over a time interval, this node is the full width of this time interval (empty otherwise). In case the slicing/averaging method doesn't use a hard time interval cutoff, this width is the characteristic time span of the slicing/averaging method. By convention, the time interval starts at time_measurement-time_width and ends at time_measurement.</xs:documentation>
-					<!-- By convention, when this node has a positive value the time interval starts at time_measurement-time_width and ends at time_measurement. When it has a negative value -->
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>s</units>
@@ -3090,7 +3089,7 @@
 			</xs:element>
 			<xs:element name="reconstructed">
 				<xs:annotation>
-					<xs:documentation>Value reconstructed from the fit. Units are: as_parent for a local measurement, as_parent.m for a line integrated measurement.</xs:documentation>
+					<xs:documentation>Value reconstructed from the fit</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>mixed</units>

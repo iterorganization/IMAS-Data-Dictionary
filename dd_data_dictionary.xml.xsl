@@ -142,16 +142,10 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 							</xsl:choose>
 							<!-- Replicate DOCUMENTATION as an attribute-->
 							<xsl:attribute name="documentation"><xsl:value-of select="xs:annotation/xs:documentation"/></xsl:attribute>
-							<!-- Replicate LIFECYCLE information as an attribute-->
-							<xsl:attribute name="lifecycle_status"><xsl:value-of select="xs:annotation/xs:appinfo/lifecycle_status"/></xsl:attribute>
-							<xsl:attribute name="lifecycle_version"><xsl:value-of select="xs:annotation/xs:appinfo/lifecycle_version"/></xsl:attribute>
-							<xsl:attribute name="lifecycle_last_change"><xsl:value-of select="xs:annotation/xs:appinfo/lifecycle_last_change"/></xsl:attribute>
-							<xsl:if test="xs:annotation/xs:appinfo/specific_validation_rules">
-								<xsl:attribute name="specific_validation_rules"><xsl:value-of select="xs:annotation/xs:appinfo/specific_validation_rules"/></xsl:attribute>
-							</xsl:if>
-							<xsl:if test="xs:annotation/xs:appinfo/url">
-								<xsl:attribute name="url"><xsl:value-of select="xs:annotation/xs:appinfo/url"/></xsl:attribute>
-							</xsl:if>
+							<xsl:for-each select="xs:annotation/xs:appinfo/*">
+								<!-- Generic method for declaring all appinfo as attributes-->
+								<xsl:attribute name="{name(.)}"><xsl:value-of select="."/></xsl:attribute>
+						    </xsl:for-each>
 							<!-- Indicate whether the IDS is purely constant or contains dynamic quantities -->							
 							<xsl:choose>
 								<xsl:when test="*/*/xs:element[@ref='time']">

@@ -3435,6 +3435,21 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="summary_halo">
+		<xs:annotation>
+			<xs:documentation>Halo current</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fraction_pol_max" type="summary_constant_flt_0d">
+				<xs:annotation>
+					<xs:documentation>Maximum poloidal halo current normalized by the pre-disruption toroidal plasma current</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="summary_runaways">
 		<xs:annotation>
 			<xs:documentation>Runaway electrons</xs:documentation>
@@ -3453,6 +3468,15 @@
 					<xs:documentation>Parallel current driven by the runaway electrons</xs:documentation>
 					<xs:appinfo>
 						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current_phi_max" type="summary_constant_flt_0d">
+				<xs:annotation>
+					<xs:documentation>Maximum toroidal current carried by runaway electrons during the pulse</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -4034,9 +4058,18 @@
 		<xs:sequence>
 			<xs:element name="time" type="summary_constant_flt_0d">
 				<xs:annotation>
-					<xs:documentation>Time of the disruption</xs:documentation>
+					<xs:documentation>Time of the disruption =  min(t_TQ, t_VDE), where t_TQ and t_VDE are the times at which the Thermal Quench (TQ) and the Vertical Displacement Event (VDE) are detected by their respective detectors</xs:documentation>
 					<xs:appinfo>
 						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_predisruption" type="summary_constant_flt_0d">
+				<xs:annotation>
+					<xs:documentation>Pre-disruption time = disruption.time - t_pre, where t_pre[s] is approximately given by 0.0025 * R0[m]^2 and R0 is the major radius where the toroidal field is defined (../../global_quantities/r0)</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -4074,6 +4107,23 @@
 					<xs:documentation>Characteristic decay times describing the loss of different quantities during the disruption</xs:documentation>
 					<xs:appinfo>
 						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="halo_current" type="summary_halo">
+				<xs:annotation>
+					<xs:documentation>Characteristics of halo current</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Type of the disruption</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<doc_identifier>summary/disruption_type_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

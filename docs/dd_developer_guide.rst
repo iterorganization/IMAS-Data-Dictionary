@@ -557,16 +557,16 @@ using the simpleTypes defined in utilities.xsd (named flt_type and flt_nd_type).
 
 .. code-block:: xml
 
-	<xs:element name="time" type="flt_1d_type">
-		<xs:annotation>
-			<xs:documentation>Generic time</xs:documentation>
-			<xs:appinfo>
-			<coordinate1>1...N</coordinate1>
-			<type>dynamic</type>
-			<units>s</units>
-			</xs:appinfo>
-		</xs:annotation>
-	</xs:element>
+   <xs:element name="time" type="flt_1d_type">
+      <xs:annotation>
+         <xs:documentation>Generic time</xs:documentation>
+         <xs:appinfo>
+            <coordinate1>1...N</coordinate1>
+            <type>dynamic</type>
+            <units>s</units>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
 
 Simple structure node
 ~~~~~~~~~~~~~~~~~~~~~
@@ -755,19 +755,27 @@ It must have the following structure:
 
 .. code-block:: xml
 
-<?xml version="1.0"?>
-<constants name="equilibrium_profiles_2d_identifier" identifier="yes" create_mapping_function="yes">
-<header>Various contributions to the B, j, and psi 2D maps</header>
-<ddInstance xpath="/equilibrium/time_slice/profiles_2d/type"/>
-<int name="total" description="Total fields">0</int>
-<int name="vacuum" description="Vacuum fields (without contribution from plasma)">1</int>
-<int name="pf_active" description="Contribution from active coils only to the fields (pf_active IDS)">2</int>
-<int name="pf_passive" description="Contribution from passive elements only to the fields (pf_passive IDS)">3</int>
-<int name="plasma"  description="Plasma contribution to the fields">4</int>
-</constants>
+   <?xml version="1.0"?>
+   <constants name="equilibrium_profiles_2d_identifier" identifier="yes" create_mapping_function="yes">
+      <header>Various contributions to the B, j, and psi 2D maps</header>
+      <ddInstance xpath="/equilibrium/time_slice/profiles_2d/type"/>
+      <int name="total" description="Total fields">0</int>
+      <int name="vacuum" description="Vacuum fields (without contribution from plasma)">1</int>
+      <int name="pf_active" description="Contribution from active coils only to the fields (pf_active IDS)">2</int>
+      <int name="pf_passive" description="Contribution from passive elements only to the fields (pf_passive IDS)">3</int>
+      <int name="plasma"  description="Plasma contribution to the fields">4</int>
+   </constants>
 
 The "name" and "description" attributes correspond to the "name" and "description" nodes in the DD identifier structure.
 The "index" is given by the int value.
+
+If the value of the identifier determines the units of other nodes in the IDS, this is documented by adding a <units_paths> tag below the <ddInstance> tag. The path of the related node is indicated relatively to the identifier node. If more than one node has its units determined by the value of the identifier, paths are separated by a comma. Example : <units_paths>../grid/dim1,../grid/dim2</units_paths>. Then, a "units" attribute is added for each possible identifier value, containing the actual units for this identifier value (separated by a comma in case of multiple nodes) e.g. : 
+
+.. code-block:: xml
+
+   <int name="rectangular"
+        description="Cylindrical R,Z ala eqdsk (R=dim1, Z=dim2). In this case the position arrays should not be filled since they are redundant with grid/dim1 and dim2."
+        units="m,m">1</int>
 
 For the sake of backward compatibility, it is possible to specify old values 
 of the "name" field by introducing at the corresponding line an "alias" attribute, 
@@ -775,7 +783,9 @@ for example (below two aliases are given, separated by a comma):
 
 .. code-block:: xml
 
-<int name="4He"  alias="4He,Helium_4"  description="Helium 4 isotope">30</int>
+   <int name="4He"
+        alias="4He,Helium_4"
+        description="Helium 4 isotope">30</int>
 
 
 .. _`dev alternative_coordinate1`:
