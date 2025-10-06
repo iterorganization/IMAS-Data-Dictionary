@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<constants name="mirror_degrees_of_freedom" identifier="yes" create_mapping_function="yes">
+<header>
+Description of degrees of freedom of a mirror
+</header>
+
+<ddInstance xpath="/ec_launchers/mirror/movement/type"/>
+
+<int name="translation"  description="Mirror translation" >1</int>
+<int name="rotation"     description="Mirror rotation" >2</int>
+
+</constants>
