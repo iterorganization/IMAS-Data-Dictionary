@@ -124,7 +124,7 @@
 			</xs:element>
 			<xs:element name="vertical">
 				<xs:annotation>
-					<xs:documentation>The vertical beamlet divergence of the component. Here the divergence is defined for Gaussian beams as the angel where the beam density is reduced by a factor 1/e compared to the maximum density. For non-Gaussian beams the divergence is sqrt(2)*mean((x-mean(x))**2), where x is the angle and the mean should be performed over the beam density, P(x): mean(y)=int(y*P(x)*dx).</xs:documentation>
+					<xs:documentation>The vertical beamlet divergence of the component. Here the divergence is defined for Gaussian beams as the angle where the beam density is reduced by a factor 1/e compared to the maximum density (equivalent to the intensity for the divergence of each individual beamlet as the energy is assumed constant). For non-Gaussian beams the divergence is sqrt(2)*mean((x-mean(x))**2), where x is the angle and the mean should be performed over the beam density, P(x): mean(y)=int(y*P(x)*dx).</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
@@ -136,7 +136,7 @@
 			</xs:element>
 			<xs:element name="horizontal">
 				<xs:annotation>
-					<xs:documentation>The horiztonal beamlet divergence of the component. Here the divergence is defined for Gaussian beams as the angel where the beam density is reduced by a factor 1/e compared to the maximum density. For non-Gaussian beams the divergence is sqrt(2)*mean((x-mean(x))**2), where x is the angle and the mean should be performed over the beam density, P(x): mean(y)=int(y*P(x)*dx).</xs:documentation>
+					<xs:documentation>The horiztonal beamlet divergence of the component. Here the divergence is defined for Gaussian beams as the angel where the beam density is reduced by a factor 1/e compared to the maximum density (equivalent to the intensity for the divergence of each individual beamlet as the energy is assumed constant). For non-Gaussian beams the divergence is sqrt(2)*mean((x-mean(x))**2), where x is the angle and the mean should be performed over the beam density, P(x): mean(y)=int(y*P(x)*dx).</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>rad</units>
