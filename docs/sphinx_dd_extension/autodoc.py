@@ -323,7 +323,7 @@ def field2rst(
     if "change_nbc_description" in field.keys():
         change_nbc_description = field.get("change_nbc_description")
         change_nbc_version = field.get("change_nbc_version")
-        renames = ("aos_renamed", "leaf_renamed", "structure_renamed")
+        renames = ("aos_renamed", "leaf_renamed", "structure_renamed", "ids_renamed")
         if change_nbc_description in renames:
             result.append(f".. versionchanged:: {change_nbc_version}")
             result.append(f"  Renamed from ``{field.get('change_nbc_previous_name')}``")
@@ -406,7 +406,7 @@ def identifier2rst(element: ElementTree.Element, fname: Path) -> str:
     """
     # Construct CSV
     csv_items = "\n".join(
-        f'"{ele.get("name")}","{ele.text}","{ele.get("description")}"'
+        f'"{ele.get("name")}","{ele.text}","{ele.get("description")}","{ele.get("units")}","{ele.get("alias")}"'
         for ele in element.iterfind("int")
     )
 
@@ -421,7 +421,7 @@ def identifier2rst(element: ElementTree.Element, fname: Path) -> str:
         result.append(line.strip())
     result.append("")
     result.append(".. csv-table::")
-    result.append(f'{INDENT}:header: "Name","Index","Description"')
+    result.append(f'{INDENT}:header: "Name","Index","Description","Units","Alias"')
     result.append("")
     result.append(indent(csv_items, INDENT))
     result.append("")

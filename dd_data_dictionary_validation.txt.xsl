@@ -124,7 +124,10 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
 <xsl:apply-templates select=".//field[contains($reserved_names, concat('|', @name, '|'))]">
 <xsl:with-param name="error_description" select="'Illegal name: name is found in the list of reserved names (see `reserved_names.txt`)'"/>
 </xsl:apply-templates>
-<!-- Test that all identifier docs adhere to the pattern "*/*_identifier.xml" --><xsl:apply-templates select=".//field[@doc_identifier and not(matches(@doc_identifier, '^[^/]+/[^/]+_identifier\.xml$'))]"><xsl:with-param name="error_description" select="'Illegal metadata: identifier documentation should be stored in a file ending in `_identifier.xml`.'"/></xsl:apply-templates>
+<!-- Test that all identifier docs adhere to the pattern "*/*_identifier.xml" -->
+<xsl:apply-templates select=".//field[@doc_identifier and not(matches(@doc_identifier, '^[^/]+/[^/]+_identifier\.xml$'))]">
+<xsl:with-param name="error_description" select="'Illegal metadata: identifier documentation should be stored in a file ending in `_identifier.xml`.'"/>
+</xsl:apply-templates>
 <!-- Coordinate checks -->
 <xsl:apply-templates select="." mode="coordinate_validation"/>
 <!-- End of validation rules -->
@@ -138,6 +141,27 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
         <xsl:value-of select="$test_output"/>
     </xsl:otherwise>
 </xsl:choose>
+</xsl:for-each>
+
+<!-- Tests for identifier XMLs: -->
+<xsl:for-each select="distinct-values(//IDS//field[@doc_identifier]/@doc_identifier)">
+<xsl:variable name="identifier_xml" select="doc(concat('schemas/', .))" />
+<xsl:variable name="identifier_values" select="$identifier_xml//int/text()" as="xs:int*"/>
+<!-- Identifier index values should be unique: -->
+<xsl:if test="count(distinct-values($identifier_values)) != count($identifier_values)">
+    Error in identifier <xsl:value-of select="." />: values of identifiers are not unique.
+</xsl:if>
+<!-- Names and aliases should be unique. First find out all names and aliases: -->
+<xsl:variable name="identifier_name_and_aliases" as="xs:string*">
+<xsl:for-each select="$identifier_xml//int">
+<xsl:sequence select="@name" />
+<xsl:for-each select="tokenize(@alias, ',')"><xsl:sequence select="."/></xsl:for-each>
+</xsl:for-each>
+</xsl:variable>
+<!-- Uniqueness test: -->
+<xsl:if test="count(distinct-values($identifier_name_and_aliases)) != count($identifier_name_and_aliases)">
+    Error in identifier <xsl:value-of select="." />: name and/or alias is not unique.
+</xsl:if>
 </xsl:for-each>
 </xsl:template>
 
