@@ -9046,7 +9046,7 @@
 				<xs:annotation>
 					<xs:documentation>Total plasma current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>A</units>
 						<type>dynamic</type>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -9062,7 +9062,7 @@
 				<xs:annotation>
 					<xs:documentation>Total non-inductive current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>A</units>
 						<type>dynamic</type>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -9078,7 +9078,7 @@
 				<xs:annotation>
 					<xs:documentation>Bootstrap current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>A</units>
 						<type>dynamic</type>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -9094,7 +9094,7 @@
 				<xs:annotation>
 					<xs:documentation>LCFS loop voltage (positive value drives positive ohmic current that flows anti-clockwise when viewed from above)</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>V</units>
 						<type>dynamic</type>
 						<cocos_label_transformation>ip_like</cocos_label_transformation>
@@ -9110,7 +9110,7 @@
 				<xs:annotation>
 					<xs:documentation>Internal inductance. The li_3 definition is used, i.e. li_3 = 2/R0/mu0^2/Ip^2 * int(Bp^2 dV).</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>1</units>
 					</xs:appinfo>
@@ -9123,7 +9123,7 @@
 				<xs:annotation>
 					<xs:documentation>Toroidal beta, defined as the volume-averaged total perpendicular pressure divided by (B0^2/(2*mu0)), i.e. beta_toroidal = 2 mu0 int(p dV) / V / B0^2</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>1</units>
 					</xs:appinfo>
@@ -9136,7 +9136,7 @@
 				<xs:annotation>
 					<xs:documentation>Normalised toroidal beta, defined as 100 * beta_tor * a[m] * B0 [T] / ip [MA] </xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>1</units>
 					</xs:appinfo>
@@ -9149,7 +9149,7 @@
 				<xs:annotation>
 					<xs:documentation>Poloidal beta. Defined as betap = 4 int(p dV) / [R_0 * mu_0 * Ip^2]</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>1</units>
 					</xs:appinfo>
@@ -9162,7 +9162,7 @@
 				<xs:annotation>
 					<xs:documentation>Plasma energy content = 3/2 * integral over the plasma volume of the total perpendicular pressure </xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>J</units>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -9175,7 +9175,7 @@
 				<xs:annotation>
 					<xs:documentation>Volume average plasma effective charge, estimated from the flux consumption in the ohmic phase</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -9188,7 +9188,7 @@
 				<xs:annotation>
 					<xs:documentation>Electron temperature peaking factor, defined as the Te value at the magnetic axis divided by the volume averaged Te (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -9201,7 +9201,7 @@
 				<xs:annotation>
 					<xs:documentation>Ion temperature (averaged over ion species and states) peaking factor, defined as the Ti value at the magnetic axis divided by the volume averaged Ti (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
@@ -9214,7 +9214,7 @@
 				<xs:annotation>
 					<xs:documentation>Resistive part of the poloidal flux losses, defined as the volume-averaged scalar product of the electric field and the ohmic current density, normalized by the plasma current and integrated in time from the beginning of the plasma discharge: int ( (int(E_field_phi.j_ohm_phi) dV) / Ip ) dt)</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>Wb</units>
 					</xs:appinfo>
@@ -9227,7 +9227,7 @@
 				<xs:annotation>
 					<xs:documentation>Ejima coefficient : resistive psi losses divided by (mu0*R*Ip). See S. Ejima et al, Nuclear Fusion, Vol.22, No.10 (1982), 1313</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<type>dynamic</type>
 						<units>1</units>
 					</xs:appinfo>
@@ -9240,7 +9240,7 @@
 				<xs:annotation>
 					<xs:documentation>Volume averaged electron temperature (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>eV</units>
 						<type>dynamic</type>
 						<introduced_after_version>3.33.0</introduced_after_version>
@@ -9254,7 +9254,7 @@
 				<xs:annotation>
 					<xs:documentation>Volume averaged electron density (average over the plasma volume up to the LCFS)</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>../../time</coordinate1>
+						<coordinate1>/time</coordinate1>
 						<units>m^-3</units>
 						<type>dynamic</type>
 						<introduced_after_version>3.33.0</introduced_after_version>
@@ -9269,6 +9269,7 @@
 					<xs:documentation>Quantities related to the different ion species, in the sense of isonuclear or isomolecular sequences. The set of ion species of this array must be the same as the one defined in profiles_1d/ion, at the time slice indicated in ion_time_slice</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../profiles_1d(itime)/ion</coordinate1>
+                        <utilities_aoscontext>yes</utilities_aoscontext>
 						<introduced_after_version>3.33.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
