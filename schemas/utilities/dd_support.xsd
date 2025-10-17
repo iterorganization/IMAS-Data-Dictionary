@@ -9652,6 +9652,14 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="sphere_centre" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the center of the sphere which defines the mirror, in the case of a spherical mirror (geometry_type = 2), derived from the above geometric data</xs:documentation>
+					<xs:appinfo>
+					<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="curved_surface">
