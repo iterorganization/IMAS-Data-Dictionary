@@ -6930,6 +6930,15 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="energy" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Energy, for various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="distributions_d_ggd_orbit">
@@ -7069,7 +7078,7 @@
 			</xs:element>
 			<xs:element name="motion_invariants_volume" type="generic_grid_scalar">
 				<xs:annotation>
-					<xs:documentation>Volume of the invariants of motion space volume elements</xs:documentation>
+					<xs:documentation>Normalised volume of the CoM (constants of motion) cell elements</xs:documentation>
 					<xs:appinfo>
 						<units>T.m^2.J</units>
 						<introduced_after_version>4.0.0</introduced_after_version>
