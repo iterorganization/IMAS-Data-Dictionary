@@ -644,6 +644,37 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="midplane_thickness">
+				<xs:annotation>
+					<xs:documentation>Thickness of this unit evaluated at the midplane (whenever relevant)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="midplane_power_density_nuclear" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Nuclear power density heating this unit evaluated at the midplane (whenever relevant)</xs:documentation>
+					<xs:appinfo>
+						<units>W.m^-3</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_nuclear" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Nuclear power heating this unit</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="wall_2d_limiter">
