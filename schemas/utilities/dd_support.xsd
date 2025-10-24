@@ -10976,7 +10976,8 @@
 			</xs:element>
 			<xs:element name="material" type="identifier_static" maxOccurs="4">
 				<xs:annotation>
-					<xs:documentation>Set of materials entering the composition of this unit</xs:documentation>
+					<xs:documentation>Set of materials in this unit</xs:documentation>
+
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 						<doc_identifier>utilities/materials_identifier.xml</doc_identifier>
