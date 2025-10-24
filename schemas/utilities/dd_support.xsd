@@ -10986,7 +10986,8 @@
 			</xs:element>
 			<xs:element name="material_volume_fraction">
 				<xs:annotation>
-					<xs:documentation>Volume fraction of each material entering the composition of this unit</xs:documentation>
+					<xs:documentation>Fraction of the volume of each material in this unit</xs:documentation>
+
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>../material</coordinate1>
