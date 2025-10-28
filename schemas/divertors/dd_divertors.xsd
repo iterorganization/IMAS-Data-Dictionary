@@ -210,7 +210,7 @@
 				<xs:annotation>
 					<xs:documentation>Magnetic flux expansion as defined by Stangeby : ratio between the poloidal field at the midplane separatrix and the poloidal field at the strike-point see formula attached, where u means upstream (midplane separatrix) and t means at divertor target (downstream).</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 						<url>divertors/flux_expansion.png</url>
 					</xs:appinfo>
 				</xs:annotation>
@@ -268,7 +268,7 @@
 				<xs:annotation>
 					<xs:documentation>Power fraction incident on the target (normalized to the total power incident on the divertor)</xs:documentation>
 					<xs:appinfo>
-						<units>-</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
