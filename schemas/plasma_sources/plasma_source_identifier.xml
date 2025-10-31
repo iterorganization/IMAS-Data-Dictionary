@@ -65,6 +65,7 @@ Translation table for sources of particles, momentum and heat.
 <int name="recombination"          description="Source from recombination (not accounting for charge exchange)">710</int>
 <int name="compression"            description="Internal energy source from compression"                       >715</int>
 <int name="bulk_motion"            description="Internal energy source correction for bulk motion"             >716</int>
+<int name="dust_ablation"          description="Source from dust particles, e.g. via vaporization and sputtering">717</int>
 
 <int name="database"                description="Source from database entry"                                                      >801</int>
 <int name="gaussian"                description="Artificial source with a gaussian profile"                                       >802</int>

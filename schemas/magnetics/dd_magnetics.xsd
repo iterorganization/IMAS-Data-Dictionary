@@ -133,7 +133,7 @@
 			</xs:element>
 			<xs:element name="position" type="rphiz0d_static" maxOccurs="10">
 				<xs:annotation>
-					<xs:documentation>List of (R,Z,phi) points defining the position of the loop (see data structure documentation FLUXLOOPposition.pdf)</xs:documentation>
+					<xs:documentation>List of (R,Z,phi) points defining the position of the loop (see data structure documentation FLUXLOOPposition.pdf). Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...N</coordinate1>
@@ -142,7 +142,7 @@
 			</xs:element>
 			<xs:element name="indices_differential">
 				<xs:annotation>
-					<xs:documentation>Indices (from the flux_loop array of structure) of the two flux loops used to build the flux difference flux(second index) - flux(first index). Use only if ../type/index = 6, leave empty otherwise</xs:documentation>
+					<xs:documentation>Indices (from the flux_loop array of structures) of the two loops used to build a differential measurement: loop(second index) - loop(first index). Use only if ../type/index = 6, leave empty otherwise.</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<coordinate1>1...2</coordinate1>
@@ -154,7 +154,7 @@
 			</xs:element>
 			<xs:element name="area">
 				<xs:annotation>
-					<xs:documentation>Effective area (ratio between flux and average magnetic field over the loop)</xs:documentation>
+					<xs:documentation>Effective area (ratio between flux and average magnetic field over the loop). Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>m^2</units>
@@ -166,7 +166,7 @@
 			</xs:element>
 			<xs:element name="gm9">
 				<xs:annotation>
-					<xs:documentation>Integral of 1/R over the loop area (ratio between flux and magnetic rigidity R0.B0). Use only if ../type/index = 3 to 6, leave empty otherwise.</xs:documentation>
+					<xs:documentation>Integral of 1/R over the loop area (ratio between flux and magnetic rigidity R0.B0). Use only if ../type/index = 3 to 5, leave empty otherwise.</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
 						<units>m</units>
@@ -559,7 +559,7 @@
 				<xs:element ref="ids_properties"/>
 				<xs:element name="flux_loop" type="magnetics_flux_loop" maxOccurs="200">
 					<xs:annotation>
-						<xs:documentation>Flux loops; partial flux loops can be described</xs:documentation>
+						<xs:documentation>Flux loops; partial flux loops can be described. In case of differential loops, the geometry of differential flux loops is stored in the flux_loop indices of the primitive loops. Signals may be stored on the primitive loop indices but this is optional if the index of the primitive loop is referenced by a differential loop index </xs:documentation>
 						<xs:appinfo>
 							<coordinate1>1...N</coordinate1>
 						</xs:appinfo>

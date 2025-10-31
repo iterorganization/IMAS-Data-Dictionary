@@ -19,6 +19,8 @@ Translation table for sources of particles, momentum and heat.
 <int name="molecular_ionization"   description="Source from molecular ionization/dissociation"                 >708</int>
 <int name="ionization"             description="Source from ionization (combined)"                             >709</int>
 <int name="recombination"          description="Source from recombination"                                     >710</int>
+<int name="dust_ablation"          description="Source from dust particles, e.g. via vaporization and sputtering">717</int>
+
 
 <int name="charge_exchange"        description="Source from charge exchange. Charge exchange losses are negative sources"  >305</int>
 <int name="collisional_equipartition" description="Collisional equipartition"                                                     >11</int>
