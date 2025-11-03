@@ -51,9 +51,7 @@ def install_html_docs():
     """
     Install HTML documentation to the package resources directory.
     
-    Copies generated HTML documentation from html_documentation to
-    imas_data_dictionary/resources/docs/legacy for package inclusion.
-    This preserves the directory structure so relative paths to images work correctly.
+    Copies generated HTML documentation
     """
     logger.info("[IMAS-DD] Starting HTML documentation installation")
     try:
@@ -94,9 +92,7 @@ def install_html_docs():
         # Ensure parent directory exists
         legacy_dir.parent.mkdir(parents=True, exist_ok=True)
         
-        # Copy documentation with proper structure preserved
-        # Copy entire html_documentation directory to legacy_dir
-        # This preserves the img/, css/, divertors/ etc. subdirectories
+        # Copy documentation
         logger.info(f"[IMAS-DD] Copying HTML docs from {html_docs_dir} to {legacy_dir}")
         shutil.copytree(html_docs_dir, legacy_dir)
         
