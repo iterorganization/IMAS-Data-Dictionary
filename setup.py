@@ -1,13 +1,12 @@
-import glob
 import os
 import pathlib
 import sys
+import importlib.util
 
 from setuptools import setup
 from setuptools.command.build_py import build_py
 from setuptools.command.develop import develop
 from setuptools.command.install import install
-from setuptools_scm import get_version
 
 sys.path.append(str(pathlib.Path(__file__).parent.resolve()))
 
@@ -20,7 +19,18 @@ class ResourceGeneratorMixin:
     setuptools commands.
     """
 
-    def generate_resources(self):
+    def _should_build_docs(self):
+        """Determine if documentation should be built based on environment variable."""
+        # Set this environment variable to build docs:
+        # IMAS_BUILD_DOCS=1 pip install ".[docs]"
+        # or just: IMAS_BUILD_DOCS=1 pip install .
+        build_docs_flag = os.getenv("IMAS_BUILD_DOCS", "").strip().lower()
+        build_docs = build_docs_flag in ("1", "true", "yes")
+        if build_docs:
+            print("[IMAS-DD] Documentation build enabled via IMAS_BUILD_DOCS")
+        return build_docs
+
+    def generate_resources(self, include_docs=False):
         """Generate all necessary resources for the data dictionary package."""
         from generate import (
             generate_dd_data_dictionary,
@@ -33,6 +43,23 @@ class ResourceGeneratorMixin:
         generate_dd_data_dictionary()
         generate_idsnames()
         generate_dd_data_dictionary_validation()
+
+        # Generate documentation if requested
+        if include_docs:
+            from generate import (
+                generate_html_documentation,
+                generate_ids_cocos_transformations_symbolic_table,
+                generate_idsdef_js,
+            )
+            from install import (
+                install_html_docs,
+            )
+
+            generate_html_documentation()
+            generate_ids_cocos_transformations_symbolic_table()
+            generate_idsdef_js()
+
+            install_html_docs()
 
         # Create the resources directory in the package
         install_dd_files()
@@ -50,8 +77,11 @@ class CustomInstallCommand(install, ResourceGeneratorMixin):
             install_identifiers_files,
         )
 
+        # Determine if docs should be built
+        include_docs = self._should_build_docs()
+
         # Generate resources using mixin
-        self.generate_resources()
+        self.generate_resources(include_docs=include_docs)
 
         # Additional install steps specific to full installation
         install_identifiers_files()
@@ -63,7 +93,8 @@ class BuildPyCommand(build_py, ResourceGeneratorMixin):
     """Custom build command that generates resources before building."""
 
     def run(self):
-        self.generate_resources()
+        include_docs = self._should_build_docs()
+        self.generate_resources(include_docs=include_docs)
         super().run()
 
 
@@ -74,7 +105,8 @@ class DevelopCommand(develop, ResourceGeneratorMixin):
     """
 
     def run(self):
-        self.generate_resources()
+        include_docs = self._should_build_docs()
+        self.generate_resources(include_docs=include_docs)
         super().run()
 
 

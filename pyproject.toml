@@ -43,12 +43,14 @@ packages = ["imas_data_dictionary"]
 [tool.setuptools.package-data]
 "imas_data_dictionary" = [
     "resources/schemas/**/*.xml",
+    "resources/docs/**/*",
     "resources/include/*.txt",  # note: kept for backward compatibility. 
     # TODO develop a more robust testing solution that does not rely on checking for `ERROR` in the inputs/dd_data_dictionary_validation.txt file
 ]
 
 [project.scripts]
 idsinfo = "imas_data_dictionary.idsinfo:main"
+dd_doc = "imas_data_dictionary.dd_doc:main"
 
 [tool.pytest.ini_options]
 testpaths = ["imas_data_dictionary/test"]
