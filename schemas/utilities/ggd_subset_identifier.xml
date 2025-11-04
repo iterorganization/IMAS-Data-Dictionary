@@ -67,4 +67,9 @@
 <int name="inner_target_separatrix"  description="Point on active separatrix at inner active target">104</int>
 <int name="outer_target_separatrix_2"  description="Point on non-active separatrix at outer non-active target">105</int>
 <int name="inner_target_separatrix_2"  description="Point on non-active separatrix at inner non-active target">106</int>
+<int name="4d_hypervolumes"  description="All 4D hypervolumes belonging to the associated spaces, implicit declaration (no need to replicate the grid elements in the grid_subset structure)">200</int>
+<int name="5d_hypervolumes"  description="All 5D hypervolumes belonging to the associated spaces, implicit declaration (no need to replicate the grid elements in the grid_subset structure)">201</int>
+<int name="6d_hypervolumes"  description="All 6D hypervolumes belonging to the associated spaces, implicit declaration (no need to replicate the grid elements in the grid_subset structure)">202</int>
+<int name="7d_hypervolumes"  description="All 7D hypervolumes belonging to the associated spaces, implicit declaration (no need to replicate the grid elements in the grid_subset structure)">203</int>
+<int name="8d_hypervolumes"  description="All 8D hypervolumes belonging to the associated spaces, implicit declaration (no need to replicate the grid elements in the grid_subset structure)">204</int>
 </constants>
