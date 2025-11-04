@@ -1,12 +1,12 @@
-from setuptools_scm import get_version
 import os
-import re
 import shutil
-import subprocess
-import saxonche
+
+import saxonche  # type: ignore[import-not-found]
+from setuptools_scm import get_version
 
 PWD = os.path.realpath(os.path.dirname(__file__))
 UAL = os.path.dirname(PWD)
+
 
 def join_path(path1="", path2=""):
     return os.path.normpath(os.path.join(path1, path2))
@@ -35,8 +35,10 @@ def generate_dd_data_dictionary(extra_opts=""):
     with saxonche.PySaxonProcessor(license=False) as proc:
         xsltproc = proc.new_xslt30_processor()
         xdm_ddgit = proc.make_string_value(DD_GIT_DESCRIBE)
-        xsltproc.set_parameter('DD_GIT_DESCRIBE', xdm_ddgit)
-        xsltproc.transform_to_file(source_file=dd_xsd, stylesheet_file=dd_xsl, output_file=dd_xml)
+        xsltproc.set_parameter("DD_GIT_DESCRIBE", xdm_ddgit)
+        xsltproc.transform_to_file(
+            source_file=dd_xsd, stylesheet_file=dd_xsl, output_file=dd_xml
+        )
 
     try:
         if not os.path.islink(join_path(PWD, "IDSDef.xml")):
@@ -53,8 +55,10 @@ def generate_html_documentation(extra_opts=""):
     with saxonche.PySaxonProcessor(license=False) as proc:
         xsltproc = proc.new_xslt30_processor()
         xdm_ddgit = proc.make_string_value(DD_GIT_DESCRIBE)
-        xsltproc.set_parameter('DD_GIT_DESCRIBE', xdm_ddgit)
-        xsltproc.transform_to_file(source_file=dd_xml, stylesheet_file=doc_xsl, output_file=doc_html)
+        xsltproc.set_parameter("DD_GIT_DESCRIBE", xdm_ddgit)
+        xsltproc.transform_to_file(
+            source_file=dd_xml, stylesheet_file=doc_xsl, output_file=doc_html
+        )
 
     shutil.copy(
         "schemas/utilities/coordinate_identifier.xml",
@@ -63,33 +67,43 @@ def generate_html_documentation(extra_opts=""):
 
 
 def generate_ids_cocos_transformations_symbolic_table(extra_opts=""):
-    print("generating html_documentation/cocos/ids_cocos_transformations_symbolic_table.csv")
+    print(
+        "generating html_documentation/cocos/ids_cocos_transformations_symbolic_table.csv"
+    )
     with saxonche.PySaxonProcessor(license=False) as proc:
         xsltproc = proc.new_xslt30_processor()
         xdm_ddgit = proc.make_string_value(DD_GIT_DESCRIBE)
-        xsltproc.set_parameter('DD_GIT_DESCRIBE', xdm_ddgit)
-        xsltproc.transform_to_file(source_file=dd_xml, stylesheet_file=cocos_xsl, output_file=cocos_csv)
+        xsltproc.set_parameter("DD_GIT_DESCRIBE", xdm_ddgit)
+        xsltproc.transform_to_file(
+            source_file=dd_xml, stylesheet_file=cocos_xsl, output_file=cocos_csv
+        )
 
 
 def generate_idsnames():
     print("generating IDSNames.txt")
     with saxonche.PySaxonProcessor(license=False) as proc:
         xsltproc = proc.new_xslt30_processor()
-        xsltproc.transform_to_file(source_file=dd_xml, stylesheet_file=names_xsl, output_file=names_txt)
+        xsltproc.transform_to_file(
+            source_file=dd_xml, stylesheet_file=names_xsl, output_file=names_txt
+        )
 
-        
+
 def generate_dd_data_dictionary_validation(extra_opts=""):
     print("dd_data_dictionary_validation.txt")
     with saxonche.PySaxonProcessor(license=False) as proc:
         xsltproc = proc.new_xslt30_processor()
-        xsltproc.transform_to_file(source_file=dd_xml, stylesheet_file=valid_xsl, output_file=valid_txt)
+        xsltproc.transform_to_file(
+            source_file=dd_xml, stylesheet_file=valid_xsl, output_file=valid_txt
+        )
 
 
 def generate_idsdef_js():
     print("Generating docs/_static/IDSDefxml.js")
     with saxonche.PySaxonProcessor(license=False) as proc:
         xsltproc = proc.new_xslt30_processor()
-        xsltproc.transform_to_file(source_file=dd_xml, stylesheet_file=js_xsl, output_file=js_def)
+        xsltproc.transform_to_file(
+            source_file=dd_xml, stylesheet_file=js_xsl, output_file=js_def
+        )
 
 
 if __name__ == "__main__":
