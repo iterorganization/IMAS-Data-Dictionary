@@ -12,9 +12,28 @@ import webbrowser
 from pathlib import Path
 
 
+def get_docs_url():
+    """Get the appropriate ReadTheDocs URL based on package version."""
+    try:
+        from imas_data_dictionary._version import __version__
+        
+        version = __version__
+        
+        # Check if this is a development version
+        if "dev" in version.lower() or "post" in version.lower():
+            # Development versions use 'latest'
+            return "https://imas-data-dictionary.readthedocs.io/en/latest/"
+        else:
+            # Release versions use the specific version number
+            return f"https://imas-data-dictionary.readthedocs.io/en/{version}/"
+    except Exception:
+        # Fallback to latest if version can't be determined
+        return "https://imas-data-dictionary.readthedocs.io/en/latest/"
+
+
 def open_online_docs():
     """Open the online documentation on ReadTheDocs."""
-    doc_url = "https://imas-data-dictionary.readthedocs.io/en/latest/"
+    doc_url = get_docs_url()
     print(f"[IMAS-DD] Opening online documentation: {doc_url}")
     
     success = webbrowser.open(doc_url)
