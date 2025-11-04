@@ -22,8 +22,7 @@ class ResourceGeneratorMixin:
     def _should_build_docs(self):
         """Determine if documentation should be built based on environment variable."""
         # Set this environment variable to build docs:
-        # IMAS_BUILD_DOCS=1 pip install ".[docs]"
-        # or just: IMAS_BUILD_DOCS=1 pip install .
+        # IMAS_BUILD_DOCS=1 pip install .
         build_docs_flag = os.getenv("IMAS_BUILD_DOCS", "").strip().lower()
         build_docs = build_docs_flag in ("1", "true", "yes")
         if build_docs:
