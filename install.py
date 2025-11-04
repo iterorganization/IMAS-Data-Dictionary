@@ -1,9 +1,10 @@
-from pathlib import Path
-from setuptools_scm import get_version
+import logging
 import os
 import pathlib
 import shutil
-import logging
+from pathlib import Path
+
+from setuptools_scm import get_version
 
 # Configure logging
 logging.basicConfig(
@@ -46,11 +47,10 @@ htmldoc = [
 ]
 
 
-
 def install_html_docs():
     """
     Install HTML documentation to the package resources directory.
-    
+
     Copies generated HTML documentation
     """
     logger.info("[IMAS-DD] Starting HTML documentation installation")
@@ -58,15 +58,15 @@ def install_html_docs():
         # Build destination path
         resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
         resources_dir.mkdir(parents=True, exist_ok=True)
-        
+
         docs_dir = resources_dir / "docs"
         docs_dir.mkdir(parents=True, exist_ok=True)
-        
+
         legacy_dir = docs_dir / "legacy"
         legacy_dir.mkdir(parents=True, exist_ok=True)
-        
+
         html_docs_dir = Path("html_documentation")
-        
+
         logger.info(f"[IMAS-DD] Source: {html_docs_dir}")
         logger.info(f"[IMAS-DD] Destination: {legacy_dir}")
 
@@ -79,27 +79,29 @@ def install_html_docs():
                 "[IMAS-DD] Proceeding with installation without HTML documentation"
             )
             return
-        
+
         if not html_docs_dir.is_dir():
             logger.error(f"[IMAS-DD] Source path is not a directory: {html_docs_dir}")
             raise NotADirectoryError(f"Expected directory, got file: {html_docs_dir}")
-        
+
         # Remove existing destination if present
         if legacy_dir.exists():
             logger.info(f"[IMAS-DD] Removing existing destination: {legacy_dir}")
             shutil.rmtree(legacy_dir)
-        
+
         # Ensure parent directory exists
         legacy_dir.parent.mkdir(parents=True, exist_ok=True)
-        
+
         # Copy documentation
         logger.info(f"[IMAS-DD] Copying HTML docs from {html_docs_dir} to {legacy_dir}")
         shutil.copytree(html_docs_dir, legacy_dir)
-        
+
         # Check if there's a nested html_documentation directory and flatten it
         nested_dir = legacy_dir / "html_documentation"
         if nested_dir.exists() and nested_dir.is_dir():
-            logger.info(f"[IMAS-DD] Found nested html_documentation directory, flattening structure")
+            logger.info(
+                "[IMAS-DD] Found nested html_documentation directory, flattening structure"
+            )
             # Move files from nested directory to parent
             for item in nested_dir.iterdir():
                 dest_path = legacy_dir / item.name
@@ -111,15 +113,20 @@ def install_html_docs():
                         dest_path.unlink()
                 # Move the item
                 shutil.move(str(item), str(dest_path))
-                logger.debug(f"[IMAS-DD] Moved {item.name} from nested to legacy directory")
+                logger.debug(
+                    f"[IMAS-DD] Moved {item.name} from nested to legacy directory"
+                )
             # Remove the now-empty nested directory
             shutil.rmtree(nested_dir)
-            logger.info(f"[IMAS-DD] Removed nested html_documentation directory")
-        
+            logger.info("[IMAS-DD] Removed nested html_documentation directory")
+
         logger.info("[IMAS-DD] HTML documentation installation completed successfully")
-        
+
     except Exception as e:
-        logger.error(f"[IMAS-DD] Error during HTML documentation installation: {e}", exc_info=True)
+        logger.error(
+            f"[IMAS-DD] Error during HTML documentation installation: {e}",
+            exc_info=True,
+        )
         raise
 
 
