@@ -2,17 +2,37 @@
 """
 Open IMAS Data Dictionary documentation in default browser.
 
-This script locates and opens the HTML documentation that was installed
-with the imas-data-dictionary package.
+By default, opens the online documentation at ReadTheDocs.
+Use -l/--legacy flag to open the local HTML documentation from package resources.
 """
 
+import argparse
 import sys
 import webbrowser
 from pathlib import Path
 
 
-def main():
-    """Open the IMAS Data Dictionary documentation in the default browser."""
+def open_online_docs():
+    """Open the online documentation on ReadTheDocs."""
+    doc_url = "https://imas-data-dictionary.readthedocs.io/en/latest/"
+    print(f"[IMAS-DD] Opening online documentation: {doc_url}")
+    
+    success = webbrowser.open(doc_url)
+    
+    if success:
+        print("[IMAS-DD] Documentation opened in default browser")
+        sys.exit(0)
+    else:
+        print(
+            "[IMAS-DD] Warning: Could not open browser, please open manually:",
+            file=sys.stderr,
+        )
+        print(f"  {doc_url}", file=sys.stderr)
+        sys.exit(1)
+
+
+def open_legacy_docs():
+    """Open the local legacy HTML documentation from package resources."""
     try:
         # find documentation files using importlib.resources
         try:
@@ -55,7 +75,7 @@ def main():
             )
 
         if not Path(doc_file).exists():
-            print("[IMAS-DD] Error: Documentation file not found", file=sys.stderr)
+            print("[IMAS-DD] Error: Legacy documentation file not found", file=sys.stderr)
             print("[IMAS-DD] Searched locations:", file=sys.stderr)
             print(f"  - {doc_file}", file=sys.stderr)
             print(
@@ -68,7 +88,7 @@ def main():
         # Convert to file:// URL for browser
         doc_url = Path(doc_file).as_uri()
 
-        print(f"[IMAS-DD] Opening documentation: {doc_file}")
+        print(f"[IMAS-DD] Opening legacy documentation: {doc_file}")
         print(f"[IMAS-DD] URL: {doc_url}")
 
         # Open in default browser
@@ -82,12 +102,33 @@ def main():
                 "[IMAS-DD] Warning: Could not open browser, please open manually:",
                 file=sys.stderr,
             )
-            print(f"  file://{Path(doc_file).as_uri()}", file=sys.stderr)
+            print(f"  {doc_url}", file=sys.stderr)
             sys.exit(1)
 
     except Exception as e:
         print(f"[IMAS-DD] Error: {e}", file=sys.stderr)
         sys.exit(1)
+
+
+def main():
+    """Main entry point with argument parsing."""
+    parser = argparse.ArgumentParser(
+        prog="dd_doc",
+        description="Open IMAS Data Dictionary documentation",
+    )
+    parser.add_argument(
+        "-l",
+        "--legacy",
+        action="store_true",
+        help="Open local legacy HTML documentation instead of online version",
+    )
+    
+    args = parser.parse_args()
+    
+    if args.legacy:
+        open_legacy_docs()
+    else:
+        open_online_docs()
 
 
 if __name__ == "__main__":
