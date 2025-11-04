@@ -1,9 +1,10 @@
-from pathlib import Path
-from setuptools_scm import get_version
+import logging
 import os
 import pathlib
 import shutil
-import logging
+from pathlib import Path
+
+from setuptools_scm import get_version
 
 # Configure logging
 logging.basicConfig(
@@ -46,38 +47,87 @@ htmldoc = [
 ]
 
 
-def install_sphinx_docs():
-    print("Installing Sphinx files")
-    sourcedir = Path("docs/_build/html")
-    destdir = Path(sphinxdir)
-
-    if sourcedir.exists() and sourcedir.is_dir():
-        if destdir.exists():
-            shutil.rmtree(
-                destdir
-            )  # Remove existing destination directory to avoid errors
-        shutil.copytree(sourcedir, destdir)
-    else:
-        print(
-            "Proceeding with installation without the Sphinx documentation since it could not be found"
-        )
-
-
 def install_html_docs():
-    imas_dir = Path(htmldir) / "imas"
-    imas_dir.mkdir(parents=True, exist_ok=True)
+    """
+    Install HTML documentation to the package resources directory.
 
-    html_docs_dir = Path("html_documentation")
-    if html_docs_dir.exists() and html_docs_dir.is_dir():
-        if imas_dir.exists():
-            shutil.rmtree(
-                imas_dir
-            )  # Remove existing destination directory to avoid errors
-        shutil.copytree(html_docs_dir, imas_dir)
-    else:
-        print(
-            "Proceeding with installation without the html documentation since it could not be found"
+    Copies generated HTML documentation
+    """
+    logger.info("[IMAS-DD] Starting HTML documentation installation")
+    try:
+        # Build destination path
+        resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
+        resources_dir.mkdir(parents=True, exist_ok=True)
+
+        docs_dir = resources_dir / "docs"
+        docs_dir.mkdir(parents=True, exist_ok=True)
+
+        legacy_dir = docs_dir / "legacy"
+        legacy_dir.mkdir(parents=True, exist_ok=True)
+
+        html_docs_dir = Path("html_documentation")
+
+        logger.info(f"[IMAS-DD] Source: {html_docs_dir}")
+        logger.info(f"[IMAS-DD] Destination: {legacy_dir}")
+
+        # Validate source exists and is a directory
+        if not html_docs_dir.exists():
+            logger.warning(
+                f"[IMAS-DD] HTML documentation source not found at {html_docs_dir}"
+            )
+            logger.info(
+                "[IMAS-DD] Proceeding with installation without HTML documentation"
+            )
+            return
+
+        if not html_docs_dir.is_dir():
+            logger.error(f"[IMAS-DD] Source path is not a directory: {html_docs_dir}")
+            raise NotADirectoryError(f"Expected directory, got file: {html_docs_dir}")
+
+        # Remove existing destination if present
+        if legacy_dir.exists():
+            logger.info(f"[IMAS-DD] Removing existing destination: {legacy_dir}")
+            shutil.rmtree(legacy_dir)
+
+        # Ensure parent directory exists
+        legacy_dir.parent.mkdir(parents=True, exist_ok=True)
+
+        # Copy documentation
+        logger.info(f"[IMAS-DD] Copying HTML docs from {html_docs_dir} to {legacy_dir}")
+        shutil.copytree(html_docs_dir, legacy_dir)
+
+        # Check if there's a nested html_documentation directory and flatten it
+        nested_dir = legacy_dir / "html_documentation"
+        if nested_dir.exists() and nested_dir.is_dir():
+            logger.info(
+                "[IMAS-DD] Found nested html_documentation directory, flattening structure"
+            )
+            # Move files from nested directory to parent
+            for item in nested_dir.iterdir():
+                dest_path = legacy_dir / item.name
+                # If item already exists at destination, remove it first
+                if dest_path.exists():
+                    if dest_path.is_dir():
+                        shutil.rmtree(dest_path)
+                    else:
+                        dest_path.unlink()
+                # Move the item
+                shutil.move(str(item), str(dest_path))
+                logger.debug(
+                    f"[IMAS-DD] Moved {item.name} from nested to legacy directory"
+                )
+            # Remove the now-empty nested directory
+            shutil.rmtree(nested_dir)
+            logger.info("[IMAS-DD] Removed nested html_documentation directory")
+
+        logger.info("[IMAS-DD] HTML documentation installation completed successfully")
+
+    except Exception as e:
+        logger.error(
+            f"[IMAS-DD] Error during HTML documentation installation: {e}",
+            exc_info=True,
         )
+        raise
 
 
 def install_dd_files():
@@ -159,6 +209,5 @@ def install_identifiers_files():
 
 if __name__ == "__main__":
     install_html_docs()
-    install_sphinx_docs()
     install_dd_files()
     install_identifiers_files()
