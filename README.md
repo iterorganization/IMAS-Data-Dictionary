@@ -118,7 +118,7 @@ providing feedback, please see the [contributing guidelines](CONTRIBUTING.md).
 
 ## Legal
 
-Copyright 2012-2024, ITER Organization, Route de Vinon-sur-Verdon, CS 90 046,
+Copyright 2012-2025, ITER Organization, Route de Vinon-sur-Verdon, CS 90 046,
 13067 St-Paul-lez-Durance Cedex, France.
 
 This repository contains data schemas and software that are subject to different
