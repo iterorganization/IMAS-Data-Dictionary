@@ -6999,7 +6999,7 @@
 				<xs:annotation>
 					<xs:documentation>Value of the distribution function at the grid position in phase space. The interpolation coefficients refer to a C-2 spline.</xs:documentation>
 					<xs:appinfo>
-						<units>m^-6.s^-3</units>
+						<units>(m.s^-1)^-3.m^-3</units>
 						<introduced_after_version>3.41.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
@@ -14629,7 +14629,7 @@
 				<xs:annotation>
 					<xs:documentation>Position of the center of the sphere which defines the mirror, in the case of a spherical mirror (geometry_type = 2), derived from the above geometric data</xs:documentation>
 					<xs:appinfo>
-					<introduced_after_version>4.0.0</introduced_after_version>
+						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
