@@ -38,6 +38,8 @@ Materials used in the device mechanical structures
 <int name="CZT"              description="Cadmium zinc telluride">28</int>
 <int name="115In"    alias="In_115"          description="Indium 115 isotope">29</int>
 <int name="4He"  alias="He_4"               description="Helium 4 isotope">30</int>
+<int name="H2O"                 description="Water">31</int>
+<int name="LiPb"                 description="Lithium-lead">32</int>
 
 
 </constants>
