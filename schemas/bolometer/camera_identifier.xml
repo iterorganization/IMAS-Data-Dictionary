@@ -4,6 +4,6 @@
 <ddInstance xpath="/bolometer/camera/type"/>
 
 <int name="pinhole"      description="Pinhole camera">1</int>
-<int name="collimator"  description="Collimator camera">2</int>
-<int name="other"         description="Other camera type">3</int>
+<int name="collimator"   description="Collimator camera">2</int>
+<int name="other"        description="Other camera type">3</int>
 </constants>
