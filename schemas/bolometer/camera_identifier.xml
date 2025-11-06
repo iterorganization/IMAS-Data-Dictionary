@@ -3,7 +3,7 @@
 <header> Translation table for camera_identifier definitions </header>
 <ddInstance xpath="/bolometer/camera/type"/>
 
+<int name="other"        description="Other camera type">0</int>
 <int name="pinhole"      description="Pinhole camera">1</int>
 <int name="collimator"   description="Collimator camera">2</int>
-<int name="other"        description="Other camera type">3</int>
 </constants>
