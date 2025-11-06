@@ -6981,7 +6981,7 @@
 					<xs:documentation>Distribution function expanded into a vector of successive approximations. The first element in the vector (expansion(1)) is the zeroth order distribution function, while the K:th element in the vector (expansion(K)) is the K:th correction, such that the total distribution function is a sum over all elements in the expansion vector.</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>(m.s^-1)^-3.m^-3</units>
+						<units>m^-6.s^3</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -6999,7 +6999,7 @@
 				<xs:annotation>
 					<xs:documentation>Value of the distribution function at the grid position in phase space. The interpolation coefficients refer to a C-2 spline.</xs:documentation>
 					<xs:appinfo>
-						<units>(m.s^-1)^-3.m^-3</units>
+						<units>m^-6.s^3</units>
 						<introduced_after_version>3.41.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
