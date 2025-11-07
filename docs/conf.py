@@ -8,6 +8,7 @@ import os
 import subprocess
 import sys
 from git import Repo
+
 # Ensure that our extension module can be imported:
 sys.path.append(os.path.curdir)
 import sphinx_dd_extension.autodoc
@@ -21,18 +22,19 @@ copyright = f"{datetime.datetime.now().year}, ITER Organization"
 author = "ITER Organization"
 try:
     version = subprocess.check_output(["git", "describe"]).decode().strip()
-    last_tag = subprocess.check_output(["git", "describe", "--abbrev=0"]).decode().strip()
+    last_tag = (
+        subprocess.check_output(["git", "describe", "--abbrev=0"]).decode().strip()
+    )
     is_develop = version != last_tag
 except Exception as _:
     os.chdir("..")
     from setuptools_scm import get_version
-    version=get_version()
-    is_develop="dev" in version
+
+    version = get_version()
+    is_develop = "dev" in version
     os.chdir("docs")
 
-html_context = {
-    "is_develop": is_develop
-}
+html_context = {"is_develop": is_develop}
 
 language = "en"
 
@@ -123,8 +125,7 @@ html_theme_options = {
             },
         },
     ],
-    "version_dropdown": True,
-    "version_json": "../versions.js",
+    "version_dropdown": False,
 }
 
 html_static_path = ["_static"]
