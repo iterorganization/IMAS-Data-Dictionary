@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constants create_mapping_function="yes" identifier="yes" name="camera_identifier">
+<header> Translation table for camera_identifier definitions </header>
+<ddInstance xpath="/bolometer/camera/type"/>
+
+<int name="other"        description="Other camera type">0</int>
+<int name="pinhole"      description="Pinhole camera">1</int>
+<int name="collimator"   description="Collimator camera">2</int>
+</constants>
