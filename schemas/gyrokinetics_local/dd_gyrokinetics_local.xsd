@@ -678,6 +678,149 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="gyrokinetics_moments_nl">
+		<xs:annotation>
+			<xs:documentation>Turbulent moments for non-linear simulations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>normalized density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="j_parallel">
+				<xs:annotation>
+					<xs:documentation>normalized parallel current density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_parallel">
+				<xs:annotation>
+					<xs:documentation>Normalized parallel pressure</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Normalized perpendicular pressure</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Normalised pressure, defined as the sum of pressure_parallel and pressure_perpendicular</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="heat_flux_parallel">
+				<xs:annotation>
+					<xs:documentation>Normalized parallel heat flux (integral of 0.5 * m * v_par * v^2)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v_parallel_energy_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Normalized moment (integral over 0.5 * m * v_par * v_perp^2)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v_perpendicular_square_energy">
+				<xs:annotation>
+					<xs:documentation>Normalized moment (integral over 0.5 * m * v_perp^2 * v^2)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_5D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="gyrokinetics_fields_nl_1d">
 		<xs:annotation>
 			<xs:documentation>Fields intensity, 1D, flux surface averaged, summed over kx, time averaged, non-linear</xs:documentation>
@@ -2919,6 +3062,38 @@
 					<xs:documentation>1D fluxes (flux-surface and time averaged), summed over kx and ky in the rotating frame</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="moments_norm_gyrocenter" type="gyrokinetics_moments_nl">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moments_norm_particle" type="gyrokinetics_moments_nl">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of particles</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moments_norm_gyrocenter_bessel_0" type="gyrokinetics_moments_nl">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters times 0th order Bessel function of the first kind</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moments_norm_gyrocenter_bessel_1" type="gyrokinetics_moments_nl">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters times 1st order Bessel function of the first kind</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="gyrokinetics_local">
@@ -2927,7 +3102,7 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.40.0</lifecycle_version>
-				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
 				<change_nbc_version>3.40.0</change_nbc_version>
 				<change_nbc_description>ids_renamed</change_nbc_description>
 				<change_nbc_previous_name>gyrokinetics</change_nbc_previous_name>
