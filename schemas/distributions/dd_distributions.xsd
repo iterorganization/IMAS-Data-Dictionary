@@ -2887,7 +2887,7 @@
 			</xs:element>
 			<xs:element name="r">
 				<xs:annotation>
-					<xs:documentation>Major radius (for plotting purposes, if the 2D grid is not given in (R,Z))</xs:documentation>
+					<xs:documentation>Major radius (if 2D grid is not given in (R,Z))</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
@@ -2902,7 +2902,7 @@
 			</xs:element>
 			<xs:element name="z">
 				<xs:annotation>
-					<xs:documentation>Height (for plotting purposes, if the 2D grid is not given in (R,Z))</xs:documentation>
+					<xs:documentation>Height (if 2D grid is not given in (R,Z))</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
 						<coordinate2>../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
