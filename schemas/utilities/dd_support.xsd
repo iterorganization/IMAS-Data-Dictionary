@@ -6935,7 +6935,7 @@
 					<xs:documentation>Energy, for various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>J</units>
+						<units>eV</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -7076,11 +7076,11 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="motion_invariants_volume" type="generic_grid_scalar">
+			<xs:element name="motion_invariants_volume_norm" type="generic_grid_scalar">
 				<xs:annotation>
-					<xs:documentation>Normalised volume of the CoM (constants of motion) cell elements</xs:documentation>
+					<xs:documentation>Normalised volume of the CoM (constants of motion) cell elements. The normalization is made on the maximum value of the CoM volume on the grid, i.e. Delta(E).Delta(lambda).Delta(P_phi).</xs:documentation>
 					<xs:appinfo>
-						<units>T.m^2.J</units>
+						<units>1</units>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
 				</xs:annotation>
