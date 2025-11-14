@@ -31,7 +31,8 @@ jobs:
         # Copy Data Dictionary definitions:
         cp IDSDef.xml '_destination/data-dictionary/${{ github.ref_name }}.xml'
         # Synchronize identifiers
-        cp -f schemas/*/*_identifier.xml _destination/identifiers
+        cd schemas
+        cp -f --parents */*_identifier.xml ../_destination/identifiers
     - name: Create PR
       env:
         GITHUB_TOKEN: ${{ secrets.IMAS_DATA_DICTIONARIES_SECRET }}
