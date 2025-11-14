@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="mhd_coordinate_system">
+		<xs:annotation>
+			<xs:documentation>Flux surface coordinate system on a square grid of flux and poloidal angle</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Selection of one of a set of grid types</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/poloidal_plane_coordinates_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid" type="equilibrium_profiles_2d_grid">
+				<xs:annotation>
+					<xs:documentation>Definition of the 2D grid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Values of the major radius on the grid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Values of the Height on the grid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="jacobian">
+				<xs:annotation>
+					<xs:documentation>Absolute value of the jacobian of the coordinate system</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tensor_covariant">
+				<xs:annotation>
+					<xs:documentation>Covariant metric tensor on every point of the grid described by grid_type</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<coordinate3>1...3</coordinate3>
+						<coordinate4>1...3</coordinate4>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tensor_contravariant">
+				<xs:annotation>
+					<xs:documentation>Contravariant metric tensor on every point of the grid described by grid_type</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<coordinate3>1...3</coordinate3>
+						<coordinate4>1...3</coordinate4>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="complex_2d_dynamic_aos_mhd_linear_vector">
+		<xs:annotation>
+			<xs:documentation>Structure (temporary) for real and imaginary part, while waiting for the implementation of complex numbers, dynamic within a type 3 array of structure (index on time))</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="real">
+				<xs:annotation>
+					<xs:documentation>Real part</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>as_parent</units>
+						<coordinate1>../../../grid/dim1</coordinate1>
+						<coordinate2>../../../grid/dim2</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="imaginary">
+				<xs:annotation>
+					<xs:documentation>Imaginary part</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>as_parent</units>
+						<coordinate1>../../../grid/dim1</coordinate1>
+						<coordinate2>../../../grid/dim2</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="coefficients_real">
+				<xs:annotation>
+					<xs:documentation>Interpolation coefficients, to be used for a high precision evaluation of the physical quantity (real part) with finite elements, provided on the 2D grid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/dim1</coordinate1>
+						<coordinate2>../../../grid/dim2</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="coefficients_imaginary">
+				<xs:annotation>
+					<xs:documentation>Interpolation coefficients, to be used for a high precision evaluation of the physical quantity (imaginary part) with finite elements, provided on the 2D grid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/dim1</coordinate1>
+						<coordinate2>../../../grid/dim2</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="complex_2d_dynamic_aos_mhd_scalar">
+		<xs:annotation>
+			<xs:documentation>Structure (temporary) for real and imaginary part, while waiting for the implementation of complex numbers, dynamic within a type 3 array of structure (index on time))</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="real">
+				<xs:annotation>
+					<xs:documentation>Real part</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>as_parent</units>
+						<coordinate1>../../grid/dim1</coordinate1>
+						<coordinate2>../../grid/dim2</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="imaginary">
+				<xs:annotation>
+					<xs:documentation>Imaginary part</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>as_parent</units>
+						<coordinate1>../../grid/dim1</coordinate1>
+						<coordinate2>../../grid/dim2</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="coefficients_real">
+				<xs:annotation>
+					<xs:documentation>Interpolation coefficients, to be used for a high precision evaluation of the physical quantity (real part) with finite elements, provided on the 2D grid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../grid/dim1</coordinate1>
+						<coordinate2>../../grid/dim2</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="coefficients_imaginary">
+				<xs:annotation>
+					<xs:documentation>Interpolation coefficients, to be used for a high precision evaluation of the physical quantity (imaginary part) with finite elements, provided on the 2D grid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../grid/dim1</coordinate1>
+						<coordinate2>../../grid/dim2</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="complex_1d_mhd_alfven_spectrum">
+		<xs:annotation>
+			<xs:documentation>Structure for real and imaginary part of the shear Alfven spectrum</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="real">
+				<xs:annotation>
+					<xs:documentation>Real part of the frequency, for a given radial position and every root found at this position</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s^-1</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="imaginary">
+				<xs:annotation>
+					<xs:documentation>Imaginary part of the frequency, for a given radial position and every root found at this position</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s^-1</units>
+						<coordinate1>../real</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="complex_3d_mhd_stress_tensor">
+		<xs:annotation>
+			<xs:documentation>Structure for real and imaginary part of MHD stress tensors</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="real">
+				<xs:annotation>
+					<xs:documentation>Real part of the stress tensor, for various radial positions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../grid/dim1</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<coordinate3>1...N</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="imaginary">
+				<xs:annotation>
+					<xs:documentation>Imaginary part of the stress tensor, for various radial positions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s^-1</units>
+						<units>N.m^-2</units>
+						<coordinate1>../../grid/dim1</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<coordinate2_same_as>../real</coordinate2_same_as>
+						<coordinate3>1...N</coordinate3>
+						<coordinate3_same_as>../real</coordinate3_same_as>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mhd_linear_vector">
+		<xs:annotation>
+			<xs:documentation>Vector structure for the MHD IDS</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="coordinate1" type="complex_2d_dynamic_aos_mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>First coordinate (radial)</xs:documentation>
+					<xs:appinfo>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinate2" type="complex_2d_dynamic_aos_mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Second coordinate (poloidal)</xs:documentation>
+					<xs:appinfo>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinate3" type="complex_2d_dynamic_aos_mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Third coordinate (toroidal)</xs:documentation>
+					<xs:appinfo>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mhd_linear_time_slice_toroidal_mode_vacuum">
+		<xs:annotation>
+			<xs:documentation>MHD modes in the vacuum</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Selection of one of a set of grid types</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/poloidal_plane_coordinates_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid" type="equilibrium_profiles_2d_grid">
+				<xs:annotation>
+					<xs:documentation>Definition of the 2D grid (the content of dim1 and dim2 is defined by the selected grid_type)</xs:documentation>
+					<xs:appinfo>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>mhd_linear.time_slice{i}.toroidal_mode{j}.vacuum</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinate_system" type="mhd_coordinate_system">
+				<xs:annotation>
+					<xs:documentation>Flux surface coordinate system of the equilibrium used for the MHD calculation on a square grid of flux and poloidal angle</xs:documentation>
+					<xs:appinfo>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>mhd_linear.time_slice{i}.toroidal_mode{j}.vacuum.coordinate_system</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="a_field_perturbed" type="mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Pertubed vector potential for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>T.m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_perturbed" type="mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Pertubed magnetic field for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mhd_linear_time_slice_toroidal_mode_plasma">
+		<xs:annotation>
+			<xs:documentation>MHD modes in the confined plasma</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Selection of one of a set of grid types</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/poloidal_plane_coordinates_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid" type="equilibrium_profiles_2d_grid">
+				<xs:annotation>
+					<xs:documentation>Definition of the 2D grid (the content of dim1 and dim2 is defined by the selected grid_type)</xs:documentation>
+					<xs:appinfo>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>mhd_linear.time_slice{i}.toroidal_mode{j}.plasma</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinate_system" type="mhd_coordinate_system">
+				<xs:annotation>
+					<xs:documentation>Flux surface coordinate system of the equilibrium used for the MHD calculation on a square grid of flux and poloidal angle</xs:documentation>
+					<xs:appinfo>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>mhd_linear.time_slice{i}.toroidal_mode{j}.plasma.coordinate_system</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="displacement_perpendicular" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Perpendicular displacement of the modes</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="displacement_parallel" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Parallel displacement of the modes</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tau_alfven">
+				<xs:annotation>
+					<xs:documentation>Alven time=R/vA=R0 sqrt(mi ni(rho))/B0</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tau_resistive">
+				<xs:annotation>
+					<xs:documentation>Resistive time = mu_0 rho*rho/1.22/eta_neo</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_perturbed" type="mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Pertubed vector potential for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>T.m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_perturbed" type="mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Pertubed magnetic field for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_perturbed" type="mhd_linear_vector">
+				<xs:annotation>
+					<xs:documentation>Pertubed velocity for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pressure_perturbed" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Perturbed pressure for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>Pa</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mass_density_perturbed" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Perturbed mass density for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>kg.m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="temperature_perturbed" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Perturbed temperature for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phi_potential_perturbed" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Perturbed electrostatic potential for given toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="psi_potential_perturbed" type="complex_2d_dynamic_aos_mhd_scalar">
+				<xs:annotation>
+					<xs:documentation>Perturbed electromagnetic super-potential for given toroidal mode number, see ref [Antonsen/Lane Phys Fluids 23(6) 1980, formula 34], so that A_field_parallel=1/(i*2pi*frequency) (grad psi_potential)_parallel</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alfven_frequency_spectrum" type="complex_1d_mhd_alfven_spectrum" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Local shear Alfven spectrum as a function of radius (only in case grid/dim1 is a radial coordinate)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/dim1</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stress_maxwell" type="complex_3d_mhd_stress_tensor">
+				<xs:annotation>
+					<xs:documentation>Maxwell stress tensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stress_reynolds" type="complex_3d_mhd_stress_tensor">
+				<xs:annotation>
+					<xs:documentation>Reynolds stress tensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ntv" type="complex_3d_mhd_stress_tensor">
+				<xs:annotation>
+					<xs:documentation>Neoclassical toroidal viscosity tensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mhd_linear_time_slice_toroidal_modes">
+		<xs:annotation>
+			<xs:documentation>Vector of toroidal modes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="perturbation_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Type of the perturbation</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>mhd_linear/mhd_linear_perturbation_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal mode number of the MHD mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="m_pol_dominant">
+				<xs:annotation>
+					<xs:documentation>Dominant poloidal mode number defining the mode rational surface; for TAEs the lower of the two main m's has to be specified</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ballooning_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Ballooning type of the mode : ballooning 0; anti-ballooning:1; flute-like:2</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>mhd_linear/mhd_linear_perturbation_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radial_mode_number">
+				<xs:annotation>
+					<xs:documentation>Radial mode number</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="growthrate">
+				<xs:annotation>
+					<xs:documentation>Linear growthrate of the mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency">
+				<xs:annotation>
+					<xs:documentation>Frequency of the mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phase">
+				<xs:annotation>
+					<xs:documentation>Additional phase offset of mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_perturbed">
+				<xs:annotation>
+					<xs:documentation>Perturbed energy associated to the mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="amplitude_multiplier">
+				<xs:annotation>
+					<xs:documentation>Multiplier that is needed to convert the linear mode structures to the amplitude of a non-linearly saturated mode in physical units. If empty, it means that the structures contains no information about non-linearly saturated mode</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="plasma" type="mhd_linear_time_slice_toroidal_mode_plasma">
+				<xs:annotation>
+					<xs:documentation>MHD modes in the confined plasma</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vacuum" type="mhd_linear_time_slice_toroidal_mode_vacuum">
+				<xs:annotation>
+					<xs:documentation>MHD modes in the vacuum</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mhd_linear_time_slice">
+		<xs:annotation>
+			<xs:documentation>Time slice description of linear MHD stability</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="toroidal_mode" type="mhd_linear_time_slice_toroidal_modes" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Vector of toroidal modes. Each mode is described as exp(i(n_tor.phi - m_pol.theta - 2.pi.frequency.t - phase)) </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mhd_linear">
+		<xs:annotation>
+			<xs:documentation>Magnetohydronamic linear stability</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.0.4</lifecycle_version>
+				<lifecycle_last_change>3.30.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="model_type" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Type of model used to populate this IDS</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>mhd_linear/mhd_linear_model_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="equations" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Type of MHD equations used to populate this IDS</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>mhd_linear/mhd_linear_equations_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fluids_n">
+					<xs:annotation>
+						<xs:documentation>Number of fluids considered in the model</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ideal_flag">
+					<xs:annotation>
+						<xs:documentation>1 if ideal MHD is used to populate this IDS, 0 for non-ideal MHD</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in rho_tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>mhd_linear.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="time_slice" type="mhd_linear_time_slice" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Core plasma radial profiles for various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

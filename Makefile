@@ -13,7 +13,7 @@ COCOS_FILES=$(wildcard $(addprefix html_documentation/cocos/,*.csv))
 UTILITIES_FILES=$(wildcard $(addprefix html_documentation/utilities/,*.*))
 
 # Identifiers definition files
-ID_IDENT = $(wildcard */*_identifier.xml)
+ID_IDENT = $(wildcard schemas/*/*_identifier.xml)
 ID_FILES = $(ID_IDENT)
 
 .PHONY: all clean test install
@@ -70,7 +70,7 @@ dd_data_dictionary.xml: %: %.xsd %.xsl
 
 html_documentation/html_documentation.html: dd_data_dictionary.xml dd_data_dictionary_html_documentation.xsl
 	$(xslt2proc)
-	cp utilities/coordinate_identifier.xml html_documentation/utilities/coordinate_identifier.xml
+	cp schemas/utilities/coordinate_identifier.xml html_documentation/utilities/coordinate_identifier.xml
 
 html_documentation/cocos/ids_cocos_transformations_symbolic_table.csv: dd_data_dictionary.xml ids_cocos_transformations_symbolic_table.csv.xsl
 	$(xslt2proc)

@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="spectro_vis_geometry_matrix_interpolated">
+		<xs:annotation>
+			<xs:documentation>Interpolated geometry matrix</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius of interpolation knots</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Height of interpolation knots</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>../r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above) of interpolation knots</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+						<coordinate1>../r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>Interpolated Ray Transfer Matrix (RTM, or geometry matrix), which provides transformation of the reflected light from each interpolation knot to the receiver (detector or head of an optic fibre). When convolving with an emission profile, the values must be interpolated to the emission grid and multiplied by the volume of the grid cells. The interpolated matrix is given on an array of interpolation knots of coordinates r, z and phi</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../r</coordinate1>
+						<units>m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_geometry_matrix_step2">
+		<xs:annotation>
+			<xs:documentation>Geometry matrix of the detector</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>The Ray Transfer Matrix (RTM, or geometry matrix) here provides transformation of the signal from each individual unit light source (voxel) to the receiver (detector or head of an optic fibre). The emission profile has [photons.m^-3.s^-1.sr^-1] units and radiance signal has [photons.m^-2.s^-1.sr^-1] units. So the RTM has [m] units. This data is stored in a sparse form, i.e. the array contains only the non-zero element of the Ray transfer matrix. The voxel index corresponding to an element of this array can be found in voxel_indices</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voxel_indices">
+				<xs:annotation>
+					<xs:documentation>List of voxel indices (defined in the voxel map) used in the sparse data array</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../data</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_geometry_matrix">
+		<xs:annotation>
+			<xs:documentation>Geometry matrix of the detector</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="with_reflections" type="spectro_vis_geometry_matrix_step2">
+				<xs:annotation>
+					<xs:documentation>Geometry matrix with reflections</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="without_reflections" type="spectro_vis_geometry_matrix_step2">
+				<xs:annotation>
+					<xs:documentation>Geometry matrix without reflections</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="interpolated" type="spectro_vis_geometry_matrix_interpolated">
+				<xs:annotation>
+					<xs:documentation>Interpolated geometry matrix for reflected light</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voxel_map">
+				<xs:annotation>
+					<xs:documentation>Voxel map for geometry matrix. The cells with same number are merged in the computation into a single emission source meta-cell (the voxel). Cells with number -1 are excluded. Voxel count starts from 0.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../emission_grid/dim1</coordinate1>
+						<coordinate2>../emission_grid/dim2</coordinate2>
+						<coordinate3>../emission_grid/dim3</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voxels_n">
+				<xs:annotation>
+					<xs:documentation>Number of voxels defined in the voxel_map.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emission_grid" type="geometry_matrix_emission">
+				<xs:annotation>
+					<xs:documentation>Grid defining the light emission cells</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_wavelength_calibration">
+		<xs:annotation>
+			<xs:documentation>Wavelength calibration</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="offset">
+				<xs:annotation>
+					<xs:documentation>Offset</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gain">
+				<xs:annotation>
+					<xs:documentation>Gain</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_processed_line_filter">
+		<xs:annotation>
+			<xs:documentation>Description of a processed line for filter spectrometers</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the processed line. To avoid ambiguities, the following syntax is used : element with ionization state_wavelength in Angstrom (e.g. WI_4000)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Central wavelength of the processed line</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_processed_line">
+		<xs:annotation>
+			<xs:documentation>Description of a processed line for grating spectrometers</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the processed line. To avoid ambiguities, the following syntax is used : element with ionization state_wavelength in Angstrom (e.g. WI_4000)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Central wavelength of the processed line</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Calibrated, background subtracted radiance (integrated over the spectrum for this line)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Non-calibrated intensity (integrated over the spectrum for this line)</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_light_collection">
+		<xs:annotation>
+			<xs:documentation>Emission weights for various points</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>Values of the light collection efficiencies</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+						<coordinate1>../positions/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="positions" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>List of positions for which the light collection efficiencies are provided</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="detector_image_circular">
+		<xs:annotation>
+			<xs:documentation>Description of circular or elliptic observation cones</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="radius">
+				<xs:annotation>
+					<xs:documentation>Radius of the circle</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ellipticity">
+				<xs:annotation>
+					<xs:documentation>Ellipticity</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="detector_image">
+		<xs:annotation>
+			<xs:documentation>Description of the observation volume of the detector or detector pixel at the focal plane of the optical system. This is basically the image of the detector pixel on the focal plane</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="geometry_type">
+				<xs:annotation>
+					<xs:documentation>Type of geometry used to describe the image (1:'outline', 2:'circular')</xs:documentation>
+					<xs:appinfo>
+						<Type>static</Type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="outline" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Coordinates of the points shaping the polygon of the image</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="circular" type="detector_image_circular">
+				<xs:annotation>
+					<xs:documentation>Description of circular or elliptic image</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_isotopes_isotope">
+		<xs:annotation>
+			<xs:documentation>Isotope ratio</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element_constant" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (H, D, T, 3He, 4He)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_ratio">
+				<xs:annotation>
+					<xs:documentation>Ratio of the density of neutrals of this isotope over the summed neutral densities of all other isotopes described in the ../isotope array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cold_neutrals_fraction">
+				<xs:annotation>
+					<xs:documentation>Fraction of cold neutrals for this isotope (n_cold_neutrals/(n_cold_neutrals+n_hot_neutrals))</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="hot_neutrals_fraction">
+				<xs:annotation>
+					<xs:documentation>Fraction of hot neutrals for this isotope (n_hot_neutrals/(n_cold_neutrals+n_hot_neutrals))</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cold_neutrals_temperature">
+				<xs:annotation>
+					<xs:documentation>Temperature of cold neutrals for this isotope</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>eV</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="hot_neutrals_temperature">
+				<xs:annotation>
+					<xs:documentation>Temperature of hot neutrals for this isotope</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>eV</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Timebase for dynamic quantities at this level of the data structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_isotopes">
+		<xs:annotation>
+			<xs:documentation>Isotope ratios and related information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="validity_timed">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the isotope ratios as a function of time (0 means valid, negative values mean non-valid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="validity">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the isotope ratios for the whole acquisition period (0 means valid, negative values mean non-valid)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="signal_to_noise">
+				<xs:annotation>
+					<xs:documentation>Log10 of the ratio of the powers in two bands, one with the spectral lines of interest (signal) the other without spectral lines (noise).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>dB</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Fitting method used to calculate isotope ratios</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>spectrometer_visible/spectrometer_visible_method_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isotope" type="spectro_vis_channel_isotopes_isotope" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Set of isotopes</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Timebase for dynamic quantities at this level of the data structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_polarization">
+		<xs:annotation>
+			<xs:documentation>Physics quantities measured from polarized light spectroscopy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="e_field_lh_r">
+				<xs:annotation>
+					<xs:documentation>Lower Hybrid electric field component in the major radius direction</xs:documentation>
+					<xs:appinfo>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_lh_z">
+				<xs:annotation>
+					<xs:documentation>Lower Hybrid electric field component in the vertical direction</xs:documentation>
+					<xs:appinfo>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_lh_phi">
+				<xs:annotation>
+					<xs:documentation>Lower Hybrid electric field component in the toroidal direction</xs:documentation>
+					<xs:appinfo>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>e_field_lh_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_modulus">
+				<xs:annotation>
+					<xs:documentation>Modulus of the magnetic field (always positive, irrespective of the sign convention for the B-field direction), obtained from Zeeman effect fit</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_e">
+				<xs:annotation>
+					<xs:documentation>Electron density, obtained from Stark broadening fit</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_cold_neutrals">
+				<xs:annotation>
+					<xs:documentation>Fit of cold neutrals temperature</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_hot_neutrals">
+				<xs:annotation>
+					<xs:documentation>Fit of hot neutrals temperature</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_cold_neutrals">
+				<xs:annotation>
+					<xs:documentation>Projection of the cold neutral velocity along the line of sight, positive when going from first point to second point of the line of sight</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_hot_neutrals">
+				<xs:annotation>
+					<xs:documentation>Projection of the hot neutral velocity along the line of sight, positive when going from first point to second point of the line of sight</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Timebase for dynamic quantities at this level of the data structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_resolution">
+		<xs:annotation>
+			<xs:documentation>In case of active spectroscopy, spatial resolution of the measurement</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="centre" type="rphiz0d_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Position of the centre of the spatially resolved zone</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="width" type="rphiz0d_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Full width of the spatially resolved zone in the R, Z and phi directions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_filter">
+		<xs:annotation>
+			<xs:documentation>Filter spectrometer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filter" type="filter_simple_static">
+				<xs:annotation>
+					<xs:documentation>Filter description</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="processed_line" type="spectro_vis_channel_processed_line_filter" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of processed spectral lines (normally a single line is filtered out, but it may happen in some cases that several lines go through the filter). </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="output_voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Raw voltage output of the whole acquisition chain</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="photoelectric_voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Gain corrected and background subtracted voltage</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="photon_count" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Detected photon count</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelengths">
+				<xs:annotation>
+					<xs:documentation>Array of wavelengths for radiance calibration</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_calibration">
+				<xs:annotation>
+					<xs:documentation>Radiance calibration</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-3.sr^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<introduced_after_version>3.38.1</introduced_after_version>
+						<change_nbc_version>3.39.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the radiance calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sensitivity">
+				<xs:annotation>
+					<xs:documentation>Photoelectric sensitivity of the detector. This is the conversion factor from the received power on the detector into electric voltage depending on the wavelength</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>V.W^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel_grating">
+		<xs:annotation>
+			<xs:documentation>Grating spectrometer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grating">
+				<xs:annotation>
+					<xs:documentation>Number of grating lines per unit length</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="slit_width">
+				<xs:annotation>
+					<xs:documentation>Width of the slit (placed in the object focal plane)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelengths">
+				<xs:annotation>
+					<xs:documentation>Measured wavelengths</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_spectral" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity_spectrum" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="processed_line" type="spectro_vis_channel_processed_line" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of processed spectral lines</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiance_calibration">
+				<xs:annotation>
+					<xs:documentation>Radiance calibration</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-3.sr^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the radiance calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_calibration" type="spectro_vis_channel_wavelength_calibration">
+				<xs:annotation>
+					<xs:documentation>Wavelength calibration data. The wavelength is obtained from the pixel index k by: wavelength =  k * gain + offset. k is starting from 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelength_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the wavelength calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="instrument_function">
+				<xs:annotation>
+					<xs:documentation>Array of Gaussian widths and amplitudes which as a sum make up the instrument function. The instrument function is the shape that would be measured by a grating spectrometer if perfectly monochromatic line emission would be used as input. F(lambda) = 1 / sqrt (2*pi) * sum( instrument_function(1,i) / instrument_function(2,i)  ) * exp( -lambda^2 / (2 * instrument_function(2,i)^2) )  ), whereby sum( instrument_function(1,i) ) = 1</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>1...2</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_vis_channel">
+		<xs:annotation>
+			<xs:documentation>Visible spectroscopy channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="object_observed">
+				<xs:annotation>
+					<xs:documentation>Main object observed by the channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Type of spectrometer the channel is connected to (index=1: grating, 2: filter)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="detector" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Detector description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Description of a set of collimating apertures</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="etendue">
+				<xs:annotation>
+					<xs:documentation>Etendue (geometric extent) of the channel's optical system</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2.sr</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etendue_method" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Method used to calculate the etendue. Index = 0 : exact calculation with a 4D integral; 1 : approximation with first order formula (detector surface times solid angle subtended by the apertures); 2 : other methods</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_2points">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the channel, given by 2 points</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="detector_image" type="detector_image">
+				<xs:annotation>
+					<xs:documentation>Image of the detector or pixel on the focal plane of the optical system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fibre_image" type="detector_image">
+				<xs:annotation>
+					<xs:documentation>Image of the optical fibre on the focal plane of the optical system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="light_collection_efficiencies" type="spectro_vis_channel_light_collection">
+				<xs:annotation>
+					<xs:documentation>Light collection efficiencies (fraction of the local emission detected by the optical system) for a list of points defining regions of interest. To be used for non-pinhole optics.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="active_spatial_resolution" type="spectro_vis_channel_resolution" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>In case of active spectroscopy, describes the spatial resolution of the measurement, calculated as a convolution of the atomic smearing, magnetic and beam geometry smearing and detector projection, for a set of time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="polarizer" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Polarizer description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="polarizer_active">
+				<xs:annotation>
+					<xs:documentation>Indicator of whether a polarizer is present and active in the optical system (set to 1 in this case, set to 0 or leave empty ottherwise)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="grating_spectrometer" type="spectro_vis_channel_grating">
+				<xs:annotation>
+					<xs:documentation>Quantities measured by the channel if connected to a grating spectrometer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filter_spectrometer" type="spectro_vis_channel_filter">
+				<xs:annotation>
+					<xs:documentation>Quantities measured by the channel if connected to a filter spectrometer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity_timed" type="signal_int_1d">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the channel as a function of time (0 means valid, negative values mean non-valid)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the channel for the whole acquisition period (0 means valid, negative values mean non-valid)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isotope_ratios" type="spectro_vis_channel_isotopes">
+				<xs:annotation>
+					<xs:documentation>Isotope ratios and related information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="polarization_spectroscopy" type="spectro_vis_channel_polarization">
+				<xs:annotation>
+					<xs:documentation>Physics quantities measured from polarized light spectroscopy</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geometry_matrix" type="spectro_vis_geometry_matrix">
+				<xs:annotation>
+					<xs:documentation>Description of geometry matrix (ray transfer matrix)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="optical_element" type="optical_element" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of optical elements</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fibre_bundle" type="fibre_bundle">
+				<xs:annotation>
+					<xs:documentation>Description of the fibre bundle</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="spectrometer_visible">
+		<xs:annotation>
+			<xs:documentation>Spectrometer in visible light range diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.3.1</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="detector_layout">
+					<xs:annotation>
+						<xs:documentation>Layout of the detector grid employed. Ex: '4x16', '4x32', '1x18'</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="channel" type="spectro_vis_channel" maxOccurs="240">
+					<xs:annotation>
+						<xs:documentation>Set of channels (detector or pixel of a camera)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

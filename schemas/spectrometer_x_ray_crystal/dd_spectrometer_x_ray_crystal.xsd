@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="spectrometer_x_ray_crystal_flt_2d_time_1">
+		<xs:annotation>
+			<xs:documentation>Similar to a signal (FLT_2D) but with time base one level above</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>Data</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>as_parent</units>
+						<coordinate1>as_parent</coordinate1>
+						<coordinate2>../../time</coordinate2>
+						<utilities_aoscontext>yes</utilities_aoscontext>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="validity_timed">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../time</coordinate1>
+						<utilities_aoscontext>yes</utilities_aoscontext>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="validity">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_instrument_func_bin">
+		<xs:annotation>
+			<xs:documentation>Instrument function per bin</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavelengths">
+				<xs:annotation>
+					<xs:documentation>Array of wavelengths on which the instrument function is defined</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>Explicit instrument function values for the detector. When multiplied by the line-integrated emission spectrum in photons/second/sr/m/m^2 received on a binned pixel of the detector, gives the detector pixel output in counts/seconds.</xs:documentation>
+					<xs:appinfo>
+						<units>sr.m</units>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../../wavelength_frames</coordinate1_same_as>
+						<coordinate2>../wavelengths</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Instrument function type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>spectrometer_x_ray_crystal/spectro_x_instrument_function_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity">
+				<xs:annotation>
+					<xs:documentation>Scaling factor for the instrument function such that convolving the instrument function with an emission spectrum gives the counts per second on the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="centre">
+				<xs:annotation>
+					<xs:documentation>Centre (in terms of absolute wavelength) of instrument function</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sigma">
+				<xs:annotation>
+					<xs:documentation>Standard deviation of Gaussian instrument function</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="scale">
+				<xs:annotation>
+					<xs:documentation>Scale of Lorentzian instrument function (full width at half height)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_instrument_function">
+		<xs:annotation>
+			<xs:documentation>Instrument function</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavelengths">
+				<xs:annotation>
+					<xs:documentation>Array of wavelengths on which the instrument function is defined</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>Explicit instrument function values for the detector. When multiplied by the line-integrated emission spectrum in photons/second/sr/m/m^2 received on a pixel of the detector, gives the detector pixel output in counts/seconds.</xs:documentation>
+					<xs:appinfo>
+						<units>sr.m</units>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../wavelength_frames</coordinate1_same_as>
+						<coordinate2>../../z_frames</coordinate2>
+						<coordinate3>../wavelengths</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Instrument function type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>spectrometer_x_ray_crystal/spectro_x_instrument_function_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity">
+				<xs:annotation>
+					<xs:documentation>Scaling factor for the instrument function such that convolving the instrument function with an emission spectrum gives the counts per second on the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../z_frames</coordinate1>
+						<coordinate2>../wavelengths</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="centre">
+				<xs:annotation>
+					<xs:documentation>Centre (in terms of absolute wavelength) of instrument function</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../z_frames</coordinate1>
+						<coordinate2>../wavelengths</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sigma">
+				<xs:annotation>
+					<xs:documentation>Standard deviation of Gaussian instrument function</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../z_frames</coordinate1>
+						<coordinate2>../wavelengths</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="scale">
+				<xs:annotation>
+					<xs:documentation>Scale of Lorentzian instrument function (full width at half height)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../z_frames</coordinate1>
+						<coordinate2>../wavelengths</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_crystal">
+		<xs:annotation>
+			<xs:documentation>Characteristics of the crystal used, extension of the generic description of a small plane or curved object (crystal, reflector, ...)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="geometry_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Geometry of the object contour. Note that there is some flexibility in the choice of the local coordinate system (X1,X2,X3). The data provider should choose the most convenient coordinate system for the object, respecting the definitions of (X1,X2,X3) indicated below.</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/curved_object_geometry_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="curvature_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Curvature of the object.</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/curved_object_curvature_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="material" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Material of the object</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/materials_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="centre" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Coordinates of the origin of the local coordinate system (X1,X2,X3) describing the object. This origin is located within the object area and should be the middle point of the object surface. If geometry_type=2, it's the centre of the circular object. If geometry_type=3, it's the centre of the rectangular object. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radius">
+				<xs:annotation>
+					<xs:documentation>Radius of the circle, used only if geometry_type/index = 2</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="x1_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is more horizontal than X2 (has a smaller abs(Z) component) and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x2_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X2 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X2 axis is orthonormal so that uX2 = uX3 x uX1.</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x3_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X3 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X3 axis is normal to the object surface and oriented towards the plasma.</xs:documentation>
+					<xs:appinfo>
+						<url>utilities/detector_aperture_coordinates.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x1_width">
+				<xs:annotation>
+					<xs:documentation>Full width of the object in the X1 direction, used only if geometry_type/index = 3</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="x2_width">
+				<xs:annotation>
+					<xs:documentation>Full width of the object in the X2 direction, used only if geometry_type/index = 3</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="outline" type="x1x21d_static">
+				<xs:annotation>
+					<xs:documentation>Irregular outline of the object in the (X1, X2) coordinate system, used only if geometry_type/index=1. Repeat the first point since this is a closed contour</xs:documentation>
+					<xs:appinfo>
+						<change_nbc_version>4</change_nbc_version>
+						<change_nbc_description>repeat_children_first_point</change_nbc_description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x1_curvature">
+				<xs:annotation>
+					<xs:documentation>Radius of curvature in the X1 direction, to be filled only for curvature_type/index = 2, 4 or 5</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="x2_curvature">
+				<xs:annotation>
+					<xs:documentation>Radius of curvature in the X2 direction, to be filled only for curvature_type/index = 3 or 5</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="surface">
+				<xs:annotation>
+					<xs:documentation>Surface of the object, derived from the above geometric data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_bragg">
+				<xs:annotation>
+					<xs:documentation>Bragg wavelength of the crystal</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angle_bragg">
+				<xs:annotation>
+					<xs:documentation>Bragg angle of the crystal</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="thickness">
+				<xs:annotation>
+					<xs:documentation>Thickness of the crystal</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cut">
+				<xs:annotation>
+					<xs:documentation>Miller indices characterizing the cut of the crystal (can be of length 3 or 4)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mesh_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Crystal mesh type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>spectrometer_x_ray_crystal/crystal_mesh_identifier.xml</doc_identifier>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_bin">
+		<xs:annotation>
+			<xs:documentation>Binning scheme (binning done in the vertical direction)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_pixel_range">
+				<xs:annotation>
+					<xs:documentation>Vertical pixel index range indicating the corresponding binned detector area</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength">
+				<xs:annotation>
+					<xs:documentation>Wavelength of incoming photons on each horizontal pixel of this bin.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../wavelength_frames</coordinate1_same_as>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_2points">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight from the crystal to the plasma for this bin, defined by two points</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instrument_function" type="spectrometer_x_ray_crystal_instrument_func_bin">
+				<xs:annotation>
+					<xs:documentation>Instrument function for this bin (replaces the ../../instrument function in case vertical binning is used), i.e. response of the detector to a monochromatic emission passing through the spectrometer. The resulting image on the detector will be a 2-D distribution of pixel values, for each wavelength. It can be given as explicit values for each detector pixel (values node) or as a parametric function of wavelength (described by the other nodes) </xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_frame">
+		<xs:annotation>
+			<xs:documentation>Frame of a camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="counts_n">
+				<xs:annotation>
+					<xs:documentation>Number of counts detected on each pixel of the frame during one exposure time</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../wavelength_frames</coordinate1_same_as>
+						<coordinate2>../../z_frames</coordinate2>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="counts_bin_n">
+				<xs:annotation>
+					<xs:documentation>Number of counts detected on each pixel/bin of the binned frame during one exposure time</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../wavelength_frames</coordinate1_same_as>
+						<coordinate2>../../bin</coordinate2>
+						<introduced_after_version>3.35.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_proxy">
+		<xs:annotation>
+			<xs:documentation>X-ray crystal spectrometer profile proxy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lines_of_sight_second_point" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>For each profile point, a line of sight is defined by a first point given by the centre of the crystal and a second point described here. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lines_of_sight_rho_tor_norm" type="spectrometer_x_ray_crystal_flt_2d_time_1">
+				<xs:annotation>
+					<xs:documentation>Shortest distance in rho_tor_norm between lines of sight and magnetic axis, signed with following convention : positive (resp. negative) means the point of shortest distance is above (resp. below) the magnetic axis</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<coordinate1>../lines_of_sight_second_point/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_i" type="spectrometer_x_ray_crystal_flt_2d_time_1">
+				<xs:annotation>
+					<xs:documentation>Ion temperature (estimated from a spectral fit directly on the output line-integrated signal, without tomographic inversion)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<coordinate1>../lines_of_sight_second_point/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e" type="spectrometer_x_ray_crystal_flt_2d_time_1">
+				<xs:annotation>
+					<xs:documentation>Electron temperature (estimated from a spectral fit directly on the output line-integrated signal, without tomographic inversion)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<coordinate1>../lines_of_sight_second_point/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_tor" type="spectrometer_x_ray_crystal_flt_2d_time_1">
+				<xs:annotation>
+					<xs:documentation>Toroidal velocity (estimated from a spectral fit directly on the output line-integrated signal, without tomographic inversion)</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<coordinate1>../lines_of_sight_second_point/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Timebase for the dynamic nodes of this probe located at this level of the IDS structure</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>dynamic</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectrometer_x_ray_crystal_channel">
+		<xs:annotation>
+			<xs:documentation>X-crystal spectrometer channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time of the measurement</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_bound_lower">
+				<xs:annotation>
+					<xs:documentation>Lower energy bound for the photon detection, for each pixel (horizontal, vertical)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>eV</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../wavelength_frames</coordinate1_same_as>
+						<coordinate2>../z_frames</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_bound_upper">
+				<xs:annotation>
+					<xs:documentation>Upper energy bound for the photon detection, for each pixel (horizontal, vertical)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>eV</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../wavelength_frames</coordinate1_same_as>
+						<coordinate2>../z_frames</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Collimating aperture</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reflector" type="curved_object" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of reflectors (optional) reflecting the light coming from the plasma towards the crystal. If empty, means that the plasma light directly arrives on the crystal.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="crystal" type="spectrometer_x_ray_crystal_crystal">
+				<xs:annotation>
+					<xs:documentation>Characteristics of the crystal used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filter_window" type="filter_window" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of filter windows</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="camera" type="camera_geometry">
+				<xs:annotation>
+					<xs:documentation>Characteristics of the camera used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_frames">
+				<xs:annotation>
+					<xs:documentation>Height of the observed zone at the focal plane in the plasma, corresponding to the vertical dimension of the frame</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_frames">
+				<xs:annotation>
+					<xs:documentation>Wavelength of incoming photons on each pixel of the frames, mainly varying accross the horizontal dimension of the frame. However a 2D map of the wavelength is given since it is not constant vertically due to the elliptical curvature of the photon iso-surfaces</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>../z_frames</coordinate2>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bin" type="spectrometer_x_ray_crystal_bin" maxOccurs="100">
+				<xs:annotation>
+					<xs:documentation>Set of bins (binning in the vertical dimension) defined to increase the signal to noise ratio of the spectra</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.35.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="frame" type="spectrometer_x_ray_crystal_frame" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of frames</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energies">
+				<xs:annotation>
+					<xs:documentation>Array of energy values for tabulation of the detection efficiency</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>eV</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detection_efficiency">
+				<xs:annotation>
+					<xs:documentation>Probability of detection of a photon impacting the detector as a function of its energy </xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+						<coordinate1>../energies</coordinate1>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="profiles_line_integrated" type="spectrometer_x_ray_crystal_proxy">
+				<xs:annotation>
+					<xs:documentation>Profiles proxies are given in the vertical direction of the detector. They are estimated directly from the camera, without tomographic inversion. Binning is allowed so the number of profile points may be lower than the length of z_frames. Physical quantities deduced from the measured spectra are given for each profile point. They correspond to the spectra integrated along lines of sight, defined by a first point given by the centre of the crystal and a second point (depending on the profile point) described below.</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instrument_function" type="spectrometer_x_ray_crystal_instrument_function">
+				<xs:annotation>
+					<xs:documentation>Instrument function (to be used in case vertical binning is not used), i.e. response of the detector to a monochromatic emission passing through the spectrometer. The resulting image on the detector will be a 2-D distribution of pixel values, for each wavelength. It can be given as explicit values for each detector pixel (values node) or as a parametric function of wavelength (described by the other nodes) </xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.34.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="spectrometer_x_ray_crystal">
+		<xs:annotation>
+			<xs:documentation>X-crystal spectrometer diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.26.0</lifecycle_version>
+				<lifecycle_last_change>3.39.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="channel" type="spectrometer_x_ray_crystal_channel" maxOccurs="30">
+					<xs:annotation>
+						<xs:documentation>Measurement channel, composed of a camera, a crystal, and (optional) a set of reflectors. The light coming from the plasma passes through the (optional) set of reflectors, then the crystal and arrives at the camera</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_after_version>3.33.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

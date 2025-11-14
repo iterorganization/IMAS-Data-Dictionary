@@ -72,8 +72,27 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
 <xsl:apply-templates select=".//field[not(@units) and (@data_type='FLT_0D' or @data_type='FLT_1D' or @data_type='FLT_2D' or @data_type='FLT_3D' or @data_type='FLT_4D' or @data_type='FLT_5D' or @data_type='FLT_6D' or @data_type='CPX_0D' or @data_type='CPX_1D' or @data_type='CPX_2D' or @data_type='CPX_3D' or @data_type='CPX_4D' or @data_type='CPX_5D' or @data_type='CPX_6D')]">
 <xsl:with-param name="error_description" select="'This field must have a units attribute'"/>
 </xsl:apply-templates>
+<!-- Test that units are in the correct format: can be either one of:
+        - dimensionless ("1")
+        - mixed ("mixed")
+        - normalized composite units with optional powers: m, m^2, m^-3, kg.m.s^-2, etc.
+    We make exceptions for:
+        - grid_ggd/space/objects_per_dimension/object/measure: m^dimension
+        - amns_data IDS: "units given by ..."
+        - Some units are not normalized: (m.s^-1)^-3.m^-3 / (m.s^-1)^-3.m^-3.s^-1
+-->
+<xsl:apply-templates select="
+    .//field[
+        @units and not(matches(@units, '^(1|mixed|[a-zA-Z]+(\^-?[1-9][0-9]*)?([.][a-zA-Z]+(\^-?[1-9][0-9]*)?)*)$'))
+        and not(@name='measure' and @units='m^dimension')
+        and not(ancestor::IDS[@name='amns_data'] and matches(@units, '^units given by'))
+        and not(@units='(m.s^-1)^-3.m^-3') and not(@units='(m.s^-1)^-3.m^-3.s^-1')
+    ]">
+<xsl:with-param name="error_description" select="'This field has an incorrect units definition: '"/>
+<xsl:with-param name="attr" select="'units'"/>
+</xsl:apply-templates>
 <!-- Test that INT and STR data have no "units" metadata (R5.3), although some exceptions are possible for specific cases (UTC, Elementary charge or atomic mass units) -->
-<xsl:apply-templates select=".//field[@units and not(@units='UTC' or @units='Atomic Mass Unit' or @units='Elementary Charge Unit') and (contains(@data_type,'STR_') or contains(@data_type,'INT_') or contains(@data_type,'str_') or contains(@data_type,'int_'))]">
+<xsl:apply-templates select=".//field[@units and not(@units='UTC' or @units='u' or @units='e') and (contains(@data_type,'STR_') or contains(@data_type,'INT_') or contains(@data_type,'str_') or contains(@data_type,'int_'))]">
 <xsl:with-param name="error_description" select="'This field should NOT have a units attribute'"/>
 </xsl:apply-templates>
 <!-- Test the presence of nested AoS 3 (illegal) -->
@@ -105,6 +124,10 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
 <xsl:apply-templates select=".//field[contains($reserved_names, concat('|', @name, '|'))]">
 <xsl:with-param name="error_description" select="'Illegal name: name is found in the list of reserved names (see `reserved_names.txt`)'"/>
 </xsl:apply-templates>
+<!-- Test that all identifier docs adhere to the pattern "*/*_identifier.xml" -->
+<xsl:apply-templates select=".//field[@doc_identifier and not(matches(@doc_identifier, '^[^/]+/[^/]+_identifier\.xml$'))]">
+<xsl:with-param name="error_description" select="'Illegal metadata: identifier documentation should be stored in a file ending in `_identifier.xml`.'"/>
+</xsl:apply-templates>
 <!-- Coordinate checks -->
 <xsl:apply-templates select="." mode="coordinate_validation"/>
 <!-- End of validation rules -->
@@ -119,11 +142,32 @@ The utilities section has errors:<xsl:apply-templates select="./utilities//field
     </xsl:otherwise>
 </xsl:choose>
 </xsl:for-each>
+
+<!-- Tests for identifier XMLs: -->
+<xsl:for-each select="distinct-values(//IDS//field[@doc_identifier]/@doc_identifier)">
+<xsl:variable name="identifier_xml" select="doc(concat('schemas/', .))" />
+<xsl:variable name="identifier_values" select="$identifier_xml//int/text()" as="xs:int*"/>
+<!-- Identifier index values should be unique: -->
+<xsl:if test="count(distinct-values($identifier_values)) != count($identifier_values)">
+    Error in identifier <xsl:value-of select="." />: values of identifiers are not unique.
+</xsl:if>
+<!-- Names and aliases should be unique. First find out all names and aliases: -->
+<xsl:variable name="identifier_name_and_aliases" as="xs:string*">
+<xsl:for-each select="$identifier_xml//int">
+<xsl:sequence select="@name" />
+<xsl:for-each select="tokenize(@alias, ',')"><xsl:sequence select="."/></xsl:for-each>
+</xsl:for-each>
+</xsl:variable>
+<!-- Uniqueness test: -->
+<xsl:if test="count(distinct-values($identifier_name_and_aliases)) != count($identifier_name_and_aliases)">
+    Error in identifier <xsl:value-of select="." />: name and/or alias is not unique.
+</xsl:if>
+</xsl:for-each>
 </xsl:template>
 
 <!-- A generic template for printing the out_come of an error detection (adds a line to the output text report with the description of the error) -->
 <xsl:template name ="print_error" match="field">
-<xsl:param name ="error_description"/>    Error in <xsl:value-of select="@path_doc"/>: <xsl:value-of select="$error_description"/><xsl:text>&#10;</xsl:text>
+<xsl:param name ="error_description"/><xsl:param name="attr"/>    Error in <xsl:value-of select="@path_doc"/>: <xsl:value-of select="$error_description"/><xsl:value-of select="if ($attr = '') then '' else @*[name() = $attr]"/><xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <!-- ====================== Coordinate validation checks ======================================= -->

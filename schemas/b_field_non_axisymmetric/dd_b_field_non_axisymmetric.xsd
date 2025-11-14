@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="b_field_na_surface">
+		<xs:annotation>
+			<xs:documentation>Fourier decompositions of the normal components of the B-field for a given control surface</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="outline" type="rz1d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>Set of points defining the surface in a poloidal plane. The surface then extends in the toroidal direction in an axisymmetric way</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="normal_vector" type="rz1d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>Components of the normal vector to the surface, given on each point of the surface</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal angle array, on which the Fourier decomposition is carried out</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal mode number</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_r">
+				<xs:annotation>
+					<xs:documentation>R component of the vacuum error magnetic field on the various surface points</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../outline/r</coordinate1>
+						<coordinate2>../phi</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the vacuum error magnetic field on the various surface points</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../outline/r</coordinate1>
+						<coordinate2>../phi</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>b_field_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_z">
+				<xs:annotation>
+					<xs:documentation>Z component of the vacuum error magnetic field on the various surface points</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../outline/r</coordinate1>
+						<coordinate2>../phi</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_normal">
+				<xs:annotation>
+					<xs:documentation>Normal component of the vacuum error magnetic field on the various surface points</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../outline/r</coordinate1>
+						<coordinate2>../phi</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_normal_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier coefficients of the normal component of the vacuum error magnetic field on the various surface points</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../outline/r</coordinate1>
+						<coordinate2>../n_phi</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="b_field_na_field_map">
+		<xs:annotation>
+			<xs:documentation>Description of the non axisymmetric b-field on a 3D grid</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="rphiz1d_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>3D grid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_r">
+				<xs:annotation>
+					<xs:documentation>R component of the vacuum error magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../grid/r</coordinate1>
+						<coordinate2>../grid/phi</coordinate2>
+						<coordinate3>../grid/z</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the vacuum error magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../grid/r</coordinate1>
+						<coordinate2>../grid/phi</coordinate2>
+						<coordinate3>../grid/z</coordinate3>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>b_field_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_z">
+				<xs:annotation>
+					<xs:documentation>Z component of the vacuum error magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>T</units>
+						<coordinate1>../grid/r</coordinate1>
+						<coordinate2>../grid/phi</coordinate2>
+						<coordinate3>../grid/z</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ripple_amplitude">
+				<xs:annotation>
+					<xs:documentation>Value of (b_field_max-b_field_min)/(b_field_max+b_field_min), where b_field_max resp. b_field_min) is the maximum (resp. minimum) of the magnetic field amplitude over a 2pi rotation in toroidal angle phi at a given R, Z position. </xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../grid/r</coordinate1>
+						<coordinate2>../grid/z</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="b_field_na_time_slice">
+		<xs:annotation>
+			<xs:documentation>Time slice for the description of the 3D vaccum non-axisymmetric magnetic field</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="field_map" type="b_field_na_field_map">
+				<xs:annotation>
+					<xs:documentation>Description of the error field map</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="control_surface" type="b_field_na_surface" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Magnetic field components and Fourier decomposition of the normal components of the magnetic field for a set of given control surfaces </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../control_surface_names</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="b_field_non_axisymmetric">
+		<xs:annotation>
+			<xs:documentation>Vacuum 3d error magnetic field (the full 3d magnetic field with the axisymmetric components subtracted)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.39.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="configuration">
+					<xs:annotation>
+						<xs:documentation>In case of a constant (single time slice) b_field description, name of the corresponding scenario/configuration</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="control_surface_names">
+					<xs:annotation>
+						<xs:documentation>List of control surface names, refers to the ../time_slice/control_surface index</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="time_slice" type="b_field_na_time_slice" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Set of time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

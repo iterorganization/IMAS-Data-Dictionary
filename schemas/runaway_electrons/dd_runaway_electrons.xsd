@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="runaway_electrons_transport">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for runaways</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>m^-2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="runaway_electrons_global_volume">
+		<xs:annotation>
+			<xs:documentation>Volume average global quantities related to the runaway_electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Runaway electrons density</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_density">
+				<xs:annotation>
+					<xs:documentation>Runaways parallel current density = average(j.B) / B0, where B0 = runaway_electrons/vacuum_toroidal_field/b0</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_dreicer">
+				<xs:annotation>
+					<xs:documentation>Dreicer electric field (parallel to magnetic field)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_critical">
+				<xs:annotation>
+					<xs:documentation>Critical electric field</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_density_kinetic">
+				<xs:annotation>
+					<xs:documentation>Runaways kinetic mean energy density</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>J.m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pitch_angle">
+				<xs:annotation>
+					<xs:documentation>Average pitch angle of the runaways distribution function (v_parallel/|v|)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_critical_avalanche">
+				<xs:annotation>
+					<xs:documentation>Critical momentum for avalanche, Compton and tritium</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>kg.m^-1.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_critical_hot_tail">
+				<xs:annotation>
+					<xs:documentation>Critical momentum for hot tail</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>kg.m^-1.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_total">
+				<xs:annotation>
+					<xs:documentation>Total source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_compton">
+				<xs:annotation>
+					<xs:documentation>Compton source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_tritium">
+				<xs:annotation>
+					<xs:documentation>Tritium source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_hot_tail">
+				<xs:annotation>
+					<xs:documentation>Hot tail source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_dreicer">
+				<xs:annotation>
+					<xs:documentation>Dreicer source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../time</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="runaway_electrons_global_quantities">
+		<xs:annotation>
+			<xs:documentation>Global quantities related to the runaway_electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="current_phi">
+				<xs:annotation>
+					<xs:documentation>Total runaway current (toroidal component)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>A</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_kinetic">
+				<xs:annotation>
+					<xs:documentation>Total runaway kinetic energy</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>J</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="volume_average" type="runaway_electrons_global_volume">
+				<xs:annotation>
+					<xs:documentation>Volume average runaways parameters</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="runaway_electrons_distribution">
+		<xs:annotation>
+			<xs:documentation>Distribution function of the runaway electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="gyro_type">
+				<xs:annotation>
+					<xs:documentation>Defines how to interpret the spatial coordinates: 1 = given at the actual particle birth point; 2 =given at the gyro centre of the birth point</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ggd" type="distributions_d_ggd_nogrid" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Distribution represented using the ggd, for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="markers" type="distribution_markers" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Distribution represented by a set of markers (test particles)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="runaway_electrons_ggd">
+		<xs:annotation>
+			<xs:documentation>GGD data for 2D or 3D runaway_electrons fluid quantities</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="density" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Runaway electrons density, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current_density" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Runaways parallel current density = average(j.B) / B0, where B0 = runaway_electrons/vacuum_toroidal_field/b0, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>A.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="e_field_dreicer" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dreicer electric field (parallel to B), given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>V.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="e_field_critical" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Critical electric field, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>V.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy_density_kinetic" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Runaways kinetic energy density, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>J.m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pitch_angle" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Average pitch angle of the runaways distribution function (v_parallel/|v|), given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum_critical_avalanche" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Critical momentum for avalanche, Compton and tritium, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>kg.m^-1.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum_critical_hot_tail" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Critical momentum for hot tail, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>kg.m^-1.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ddensity_dt_total" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Total source of runaway electrons, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ddensity_dt_compton" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Compton source of runaway electrons, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ddensity_dt_tritium" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Tritium source of runaway electrons, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ddensity_dt_hot_tail" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Hot tail source of runaway electrons, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ddensity_dt_dreicer" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dreicer source of runaway electrons, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="runaway_electrons_profiles_1d">
+		<xs:annotation>
+			<xs:documentation>1D radial profiles for runaway_electrons data</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="core_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Radial grid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Runaway electrons density</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_density">
+				<xs:annotation>
+					<xs:documentation>Runaways parallel current density = average(j.B) / B0, where B0 = runaway_electrons/vacuum_toroidal_field/b0</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_dreicer">
+				<xs:annotation>
+					<xs:documentation>Dreicer electric field (parallel to B)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_critical">
+				<xs:annotation>
+					<xs:documentation>Critical electric field</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_density_kinetic">
+				<xs:annotation>
+					<xs:documentation>Runaways kinetic mean energy density</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>J.m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pitch_angle">
+				<xs:annotation>
+					<xs:documentation>Average pitch angle of the runaways distribution function (v_parallel/|v|)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_critical_avalanche">
+				<xs:annotation>
+					<xs:documentation>Critical momentum for avalanche, Compton and tritium</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>kg.m^-1.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_critical_hot_tail">
+				<xs:annotation>
+					<xs:documentation>Critical momentum for hot tail</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>kg.m^-1.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_total">
+				<xs:annotation>
+					<xs:documentation>Total source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_compton">
+				<xs:annotation>
+					<xs:documentation>Compton source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_tritium">
+				<xs:annotation>
+					<xs:documentation>Tritium source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_hot_tail">
+				<xs:annotation>
+					<xs:documentation>Hot tail source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ddensity_dt_dreicer">
+				<xs:annotation>
+					<xs:documentation>Dreicer source of runaway electrons</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="transport_perpendicular" type="runaway_electrons_transport">
+				<xs:annotation>
+					<xs:documentation>Effective perpendicular transport to the magnetic field for runaways</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="runaway_electrons">
+		<xs:annotation>
+			<xs:documentation>Description of runaway electrons</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.39.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="e_field_critical_definition" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Definition chosen for the critical electric field (in global_quantities, profiles_1d and ggd)</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>runaway_electrons/e_field_critical_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="momentum_critical_avalanche_definition" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Definition chosen for the critical momentum for avalanche, Compton and tritium (in global_quantities, profiles_1d and ggd)</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>runaway_electrons/momentum_critical_avalanche_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="momentum_critical_hot_tail_definition" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Definition chosen for the critical momentum for hot tail (in global_quantities, profiles_1d and ggd)</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>runaway_electrons/momentum_critical_hot_tail_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="global_quantities" type="runaway_electrons_global_quantities">
+					<xs:annotation>
+						<xs:documentation>Global quantities</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="profiles_1d" type="runaway_electrons_profiles_1d" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Radial flux surface averaged profiles for a set of time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>runaway_electrons.profiles_1d{i}</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="grid_ggd" type="generic_grid_aos3_root" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Grid (using the Generic Grid Description), for various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ggd_fluid" type="runaway_electrons_ggd" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Fluid quantities represented using the general grid description for 2D or 3D description</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="distribution" type="runaway_electrons_distribution">
+					<xs:annotation>
+						<xs:documentation>Distribution function of the runaway electrons</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in rho_tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>runaway_electrons.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

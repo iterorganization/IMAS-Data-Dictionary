@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="disruption_halo_currents_area">
+		<xs:annotation>
+			<xs:documentation>Halo currents geometry and values for a given halo area</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="start_point" type="rz0d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>Position of the start point of this area</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="end_point" type="rz0d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>Position of the end point of this area</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current_halo_pol">
+				<xs:annotation>
+					<xs:documentation>Poloidal halo current crossing through this area</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="disruption_halo_currents">
+		<xs:annotation>
+			<xs:documentation>Halo currents geometry and values for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="area" type="disruption_halo_currents_area" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of wall areas through which there are halo currents</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="active_wall_point" type="rz0d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>R,Z position of the point of the plasma boundary in contact with the wall</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="disruption_global_quantities">
+		<xs:annotation>
+			<xs:documentation>Global quantities related to the disruption</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="current_halo_pol">
+				<xs:annotation>
+					<xs:documentation>Poloidal halo current</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>A</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_halo_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal halo current</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>A</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_halo_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_ohm">
+				<xs:annotation>
+					<xs:documentation>Total ohmic power</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_ohm_halo">
+				<xs:annotation>
+					<xs:documentation>Ohmic power in the halo region</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_parallel_halo">
+				<xs:annotation>
+					<xs:documentation>Power of the parallel heat flux in the halo region</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_radiated_electrons_impurities">
+				<xs:annotation>
+					<xs:documentation>Total power radiated by electrons on impurities</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_radiated_electrons_impurities_halo">
+				<xs:annotation>
+					<xs:documentation>Power radiated by electrons on impurities in the halo region</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_ohm">
+				<xs:annotation>
+					<xs:documentation>Total ohmic cumulated energy (integral of the power over the disruption duration)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>J</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_ohm_halo">
+				<xs:annotation>
+					<xs:documentation>Ohmic cumulated energy (integral of the power over the disruption duration) in the halo region</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>J</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_parallel_halo">
+				<xs:annotation>
+					<xs:documentation>Cumulated parallel energy (integral of the heat flux parallel power over the disruption duration) in the halo region</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>J</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_radiated_electrons_impurities">
+				<xs:annotation>
+					<xs:documentation>Total cumulated energy (integral of the power over the disruption duration) radiated by electrons on impurities</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>J</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_radiated_electrons_impurities_halo">
+				<xs:annotation>
+					<xs:documentation>Cumulated energy (integral of the power over the disruption duration) radiated by electrons on impurities in the halo region</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>J</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi_halo_boundary">
+				<xs:annotation>
+					<xs:documentation>Poloidal flux at halo region boundary</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>Wb</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi_halo_boundary">
+				<xs:annotation>
+					<xs:documentation>Toroidal flux at halo region boundary</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>Wb</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi_halo_boundary_poloidal_current">
+				<xs:annotation>
+					<xs:documentation>Toroidal flux at halo region boundary generated by the plasma poloidal current</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../time</coordinate1>
+						<units>Wb</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="disruption_profiles_1d">
+		<xs:annotation>
+			<xs:documentation>1D radial profiles for disruption data</xs:documentation>
+			<xs:appinfo>
+				<aos3Parent>yes</aos3Parent>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="core_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Radial grid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="j_runaways">
+				<xs:annotation>
+					<xs:documentation>Runaways parallel current density = average(j.B) / B0, where B0 = Disruption/Vacuum_Toroidal_Field/ B0</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_density_conductive_losses">
+				<xs:annotation>
+					<xs:documentation>Power density of conductive losses to the wall (positive sign for losses)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>W.m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_density_radiative_losses">
+				<xs:annotation>
+					<xs:documentation>Power density of radiative losses (positive sign for losses)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>W.m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="disruption">
+		<xs:annotation>
+			<xs:documentation>Description of physics quantities of specific interest during a disruption, in particular halo currents, etc ...</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.25.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="global_quantities" type="disruption_global_quantities">
+					<xs:annotation>
+						<xs:documentation>Global quantities</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="halo_currents" type="disruption_halo_currents" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Halo currents geometry and values for a set of time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="profiles_1d" type="disruption_profiles_1d" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Radial profiles for a set of time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>disruption.profiles_1d{i}</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in rho_tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>disruption.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

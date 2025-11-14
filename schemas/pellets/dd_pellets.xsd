@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<!--The time slices in this IDS are defined as the time at which the pellet is fully ablated and provides a core_instant_change. This time is slightly different from the pellet injection time (from the pulse schedule) and the pellet injector is not described (needs likely a separate IDS) -->
+	<xs:complexType name="pellets_propellant_gas">
+		<xs:annotation>
+			<xs:documentation>Description of the propellant gas with its number of atoms</xs:documentation>
+			<xs:appinfo>
+				<coordinate1>1...N</coordinate1>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the gas molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the neutral molecule (e.g. H2, D2, T2, N2, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="molecules_n">
+				<xs:annotation>
+					<xs:documentation>Number of molecules of the propellant gas injected in the vacuum vessel when launching the pellet</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pellets_time_slice_pellet_shape">
+		<xs:annotation>
+			<xs:documentation>Initial shape of a pellet at launch</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Identifier structure for the shape type: 1-spherical; 2-cylindrical; 3-rectangular</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size">
+				<xs:annotation>
+					<xs:documentation>Size of the pellet in the various dimensions, depending on the shape type. Spherical pellets: size(1) is the radius of the pellet. Cylindrical pellets: size(1) is the radius and size(2) is the height of the cylinder. Rectangular pellets: size(1) is the height, size(2) is the width and size(3) is the length</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pellets_time_slice_pellet_species">
+		<xs:annotation>
+			<xs:documentation>Species included in pellet compoisition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H, D, T, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Material density of the species in the pellet</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fraction">
+				<xs:annotation>
+					<xs:documentation>Atomic fraction of the species in the pellet</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sublimation_energy">
+				<xs:annotation>
+					<xs:documentation>Sublimation energy per atom</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pellets_time_slice_pellet_path_profiles">
+		<xs:annotation>
+			<xs:documentation>1-D profiles of plasma and pellet along the pellet path</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="distance">
+				<xs:annotation>
+					<xs:documentation>Distance along the pellet path, with the origin taken at path_geometry/first_point. Used as the main coordinate for the path_profiles structure </xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_tor_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal coordinate along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi">
+				<xs:annotation>
+					<xs:documentation>Poloidal flux along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>Wb</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity">
+				<xs:annotation>
+					<xs:documentation>Pellet velocity along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_e">
+				<xs:annotation>
+					<xs:documentation>Electron density along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="t_e">
+				<xs:annotation>
+					<xs:documentation>Electron temperature along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ablation_rate">
+				<xs:annotation>
+					<xs:documentation>Ablation rate (electrons) along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ablated_particles">
+				<xs:annotation>
+					<xs:documentation>Number of ablated particles (electrons) along the pellet path </xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_tor_norm_drift">
+				<xs:annotation>
+					<xs:documentation>Difference to due ExB drifts between the ablation and the final deposition locations, in terms of the normalized toroidal flux coordinate</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>../distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="rphiz1d_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Position along the pellet path</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pellets_time_slice_pellet">
+		<xs:annotation>
+			<xs:documentation>Description of a pellet</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shape" type="pellets_time_slice_pellet_shape">
+				<xs:annotation>
+					<xs:documentation>Initial shape of a pellet at launch</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="species" type="pellets_time_slice_pellet_species" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of atomic species included in the pellet composition</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_initial">
+				<xs:annotation>
+					<xs:documentation>Initial velocity of the pellet as it enters the vaccum chamber</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="path_geometry" type="line_of_sight_2points_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Geometry of the pellet path in the vaccuum chamber</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="path_profiles" type="pellets_time_slice_pellet_path_profiles">
+				<xs:annotation>
+					<xs:documentation>1-D profiles of plasma and pellet along the pellet path </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="propellant_gas" type="pellets_propellant_gas">
+				<xs:annotation>
+					<xs:documentation>Propellant gas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pellets_time_slice">
+		<xs:annotation>
+			<xs:documentation>Time slice description of pellets</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pellet" type="pellets_time_slice_pellet" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of pellets ablated in the plasma at a given time</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="pellets">
+		<xs:annotation>
+			<xs:documentation>Description of pellets launched into the plasma</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.0.4</lifecycle_version>
+				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="time_slice" type="pellets_time_slice" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Description of the pellets launched at various time slices. The time of this structure corresponds to the full ablation of the pellet inside the plasma.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:element name="plasma_profiles">
+		<xs:annotation>
+			<xs:documentation>Plasma profiles (core and/or edge). This IDS is a prototype based on the merge of core_profiles, edge_profiles and the MHD IDS, for testing purposes only at this stage. It contains magnetic field maps to describe magnetic field fluctuations, while the equilibrium magnetic field is described in the equilibrium IDS</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.42.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in rho_tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>plasma_profiles.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="midplane" type="identifier_static">
+					<xs:annotation>
+						<xs:documentation>Choice of midplane definition (use the lowest index number if more than one value is relevant) </xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>utilities/midplane_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="global_quantities" type="plasma_profiles_global_quantities">
+					<xs:annotation>
+						<xs:documentation>Various global quantities derived from the profiles</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="profiles_1d" type="plasma_profiles_profiles_1d" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Radial profiles for various time slices. Flux averaged profiles in the closed field line region (grid/rho_pol_norm &lt;= 1) and taking local values on outboard equatorial mid-plane when in the SOL (grid/rho_pol_norm &gt; 1)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="profiles_2d" type="plasma_profiles_profiles_2d" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Plasma quantities in a poloidal cross section, for various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>core_profiles.profiles_2d{i}</cocos_replace>
+							<introduced_after_version>3.38.1</introduced_after_version>
+							<lifecycle_status>alpha</lifecycle_status>
+							<lifecycle_version>3.39.0</lifecycle_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="grid_ggd" type="generic_grid_aos3_root" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Grid (using the Generic Grid Description), for various time slices. The timebase of this array of structure must be a subset of the ggd timebase</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ggd" type="plasma_profiles_time_slice" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Plasma quantities represented using the general grid description, for various time slices. The timebase of this array of structure must be a subset of the ggd_fast timebase (only if the ggd_fast array of structure is used)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ggd_fast" type="plasma_profiles_ggd_fast" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Quantities provided at a faster sampling rate than the full ggd quantities. These are either integrated quantities or local quantities provided on a reduced set of positions. Positions and integration domains are described by a set of grid_subsets (of size 1 for a position). </xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="covariance" type="covariance_matrix">
+					<xs:annotation>
+						<xs:documentation>User defined covariance matrix. The covariance of various quantities can be stored here, these quantities are referred to by giving their IDS path in the rows_uri list</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+							<lifecycle_status>alpha</lifecycle_status>
+							<lifecycle_version>3.40.0</lifecycle_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="statistics" type="statistics" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Statistics for various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

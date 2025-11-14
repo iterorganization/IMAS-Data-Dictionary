@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<!-- A big simplification of the time bases should be made in this IDS after moving to the new LL-->
+	<xs:complexType name="charge_exchange_channel_processed_line">
+		<xs:annotation>
+			<xs:documentation>Description of a processed spectral line</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the processed spectral line: Spectroscopy notation emitting element (e.g. D I, Be IV,  W I, C VI), transition - if known - between round brackets (e.g. (3-2) ) and indication type of charge exchange - if applicable - between square brackets (e.g. [ACX] or [PCX]). Example for beryllium active charge exchange line at 468.5 nm: 'Be IV (8-6) [ACX]'. Example for impact excitation tungsten line coming from the plasma edge: 'W I' </xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Unshifted central wavelength of the processed spectral line</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Calibrated, background subtracted radiance (integrated over the spectrum for this line)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Non-calibrated intensity (integrated over the spectrum for this line), i.e. number of photoelectrons detected by unit time, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="width" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Full width at Half Maximum (FWHM) of the emission line</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shift" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Shift of the emission line wavelength with respected to the unshifted cental wavelength (e.g. Doppler shift)</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="charge_exchange_channel_spectrum">
+		<xs:annotation>
+			<xs:documentation>CX spectrum observed via a grating</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grating">
+				<xs:annotation>
+					<xs:documentation>Number of grating lines per unit length</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="slit_width">
+				<xs:annotation>
+					<xs:documentation>Width of the slit (placed in the object focal plane)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="instrument_function">
+				<xs:annotation>
+					<xs:documentation>Array of Gaussian widths and amplitudes which as a sum make up the instrument fuction. IF(lambda) = sum( instrument_function(1,i)/sqrt(2 * pi * instrument_function(2,i)^2  ) * exp( -lambda^2/(2 * instrument_function(2,i)^2) )  ),whereby sum( instrument_function(1,i) ) = 1</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>1...2</coordinate1>
+						<coordinate2>1...N</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelengths">
+				<xs:annotation>
+					<xs:documentation>Measured wavelengths</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="intensity_spectrum" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiance_spectral" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="processed_line" type="charge_exchange_channel_processed_line" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of processed spectral lines</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiance_calibration">
+				<xs:annotation>
+					<xs:documentation>Radiance calibration</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-3.sr^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the radiance calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the wavelength calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_continuum" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Calibrated continuum intensity  in the middle of the spectrum per unit wavelength</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="charge_exchange_channel_ion_fast">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel: fast ion CX quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom of the fast ion</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Fast ion charge</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge of the fast ion</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>constant</type>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the fast ion (e.g. H+, D+, T+, He+2, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="transition_wavelength">
+				<xs:annotation>
+					<xs:documentation>Unshifted wavelength of the fast ion charge exchange transition</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Calibrated radiance of the fast ion charge exchange spectrum assuming the shape is pre-defined (e.g. by the Fokker-Planck slowing-down function). Note: radiance is integrated over the sightline crossing the neutral beam</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiance_spectral_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the fast ion charge exchange spectrum (e.g. what pre-defined slowing-down and source functions used)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="charge_exchange_channel_ion">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel for a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom of the ion</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>constant</type>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the ion (e.g. H+, D+, T+, He+2, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="t_i" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Ion temperature at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_i_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to derive the ion temperature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_phi" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Toroidal velocity of the ion (oriented counter-clockwise when seen from above) at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>velocity_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_phi_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the ion toroidal velocity</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>velocity_tor_method</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_pol" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Poloidal velocity of the ion (oriented clockwise when seen from front on the right side of the tokamak axi-symmetry axis) at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_pol_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the ion poloidal velocity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i_over_n_e" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Ion concentration (ratio of the ion density over the electron density) at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i_over_n_e_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to derive the ion concentration</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="charge_exchange_channel_bes">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel - BES parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom of the diagnostic neutral beam particle</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge of the diagnostic neutral beam particle</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge of the diagnostic neutral beam particle</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>constant</type>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the diagnostic neutral beam particle</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="transition_wavelength">
+				<xs:annotation>
+					<xs:documentation>Unshifted wavelength of the BES transition</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="doppler_shift" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Doppler shift due to the diagnostic neutral beam particle velocity</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lorentz_shift" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Lorentz shift due to the Lorentz electric field (vxB) in the frame of the diagnostic neutral beam particles moving with a velocity v across the magnetic field B</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiances" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Calibrated intensities of the 9 splitted lines (Stark effect due to Lorentz electric field). Note: radiances are integrated over the sightline crossing the neutral beam</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1</units>
+						<coordinate1>1...9</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="charge_exchange_channel">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Description of the collimating aperture for this channel</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="etendue">
+				<xs:annotation>
+					<xs:documentation>Etendue (geometric extent) of the optical system for this channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2.sr</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etendue_method" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Method used to calculate the etendue. Index = 0 : exact calculation with a 4D integral; 1 : approximation with first order formula (detector surface times solid angle subtended by the apertures); 2 : other methods</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="focal_length">
+				<xs:annotation>
+					<xs:documentation>Focal length of the collector lens</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cone_diameter">
+				<xs:annotation>
+					<xs:documentation>Diameter of the base of the optical cone at the entrance pupil</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="image_diameter">
+				<xs:annotation>
+					<xs:documentation>Diameter at the image plane (typically the diameter of the optical fibre)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="rphiz1d_dynamic_aos1">
+				<xs:annotation>
+					<xs:documentation>Position of the measurements (assuming point emission)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_i_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Ion temperature (averaged on charge states and ion species) at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_i_average_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the average ion temperature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Local ionic effective charge at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the local effective charge</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff_line_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Ionic effective charge, line average along the channel line-of-sight</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff_line_average_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the line average effective charge</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum_phi" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Total plasma toroidal momentum, summed over ion species and electrons weighted by their density and major radius, i.e. sum_over_species(n*R*m*Vphi), at the channel measurement point</xs:documentation>
+					<xs:appinfo>
+						<units>kg.m^-1.s^-1</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum_phi_method" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Description of the method used to reconstruct the total plasma toroidal momentum</xs:documentation>
+					<xs:appinfo>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor_method</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="charge_exchange_channel_ion" maxOccurs="13">
+				<xs:annotation>
+					<xs:documentation>Physical quantities related to ion species and charge stage (H+, D+, T+, He+2, Li+3, Be+4, C+6, N+7, O+8, Ne+10, Si+14, Ar+16 or Ar+18) derived from the measured charge exchange emission of each species, at the position of the measurement</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bes" type="charge_exchange_channel_bes">
+				<xs:annotation>
+					<xs:documentation>Derived Beam Emission Spectroscopy (BES) parameters</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion_fast" type="charge_exchange_channel_ion_fast" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Derived Fast Ion Charge eXchange (FICX) parameters</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spectrum" type="charge_exchange_channel_spectrum" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Set of spectra obtained by various gratings</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="charge_exchange">
+		<xs:annotation>
+			<xs:documentation>Charge exchange spectroscopy diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.0.4</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="aperture" type="detector_aperture">
+					<xs:annotation>
+						<xs:documentation>Description of the collimating aperture of the diagnostic, fill if relevant to all lines-of-sight (channels)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="etendue">
+					<xs:annotation>
+						<xs:documentation>Etendue (geometric extent) of the optical system, fill if relevant to all lines-of-sight (channels)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>m^2.sr</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="etendue_method" type="identifier_static">
+					<xs:annotation>
+						<xs:documentation>Method used to calculate the etendue. Index = 0 : exact calculation with a 4D integral; 1 : approximation with first order formula (detector surface times solid angle subtended by the apertures); 2 : other methods</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="channel" type="charge_exchange_channel" maxOccurs="100">
+					<xs:annotation>
+						<xs:documentation>Set of channels (lines-of-sight). The line-of-sight is defined by the centre of the collimating aperture and the position of the measurements.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

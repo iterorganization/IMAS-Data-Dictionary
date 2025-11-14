@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="camera_visible_geometry_matrix_step2">
+		<xs:annotation>
+			<xs:documentation>Geometry matrix of the detector</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>The Ray Transfer Matrix (RTM, or geometry matrix) here provides transformation of the signal from each individual unit light source (voxel) to each pixel of the receiver (detector). The emission profile has [photons.m^-3.s^-1.sr^-1] units and radiance signal has [photons.m^-2.s^-1.sr^-1] units. So the RTM has [m] units. This data is stored in a sparse form, i.e. the array contains only the non-zero element of the Ray transfer matrix. The voxel index corresponding to an element of this array can be found in voxel_indices. The pixel indices corresponding to an element of this array can be found in pixel_indices</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voxel_indices">
+				<xs:annotation>
+					<xs:documentation>List of voxel indices (defined in the voxel map) used in the sparse data array</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../data</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pixel_indices">
+				<xs:annotation>
+					<xs:documentation>List of pixel indices used in the sparse data array. The first dimension refers to the data array index. The second dimension lists the line index (horizontal axis) in first position, then the column index (vertical axis).</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../data</coordinate1>
+						<coordinate2>1...2</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_visible_geometry_matrix_interpolated">
+		<xs:annotation>
+			<xs:documentation>Interpolated geometry matrix</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius of interpolation knots</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Height of interpolation knots</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>../r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above) of interpolation knots</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+						<coordinate1>../r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>Interpolated Ray Transfer Matrix (RTM, or geometry matrix), which provides transformation of the reflected light from each interpolation knot to the receiver (detector pixel). When convolving with an emission profile, the values must be interpolated to the emission grid and multiplied by the volume of the grid cells. The interpolated matrix is given on an array of interpolation knots of coordinates r, z and phi (third dimension of this array). The first two dimension correspond to the detector pixels : first dimension : line index (horizontal axis); second dimension: column index (vertical axis). </xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../../frame(itime)/image_raw</coordinate1_same_as>
+						<coordinate2>1...N</coordinate2>
+						<coordinate2_same_as>../../../frame(itime)/image_raw</coordinate2_same_as>
+						<coordinate3>../r</coordinate3>
+						<units>m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_visible_geometry_matrix">
+		<xs:annotation>
+			<xs:documentation>Geometry matrix of the camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="with_reflections" type="camera_visible_geometry_matrix_step2">
+				<xs:annotation>
+					<xs:documentation>Geometry matrix with reflections</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="without_reflections" type="camera_visible_geometry_matrix_step2">
+				<xs:annotation>
+					<xs:documentation>Geometry matrix without reflections</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="interpolated" type="camera_visible_geometry_matrix_interpolated">
+				<xs:annotation>
+					<xs:documentation>Interpolated geometry matrix for reflected light</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voxel_map">
+				<xs:annotation>
+					<xs:documentation>Voxel map for geometry matrix. The cells with same number are merged in the computation into a single emission source meta-cell (the voxel). Cells with number -1 are excluded. Voxel count starts from 0.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../emission_grid/dim1</coordinate1>
+						<coordinate2>../emission_grid/dim2</coordinate2>
+						<coordinate3>../emission_grid/dim3</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voxels_n">
+				<xs:annotation>
+					<xs:documentation>Number of voxels defined in the voxel_map.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emission_grid" type="geometry_matrix_emission">
+				<xs:annotation>
+					<xs:documentation>Grid defining the light emission cells</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_visible_frame">
+		<xs:annotation>
+			<xs:documentation>Frame of a camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="image_raw">
+				<xs:annotation>
+					<xs:documentation>Raw image (unprocessed) (digital levels). First dimension : line index (horizontal axis). Second dimension: column index (vertical axis).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance">
+				<xs:annotation>
+					<xs:documentation>Radiance image. First dimension : line index (horizontal axis). Second dimension: column index (vertical axis).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../image_raw</coordinate1_same_as>
+						<coordinate2>1...N</coordinate2>
+						<coordinate2_same_as>../image_raw</coordinate2_same_as>
+						<units>m^-2.s^-1.sr^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_visible_detector">
+		<xs:annotation>
+			<xs:documentation>Detector for a visible camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pixel_to_alpha">
+				<xs:annotation>
+					<xs:documentation>Alpha angle of each pixel in the horizontal axis</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../frame(itime)/image_raw</coordinate1_same_as>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pixel_to_beta">
+				<xs:annotation>
+					<xs:documentation>Beta angle of each pixel in the vertical axis</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_lower">
+				<xs:annotation>
+					<xs:documentation>Lower bound of the detector wavelength range</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_upper">
+				<xs:annotation>
+					<xs:documentation>Upper bound of the detector wavelength range</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="counts_to_radiance">
+				<xs:annotation>
+					<xs:documentation>Counts to radiance factor, for each pixel of the detector. Includes both the transmission losses in the relay optics and the quantum efficiency of the camera itself, integrated over the wavelength range</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../frame(itime)/image_raw</coordinate1_same_as>
+						<coordinate2>1...N</coordinate2>
+						<coordinate2_same_as>../frame(itime)/image_raw</coordinate2_same_as>
+						<units>m^-2.s^-1.sr^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="noise">
+				<xs:annotation>
+					<xs:documentation>Detector noise (e.g. read-out noise) (rms counts per second exposure time)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="columns_n">
+				<xs:annotation>
+					<xs:documentation>Number of pixel columns in the horizontal direction</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="lines_n">
+				<xs:annotation>
+					<xs:documentation>Number of pixel lines in the vertical direction</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.37.2</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frame" type="camera_visible_frame" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of frames</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geometry_matrix" type="camera_visible_geometry_matrix">
+				<xs:annotation>
+					<xs:documentation>Description of geometry matrix (ray transfer matrix)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="camera_visible_channel">
+		<xs:annotation>
+			<xs:documentation>Channel of a camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Description of apertures between plasma and the detectors (position, outline shape and orientation)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="viewing_angle_alpha_bounds">
+				<xs:annotation>
+					<xs:documentation>Minimum and maximum values of alpha angle of the field of view, where alpha is the agle between the axis X3 and projection of the chord of view  on the plane X1X3 counted clockwise from the top view of X2 axis. X1, X2, X3 are the ones of the first aperture (i.e. the closest to the plasma).</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="viewing_angle_beta_bounds">
+				<xs:annotation>
+					<xs:documentation>Minimum and maximum values of beta angle of the field of view, where beta is the angle between the axis X3 and projection of the chord of view on the plane X2X3 counted clockwise from the top view of X1 axis. X1, X2, X3 are the ones of the first aperture (i.e. the closest to the plasma).</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detector" type="camera_visible_detector" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of detectors</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="optical_element" type="optical_element" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of optical elements</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fibre_bundle" type="fibre_bundle">
+				<xs:annotation>
+					<xs:documentation>Description of the fibre bundle</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="camera_visible">
+		<xs:annotation>
+			<xs:documentation>Camera in the visible light range</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.27.0</lifecycle_version>
+				<lifecycle_last_change>3.39.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="name">
+					<xs:annotation>
+						<xs:documentation>Name of the camera</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="channel" type="camera_visible_channel" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>Set of channels (a front aperture, possibly followed by others, viewing the plasma recorded by one or more detectors e.g. for different wavelength ranges)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

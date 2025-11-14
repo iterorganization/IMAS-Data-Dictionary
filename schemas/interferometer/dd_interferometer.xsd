@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="interferometer_channel_n_e">
+		<xs:annotation>
+			<xs:documentation>n_e profile along the line of sight</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>Data</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-3</units>
+						<coordinate1>../positions/r</coordinate1>
+						<coordinate2>../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="positions" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Positions along the line of sight</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="interferometer_channel_wavelength_interf">
+		<xs:annotation>
+			<xs:documentation>Value of the wavelength and density estimators associated to an interferometry wavelength</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Wavelength value</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phase_corrected" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase measured for this wavelength, corrected from fringe jumps</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fringe_jump_correction">
+				<xs:annotation>
+					<xs:documentation>Signed number of 2pi phase corrections applied to remove a fringe jump, for each time slice on which a correction has been made </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../fringe_jump_correction_times</coordinate1>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fringe_jump_correction_times">
+				<xs:annotation>
+					<xs:documentation>List of time slices of the pulse on which a fringe jump correction has been made </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phase_to_n_e_line">
+				<xs:annotation>
+					<xs:documentation>Conversion factor to be used to convert phase into line density for this wavelength</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.rad^-1</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="interferometer_channel">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_3points">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the channel, defined by two points when the beam is not reflected, a third point is added to define the reflected beam path</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelength" type="interferometer_channel_wavelength_interf" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Set of wavelengths used for interferometry</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="path_length_variation" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Optical path length variation due to the plasma</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e_line" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Line integrated density, possibly obtained by a combination of multiple interferometry wavelengths. Corresponds to the density integrated along the full line-of-sight (i.e. forward AND return for a reflected channel: NO dividing by 2 correction)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e_line_average" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Line average density inferred from interferometer measurements. Corresponds to the density integrated along the full line-of-sight and then divided by the length of the line-of-sight</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e" type="interferometer_channel_n_e">
+				<xs:annotation>
+					<xs:documentation>Estimated electron density profile on a set of positions along the line of sight and used by forward models.</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.40.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="interferometer">
+		<xs:annotation>
+			<xs:documentation>Interferometer diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.15.0</lifecycle_version>
+				<lifecycle_last_change>3.41.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="channel" type="interferometer_channel" maxOccurs="15">
+					<xs:annotation>
+						<xs:documentation>Set of channels (lines-of-sight)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="n_e_volume_average" type="signal_flt_1d_validity">
+					<xs:annotation>
+						<xs:documentation>Volume average plasma density estimated from the line densities measured by the various channels</xs:documentation>
+						<xs:appinfo>
+							<units>m^-3</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="electrons_n" type="signal_flt_1d_validity">
+					<xs:annotation>
+						<xs:documentation>Total number of electrons in the plasma, estimated from the line densities measured by the various channels</xs:documentation>
+						<xs:appinfo>
+							<units>1</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

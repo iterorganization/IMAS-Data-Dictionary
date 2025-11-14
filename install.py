@@ -1,11 +1,25 @@
-from pathlib import Path
-from setuptools_scm import get_version
+import logging
 import os
 import pathlib
 import shutil
+from pathlib import Path
+
+from setuptools_scm import get_version
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler(), logging.FileHandler("install.log")],
+)
+logger = logging.getLogger(__name__)
 
 DD_BUILD = pathlib.Path(__file__).parent.resolve()
-IMAS_INSTALL_DIR = os.path.join(DD_BUILD, "install")
+IMAS_INSTALL_DIR = os.path.join(DD_BUILD, "imas_data_dictionary/resources")
+
+# Delete directory contents if it exists
+if os.path.exists(IMAS_INSTALL_DIR) and os.path.isdir(IMAS_INSTALL_DIR):
+    shutil.rmtree(IMAS_INSTALL_DIR)
 
 DD_GIT_DESCRIBE = get_version()
 UAL_GIT_DESCRIBE = DD_GIT_DESCRIBE
@@ -19,7 +33,6 @@ libexecdir = os.path.join(exec_prefix, "libexec")
 datarootdir = os.path.join(prefix, "share")
 datadir = datarootdir
 sysconfdir = os.path.join(prefix, "etc")
-includedir = os.path.join(prefix, "include")
 docdir = os.path.join(datarootdir, "doc")
 htmldir = docdir
 sphinxdir = os.path.join(docdir, "imas/sphinx")
@@ -34,92 +47,167 @@ htmldoc = [
 ]
 
 
-def install_sphinx_docs():
-    print("Installing Sphinx files")
-    sourcedir = Path("docs/_build/html")
-    destdir = Path(sphinxdir)
-
-    if sourcedir.exists() and sourcedir.is_dir():
-        if destdir.exists():
-            shutil.rmtree(destdir)  # Remove existing destination directory to avoid errors
-        shutil.copytree(sourcedir, destdir)
-    else:
-        print("Proceeding with installation without the Sphinx documentation since it could not be found")
-
-
 def install_html_docs():
-    imas_dir = Path(htmldir) / "imas"
-    imas_dir.mkdir(parents=True, exist_ok=True)
+    """
+    Install HTML documentation to the package resources directory.
 
-    html_docs_dir = Path("html_documentation")
-    if html_docs_dir.exists() and html_docs_dir.is_dir():
-        if imas_dir.exists():
-            shutil.rmtree(imas_dir)  # Remove existing destination directory to avoid errors
-        shutil.copytree(html_docs_dir, imas_dir)
-    else:
-        print("Proceeding with installation without the html documentation since it could not be found")
+    Copies generated HTML documentation
+    """
+    logger.info("[IMAS-DD] Starting HTML documentation installation")
+    try:
+        # Build destination path
+        resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
+        resources_dir.mkdir(parents=True, exist_ok=True)
+
+        docs_dir = resources_dir / "docs"
+        docs_dir.mkdir(parents=True, exist_ok=True)
+
+        legacy_dir = docs_dir / "legacy"
+        legacy_dir.mkdir(parents=True, exist_ok=True)
+
+        html_docs_dir = Path("html_documentation")
+
+        logger.info(f"[IMAS-DD] Source: {html_docs_dir}")
+        logger.info(f"[IMAS-DD] Destination: {legacy_dir}")
+
+        # Validate source exists and is a directory
+        if not html_docs_dir.exists():
+            logger.warning(
+                f"[IMAS-DD] HTML documentation source not found at {html_docs_dir}"
+            )
+            logger.info(
+                "[IMAS-DD] Proceeding with installation without HTML documentation"
+            )
+            return
+
+        if not html_docs_dir.is_dir():
+            logger.error(f"[IMAS-DD] Source path is not a directory: {html_docs_dir}")
+            raise NotADirectoryError(f"Expected directory, got file: {html_docs_dir}")
+
+        # Remove existing destination if present
+        if legacy_dir.exists():
+            logger.info(f"[IMAS-DD] Removing existing destination: {legacy_dir}")
+            shutil.rmtree(legacy_dir)
+
+        # Ensure parent directory exists
+        legacy_dir.parent.mkdir(parents=True, exist_ok=True)
+
+        # Copy documentation
+        logger.info(f"[IMAS-DD] Copying HTML docs from {html_docs_dir} to {legacy_dir}")
+        shutil.copytree(html_docs_dir, legacy_dir)
+
+        # Check if there's a nested html_documentation directory and flatten it
+        nested_dir = legacy_dir / "html_documentation"
+        if nested_dir.exists() and nested_dir.is_dir():
+            logger.info(
+                "[IMAS-DD] Found nested html_documentation directory, flattening structure"
+            )
+            # Move files from nested directory to parent
+            for item in nested_dir.iterdir():
+                dest_path = legacy_dir / item.name
+                # If item already exists at destination, remove it first
+                if dest_path.exists():
+                    if dest_path.is_dir():
+                        shutil.rmtree(dest_path)
+                    else:
+                        dest_path.unlink()
+                # Move the item
+                shutil.move(str(item), str(dest_path))
+                logger.debug(
+                    f"[IMAS-DD] Moved {item.name} from nested to legacy directory"
+                )
+            # Remove the now-empty nested directory
+            shutil.rmtree(nested_dir)
+            logger.info("[IMAS-DD] Removed nested html_documentation directory")
+
+        logger.info("[IMAS-DD] HTML documentation installation completed successfully")
+
+    except Exception as e:
+        logger.error(
+            f"[IMAS-DD] Error during HTML documentation installation: {e}",
+            exc_info=True,
+        )
+        raise
 
 
 def install_dd_files():
     print("installing dd files")
-    Path(includedir).mkdir(parents=True, exist_ok=True)
     dd_files = [
         "dd_data_dictionary.xml",
-        "IDSNames.txt",
-        "dd_data_dictionary_validation.txt",
     ]
+
+    # Create schemas subfolder in resources directory for Python package access
+    resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
+    resources_dir.mkdir(parents=True, exist_ok=True)
+
+    schemas_dir = resources_dir / "schemas"
+    schemas_dir.mkdir(parents=True, exist_ok=True)
+
+    print(
+        "Copying data dictionary files to resources/schemas directory for importlib.resources access"
+    )
+    # Exclude the IDSDef.xml file. This file is a copy of data_dictionary.xml
+    # shutil.copy("IDSDef.xml", schemas_dir / "IDSDef.xml")
+
+    # Copy schema files to the schemas subfolder
     for dd_file in dd_files:
-        shutil.copy(dd_file, includedir)
+        shutil.copy(dd_file, schemas_dir / dd_file)
 
-
-def create_idsdef_symlink():
-    try:
-        if not os.path.exists(os.path.join(includedir, "IDSDef.xml")):
-            os.symlink(
-                "dd_data_dictionary.xml",
-                os.path.join(includedir, "IDSDef.xml"),
-            )
-
-    except Exception as _:  # noqa: F841
-        shutil.copy(
-            "dd_data_dictionary.xml",
-            os.path.join(includedir, "IDSDef.xml"),
-        )
+    # rename schemas/dd_data_dictionary.xml to schemas/data_dictionary.xml
+    data_dictionary_path = schemas_dir / "dd_data_dictionary.xml"
+    if data_dictionary_path.exists():
+        new_data_dictionary_path = schemas_dir / "data_dictionary.xml"
+        # Remove target file if it exists to avoid rename error
+        if new_data_dictionary_path.exists():
+            new_data_dictionary_path.unlink()
+        data_dictionary_path.rename(new_data_dictionary_path)
+        logger.info(f"Renamed {data_dictionary_path} to {new_data_dictionary_path}")
 
 
 def ignored_files(adir, filenames):
-    return [filename for filename in filenames if not filename.endswith("_identifier.xml")]
-
-
-def copy_utilities():
-    print("copying utilities")
-    if not os.path.exists(os.path.join(includedir, "utilities")):
-        shutil.copytree("utilities", os.path.join(includedir, "utilities"), ignore=ignored_files)
+    return [
+        filename for filename in filenames if not filename.endswith("_identifier.xml")
+    ]
 
 
 # Identifiers definition files
 def install_identifiers_files():
-    print("installing identifier files")
-    exclude = set(["install", "data_dictionary", "dist", "build"])
+    logger.info("Installing identifier files")
+    exclude = set(["imas_data_dictionary", "dist", "build"])
 
     ID_IDENT = []
-    for root, dirs, files in os.walk(".", topdown=True):
+
+    for root, dirs, files in os.walk("schemas", topdown=True):
         dirs[:] = [d for d in dirs if d not in exclude]
         for filename in files:
             if filename.endswith("_identifier.xml"):
                 ID_IDENT.append(os.path.join(root, filename))
 
+    logger.debug(f"Found {len(ID_IDENT)} identifier files: {ID_IDENT}")
+
+    # Also copy identifier files to schemas_dir for importlib.resources access
+    logger.info(
+        "Copying identifier files to resources/schemas directory for importlib.resources access"
+    )
+    resources_dir = Path(srcdir) / "imas_data_dictionary" / "resources"
+    schemas_dir = resources_dir / "schemas"
+
     for file_path in ID_IDENT:
         directory_path = os.path.dirname(file_path)
         directory_name = os.path.basename(directory_path)
-        Path(includedir + "/" + directory_name).mkdir(parents=True, exist_ok=True)
-        shutil.copy(file_path, os.path.join(includedir, directory_name))
+
+        # Create subdirectory in schemas_dir to maintain folder structure
+        schemas_subdir = schemas_dir / directory_name
+        schemas_subdir.mkdir(parents=True, exist_ok=True)
+
+        # Copy the identifier file to the schemas subdirectory
+        filename = os.path.basename(file_path)
+        target_path = schemas_subdir / filename
+        shutil.copy(file_path, target_path)
+        logger.debug(f"Copied {file_path} to {target_path}")
 
 
 if __name__ == "__main__":
     install_html_docs()
-    install_sphinx_docs()
     install_dd_files()
-    create_idsdef_symlink()
-    copy_utilities()
     install_identifiers_files()

@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="amns_data_data_entry">
+		<xs:annotation>
+			<xs:documentation>Definition of a given AMNS data entry</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description of this data entry</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shot">
+				<xs:annotation>
+					<xs:documentation>Shot number = Mass*1000+Nuclear_charge</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="run">
+				<xs:annotation>
+					<xs:documentation>Which run number is the active run number for this version</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="amns_data_release">
+		<xs:annotation>
+			<xs:documentation>Definition of a given release of an AMNS data release</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description of this release</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="date">
+				<xs:annotation>
+					<xs:documentation>Date of this release</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="data_entry" type="amns_data_data_entry" maxOccurs="30">
+				<xs:annotation>
+					<xs:documentation>For this release, list of each data item (i.e. shot/run pair containing the actual data) included in this release</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="amns_data_process_reactant">
+		<xs:annotation>
+			<xs:documentation>Process reactant or product definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying reaction participant (e.g. "D", "e", "W", "CD4", "photon", "n")</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="element" type="plasma_composition_neutral_element_constant" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom (in such case, this array should be of size 1) or molecule. Mass of atom and nuclear charge should be set to 0 for photons and electrons. The mass of atom shouldn't be set for an atomic process that is not isotope dependent.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="role" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Identifier for the role of this paricipant in the reaction. For surface reactions distinguish between projectile and wall.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mass">
+				<xs:annotation>
+					<xs:documentation>Mass of the participant</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="charge">
+				<xs:annotation>
+					<xs:documentation>Charge number of the participant</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="relative_charge">
+				<xs:annotation>
+					<xs:documentation>This is a flag indicating that charges are absolute (if set to 0), relative (if 1) or irrelevant (-1); relative would be used to categorize the ionization reactions from i to i+1 for all charge states; in the case of bundles, the +1 relative indicates the next bundle</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="multiplicity">
+				<xs:annotation>
+					<xs:documentation>Multiplicity in the reaction</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="metastable">
+				<xs:annotation>
+					<xs:documentation>An array identifying the metastable; if zero-length, then not a metastable; if of length 1, then the value indicates the electronic level for the metastable (mostly used for atoms/ions); if of length 2, then the 1st would indicate the electronic level and the second the vibrational level for the metastable (mostly used for molecules and molecular ions); if of length 3, then the 1st would indicate the electronic level, the second the vibrational level and the third the rotational level for the metastable (mostly used for molecules and molecular ions)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="metastable_label">
+				<xs:annotation>
+					<xs:documentation>Label identifying in text form the metastable</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="amns_data_process_charge_state">
+		<xs:annotation>
+			<xs:documentation>Process tables for a given charge state. Only one table is used for that process, defined by process(:)/table_dimension</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_0d">
+				<xs:annotation>
+					<xs:documentation>0D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(:)/results_units</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_1d">
+				<xs:annotation>
+					<xs:documentation>1D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(i1)/results_units</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_2d">
+				<xs:annotation>
+					<xs:documentation>2D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(i1)/results_units</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_3d">
+				<xs:annotation>
+					<xs:documentation>3D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(:)/results_units</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<coordinate3>1...N</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_4d">
+				<xs:annotation>
+					<xs:documentation>4D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(i1)/results_units</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<coordinate4>1...N</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_5d">
+				<xs:annotation>
+					<xs:documentation>5D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(i1)/results_units</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<coordinate4>1...N</coordinate4>
+						<coordinate5>1...N</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table_6d">
+				<xs:annotation>
+					<xs:documentation>6D table describing the process data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>units given by process(i1)/results_units</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<coordinate3>1...N</coordinate3>
+						<coordinate4>1...N</coordinate4>
+						<coordinate5>1...N</coordinate5>
+						<coordinate6>1...N</coordinate6>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_6D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="amns_data_process">
+		<xs:annotation>
+			<xs:documentation>Definition of a process and its data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="source">
+				<xs:annotation>
+					<xs:documentation>Filename or subroutine name used to provide this data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="provider">
+				<xs:annotation>
+					<xs:documentation>Name of the person in charge of producing this data</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="citation">
+				<xs:annotation>
+					<xs:documentation>Reference to publication(s)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the process (e.g. EI, RC, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="reactants" type="amns_data_process_reactant" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of reactants involved in this process</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="products" type="amns_data_process_reactant" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of products resulting of this process</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="table_dimension">
+				<xs:annotation>
+					<xs:documentation>Table dimensionality of the process (1 to 6), valid for all charge states. Indicates which of the tables is filled (below the charge_state node)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="coordinate_index">
+				<xs:annotation>
+					<xs:documentation>Index in tables_coord, specifying what coordinate systems to use for this process (valid for all tables)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="result_label">
+				<xs:annotation>
+					<xs:documentation>Description of the process result (rate, cross section, sputtering yield, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="result_units">
+				<xs:annotation>
+					<xs:documentation>Units of the process result</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="result_transformation">
+				<xs:annotation>
+					<xs:documentation>Transformation of the process result. Integer flag: 0=no transformation; 1=10^; 2=exp()</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="charge_state" type="amns_data_process_charge_state" maxOccurs="75">
+				<xs:annotation>
+					<xs:documentation>Process tables for a set of charge states. Only one table is used for that process, defined by process(:)/table_dimension. If the data in the table_Nd array are used as parameters for a function, then no coordinates are needed, and coordinate_index should be set to -1, and result_transformation should contain the integer identifier to the internally provided functions. If the results will come from an interpolation in the table_Nd data, then coordinates must be provided in coordinate_system(process(i1)/coordinate_index), and the shape of the table should match the cartesian product of the coordinates</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="amns_data_coordinate_system_coordinate">
+		<xs:annotation>
+			<xs:documentation>Description of a coordinate for atomic data tables. Can be either a range of real values or a set of discrete values (if interp_type=0)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of coordinate (e.g. "Electron temperature")</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>Coordinate values</xs:documentation>
+					<xs:appinfo>
+						<units>units given by coordinate_system(:)/coordinate(:)/units</units>
+						<coordinate1>1...N</coordinate1>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="interpolation_type">
+				<xs:annotation>
+					<xs:documentation>Interpolation strategy in this coordinate direction. Integer flag: 0=discrete (no interpolation); 1=linear; ...</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extrapolation_type">
+				<xs:annotation>
+					<xs:documentation>Extrapolation strategy when leaving the domain. The first value of the vector describes the behaviour at lower bound, the second describes the at upper bound. Possible values: 0=none, report error; 1=boundary value; 2=linear extrapolation</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...2</coordinate1>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="value_labels">
+				<xs:annotation>
+					<xs:documentation>String description of discrete coordinate values (if interpolation_type=0). E.g., for spectroscopic lines, the spectroscopic description of the transition.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../values</coordinate1>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="units">
+				<xs:annotation>
+					<xs:documentation>Units of coordinate (e.g. eV)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="transformation">
+				<xs:annotation>
+					<xs:documentation>Coordinate transformation applied to coordinate values stored in coord. Integer flag: 0=none; 1=log10; 2=ln</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="spacing">
+				<xs:annotation>
+					<xs:documentation>Flag for specific coordinate spacing (for optimization purposes). Integer flag: 0=undefined; 1=uniform; ...</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="amns_data_coordinate_system">
+		<xs:annotation>
+			<xs:documentation>Description of a coordinate system for atomic data tables </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="coordinate" type="amns_data_coordinate_system_coordinate" maxOccurs="6">
+				<xs:annotation>
+					<xs:documentation>Set of coordinates for that coordinate system. A coordinate an be either a range of real values or a set of discrete values (if interpolation_type=0)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="amns_data">
+		<xs:annotation>
+			<xs:documentation>Atomic, molecular, nuclear and surface physics data. Each occurrence contains the data for a given element (nuclear charge), describing various physical processes. For each process, data tables are organized by charge states. The coordinate system used by the data tables is described under the coordinate_system node.</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.0.0</lifecycle_version>
+				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="z_n">
+					<xs:annotation>
+						<xs:documentation>Nuclear charge</xs:documentation>
+						<xs:appinfo>
+							<units>e</units>
+							<type>static</type>
+							<change_nbc_version>4.0.0</change_nbc_version>
+							<change_nbc_description>type_changed</change_nbc_description>
+							<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="a">
+					<xs:annotation>
+						<xs:documentation>Mass of atom</xs:documentation>
+						<xs:appinfo>
+							<units>u</units>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="process" type="amns_data_process" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>Description and data for a set of physical processes.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="coordinate_system" type="amns_data_coordinate_system" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>Array of possible coordinate systems for process tables</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="release" type="amns_data_release" maxOccurs="100">
+					<xs:annotation>
+						<xs:documentation>List of available releases of the AMNS data; each element contains information about the AMNS data that is included in the release. This part of the IDS is filled and stored only into shot/run=0/1, playing the role of a catalogue.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="code" type="code_constant">
+					<xs:annotation>
+						<xs:documentation>Generic decription of the code-specific parameters for the code that has produced this IDS</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

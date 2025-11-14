@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="tf_coil_conductor_elements">
+		<xs:annotation>
+			<xs:documentation>Elements descibring the conductor contour</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="names">
+				<xs:annotation>
+					<xs:documentation>Name or description of every element</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="types">
+				<xs:annotation>
+					<xs:documentation>Type of every element: 1: line segment, its ends are given by the start and end points; index = 2: arc of a circle; index = 3: full circle</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../names</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="start_points" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the start point of every element</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intermediate_points" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Position of an intermediate point along the arc of circle, for every element, providing the orientation of the element (must define with the corresponding start point an aperture angle strictly inferior to PI). Meaningful only if type/index = 2, fill with default/empty value otherwise</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="end_points" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the end point of every element. Meaningful only if type/index = 1 or 2, fill with default/empty value otherwise</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="centres" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the centre of the arc of a circle of every element (meaningful only if type/index = 2 or 3, fill with default/empty value otherwise)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tf_coil_conductor">
+		<xs:annotation>
+			<xs:documentation>Description of a conductor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="elements" type="tf_coil_conductor_elements">
+				<xs:annotation>
+					<xs:documentation>Set of geometrical elements (line segments and/or arcs of a circle) describing the contour of the TF conductor centre</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cross_section" type="delta_rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>The cross-section perpendicular to the TF conductor contour is described by a series of contour points, given by their relative position with respect to the start point of the first element. This cross-section is assumed constant for all elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resistance">
+				<xs:annotation>
+					<xs:documentation>conductor resistance</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>ohm</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Current in the conductor (positive when it flows from the first to the last element)</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage on the conductor terminals</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tf_coil">
+		<xs:annotation>
+			<xs:documentation>Description of a given coil</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. �channel viewing the upper divertor�</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="conductor" type="tf_coil_conductor" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of conductors inside the coil. The structure can be used with size 1 for a simplified description as a single conductor. A conductor is composed of several elements, serially connected, i.e. transporting the same current.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="turns">
+				<xs:annotation>
+					<xs:documentation>Number of total turns in a toroidal field coil. May be a fraction when describing the coil connections.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="resistance">
+				<xs:annotation>
+					<xs:documentation>Coil resistance</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>ohm</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Current in the coil</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage on the coil terminals</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tf_ggd">
+		<xs:annotation>
+			<xs:documentation>Toroidal field map represented on ggd</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="generic_grid_dynamic">
+				<xs:annotation>
+					<xs:documentation>Grid description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_r" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>R component of the vacuum magnetic field, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_z" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Z component of the vacuum magnetic field, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_tor" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the vacuum magnetic field, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="a_field_r" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>R component of the vacuum vector potential, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>T.m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="a_field_z" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Z component of the vacuum vector potential, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>T.m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="a_field_tor" type="generic_grid_scalar" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the vacuum vector potential, given on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>T.m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="tf">
+		<xs:annotation>
+			<xs:documentation>Toroidal field coils</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>active</lifecycle_status>
+				<lifecycle_version>4.0.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="r0">
+					<xs:annotation>
+						<xs:documentation>Reference major radius of the device (from the official description of the device). This node is the placeholder for this official machine description quantity (typically the middle of the vessel at the equatorial midplane, although the exact definition may depend on the device)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>m</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="is_periodic">
+					<xs:annotation>
+						<xs:documentation>Flag indicating whether coils are described one by one in the coil() structure (flag=0) or whether the coil structure represents only coils having different characteristics (flag = 1, n_coils must be filled in that case). In the latter case, the coil() sequence is repeated periodically around the torus.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="coils_n">
+					<xs:annotation>
+						<xs:documentation>Number of coils around the torus, in case is_periodic = 1</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="coil" type="coil" maxOccurs="32">
+					<xs:annotation>
+						<xs:documentation>Set of coils around the tokamak</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="field_map" type="tf_ggd" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Map of the vacuum field at various time slices, represented using the generic grid description</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="b_field_phi_vacuum_r" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Vacuum field times major radius in the toroidal field magnet. Positive sign means anti-clockwise when viewed from above</xs:documentation>
+						<xs:appinfo>
+							<units>T.m</units>
+							<cocos_label_transformation>b0_like</cocos_label_transformation>
+							<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+							<cocos_leaf_name_aos_indices>tf.b_field_tor_vacuum_r.data</cocos_leaf_name_aos_indices>
+							<change_nbc_version>3.42.0</change_nbc_version>
+							<change_nbc_description>structure_renamed</change_nbc_description>
+							<change_nbc_previous_name>b_field_tor_vacuum_r</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="delta_b_field_phi_vacuum_r" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Variation of (vacuum field times major radius in the toroidal field magnet) from the start of the plasma.</xs:documentation>
+						<xs:appinfo>
+							<units>T.m</units>
+							<change_nbc_version>3.42.0</change_nbc_version>
+							<change_nbc_description>structure_renamed</change_nbc_description>
+							<change_nbc_previous_name>delta_b_field_tor_vacuum_r</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

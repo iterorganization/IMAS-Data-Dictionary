@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="lh_antennas_antenna_row">
+		<xs:annotation>
+			<xs:documentation>Horizontal row of LH waveguides</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the row</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="rphiz1d_dynamic_aos1_common_time">
+				<xs:annotation>
+					<xs:documentation>Position of the middle on the row</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_phi">
+				<xs:annotation>
+					<xs:documentation>Refraction index in the toroidal direction</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_pol">
+				<xs:annotation>
+					<xs:documentation>Refraction index in the poloidal direction. The poloidal angle is defined from the reference point; the angle at a point (R,Z) is given by atan((Z-Zref)/(R-Rref)), where Rref=reference_point/r and Zref=reference_point/z</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>dynamic</type>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_density_spectrum_1d">
+				<xs:annotation>
+					<xs:documentation>1D power density spectrum dP/dn_phi, as a function of time</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+						<coordinate1>../n_phi</coordinate1>
+						<coordinate2>../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_density_spectrum_2d">
+				<xs:annotation>
+					<xs:documentation>2D power density spectrum d2P/(dn_tor.dn_pol), as a function of time</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+						<coordinate1>../n_phi</coordinate1>
+						<coordinate2>../n_pol</coordinate2>
+						<coordinate3>../time</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Timebase for the dynamic nodes of this probe located at this level of the IDS structure</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>dynamic</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lh_antennas_antenna_module">
+		<xs:annotation>
+			<xs:documentation>Module of an LH antenna</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>identifier</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Top module”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>name</change_nbc_previous_name>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_launched" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power launched from this module into the vacuum vessel</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_forward" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Forward power arriving to the back of the module</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_reflected" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Reflected power</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reflection_coefficient" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power reflection coefficient</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase of the forward power arriving at the back of this module</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lh_antennas_antenna">
+		<xs:annotation>
+			<xs:documentation>LH antenna</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="model_name">
+				<xs:annotation>
+					<xs:documentation>Name of the antenna model used for antenna spectrum computation</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency">
+				<xs:annotation>
+					<xs:documentation>Frequency</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_launched" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power launched from this antenna into the vacuum vessel</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_forward" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Forward power arriving at the back of the antenna</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_reflected" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Reflected power</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reflection_coefficient" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power reflection coefficient, averaged over modules</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase difference between two neighbouring modules (average over modules), at the mouth (front) of the antenna</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_parallel_peak" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Peak parallel refractive index of the launched wave spectrum (simple estimate based on the measured phase difference)</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="rphiz1d_dynamic_aos1_definition">
+				<xs:annotation>
+					<xs:documentation>Position of a reference point on the antenna (allowing also tracking the possible movements of the antenna)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pressure_tank" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Pressure in the vacuum tank of the antenna</xs:documentation>
+					<xs:appinfo>
+						<units>Pa</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="distance_to_antenna">
+				<xs:annotation>
+					<xs:documentation>Radial distance to the antenna mouth (grid for the electron density profile). 0 at antenna mouth, increasing towards the plasma</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_e" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Electron density profile in front of the antenna</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+						<coordinate1>../distance_to_antenna</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="module" type="lh_antennas_antenna_module" maxOccurs="16">
+				<xs:annotation>
+					<xs:documentation>Set of antenna modules</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="row" type="lh_antennas_antenna_row" maxOccurs="6">
+				<xs:annotation>
+					<xs:documentation>Set of horizontal rows of waveguides (corresponding to different poloidal positions). A power spectrum is provided for each row.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="lh_antennas">
+		<xs:annotation>
+			<xs:documentation>Antenna systems for heating and current drive in the Lower Hybrid (LH) frequencies. In the definitions below, the front (or mouth) of the antenna refers to the plasma facing side of the antenna, while the back refers to the waveguides connected side of the antenna (towards the RF generators).</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.19.1</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+			<xs:appinfo/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="reference_point" type="rz0d_constant">
+					<xs:annotation>
+						<xs:documentation>Reference point used to define the poloidal angle, e.g. the geometrical centre of the vacuum vessel. Used to define the poloidal refraction index under antenna/row</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="antenna" type="lh_antennas_antenna" maxOccurs="2">
+					<xs:annotation>
+						<xs:documentation>Set of Lower Hybrid antennas</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="power_launched" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Power launched into the vacuum vessel by the whole LH system (sum over antennas)</xs:documentation>
+						<xs:appinfo>
+							<units>W</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

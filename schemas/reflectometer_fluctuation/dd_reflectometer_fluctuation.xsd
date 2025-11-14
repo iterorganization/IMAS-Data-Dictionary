@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="reflectometer_antennas">
+		<xs:annotation>
+			<xs:documentation>Moving reflectometer antennas</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="line_of_sight_emission" type="line_of_sight_2points_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the emission antenna. The first point corresponds to the centre of the antenna mouth. The second point correspond to the interception of the line of sight with the reflection surface on the inner wall.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="line_of_sight_detection" type="line_of_sight_2points_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the detection antenna, to be filled only if its position is distinct from the emission antenna. The first point corresponds to the centre of the antenna mouth. The second point correspond to the interception of the line of sight with the reflection surface on the inner wall.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="antenna_emission" type="flat_object_orientation_aos3">
+				<xs:annotation>
+					<xs:documentation>Dynamic emission antenna orientation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="antenna_detection" type="flat_object_orientation_aos3">
+				<xs:annotation>
+					<xs:documentation>Dynamic detection antenna orientation, to be filled only if it is distinct from the emission antenna.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_doppler_position_1d">
+		<xs:annotation>
+			<xs:documentation>R, Z, Phi, psi, rho_tor_norm and theta positions associated to the doppler structure (1D, dynamic within a type 1 array of structure)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Height</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi">
+				<xs:annotation>
+					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_tor_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_pol_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized poloidal flux coordinate = sqrt((psi(rho)-psi(magnetic_axis)) / (psi(LCFS)-psi(magnetic_axis)))</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="theta">
+				<xs:annotation>
+					<xs:documentation>Poloidal angle (oriented clockwise when viewing the poloidal cross section on the right hand side of the tokamak axis of symmetry, with the origin placed on the plasma magnetic axis)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_fluctuation_level_position_2d">
+		<xs:annotation>
+			<xs:documentation>R, Z, Phi, psi, rho_tor_norm and theta positions associated to the density fluctuations (2D, dynamic within a type 1 array of structure)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Height</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal angle (oriented counter-clockwise when viewing from above)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi">
+				<xs:annotation>
+					<xs:documentation>Poloidal flux</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_tor_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal flux coordinate</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_pol_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized poloidal flux coordinate = sqrt((psi(rho)-psi(magnetic_axis)) / (psi(LCFS)-psi(magnetic_axis)))</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="theta">
+				<xs:annotation>
+					<xs:documentation>Poloidal angle (oriented clockwise when viewing the poloidal cross section on the right hand side of the tokamak axis of symmetry, with the origin placed on the plasma magnetic axis)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
+						<coordinate2>../../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_fluctuation_level">
+		<xs:annotation>
+			<xs:documentation>Reconstruction of the amplitude of the fluctuations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dn_e_over_n_e">
+				<xs:annotation>
+					<xs:documentation>Relative amplitude of the density fluctuations post-processed for swept and fixed frequency (profile/one point)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="reflectometer_fluctuation_level_position_2d">
+				<xs:annotation>
+					<xs:documentation>Array of positions at which the fluctuation level is computed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_width">
+				<xs:annotation>
+					<xs:documentation>Width of the time interval over which fluctuating profiles are processed. By convention, the time interval starts at time-time_width and ends at time.</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radial_width">
+				<xs:annotation>
+					<xs:documentation>Width in the radial direction over which fluctuating profiles are processed</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_fluctuation_doppler">
+		<xs:annotation>
+			<xs:documentation>Reconstruction of the amplitude of the fluctuations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavenumber">
+				<xs:annotation>
+					<xs:documentation>Wavenumber probed by the diagnostic</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-1</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shift">
+				<xs:annotation>
+					<xs:documentation>Doppler frequency shift (for the main peak of the power spectrum)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>Hz</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_pol">
+				<xs:annotation>
+					<xs:documentation>Poloidal velocity</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_radial">
+				<xs:annotation>
+					<xs:documentation>Radial electric field</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>V.m^-1</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="reflectometer_doppler_position_1d">
+				<xs:annotation>
+					<xs:documentation>Measurement position</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_width">
+				<xs:annotation>
+					<xs:documentation>Width of the time interval over which fluctuating profiles are processed. By convention, the time interval starts at time-time_width and ends at time.</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radial_width">
+				<xs:annotation>
+					<xs:documentation>Width in the radial direction over which fluctuating profiles are processed</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_fluctuation_spectrum">
+		<xs:annotation>
+			<xs:documentation>Spectrum of the fluctuations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_log">
+				<xs:annotation>
+					<xs:documentation>Power spectrum in log scale</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>dB</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../frequencies/data</coordinate1_same_as>
+						<coordinate2>../frequencies_fourier</coordinate2>
+						<coordinate3>../time</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequencies_fourier">
+				<xs:annotation>
+					<xs:documentation>Array of frequencies used for the Fourier transform</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>Hz</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_width">
+				<xs:annotation>
+					<xs:documentation>Width of the time interval over which the spectrum is processed. By convention, the time interval starts at time-time_width and ends at time.</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_fluctuation_raw">
+		<xs:annotation>
+			<xs:documentation>Raw signal for reflectometer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="i_component">
+				<xs:annotation>
+					<xs:documentation>I component of the IQ detector used to retrieve the phase of signal's envelope</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>V</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../frequencies/data</coordinate1_same_as>
+						<coordinate2>../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="q_component">
+				<xs:annotation>
+					<xs:documentation>Q component of the IQ detector used to retrieve the phase of signal's envelope</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>V</units>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../../frequencies/data</coordinate1_same_as>
+						<coordinate2>../time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reflectometer_fluctuation_channel">
+		<xs:annotation>
+			<xs:documentation>Reflectometer channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mode">
+				<xs:annotation>
+					<xs:documentation>Detection mode "X" or "O"</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="antennas_orientation" type="reflectometer_antennas" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Description of lines of sight and antenna orientation as a function of time</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="antenna_emission_static" type="flat_object_static">
+				<xs:annotation>
+					<xs:documentation>Static part of the geometry of the emission antenna</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="antenna_detection_static" type="flat_object_static">
+				<xs:annotation>
+					<xs:documentation>Static part of the geometry of the detection antenna, to be filled only if it is distinct from the emission antenna.</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sweep_time">
+				<xs:annotation>
+					<xs:documentation>Duration of a sweep</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequencies" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Array of frequencies scanned during a sweep</xs:documentation>
+					<xs:appinfo>
+						<units>Hz</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="raw_signal" type="reflectometer_fluctuation_raw">
+				<xs:annotation>
+					<xs:documentation>Raw data from IQ detector</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Measured phase of the probing wave for each frequency and time slice (corresponding to the begin time of a sweep), relative to the phase at launch</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../frequencies/data</coordinate1_same_as>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amplitude" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Measured amplitude of the detected probing wave for each frequency and time slice (corresponding to the begin time of a sweep)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<coordinate1_same_as>../frequencies/data</coordinate1_same_as>
+						<units>V</units>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluctuations_level" type="reflectometer_fluctuation_level">
+				<xs:annotation>
+					<xs:documentation>Reconstruction of the amplitude of the fluctuations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluctuations_spectrum" type="reflectometer_fluctuation_spectrum">
+				<xs:annotation>
+					<xs:documentation>Spectrum of the fluctuations, obtained by Fourier transform</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doppler" type="reflectometer_fluctuation_doppler">
+				<xs:annotation>
+					<xs:documentation>Processed data for Doppler reflectometers</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="reflectometer_fluctuation">
+		<xs:annotation>
+			<xs:documentation>Fluctuation reflectometer diagnostic. Multiple reflectometers are considered as independent diagnostics to be handled with different occurrence numbers</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.39.0</lifecycle_version>
+				<lifecycle_last_change>3.39.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="type">
+					<xs:annotation>
+						<xs:documentation>Type of reflectometer (frequency_swept, radar, ...)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="channel" type="reflectometer_fluctuation_channel" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Set of channels, e.g. different reception antennas or frequency bandwidths of the reflectometer</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="psi_normalization" type="psi_normalization">
+					<xs:annotation>
+						<xs:documentation>Quantities to use to normalize psi, as a function of time</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

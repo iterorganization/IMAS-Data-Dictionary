@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="spectro_uv_supply">
+		<xs:annotation>
+			<xs:documentation>Power supply</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="object">
+				<xs:annotation>
+					<xs:documentation>Name of the object connected to the power supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage_set" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage set at the power supply</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_uv_detector">
+		<xs:annotation>
+			<xs:documentation>Characteristics of the detector</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pixel_dimensions">
+				<xs:annotation>
+					<xs:documentation>Pixel dimension in each direction (horizontal, vertical)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pixel_n">
+				<xs:annotation>
+					<xs:documentation>Number of pixels in each direction (horizontal, vertical)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detector_dimensions">
+				<xs:annotation>
+					<xs:documentation>Total detector dimension in each direction (horizontal, vertical)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_uv_channel_wavelength_calibration">
+		<xs:annotation>
+			<xs:documentation>Wavelength calibration</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="offset">
+				<xs:annotation>
+					<xs:documentation>Offset</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gain">
+				<xs:annotation>
+					<xs:documentation>Gain</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_uv_channel_processed_line">
+		<xs:annotation>
+			<xs:documentation>Description of a processed line</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the processed line. To avoid ambiguities, the following syntax is used : element with ionization state_wavelength in Angstrom (e.g. WI_4000)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_central">
+				<xs:annotation>
+					<xs:documentation>Central wavelength of the processed line</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Calibrated, background subtracted radiance (integrated over the spectrum for this line)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Non-calibrated intensity (integrated over the spectrum for this line)</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_uv_channel_grating_image">
+		<xs:annotation>
+			<xs:documentation>Grating image_field</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="geometry_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Surface geometry. Index = 1 : spherical. Index = 2 : plane</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="centre" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Centre of the image surface in case it is spherical, or position of a point on the surface in case it is a plane</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="curvature_radius">
+				<xs:annotation>
+					<xs:documentation>Curvature radius of the image surface</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="x3_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X3 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X3 axis is normal to the surface ( in case it is plane) and oriented towards the plasma.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_uv_channel_grating">
+		<xs:annotation>
+			<xs:documentation>Grating description</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Grating type. Index = 1 : ruled. Index = 2 : holographic</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="groove_density">
+				<xs:annotation>
+					<xs:documentation>Number of grooves per unit length</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="geometry_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Grating geometry. Index = 1 : spherical. Index = 2 : toric</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="centre" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Centre of the grating sphere (if grating is spherical) or torus (if grating is toric)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="curvature_radius">
+				<xs:annotation>
+					<xs:documentation>Curvature radius of the spherical grating</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="summit" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the grating summit (defined as the point of contact of its concave side if the grating were put on a table). Used as the origin of the x1, x2, x3 vectors defined below</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x1_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X1 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X1 vector is horizontal and oriented in the positive phi direction (counter-clockwise when viewing from above). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x2_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X2 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X2 axis is orthonormal so that uX2 = uX3 x uX1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x3_unit_vector" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Components of the X3 direction unit vector in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis. The X3 axis is normal to the grating at its summit and oriented towards the plasma.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="outline" type="x1x21d_static">
+				<xs:annotation>
+					<xs:documentation>List of the 4 extreme points of the spherical grating in the (X1, X2) coordinate system, using the summit as the origin. Repeat the first point since this is a closed contour</xs:documentation>
+					<xs:appinfo>
+						<change_nbc_version>4</change_nbc_version>
+						<change_nbc_description>repeat_children_first_point</change_nbc_description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="image_field" type="spectro_uv_channel_grating_image">
+				<xs:annotation>
+					<xs:documentation>Surface on which the grating image is focused</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spectro_uv_channel">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detector_layout" type="spectro_uv_detector">
+				<xs:annotation>
+					<xs:documentation>Dimensions of pixels and detector</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="detector" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Description of the front face of the micro channel plate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="detector_position_parameter" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>In case of detector moving during a pulse, position parameter allowing to record and compute the detector position as a function of time</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Description of a set of collimating apertures</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_2points_dynamic_aos1">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the channel, given by 2 points. The 2nd point is allowed to evolve in case of dynamic line of sight.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="supply_high_voltage" type="spectro_uv_supply" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Set of high voltage power supplies applied to various parts of the diagnostic</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grating" type="spectro_uv_channel_grating">
+				<xs:annotation>
+					<xs:documentation>Description of the grating</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelengths">
+				<xs:annotation>
+					<xs:documentation>Measured wavelengths</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_spectral" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity_spectrum" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Intensity spectrum (not calibrated), i.e. number of photoelectrons detected by unit time by a wavelength pixel of the channel, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+						<coordinate2>time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="processed_line" type="spectro_uv_channel_processed_line" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of processed spectral lines</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiance_calibration">
+				<xs:annotation>
+					<xs:documentation>Radiance calibration</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-3.sr^-1</units>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radiance_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the radiance calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wavelength_calibration" type="spectro_uv_channel_wavelength_calibration">
+				<xs:annotation>
+					<xs:documentation>Wavelength calibration data. The wavelength is obtained from the pixel index k by: wavelength =  k * gain + offset. k is starting from 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelength_calibration_date">
+				<xs:annotation>
+					<xs:documentation>Date of the wavelength calibration (yyyy_mm_dd)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="validity_timed" type="signal_int_2d">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the data for each wavelength and each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../wavelengths</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="spectrometer_uv">
+		<xs:annotation>
+			<xs:documentation>Spectrometer in uv light range diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.29.0</lifecycle_version>
+				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="etendue">
+					<xs:annotation>
+						<xs:documentation>Etendue (geometric extent) of the optical system</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>m^2.sr</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="etendue_method" type="identifier_static">
+					<xs:annotation>
+						<xs:documentation>Method used to calculate the etendue. Index = 0 : exact calculation with a 4D integral; 1 : approximation with first order formula (detector surface times solid angle subtended by the apertures); 2 : other methods</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="channel" type="spectro_uv_channel" maxOccurs="10">
+					<xs:annotation>
+						<xs:documentation>Set of channels (detector or pixel of a camera)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="plasma_initiation_profiles_2d">
+		<xs:annotation>
+			<xs:documentation>2D profiles at a given time slice</xs:documentation>
+			<xs:appinfo>
+				<type>dynamic</type>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Selection of one of a set of grid types</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/poloidal_plane_coordinates_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid" type="equilibrium_profiles_2d_grid">
+				<xs:annotation>
+					<xs:documentation>Definition of the 2D grid (the content of dim1 and dim2 is defined by the selected grid_type)</xs:documentation>
+					<xs:appinfo>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>plasma_initiation.profiles_2d{i}</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="e_field_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the electric field</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>V.m^-1</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>e_field_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_initiation_field_lines">
+		<xs:annotation>
+			<xs:documentation>Field lines tracing at a given time slice</xs:documentation>
+			<xs:appinfo>
+				<type>dynamic</type>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Selection of one of a set of grid types</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/poloidal_plane_coordinates_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid" type="equilibrium_profiles_2d_grid">
+				<xs:annotation>
+					<xs:documentation>Definition of the 2D grid (the content of dim1 and dim2 is defined by the selected grid_type)</xs:documentation>
+					<xs:appinfo>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>equilibrium.time_slice{i}.profiles_2d{j}</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="townsend_or_closed_positions" type="rz1d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>List of all R, Z positions along all field lines encoutering Townsend condition or being closed field lines</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="townsend_or_closed_grid_positions" type="rz1d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>List of all R, Z grid positions (from ../grid) containing field lines encoutering Townsend condition or being closed field lines</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="starting_positions" type="rz1d_dynamic_aos">
+				<xs:annotation>
+					<xs:documentation>Starting position to initiate field line tracing, for each field line</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="e_field_townsend">
+				<xs:annotation>
+					<xs:documentation>Townsend electric field along each field line</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../starting_positions/r</coordinate1>
+						<units>V.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="e_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Parallel electric field along each field line</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../starting_positions/r</coordinate1>
+						<units>V.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="lengths">
+				<xs:annotation>
+					<xs:documentation>Length of each field line</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../starting_positions/r</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Prefill gas pressure used in Townsend E field calculation</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>Pa</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="open_fraction">
+				<xs:annotation>
+					<xs:documentation>Fraction of open field lines : ratio open fields lines / (open+closed field lines)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_initiation_global_quantities_neutral">
+		<xs:annotation>
+			<xs:documentation>Various neutral global quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element_constant" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H, D, T, He, C, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ion_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../ion array</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged temperature of this neutral species (averaged over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="density_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged density of this neutral species (averaged over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_initiation_global_quantities_ion">
+		<xs:annotation>
+			<xs:documentation>Various ion global quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element_constant" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed), volume averaged over plasma radius</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="t_i_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged temperature of this ion species (averaged over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged density of this ion species (averaged over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_initiation_global_quantities">
+		<xs:annotation>
+			<xs:documentation>Global quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="b_field_stray" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Stray magnetic field at plasma position</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_perpendicular" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Perpendicular magnetic field at plasma position. b_field_perpendicular = sqrt(b_field_stray^2+b_field_eddy^2) </xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="connection_length" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Average length of open magnetic field lines. In the case of fully closed field lines, connection_length = 1</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coulomb_logarithm" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Coulomb logarithm</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ip" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Total plasma current (toroidal component). Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>plasma_initiation.global_quantities.ip.data</cocos_leaf_name_aos_indices>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged electron temperature (average over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e_volume_average" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Volume averaged electron density (average over the plasma volume up to the LCFS)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="plasma_initiation_global_quantities_ion" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the different ion species, in the sense of isonuclear or isomolecular sequences</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neutral" type="plasma_initiation_global_quantities_neutral" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the different neutral species</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="plasma_initiation">
+		<xs:annotation>
+			<xs:documentation>Description the early phases of the plasma, before an equilibrium can be calculated</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.38.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="global_quantities" type="plasma_initiation_global_quantities">
+					<xs:annotation>
+						<xs:documentation>Global quantities</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="b_field_lines" type="plasma_initiation_field_lines" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Magnetic field line tracing results, given at various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="profiles_2d" type="plasma_initiation_profiles_2d" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>2D profiles in the poloidal plane, given at various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<introduced_after_version>3.38.1</introduced_after_version>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

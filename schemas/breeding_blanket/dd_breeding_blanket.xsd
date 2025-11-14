@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="bb_module_layer_time_slice">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket module layer dynamic quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="midplane_power_density_nuclear">
+				<xs:annotation>
+					<xs:documentation>Nuclear heating power density in the layer, evaluated at midplane</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_nuclear">
+				<xs:annotation>
+					<xs:documentation>Nuclear power heating this layer</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bb_module_layer">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket module layer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="material" type="identifier_static" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Set of materials entering the composition of this layer</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<doc_identifier>utilities/materials_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="material_volume_fraction">
+				<xs:annotation>
+					<xs:documentation>Volume fraction of each material entering the composition of this layer</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../material</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="midplane_thickness">
+				<xs:annotation>
+					<xs:documentation>Thickness of this layer evaluated at the midplane</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_slice" type="bb_module_layer_time_slice" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dynamic quantities at various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bb_module_cooling_time_slice">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket module cooling dynamic quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="temperature_inlet">
+				<xs:annotation>
+					<xs:documentation>Inlet coolant temperature</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_inlet">
+				<xs:annotation>
+					<xs:documentation>Inlet coolant pressure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>Pa</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_outlet">
+				<xs:annotation>
+					<xs:documentation>Outlet coolant temperature</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bb_module_cooling">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket module cooling system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="coolant" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Cooling material</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/materials_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_slice" type="bb_module_cooling_time_slice" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dynamic quantities at various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bb_module_time_slice">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket module dynamic quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="midplane_wall_distance">
+				<xs:annotation>
+					<xs:documentation>Radial distance from the first wall evaluated at the midplane (0.0 at the first wall)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="midplane_power_density_nuclear">
+				<xs:annotation>
+					<xs:documentation>Nuclear heating power density in the module, evaluated at midplane</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../midplane_wall_distance</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="escape_flux_max">
+				<xs:annotation>
+					<xs:documentation>Maximum neutron flux escaping from the back of the blanket module</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wall_flux_max">
+				<xs:annotation>
+					<xs:documentation>Maximum neutron flux at the first wall</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_incident_neutron">
+				<xs:annotation>
+					<xs:documentation>Total incident neutron power on the blanket module</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_incident_radiated">
+				<xs:annotation>
+					<xs:documentation>Total incident radiative power on the blanket module</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal_extracted">
+				<xs:annotation>
+					<xs:documentation>Total thermal power that is extracted from the blanket module</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal_neutrons">
+				<xs:annotation>
+					<xs:documentation>Total neutron power (deposited + generated) in the blanket module</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal_radiated">
+				<xs:annotation>
+					<xs:documentation>Total radiated power (incident - reflected) in the blanket module</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tritium_breeding_ratio">
+				<xs:annotation>
+					<xs:documentation>Number of tritium atoms created for each fusion neutron (TBR)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bb_module">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket module</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="layer" type="bb_module_layer" maxOccurs="6">
+				<xs:annotation>
+					<xs:documentation>Set of layers in the blanket module</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cooling" type="bb_module_cooling">
+				<xs:annotation>
+					<xs:documentation>Cooling system of this module</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_slice" type="bb_module_time_slice" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dynamic quantities at various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="top_cap_thickness">
+				<xs:annotation>
+					<xs:documentation>Top cap poloidal thickness</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bottom_cap_thickness">
+				<xs:annotation>
+					<xs:documentation>Bottom cap poloidal thickness</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="side_wall_thickness">
+				<xs:annotation>
+					<xs:documentation>Side wall thickness</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bb_time_slice">
+		<xs:annotation>
+			<xs:documentation>Breeding blanket dynamic quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_nuclear_blanket">
+				<xs:annotation>
+					<xs:documentation>Nuclear heating power on the blanket</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_nuclear_shields">
+				<xs:annotation>
+					<xs:documentation>Nuclear heating power on the shields</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tritium_breeding_ratio">
+				<xs:annotation>
+					<xs:documentation>Number of tritium atoms created for each fusion neutron (TBR)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_multiplication_factor">
+				<xs:annotation>
+					<xs:documentation>Energy multiplication factor</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="breeding_blanket">
+		<xs:annotation>
+			<xs:documentation>Description of the breeding blanket and neutron shield (if any, the shield is considered as an additional layer of a given blanket module)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>4.1.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="module" type="bb_module" maxOccurs="6">
+					<xs:annotation>
+						<xs:documentation>Set of modules composing the blanket</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="time_slice" type="bb_time_slice" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Dynamic quantities for a set of time_slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="modules_pol_n">
+					<xs:annotation>
+						<xs:documentation>Number of blanket modules in a poloidal cross section</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="modules_n">
+					<xs:annotation>
+						<xs:documentation>Total number of blanket modules</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pb_li_volume">
+					<xs:annotation>
+						<xs:documentation>Volume of PbLi contained in the blanket</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>m^3</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="li6_fraction">
+					<xs:annotation>
+						<xs:documentation>Fraction of Li6 isotope over the total amount of Li in the blanket</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>1</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="steel_temperature_limit_max">
+					<xs:annotation>
+						<xs:documentation>Maximum allowed temperature for steel</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>K</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

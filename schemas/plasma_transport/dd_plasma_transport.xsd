@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="plasma_transport_model_1_density">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for density equations. Coordinates one level above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_flux/rho_tor_norm</coordinate1>
+						<units>m^-2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_1_energy">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for energy equations. Coordinates one level above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_flux/rho_tor_norm</coordinate1>
+						<units>W.m^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_1_momentum">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for momentum equations. Coordinates one level above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid_flux/rho_tor_norm</coordinate1>
+						<units>kg.m^-1.s^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_2_density">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for density equations. Coordinates two levels above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>m^-2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_2_energy">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for energy equations. Coordinates two levels above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>W.m^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_3_density">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for density equations. Coordinates three levels above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>m^-2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_3_energy">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for energy equations. Coordinates three levels above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>W.m^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_3_momentum">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for momentum equation in a given direction. Coordinates three levels above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>kg.m^-1.s^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flow_damping_rate">
+				<xs:annotation>
+					<xs:documentation>Damping rate for this flow component (e.g. due to collisions, calculated from a neoclassical model)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_components_3_momentum">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for momentum equations on various components. Coordinates three levels above the leaves</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="radial" type="plasma_transport_model_3_momentum">
+				<xs:annotation>
+					<xs:documentation>Radial component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diamagnetic" type="plasma_transport_model_3_momentum">
+				<xs:annotation>
+					<xs:documentation>Diamagnetic component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parallel" type="plasma_transport_model_3_momentum">
+				<xs:annotation>
+					<xs:documentation>Parallel component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="poloidal" type="plasma_transport_model_3_momentum">
+				<xs:annotation>
+					<xs:documentation>Poloidal component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="toroidal" type="plasma_transport_model_3_momentum">
+				<xs:annotation>
+					<xs:documentation>Toroidal component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_4_momentum">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for momentum equation in a given direction. Coordinates four levels above.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="d">
+				<xs:annotation>
+					<xs:documentation>Effective diffusivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../../grid_d/rho_tor_norm</coordinate1>
+						<units>m^2.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v">
+				<xs:annotation>
+					<xs:documentation>Effective convection</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../../grid_v/rho_tor_norm</coordinate1>
+						<units>m.s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux">
+				<xs:annotation>
+					<xs:documentation>Flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>kg.m^-1.s^-2</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flow_damping_rate">
+				<xs:annotation>
+					<xs:documentation>Damping rate for this flow component (e.g. due to collisions, calculated from a neoclassical model)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../../../grid_flux/rho_tor_norm</coordinate1>
+						<units>s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_components_4_momentum">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for momentum equations on various components. Coordinates four levels above the leaves</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="radial" type="plasma_transport_model_4_momentum">
+				<xs:annotation>
+					<xs:documentation>Radial component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diamagnetic" type="plasma_transport_model_4_momentum">
+				<xs:annotation>
+					<xs:documentation>Diamagnetic component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parallel" type="plasma_transport_model_4_momentum">
+				<xs:annotation>
+					<xs:documentation>Parallel component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="poloidal" type="plasma_transport_model_4_momentum">
+				<xs:annotation>
+					<xs:documentation>Poloidal component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="toroidal" type="plasma_transport_model_4_momentum">
+				<xs:annotation>
+					<xs:documentation>Toroidal component</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_ions_charge_states">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients related to the a given state of the ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles" type="plasma_transport_model_3_density">
+				<xs:annotation>
+					<xs:documentation>Transport quantities related to density equation of the charge state considered (thermal+non-thermal)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="plasma_transport_model_3_energy">
+				<xs:annotation>
+					<xs:documentation>Transport quantities related to the energy equation of the charge state considered </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum" type="plasma_transport_model_components_4_momentum">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the state momentum equations for various components (directions)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_neutral_state">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients related to the a given state of the neutral species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying state</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Neutral type, in terms of energy. ID =1: cold; 2: thermal; 3: fast; 4: NBI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles" type="plasma_transport_model_3_density">
+				<xs:annotation>
+					<xs:documentation>Transport quantities related to density equation of the charge state considered (thermal+non-thermal)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="plasma_transport_model_3_energy">
+				<xs:annotation>
+					<xs:documentation>Transport quantities related to the energy equation of the charge state considered </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum" type="plasma_transport_model_momentum">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the momentum equations of the state considered. The various components two levels below this node refer to the momentum vector components, while their flux is given in the direction perpendicular to the edges or faces of the grid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_ions">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients related to a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying ion (e.g. H, D, T, He, C, D2, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles" type="plasma_transport_model_2_density">
+				<xs:annotation>
+					<xs:documentation>Transport related to the ion density equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="plasma_transport_model_2_energy">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the ion energy equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum" type="plasma_transport_model_components_3_momentum">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the ion momentum equations for various components (directions)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple states calculation flag : 0-Only the 'ion' level is considered and the 'state' array of structure is empty; 1-Ion states are considered and are described in the 'state' array of structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="plasma_transport_model_ions_charge_states" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the different states of the species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_neutral">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients related to a given neutral species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying ion (e.g. H+, D+, T+, He+2, C+, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ion_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding ion species in the ../../ion array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles" type="plasma_transport_model_2_density">
+				<xs:annotation>
+					<xs:documentation>Transport related to the neutral density equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="plasma_transport_model_2_energy">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the neutral energy equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple states calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="plasma_transport_model_neutral_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the different states of the species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_electrons">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients related to electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles" type="plasma_transport_model_2_density">
+				<xs:annotation>
+					<xs:documentation>Transport quantities for the electron density equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="plasma_transport_model_2_energy">
+				<xs:annotation>
+					<xs:documentation>Transport quantities for the electron energy equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model_profiles_1d">
+		<xs:annotation>
+			<xs:documentation>Transport coefficient profiles at a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid_d" type="plasma_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Grid for effective diffusivities and parallel conductivity. Note that some of the radial coordinates listed above are undefined outside the last closed flux surface, thus they must be filled with EMPTY_FLOAT values in such locations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid_v" type="plasma_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Grid for effective convections. Note that some of the radial coordinates listed above are undefined outside the last closed flux surface, thus they must be filled with EMPTY_FLOAT values in such locations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid_flux" type="plasma_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Grid for fluxes. Note that some of the radial coordinates listed above are undefined outside the last closed flux surface, thus they must be filled with EMPTY_FLOAT values in such locations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conductivity_parallel">
+				<xs:annotation>
+					<xs:documentation>Parallel conductivity</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid_d/rho_tor_norm</coordinate1>
+						<units>ohm^-1.m^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electrons" type="plasma_transport_model_electrons">
+				<xs:annotation>
+					<xs:documentation>Transport quantities related to the electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="total_ion_energy" type="plasma_transport_model_1_energy">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients for the total (summed over ion  species) energy equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="momentum_phi" type="plasma_transport_model_1_momentum">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients for total toroidal momentum equation</xs:documentation>
+					<xs:appinfo>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="e_field_radial">
+				<xs:annotation>
+					<xs:documentation>Radial component of the electric field (calculated e.g. by a neoclassical model)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid_flux/rho_tor_norm</coordinate1>
+						<units>V.m^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ion" type="plasma_transport_model_ions" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the various ion species, in the sense of isonuclear or isomolecular sequences. ionization states (and other types of states) must be differentiated at the state level below</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neutral" type="plasma_transport_model_neutral" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients related to the various neutral species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plasma_transport_model">
+		<xs:annotation>
+			<xs:documentation>Transport coefficients for a given model</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="comment">
+				<xs:annotation>
+					<xs:documentation>Any comment describing the model</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="identifier" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Transport model identifier</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>plasma_transport/plasma_transport_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="flux_multiplier">
+				<xs:annotation>
+					<xs:documentation>Multiplier applied to the particule flux when adding its contribution in the expression of the heat flux : can be 0, 3/2 or 5/2</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="profiles_1d" type="plasma_transport_model_profiles_1d" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Transport coefficient profiles for various time slices. The transport of particles, energy and momentum is described by diffusion coefficients, D, and convection velocities, v. In 1D (radial) equations, these are defined by the total fluxes of particles, energy and momentum, across a flux surface given by : V' [-D Y' &lt;|grad(rho_tor_norm)|^2&gt; + v Y &lt;|grad(rho_tor_norm)|&gt;], where Y represents the particles, energy and momentum density, respectively, while V is the volume inside a flux surface, the primes denote derivatives with respect to rho_tor_norm and &lt; X &gt; is the flux surface average of a quantity X. This formulation remains valid when changing simultaneously rho_tor_norm into rho_tor in the gradient terms and in the derivatives denoted by the prime. The average flux stored in the IDS as sibling of D and v is the total flux described above divided by the flux surface area V' &lt;|grad(rho_tor_norm)|&gt;. Note that the energy flux includes the energy transported by the particle flux, in this form: Q =  V' [- n D (T)' &lt;|grad(rho_tor_norm)|^2&gt; + v (nT) &lt;|grad(rho_tor_norm)|&gt;] + flux_multiplier * T * particle_flux. Fluxes and convection are positive (resp. negative) when outwards i.e. towards the LCFS (resp. inwards i.e.  towards the magnetic axes).</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>plasma_transport.model{i}.profiles_1d{j}</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ggd" type="plasma_transport_model_ggd" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Transport coefficients represented using the general grid description, for various time slices. Fluxes are given in the direction perpendicular to the edges or faces of the grid (flow crossing that surface divided by its actual area). Radial fluxes are positive when they are directed away from the magnetic axis. Poloidal fluxes are positive when they are directed in such a way that they travel clockwise around the magnetic axis (poloidal plane viewed such that the centerline of the tokamak is on the left). Parallel fluxes are positive when they are co-directed with the magnetic field. Toroidal fluxes are positive if travelling counter-clockwise when looking at the plasma from above</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ggd_fast" type="plasma_transport_model_ggd_fast" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Quantities provided at a faster sampling rate than the full ggd quantities. These are either integrated quantities or local quantities provided on a reduced set of positions. Positions and integration domains are described by a set of grid_subsets (of size 1 for a position).  </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="code_with_timebase">
+				<xs:annotation>
+					<xs:documentation>Code-specific parameters used for this model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="plasma_transport">
+		<xs:annotation>
+			<xs:documentation>Plasma transport. This IDS is a prototype based on the merge of core_transport and edge_transport. Energy terms correspond to the full kinetic energy equation (i.e. the energy flux takes into account the energy transported by the particle flux)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.42.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+				<specific_validation_rules>yes</specific_validation_rules>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="midplane" type="identifier_static">
+					<xs:annotation>
+						<xs:documentation>Choice of midplane definition (use the lowest index number if more than one value is relevant) </xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>utilities/midplane_identifier.xml</doc_identifier>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in Rho_Tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>plasma_transport.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="grid_ggd" type="generic_grid_aos3_root" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Grid (using the Generic Grid Description), for various time slices. The timebase of this array of structure must be a subset of the ggd timebases</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="model" type="plasma_transport_model" maxOccurs="18">
+					<xs:annotation>
+						<xs:documentation>Transport is described by a combination of various transport models</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,38 @@
+name: test
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-and-test-with-make:
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 
+    - name: Install java and SaxonHE
+      run: |
+        sudo apt update
+        sudo apt install -y libsaxonhe-java
+    - name: Make
+      run: |
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make
+
+  build-and-test-with-python:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+    - name: Install python dependencies
+      run: pip install setuptools_scm saxonche
+    - name: Generate DD and validation
+      run: python generate.py
+    - name: Validation results
+      run: grep -i -w Error dd_data_dictionary_validation.txt && exit 1 || grep valid dd_data_dictionary_validation.txt

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="edge_sources_source">
+		<xs:annotation>
+			<xs:documentation>Source terms for a given actuator</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Source term identifier (process causing this source term)</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>edge_sources/edge_source_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="species" type="distribution_species">
+				<xs:annotation>
+					<xs:documentation>Species causing this source term (if relevant, e.g. a particular ion or neutral state in case of line radiation)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ggd" type="plasma_sources_source_ggd" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Source terms represented using the general grid description, for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ggd_fast" type="plasma_sources_source_ggd_fast" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Quantities provided at a faster sampling rate than the full ggd quantities. These are either integrated quantities or local quantities provided on a reduced set of positions. Positions and integration domains are described by a set of grid_subsets (of size 1 for a position). </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edge_sources">
+		<xs:annotation>
+			<xs:documentation>Edge plasma sources. Energy terms correspond to the full kinetic energy equation (i.e. the energy flux takes into account the energy transported by the particle flux)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>active</lifecycle_status>
+				<lifecycle_version>3.22.0</lifecycle_version>
+				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<specific_validation_rules>yes</specific_validation_rules>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="midplane" type="identifier_static">
+					<xs:annotation>
+						<xs:documentation>Choice of midplane definition (use the lowest index number if more than one value is relevant) </xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>utilities/midplane_identifier.xml</doc_identifier>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="grid_ggd" type="generic_grid_aos3_root" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Grid (using the Generic Grid Description), for various time slices. The timebase of this array of structure must be a subset of the ggd timebases</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="source" type="edge_sources_source" maxOccurs="80">
+					<xs:annotation>
+						<xs:documentation>Set of source terms</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

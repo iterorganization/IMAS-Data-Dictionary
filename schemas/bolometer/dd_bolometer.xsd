@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="bolometer_channel">
+		<xs:annotation>
+			<xs:documentation>Bolometer channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detector" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Detector description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Description of a set of collimating apertures</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subcollimators_n">
+				<xs:annotation>
+					<xs:documentation>Number of sub-collimators</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="subcollimators_separation">
+				<xs:annotation>
+					<xs:documentation>Thickness of separation between sub-collimators</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etendue">
+				<xs:annotation>
+					<xs:documentation>Etendue (geometric extent) of the channel's optical system</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2.sr</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etendue_method" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Method used to calculate the etendue. Index = 0 : exact calculation with a 4D integral; 1 : approximation with first order formula (detector surface times solid angle subtended by the apertures); 2 : other methods</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_3points">
+				<xs:annotation>
+					<xs:documentation>Description of the reference line of sight of the channel, defined by two points when the beam is not reflected, a third point is added to define the reflected beam path</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power received on the detector</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity_timed" type="signal_int_1d">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the channel as a function of time (0 means valid, negative values mean non-valid)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the channel for the whole acquisition period (0 means valid, negative values mean non-valid)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bolometer_camera">
+		<xs:annotation>
+			<xs:documentation>Bolometer camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “Camera viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Camera type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>bolometer/camera_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="channel" type="bolometer_channel" maxOccurs="500">
+				<xs:annotation>
+					<xs:documentation>Set of channels (detector or pixel of a camera)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="bolometer">
+		<xs:annotation>
+			<xs:documentation>Bolometer diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.7.4</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="camera" type="bolometer_camera" maxOccurs="10">
+					<xs:annotation>
+						<xs:documentation>Set of cameras</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="power_radiated_total">
+					<xs:annotation>
+						<xs:documentation>Total radiated power reconstructed from bolometry data</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>../time</coordinate1>
+							<type>dynamic</type>
+							<units>W</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="power_radiated_inside_lcfs">
+					<xs:annotation>
+						<xs:documentation>Radiated power from the plasma inside the Last Closed Flux Surface, reconstructed from bolometry data</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>../time</coordinate1>
+							<type>dynamic</type>
+							<units>W</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="power_radiated_validity">
+					<xs:annotation>
+						<xs:documentation>Validity flag related to the radiated power reconstructions</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>../time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="grid_type" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Selection of one of a set of grid types for the 2D power density map</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>utilities/poloidal_plane_coordinates_identifier.xml</doc_identifier>
+							<introduced_after_version>3.39.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="grid" type="profiles_2d_grid">
+					<xs:annotation>
+						<xs:documentation>Definition of the 2D grid (the content of dim1 and dim2 is defined by the selected grid_type)</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>bolometer</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="power_density" type="signal_flt_3d">
+					<xs:annotation>
+						<xs:documentation>Power density map in the poloidal cross-section, obtained from tomographic inversion of the bolometer data</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+							<coordinate1>../grid/dim1</coordinate1>
+							<coordinate2>../grid/dim2</coordinate2>
+							<units>W.m^-3</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

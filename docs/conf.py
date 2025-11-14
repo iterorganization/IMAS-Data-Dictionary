@@ -8,14 +8,11 @@ import os
 import subprocess
 import sys
 from git import Repo
-try:
-    is_gitrepo = True
-    try_repo=Repo("..")
-except Exception as _:
-    is_gitrepo = False
+
 # Ensure that our extension module can be imported:
 sys.path.append(os.path.curdir)
 import sphinx_dd_extension.autodoc
+
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -23,28 +20,31 @@ import sphinx_dd_extension.autodoc
 project = "IMAS Data Dictionary"
 copyright = f"{datetime.datetime.now().year}, ITER Organization"
 author = "ITER Organization"
-if is_gitrepo:
+try:
     version = subprocess.check_output(["git", "describe"]).decode().strip()
-    last_tag = subprocess.check_output(["git", "describe", "--abbrev=0"]).decode().strip()
+    last_tag = (
+        subprocess.check_output(["git", "describe", "--abbrev=0"]).decode().strip()
+    )
     is_develop = version != last_tag
-else:
-	os.chdir("..")
-	from setuptools_scm import get_version
-	version=get_version()
-	is_develop="dev" in version
-	os.chdir("docs")
-html_context = {
-    "is_develop": is_develop
-}
+except Exception as _:
+    os.chdir("..")
+    from setuptools_scm import get_version
+
+    version = get_version()
+    is_develop = "dev" in version
+    os.chdir("docs")
+
+html_context = {"is_develop": is_develop}
 
 language = "en"
 
 # Options for generating documentation.
 #
-# Note: these should be enabled to generate the IDS reference and changelog!
+# Note: these can be enabled/disabled to generate the IDS reference and changelog!
 #   For example: SPHINXOPTS="-D dd_changelog_generate=1 -D dd_autodoc_generate=1"
-dd_changelog_generate = False
-dd_autodoc_generate = False
+dd_changelog_generate = True
+dd_autodoc_generate = True
+
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -80,10 +80,10 @@ intersphinx_mapping = {}
 
 html_theme = "sphinx_immaterial"
 html_theme_options = {
-    "repo_url": "https://git.iter.org/projects/IMAS/repos/data-dictionary",
+    "repo_url": "https://github.com/iterorganization/IMAS-Data-Dictionary",
     "repo_name": "Data Dictionary",
     "icon": {
-        "repo": "fontawesome/brands/bitbucket",
+        "repo": "fontawesome/brands/github",
     },
     "features": [
         # "navigation.expand",
@@ -125,8 +125,7 @@ html_theme_options = {
             },
         },
     ],
-    "version_dropdown": True,
-    "version_json": "../versions.js",
+    "version_dropdown": False,
 }
 
 html_static_path = ["_static"]

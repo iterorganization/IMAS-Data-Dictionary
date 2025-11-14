@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="bremsstrahlung_channel">
+		<xs:annotation>
+			<xs:documentation>Bremsstrahlung channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the channel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_2points">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the channel, given by 2 points</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filter" type="filter_wavelength">
+				<xs:annotation>
+					<xs:documentation>Filter wavelength range and detection efficiency</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intensity" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Intensity, i.e. number of photoelectrons detected by unit time, taking into account electronic gain compensation and channels relative calibration</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radiance_spectral" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Calibrated spectral radiance (radiance per unit wavelength)</xs:documentation>
+					<xs:appinfo>
+						<units>m^-2.s^-1.sr^-1.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff_line_average" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Average effective charge along the line of sight</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="bremsstrahlung_visible">
+		<xs:annotation>
+			<xs:documentation>Diagnostic for measuring the bremsstrahlung from thermal particules in the visible light range, in view of determining the effective charge of the plasma.</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.22.0</lifecycle_version>
+				<lifecycle_last_change>3.33.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="channel" type="bremsstrahlung_channel" maxOccurs="10">
+					<xs:annotation>
+						<xs:documentation>Set of channels (detector or pixel of a camera)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

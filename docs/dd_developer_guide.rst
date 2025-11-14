@@ -71,7 +71,7 @@ The repository contains:
    that can be reused in various parts of the DD.
 
 -  Three XSL transforms (``.xsl`` files) for generating the documentation,
-   the DD validation report and the IDSDef.xml file. A Makefile is
+   the DD validation report and the data_dictionary.xml file. A Makefile is
    provided to execute these XSLT transforms.
 
 -  Two documentation folders:
@@ -79,7 +79,7 @@ The repository contains:
    -  ``html_documentation`` contains the legacy generated HTML documentation.
    -  ``docs`` contains the Sphinx-based documentation.
 
--  ``dd_data_dictionary.xml`` (previously ``IDSDef.xml``): this is a single file
+-  ``data_dictionary.xml`` (previously ``IDSDef.xml``): this is a single file
    containing the XML description of the whole Data Dictionary,
    self-generated from the XSD files. This is a useful intermediate step
    of the XSD processing for some applications (e.g. generation of
@@ -543,23 +543,30 @@ The detailed meaning of each property can be found in the
 :ref:`dm_rules_guidelines`. In particular sections :ref:`Self-description
 Conventions` and :ref:`List of the existing data types`.
 
-NB: ``FLT_*`` and ``CPX_*`` nodes will have sibling errorbar nodes automatically generated
+NB1: units are normally explicitly defined at the level of the leaf node.
+However, in the case of a node belonging to a structure that can be used in different contexts,
+it's possible to refer to the units of the parent node by indicating ``<units>as_parent</units>``.
+It's also possible to refer to the units of the grandparent node with 
+``<units>as_parent_level_2</units>``. The references will be explicitly resolved 
+when generating the ``dd_data_dictionary.xml`` file.
+
+NB2: ``FLT_*`` and ``CPX_*`` nodes will have sibling errorbar nodes automatically created
 when generating the dd_data_dictionary.xml file. To avoid this, for performance reasons
 (e.g. in large size GGD objects), the data type of the leaf should be declared in a different way,
 using the simpleTypes defined in utilities.xsd (named flt_type and flt_nd_type). Example:
 
 .. code-block:: xml
 
-	<xs:element name="time" type="flt_1d_type">
-		<xs:annotation>
-			<xs:documentation>Generic time</xs:documentation>
-			<xs:appinfo>
-			<coordinate1>1...N</coordinate1>
-			<type>dynamic</type>
-			<units>s</units>
-			</xs:appinfo>
-		</xs:annotation>
-	</xs:element>
+   <xs:element name="time" type="flt_1d_type">
+      <xs:annotation>
+         <xs:documentation>Generic time</xs:documentation>
+         <xs:appinfo>
+            <coordinate1>1...N</coordinate1>
+            <type>dynamic</type>
+            <units>s</units>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
 
 Simple structure node
 ~~~~~~~~~~~~~~~~~~~~~
@@ -587,6 +594,9 @@ An example from the core_profiles IDS:
          </xs:documentation>
       </xs:annotation>
    </xs:element>
+
+Structure nodes shouldn't have units, unless these are refered to by descendent
+leaf nodes (see ``<units>as_parent</units>`` case above)
 
 Note that the previous (from DD tags 3.0.0 to 3.21.0) way of declaring
 signals (data, time structures with their own time bases) is deprecated.
@@ -739,6 +749,44 @@ of "identifier" complex type. For example:
       </xs:annotation>
    </xs:element>
 
+The XML file listing the recognized values should be located in the folder of the IDS
+or in the "utilities" folder if it's used by more than one IDS.
+It must have the following structure:
+
+.. code-block:: xml
+
+   <?xml version="1.0"?>
+   <constants name="equilibrium_profiles_2d_identifier" identifier="yes" create_mapping_function="yes">
+      <header>Various contributions to the B, j, and psi 2D maps</header>
+      <ddInstance xpath="/equilibrium/time_slice/profiles_2d/type"/>
+      <int name="total" description="Total fields">0</int>
+      <int name="vacuum" description="Vacuum fields (without contribution from plasma)">1</int>
+      <int name="pf_active" description="Contribution from active coils only to the fields (pf_active IDS)">2</int>
+      <int name="pf_passive" description="Contribution from passive elements only to the fields (pf_passive IDS)">3</int>
+      <int name="plasma"  description="Plasma contribution to the fields">4</int>
+   </constants>
+
+The "name" and "description" attributes correspond to the "name" and "description" nodes in the DD identifier structure.
+The "index" is given by the int value.
+
+If the value of the identifier determines the units of other nodes in the IDS, this is documented by adding a <units_paths> tag below the <ddInstance> tag. The path of the related node is indicated relatively to the identifier node. If more than one node has its units determined by the value of the identifier, paths are separated by a comma. Example : <units_paths>../grid/dim1,../grid/dim2</units_paths>. Then, a "units" attribute is added for each possible identifier value, containing the actual units for this identifier value (separated by a comma in case of multiple nodes) e.g. : 
+
+.. code-block:: xml
+
+   <int name="rectangular"
+        description="Cylindrical R,Z ala eqdsk (R=dim1, Z=dim2). In this case the position arrays should not be filled since they are redundant with grid/dim1 and dim2."
+        units="m,m">1</int>
+
+For the sake of backward compatibility, it is possible to specify old values 
+of the "name" field by introducing at the corresponding line an "alias" attribute, 
+for example (below two aliases are given, separated by a comma):
+
+.. code-block:: xml
+
+   <int name="4He"
+        alias="4He,Helium_4"
+        description="Helium 4 isotope">30</int>
+
 
 .. _`dev alternative_coordinate1`:
 
@@ -781,7 +829,7 @@ absolute path when generating the dd_data_dictionary.xml file.
             <type>dynamic</type>
             <coordinate1>1...N</coordinate1>
             <alternative_coordinate1>../rho_tor;../psi;../volume;../area;../surface;../rho_pol_norm</alternative_coordinate1>
-            <units>-</units>
+            <units>1</units>
          </xs:appinfo>
       </xs:annotation>
       <xs:complexType>
@@ -1035,10 +1083,10 @@ applying the same conversion on the errorbar nodes as on the main node.
 Adding node creation tag in the DD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Following the feature request `<https://jira.iter.org/browse/IMAS-3696>`_, it is
-decided to start introducing metadata indicating after which tag a node has been
-created/introduced in the DD. In case of a structure node, this information
-applies by default to all its descendants.
+Following a feature request, it was decided to introduce metadata
+indicating after which tag a node has been introduced into the DD. In
+case of a structure node, this information applies by default to all
+of its descendants.
 
 This done with the following metadata, to be located within the
 ``<appinfo>`` tag of the node:
@@ -1142,7 +1190,9 @@ following attributes:
 
 -  ``coordinate1`` ... ``coordinateN``: N attributes listing the coordinates of
    the node (absolute paths, i.e. relative to the root of the IDS)
--  ``units``: units of the node
+-  ``units``: units of the node. In case the units in the IDS schema refer 
+   to the parent or grandparent node, these references are explicitly resolved
+   in the ``dd_data_dictionary.xml`` file
 -  ``lifecycle_status``: lifecycle status as defined in the DD lifecycle
    document
 -  ``lifecycle_version``: version of the DD since which this node has this
@@ -1199,7 +1249,7 @@ Example:
       data_type="FLT_1D"
       type="dynamic"
       coordinate1="1...N"
-      units="-" />
+      units="1" />
 
 
 Applying the XSL Transforms

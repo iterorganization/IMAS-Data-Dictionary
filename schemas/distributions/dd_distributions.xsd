@@ -1,0 +1,3192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="distributions_d_source_identifier">
+		<xs:annotation>
+			<xs:documentation>Identifier of the source/sink term (wave or particle source process)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Type of the source term. Index  = 1 for a wave, index = 2 for a particle source process</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wave_index">
+				<xs:annotation>
+					<xs:documentation>Index into distribution/wave</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="process_index">
+				<xs:annotation>
+					<xs:documentation>Index into distribution/process</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities_thermalized">
+		<xs:annotation>
+			<xs:documentation>Global quantities for thermalization source/sinks</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles">
+				<xs:annotation>
+					<xs:documentation>Source rate of thermal particles due to the thermalization of fast particles</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power">
+				<xs:annotation>
+					<xs:documentation>Power input to the thermal particle population due to the thermalization of fast particles</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque">
+				<xs:annotation>
+					<xs:documentation>Torque input to the thermal particle population due to the thermalization of fast particles</xs:documentation>
+					<xs:appinfo>
+						<units>N.m</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities_source">
+		<xs:annotation>
+			<xs:documentation>Global quantities for a given source/sink term</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="distributions_d_source_identifier">
+				<xs:annotation>
+					<xs:documentation>Identifier of the wave or particle source process, defined respectively in distribution/wave or distribution/process</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="particles">
+				<xs:annotation>
+					<xs:documentation>Particle source rate</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power">
+				<xs:annotation>
+					<xs:documentation>Total power of the source</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal torque of the source</xs:documentation>
+					<xs:appinfo>
+						<units>N.m</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities_collisions_ion_state">
+		<xs:annotation>
+			<xs:documentation>Global quantities for collisions with a given ion species state</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities_collisions_ion">
+		<xs:annotation>
+			<xs:documentation>Global quantities for collisions with a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple state calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="distributions_d_global_quantities_collisions_ion_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various states of the ion species (ionization, energy, excitation, ...)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities_collisions_electrons">
+		<xs:annotation>
+			<xs:documentation>Global quantities for collisions with electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities_collisions">
+		<xs:annotation>
+			<xs:documentation>Global quantities for collisions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="electrons" type="distributions_d_global_quantities_collisions_electrons">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="distributions_d_global_quantities_collisions_ion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various ion species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_global_quantities">
+		<xs:annotation>
+			<xs:documentation>Global quantities from the distribution, for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_n">
+				<xs:annotation>
+					<xs:documentation>Number of particles in the distribution, i.e. the volume integral of the density (note: this is the number of real particles and not markers)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_fast_n">
+				<xs:annotation>
+					<xs:documentation>Number of fast particles in the distribution, i.e. the volume integral of the density (note: this is the number of real particles and not markers)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy">
+				<xs:annotation>
+					<xs:documentation>Total energy in the distribution</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_fast">
+				<xs:annotation>
+					<xs:documentation>Total energy of the fast particles in the distribution</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_fast_parallel">
+				<xs:annotation>
+					<xs:documentation>Parallel energy of the fast particles in the distribution</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_tor_j_radial">
+				<xs:annotation>
+					<xs:documentation>Toroidal torque due to radial currents</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal current driven by the distribution</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>A</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_first_orbit">
+				<xs:annotation>
+					<xs:documentation>Power loss due to first orbit losses</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_rotation">
+				<xs:annotation>
+					<xs:documentation>Power going to plasma rotation. This power goes into sustaining the plasma rotation rather than heating the plasma. This is given because the injection energy in the rotating plasma frame is (assuming rotation in the same direction of the NB injection) lower than in the lab-frame.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_charge_exchange">
+				<xs:annotation>
+					<xs:documentation>Power loss due to Charge Exchange loss of fast ions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions" type="distributions_d_global_quantities_collisions">
+				<xs:annotation>
+					<xs:documentation>Power and torque exchanged between the species described by the distribution and the different plasma species through collisions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="thermalization" type="distributions_d_global_quantities_thermalized">
+				<xs:annotation>
+					<xs:documentation>Volume integrated source of thermal particles, momentum and energy due to thermalization. Here thermalization refers to non-thermal particles, sufficiently assimilated to the thermal background to be re-categorized as thermal particles. Note that this source may also be negative if thermal particles are being accelerated such that they form a distinct non-thermal contribution, e.g. due run-away of RF interactions.</xs:documentation>
+					<xs:appinfo>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>thermalisation</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="source" type="distributions_d_global_quantities_source" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of volume integrated sources and sinks of particles, momentum and energy included in the Fokker-Planck modelling, related to the various waves or particle source processes affecting the distribution</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_thermalized">
+		<xs:annotation>
+			<xs:documentation>1D profiles of thermalization source/sinks</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles">
+				<xs:annotation>
+					<xs:documentation>Source rate of thermal particle density due to the thermalization of fast particles</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1.m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy">
+				<xs:annotation>
+					<xs:documentation>Source rate of energy density within the thermal particle population due to the thermalization of fast particles</xs:documentation>
+					<xs:appinfo>
+						<units>W.m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi">
+				<xs:annotation>
+					<xs:documentation>Source rate of toroidal angular momentum density within the thermal particle population due to the thermalisation of fast particles</xs:documentation>
+					<xs:appinfo>
+						<units>N.m^-2</units>
+						<type>dynamic</type>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_source">
+		<xs:annotation>
+			<xs:documentation>1D profiles for a given source/sink term</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="distributions_d_source_identifier">
+				<xs:annotation>
+					<xs:documentation>Identifier of the wave or particle source process, defined respectively in distribution/wave or distribution/process</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="particles">
+				<xs:annotation>
+					<xs:documentation>Source rate of thermal particle density</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1.m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy">
+				<xs:annotation>
+					<xs:documentation>Source rate of energy density</xs:documentation>
+					<xs:appinfo>
+						<units>W.m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi">
+				<xs:annotation>
+					<xs:documentation>Source rate of toroidal angular momentum density </xs:documentation>
+					<xs:appinfo>
+						<units>N.m^-2</units>
+						<type>dynamic</type>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_partial_source">
+		<xs:annotation>
+			<xs:documentation>1D profiles for a given source/sink term</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="distributions_d_source_identifier">
+				<xs:annotation>
+					<xs:documentation>Identifier of the wave or particle source process, defined respectively in distribution/wave or distribution/process</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="particles">
+				<xs:annotation>
+					<xs:documentation>Source rate of thermal particle density</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1.m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy">
+				<xs:annotation>
+					<xs:documentation>Source rate of energy density</xs:documentation>
+					<xs:appinfo>
+						<units>W.m^-3</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi">
+				<xs:annotation>
+					<xs:documentation>Source rate of toroidal angular momentum density </xs:documentation>
+					<xs:appinfo>
+						<units>N.m^-2</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>momentum_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_collisions_ion">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions with a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple state calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="distributions_d_profiles_2d_collisions_ion_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various states of the ion species (ionization, energy, excitation, ...)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_partial_collisions_ion">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions with a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple state calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="distributions_d_profiles_2d_partial_collisions_ion_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various states of the ion species (ionization, energy, excitation, ...)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_collisions_ion_state">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions with a given ion species state</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_partial_collisions_ion_state">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions with a given ion species state</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../../grid/r OR ../../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../../grid/z OR ../../../../../grid/theta_geometric OR ../../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../../grid/r OR ../../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../../grid/z OR ../../../../../grid/theta_geometric OR ../../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../../grid/r OR ../../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../../grid/z OR ../../../../../grid/theta_geometric OR ../../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_tor">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../../grid/r OR ../../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../../grid/z OR ../../../../../grid/theta_geometric OR ../../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../../grid/r OR ../../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../../grid/z OR ../../../../../grid/theta_geometric OR ../../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_collisions_electrons">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions with electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/r OR ../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../grid/z OR ../../../grid/theta_geometric OR ../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_partial_collisions_electrons">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions with electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/r OR ../../../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../../../grid/z OR ../../../../grid/theta_geometric OR ../../../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_collisions">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="electrons" type="distributions_d_profiles_2d_collisions_electrons">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="distributions_d_profiles_2d_collisions_ion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various ion species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_partial_collisions">
+		<xs:annotation>
+			<xs:documentation>2D profiles for collisions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="electrons" type="distributions_d_profiles_2d_partial_collisions_electrons">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="distributions_d_profiles_2d_partial_collisions_ion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various ion species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_partial">
+		<xs:annotation>
+			<xs:documentation>2D profiles from specific particles in the distribution (trapped, co or counter-passing)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Density (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_fast">
+				<xs:annotation>
+					<xs:documentation>Density of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Pressure (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_parallel">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the parallel direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density (including electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density of fast (non-thermal) particles (excluding electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_phi_j_radial">
+				<xs:annotation>
+					<xs:documentation>Toroidal torque due to radial currents</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../grid/r OR ../../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../../grid/z OR ../../grid/theta_geometric OR ../../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_tor_j_radial</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions" type="distributions_d_profiles_2d_partial_collisions">
+				<xs:annotation>
+					<xs:documentation>Power and torque exchanged between the species described by the distribution and the different plasma species through collisions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_collisions_ion">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions with a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple state calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="distributions_d_profiles_1d_collisions_ion_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various states of the ion species (ionization, energy, excitation, ...)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_partial_collisions_ion">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions with a given ion species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="element" type="plasma_composition_neutral_element" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of elements forming the atom or molecule</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H+, D+, T+, He+2, C+, D2, DT, CD4, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>Index of the corresponding neutral species in the ../../neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple state calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="distributions_d_profiles_1d_partial_collisions_ion_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various states of the ion species (ionization, energy, excitation, ...)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_collisions_ion_state">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions with a given ion species state</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_themal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_partial_collisions_ion_state">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions with a given ion species state</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle (z_min = z_max = 0 for a neutral)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle (equal to z_min if no bundle)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_collisions_electrons">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions with electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_partial_collisions_electrons">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions with electrons</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_thermal">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fast">
+				<xs:annotation>
+					<xs:documentation>Collisional power density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_thermal_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the thermal particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_thermal_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Collisional toroidal torque density to the fast particle population</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_collisions">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="electrons" type="distributions_d_profiles_1d_collisions_electrons">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="distributions_d_profiles_1d_collisions_ion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various ion species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_partial_collisions">
+		<xs:annotation>
+			<xs:documentation>1D profiles for collisions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="electrons" type="distributions_d_profiles_1d_partial_collisions_electrons">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="distributions_d_profiles_1d_partial_collisions_ion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Collisional exchange with the various ion species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d_partial">
+		<xs:annotation>
+			<xs:documentation>1D profiles from specific particles in the distribution (trapped, co or counter-passing)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Density (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_fast">
+				<xs:annotation>
+					<xs:documentation>Density of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Pressure (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_parallel">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the parallel direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density (including electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density of fast (non-thermal) particles (excluding electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_phi_j_radial">
+				<xs:annotation>
+					<xs:documentation>Toroidal torque due to radial currents</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_tor_j_radial</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions" type="distributions_d_profiles_1d_partial_collisions">
+				<xs:annotation>
+					<xs:documentation>Power and torque exchanged between the species described by the distribution and the different plasma species through collisions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="source" type="distributions_d_profiles_1d_partial_source" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of flux averaged sources and sinks of particles, momentum and energy included in the Fokker-Planck modelling, related to the various waves or particle source processes affecting the distribution</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_fast_filter">
+		<xs:annotation>
+			<xs:documentation>Description of how the fast and the thermal particle populations are separated</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="method" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Method used to separate the fast and thermal particle population (indices TBD)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy">
+				<xs:annotation>
+					<xs:documentation>Energy at which the fast and thermal particle populations were separated, as a function of radius</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>eV</units>
+						<coordinate1>../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_1d">
+		<xs:annotation>
+			<xs:documentation>1D profiles from the distribution, for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="core_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Radial grid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fast_filter" type="distributions_d_fast_filter">
+				<xs:annotation>
+					<xs:documentation>Description of how the fast and the thermal particle populations are separated</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Density (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_fast">
+				<xs:annotation>
+					<xs:documentation>Density of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Pressure (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_parallel">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the parallel direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>Pa</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density (including electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density of fast (non-thermal) particles (excluding electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_phi_j_radial">
+				<xs:annotation>
+					<xs:documentation>Toroidal torque due to radial currents</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_tor_j_radial</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions" type="distributions_d_profiles_1d_collisions">
+				<xs:annotation>
+					<xs:documentation>Power and torque exchanged between the species described by the distribution and the different plasma species through collisions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="thermalization" type="distributions_d_profiles_1d_thermalized">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged source of thermal particles, momentum and energy due to thermalization. Here thermalization refers to non-thermal particles, sufficiently assimilated to the thermal background to be re-categorized as thermal particles. Note that this source may also be negative if thermal particles are being accelerated such that they form a distinct non-thermal contribution, e.g. due run-away of RF interactions.</xs:documentation>
+					<xs:appinfo>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>thermalisation</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="source" type="distributions_d_profiles_1d_source" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of flux averaged sources and sinks of particles, momentum and energy included in the Fokker-Planck modelling, related to the various waves or particle source processes affecting the distribution</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="trapped" type="distributions_d_profiles_1d_partial">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged profile evaluated using the trapped particle part of the distribution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="co_passing" type="distributions_d_profiles_1d_partial">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged profile evaluated using the co-passing particle part of the distribution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="counter_passing" type="distributions_d_profiles_1d_partial">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged profile evaluated using the counter-passing particle part of the distribution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d_grid">
+		<xs:annotation>
+			<xs:documentation>2D grid for the distribution</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Grid type: index=0: Rectangular grid in the (R,Z) coordinates; index=1: Rectangular grid in the (radial, theta_geometric) coordinates; index=2: Rectangular grid in the (radial, theta_straight) coordinates. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Height</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="theta_straight">
+				<xs:annotation>
+					<xs:documentation>Straight field line poloidal angle</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="theta_geometric">
+				<xs:annotation>
+					<xs:documentation>Geometrical poloidal angle</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_tor_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal flux coordinate. The normalizing value for rho_tor_norm, is the toroidal flux coordinate at the equilibrium boundary (LCFS or 99.x % of the LCFS in case of a fixed boundary equilibium calculation) </xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rho_tor">
+				<xs:annotation>
+					<xs:documentation>Toroidal flux coordinate. The toroidal field used in its definition is indicated under vacuum_toroidal_field/b0</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi">
+				<xs:annotation>
+					<xs:documentation>Poloidal magnetic flux</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<units>Wb</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="volume">
+				<xs:annotation>
+					<xs:documentation>Volume enclosed inside the magnetic surface</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<units>m^3</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Cross-sectional area of the flux surface</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<units>m^2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d_profiles_2d">
+		<xs:annotation>
+			<xs:documentation>2D profiles from the distribution, for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="distributions_d_profiles_2d_grid">
+				<xs:annotation>
+					<xs:documentation>Grid. The grid has to be rectangular in a pair of coordinates, as specified in type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Density (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_fast">
+				<xs:annotation>
+					<xs:documentation>Density of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>m^-3</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Pressure (thermal+non-thermal)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_parallel">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the parallel direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_fast_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Pressure of fast particles in the perpendicular direction</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>Pa</units>
+						<type>dynamic</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density (including electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_fast_phi">
+				<xs:annotation>
+					<xs:documentation>Total toroidal driven current density of fast (non-thermal) particles (excluding electron and thermal ion back-current, or drag-current)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<units>A.m^-2</units>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>current_fast_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torque_phi_j_radial">
+				<xs:annotation>
+					<xs:documentation>Toroidal torque due to radial currents</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>N.m^-2</units>
+						<coordinate1>../grid/r OR ../grid/rho_tor_norm</coordinate1>
+						<coordinate2>../grid/z OR ../grid/theta_geometric OR ../grid/theta_straight</coordinate2>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>torque_tor_j_radial</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions" type="distributions_d_profiles_2d_collisions">
+				<xs:annotation>
+					<xs:documentation>Power and torque exchanged between the species described by the distribution and the different plasma species through collisions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="trapped" type="distributions_d_profiles_2d_partial">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged profile evaluated using the trapped particle part of the distribution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="co_passing" type="distributions_d_profiles_2d_partial">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged profile evaluated using the co-passing particle part of the distribution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="counter_passing" type="distributions_d_profiles_2d_partial">
+				<xs:annotation>
+					<xs:documentation>Flux surface averaged profile evaluated using the counter-passing particle part of the distribution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distributions_d">
+		<xs:annotation>
+			<xs:documentation>Description of a given distribution function</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wave" type="waves_coherent_wave_identifier" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>List all waves affecting the distribution, identified as in waves/coherent_wave(i)/identifier in the waves IDS</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="process" type="distribution_process_identifier" maxOccurs="33">
+				<xs:annotation>
+					<xs:documentation>List all processes (NBI units, fusion reactions, ...) affecting the distribution, identified as in distribution_sources/source(i)/process in the DISTRIBUTION_SOURCES IDS</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gyro_type">
+				<xs:annotation>
+					<xs:documentation>Defines how to interpret the spatial coordinates: 1 = given at the actual particle birth point; 2 =given at the gyro centre of the birth point</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="species" type="distribution_species">
+				<xs:annotation>
+					<xs:documentation>Species described by this distribution</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="global_quantities" type="distributions_d_global_quantities" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Global quantities (integrated over plasma volume for moments of the distribution, collisional exchange and source terms), for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profiles_1d" type="distributions_d_profiles_1d" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Radial profiles (flux surface averaged quantities) for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+						<cocos_alias>IDSPATH</cocos_alias>
+						<cocos_replace>distributions.distribution{i}.profiles_1d{j}</cocos_replace>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profiles_2d" type="distributions_d_profiles_2d" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>2D profiles in the poloidal plane for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is_delta_f">
+				<xs:annotation>
+					<xs:documentation>If is_delta_f=1, then the distribution represents the deviation from a Maxwellian; is_delta_f=0, then the distribution represents all particles, i.e. the full-f solution</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ggd" type="distributions_d_ggd" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Distribution represented using the ggd, for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="markers" type="distribution_markers" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Distribution represented by a set of markers (test particles)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="distributions">
+		<xs:annotation>
+			<xs:documentation>Distribution function(s) of one or many particle species. This structure is specifically designed to handle non-Maxwellian distribution function generated during heating and current drive, typically solved using a Fokker-Planck calculation perturbed by a heating scheme (e.g. IC, EC, LH, NBI, or alpha heating) and then relaxed by Coloumb collisions. </xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.2.1</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="distribution" type="distributions_d" maxOccurs="33">
+					<xs:annotation>
+						<xs:documentation>Set of distribution functions. Every distribution function has to be associated with only one particle species, specified in distri_vec/species/, but there could be multiple distribution function for each species. In this case, the fast particle populations should be superposed</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<appendable_by_appender_actor>yes</appendable_by_appender_actor>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in rho_tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>distributions.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="magnetic_axis" type="rz1d_dynamic_1">
+					<xs:annotation>
+						<xs:documentation>Magnetic axis position (used to define a poloidal angle for the 2D profiles)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

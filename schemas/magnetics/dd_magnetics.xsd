@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="magnetics_rogowski">
+		<xs:annotation>
+			<xs:documentation>Rogowski coil</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="measured_quantity" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Quantity measured by the sensor</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>magnetics/magnetics_rogowski_measured_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="rphiz0d_static" maxOccurs="100">
+				<xs:annotation>
+					<xs:documentation>List of (R,Z,phi) points defining the position of the coil guiding centre. Values defining a single segment must be entered in contiguous order</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indices_compound">
+				<xs:annotation>
+					<xs:documentation>Indices (from the rogowski_coil array of structure) of the partial Rogowskis used to build the coumpound signal (sum of the partial Rogowski signals). Can be set to any unique integer value for each section of a compound Rogowski coil. Use only if ../measure_quantity/index = 5, leave empty otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Effective area of the loop wrapped around the guiding centre. In case of multiple layers, sum of the areas of each layer</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="turns_per_metre">
+				<xs:annotation>
+					<xs:documentation>Number of turns per unit length. In case of multiple layers, turns are counted for a single layer</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Measured current inside the Rogowski coil contour. The normal direction to the Rogowski coil is defined by the order of points in the list of guiding centre positions. The current is positive when oriented in the same direction as the normal. </xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="magnetics_flux_loop">
+		<xs:annotation>
+			<xs:documentation>Flux loops</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Flux loop type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>magnetics/magnetics_flux_loop_type_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="rphiz0d_static" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>List of (R,Z,phi) points defining the position of the loop (see data structure documentation FLUXLOOPposition.pdf). Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indices_differential">
+				<xs:annotation>
+					<xs:documentation>Indices (from the flux_loop array of structures) of the two loops used to build a differential measurement: loop(second index) - loop(first index). Use only if ../type/index = 6, leave empty otherwise.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Effective area (ratio between flux and average magnetic field over the loop). Leave empty if ../type/index = 6 (differential loop)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gm9">
+				<xs:annotation>
+					<xs:documentation>Integral of 1/R over the loop area (ratio between flux and magnetic rigidity R0.B0). Use only if ../type/index = 3 to 5, leave empty otherwise.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="flux" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Measured magnetic flux through loop with normal to enclosed surface determined by order of points</xs:documentation>
+					<xs:appinfo>
+						<units>Wb</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Measured voltage between the loop terminals</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="magnetics_bpol_probe_non_linear">
+		<xs:annotation>
+			<xs:documentation>Non-linear response of the probe</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="b_field_linear">
+				<xs:annotation>
+					<xs:documentation>Array of magnetic field values (corresponding to the assumption of a linear relation between magnetic field and probe coil current), for each of which the probe non-linear response is given in ../b_field_non_linear</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_non_linear">
+				<xs:annotation>
+					<xs:documentation>Magnetic field value taking into account the non-linear response of the probe</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../b_field_linear</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="magnetics_bpol_probe">
+		<xs:annotation>
+			<xs:documentation>Poloidal field probes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Probe type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>magnetics/magnetics_probe_type_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>R, Z, Phi position of the coil centre</xs:documentation>
+					<xs:appinfo/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="poloidal_angle">
+				<xs:annotation>
+					<xs:documentation>Angle of the sensor normal vector (vector parallel to the the axis of the coil, n on the diagram) with respect to horizontal plane (clockwise theta-like angle). Zero if sensor normal vector fully in the horizontal plane and oriented towards increasing major radius. Values in [0 , 2Pi]</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<url>magnetics/magnetics_angles.svg</url>
+						<cocos_label_transformation>pol_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_dtheta</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>magnetics.b_field_pol_probe{i}.poloidal_angle</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="toroidal_angle">
+				<xs:annotation>
+					<xs:documentation>Angle of the projection of the sensor normal vector (n) in the horizontal plane with the increasing R direction (i.e. grad(R)) (angle is counter-clockwise from above). Values should be taken modulo pi with values within (-pi/2,pi/2]. Zero if projected sensor normal is parallel to grad(R), pi/2 if it is parallel to grad(phi).</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<url>magnetics/magnetics_angles.svg</url>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>magnetics.b_field_pol_probe{i}.toroidal_angle</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="indices_differential">
+				<xs:annotation>
+					<xs:documentation>Indices (from the b_field_pol_probe array of structure) of the two probes used to build the field difference field(second index) - field(first index). Use only if ../type/index = 6, leave empty otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bandwidth_3db">
+				<xs:annotation>
+					<xs:documentation>3dB bandwith (first index : lower frequency bound, second index : upper frequency bound)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...2</coordinate1>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Area of each turn of the sensor; becomes effective area when multiplied by the turns</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="length">
+				<xs:annotation>
+					<xs:documentation>Length of the sensor along it's normal vector (n)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="turns">
+				<xs:annotation>
+					<xs:documentation>Turns in the coil, including sign</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="field" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Magnetic field component in direction of sensor normal axis (n) averaged over sensor volume defined by area and length, where n = cos(poloidal_angle)*cos(toroidal_angle)*grad(R) - sin(poloidal_angle)*grad(Z) + cos(poloidal_angle)*sin(toroidal_angle)*grad(Phi)/norm(grad(Phi))</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+						<cocos_label_transformation>one_like</cocos_label_transformation>
+						<cocos_transformation_expression>'1'</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>magnetics.b_field_pol_probe{i}.field.data</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Voltage on the coil terminals</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="non_linear_response" type="magnetics_bpol_probe_non_linear">
+				<xs:annotation>
+					<xs:documentation>Non-linear response of the probe (typically in case of a Hall probe)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="magnetics_method">
+		<xs:annotation>
+			<xs:documentation>Processed quantities derived from the magnetic measurements, using various methods</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the data processing method</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ip" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Plasma current. Positive sign means anti-clockwise when viewed from above.</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>magnetics.method{i}.ip.data</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="magnetics_method_distinct">
+		<xs:annotation>
+			<xs:documentation>Processed quantities derived from the magnetic measurements, using various methods</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="method_name">
+				<xs:annotation>
+					<xs:documentation>Name of the calculation method</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>Data</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>as_parent</units>
+						<coordinate1>../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="magnetics_shunt">
+		<xs:annotation>
+			<xs:documentation>Shunt for current measurement (often located in the divertor structure)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="line_of_sight_2points_rz">
+				<xs:annotation>
+					<xs:documentation>Position of shunt terminals</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resistance">
+				<xs:annotation>
+					<xs:documentation>Shunt resistance</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>ohm</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Voltage on the shunt terminals (Vfirst_point-Vsecond_point)</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="divertor_index">
+				<xs:annotation>
+					<xs:documentation>If the shunt is located on a given divertor, index of that divertor in the divertors IDS</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="target_index">
+				<xs:annotation>
+					<xs:documentation>If the shunt is located on a divertor target, index of that target in the divertors IDS</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tile_index">
+				<xs:annotation>
+					<xs:documentation>If the shunt is located on a divertor tile, index of that tile in the divertors IDS</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="magnetics">
+		<xs:annotation>
+			<xs:documentation>Magnetic diagnostics for equilibrium identification and plasma shape control.</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>active</lifecycle_status>
+				<lifecycle_version>3.24.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="flux_loop" type="magnetics_flux_loop" maxOccurs="200">
+					<xs:annotation>
+						<xs:documentation>Flux loops; partial flux loops can be described. In case of differential loops, the geometry of differential flux loops is stored in the flux_loop indices of the primitive loops. Signals may be stored on the primitive loop indices but this is optional if the index of the primitive loop is referenced by a differential loop index </xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="b_field_pol_probe" type="magnetics_bpol_probe" maxOccurs="200">
+					<xs:annotation>
+						<xs:documentation>Poloidal field probes</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<cocos_alias>bpol</cocos_alias>
+							<cocos_replace>b_field_pol</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="b_field_pol_probe_equivalent">
+					<xs:annotation>
+						<xs:documentation>Indices of equivalent poloidal field probes (from the b_field_pol_probe array) that differ only by their toroidal position and have the same (R,Z) position and the same coil orientation (poloidal and toroidal angles). Sets of equivalent probes (i.e. sets of (R, Z, poloidal_angle and toroidal_angle) values) are grouped by the first coordinate and the coils belonging to a given set are listed along the second coordinate. As an example, if there are N probes in a poloidal cross section that are replicated at the same poloidal positions and with the same orientation at 8 toroidal positions, the matrix will be of size Nx8.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<introduced_after_version>4.0.0</introduced_after_version>
+							<coordinate1>1...N</coordinate1>
+							<coordinate2>1...N</coordinate2>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_2D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="b_field_phi_probe" type="magnetics_bpol_probe" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>Toroidal field probes</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<cocos_alias>bpol</cocos_alias>
+							<cocos_replace>b_field_phi</cocos_replace>
+							<change_nbc_version>3.42.0</change_nbc_version>
+							<change_nbc_description>aos_renamed</change_nbc_description>
+							<change_nbc_previous_name>b_field_tor_probe</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="rogowski_coil" type="magnetics_rogowski" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>Set of Rogowski coils. If some of the coils form a compound Rogowski sensor, they must be entered in contiguous order</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="shunt" type="magnetics_shunt" maxOccurs="50">
+					<xs:annotation>
+						<xs:documentation>Set of shunt resistances through which currents in the divertor structure are measured. Shunts are modelled as piecewise straight line segments in the poloidal plane.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ip" type="magnetics_method_distinct" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Plasma current. Positive sign means anti-clockwise when viewed from above. The array of structure corresponds to a set of calculation methods (starting with the generally recommended method).</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<units>A</units>
+							<cocos_label_transformation>ip_like</cocos_label_transformation>
+							<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+							<cocos_leaf_name_aos_indices>magnetics.ip{i}.data</cocos_leaf_name_aos_indices>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="diamagnetic_flux" type="magnetics_method_distinct" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Diamagnetic flux. The array of structure corresponds to a set of calculation methods (starting with the generally recommended method).</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<units>Wb</units>
+							<cocos_label_transformation>b0_like</cocos_label_transformation>
+							<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+							<cocos_leaf_name_aos_indices>magnetics.diamagnetic_flux{i}.data</cocos_leaf_name_aos_indices>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

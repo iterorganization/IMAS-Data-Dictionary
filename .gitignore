@@ -1,6 +1,7 @@
 *~
 dd_data_dictionary.xml
 dd_data_dictionary_validation.txt
+data_dictionary.xml
 IDSDef.xml
 IDSNames.txt
 html_documentation/*.html
@@ -33,6 +34,13 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
+imas_data_dictionary/_version.py
+imas_data_dictionary/resources
 # IDE
 .vscode/
+
+# virtual environment 
+.venv/
+
+uv.lock
+install.log

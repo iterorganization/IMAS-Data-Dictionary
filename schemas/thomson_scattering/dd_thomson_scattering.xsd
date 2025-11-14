@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="thomson_scattering_laser">
+		<xs:annotation>
+			<xs:documentation>Thomson scattering laser</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="energy_in" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Energy of the laser pulse measured just before entering the vacuum vessel</xs:documentation>
+					<xs:appinfo>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy_out" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Energy of the laser pulse measured after crossing the plasma</xs:documentation>
+					<xs:appinfo>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="start_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the laser start point</xs:documentation>
+					<xs:appinfo>
+						<introduced-after-version>4.0.0</introduced-after-version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="end_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the laser end point</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wavelength">
+				<xs:annotation>
+					<xs:documentation>Laser wavelength</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="area">
+				<xs:annotation>
+					<xs:documentation>Laser cross sectional area</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="thomson_scattering_polychromator">
+		<xs:annotation>
+			<xs:documentation>Thomson scattering polychromator</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavelength_band" type="detector_wavelength" maxOccurs="8">
+				<xs:annotation>
+					<xs:documentation>Set of wavelength bands in which photons are counted by the polychromator</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="calibration_absolute">
+				<xs:annotation>
+					<xs:documentation>Factor to be multiplied by the spectral calibration to obtain the instrument function (fraction of signal received on each energy channel when a photon of relevant energy enters the optical system)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../wavelength_band</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calibration_absolute_date">
+				<xs:annotation>
+					<xs:documentation>Date at which the absolute calibration was carried out</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calibration_spectral">
+				<xs:annotation>
+					<xs:documentation>Polychromator response function: fraction of signal received on each energy channel when a photon of relevant energy enters the polychromator.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../wavelength_band</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calibration_spectral_date">
+				<xs:annotation>
+					<xs:documentation>Date at which the spectral calibration was carried out</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="thomson_scattering_channel">
+		<xs:annotation>
+			<xs:documentation>Thomson scattering channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_2points">
+				<xs:annotation>
+					<xs:documentation>Description of the line of sight of the channel, given by 2 points</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="polychromator_index">
+				<xs:annotation>
+					<xs:documentation>Index of the polychromator used by this channel (refers to the ../../polychromator array)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="scattering_angle">
+				<xs:annotation>
+					<xs:documentation>Angle formed by the laser beam wave vector and the line of sight, counted clockwise when projected in the poloidal plane</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.41.0</introduced_after_version>
+						<units>rad</units>
+						<coordinate1>../../laser</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="scattering_length">
+				<xs:annotation>
+					<xs:documentation>Length of the light scattering volume (full width) along the laser beam path, for this line of sight (i.e. length of the intersection between the laser beam and the viewing cone). This is a time average value in case of different lasers fired at different times</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="solid_angle">
+				<xs:annotation>
+					<xs:documentation>Solid angle of the line of sight</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Average position of the measurements (intersection between laser beam and line of sight)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="delta_position" type="rphiz1d_dynamic_aos1_common_time">
+				<xs:annotation>
+					<xs:documentation>Incremental variation of the position of the measurements, due to e.g. different lasers not intersecting the line of sight at the same position. The actual position is then the static position + delta_position</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position_per_laser" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the intersection between each laser beam and this line of sight</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../laser</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="distance_separatrix_midplane" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Distance between the measurement position and the separatrix, mapped along flux surfaces to the outboard midplane, in the major radius direction. Positive value means the measurement is outside of the separatrix.</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+						<introduced_after_version>3.32.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Electron temperature</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Electron density</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gaussian_fit">
+				<xs:annotation>
+					<xs:documentation>Amplitude of the gaussian fit of the measured signal in each energy band, used to estimate the electron temperature</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>mixed</units>
+						<coordinate1>../../polychromator(channel(i1)/polychromator_index)/wavelength_band</coordinate1>
+						<coordinate2>../t_e/time</coordinate2>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="thomson_scattering">
+		<xs:annotation>
+			<xs:documentation>Thomson scattering diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.0.4</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="midplane" type="identifier_static">
+					<xs:annotation>
+						<xs:documentation>Choice of midplane definition for the mapping of measurements on an equilibrium. Indicate the IMAS URI of the used equilibrium IDS in the ids_properties/provenance section.</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>utilities/midplane_identifier.xml</doc_identifier>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="channel" type="thomson_scattering_channel" maxOccurs="150">
+					<xs:annotation>
+						<xs:documentation>Set of channels (lines-of-sight)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="laser" type="thomson_scattering_laser" maxOccurs="3">
+					<xs:annotation>
+						<xs:documentation>Set of probing lasers</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_after_version>3.41.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="polychromator" type="thomson_scattering_polychromator" maxOccurs="40">
+					<xs:annotation>
+						<xs:documentation>Set of polychromators</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_after_version>3.41.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

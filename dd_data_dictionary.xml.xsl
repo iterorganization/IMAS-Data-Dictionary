@@ -75,7 +75,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 			</cocos>
 			<utilities>
 				<!-- Declare complex types from Utilities -->
-				<xsl:for-each select="document('utilities/dd_support.xsd')/*/xs:complexType">
+				<xsl:for-each select="document('schemas/utilities/dd_support.xsd')/*/xs:complexType">
 					<field>
 						<xsl:attribute name="name" select="@name"/>
 						<xsl:attribute name="data_type" select="'structure'"/>
@@ -93,7 +93,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 					</field>
 				</xsl:for-each>
 				<!-- Declare Elements from Utilities (only those being the root of a structure, simple elements are not needed in IDSDef.xml)-->
-				<xsl:apply-templates select="document('utilities/dd_support.xsd')/*/xs:element[./xs:complexType]" mode="IMPLEMENT">
+				<xsl:apply-templates select="document('schemas/utilities/dd_support.xsd')/*/xs:element[./xs:complexType]" mode="IMPLEMENT">
 					<xsl:with-param name="structure_reference" select="'self'"/>
 					<xsl:with-param name="aosLevel" select="1"/>
 					<xsl:with-param name="aos3Parent" select="xs:annotation/xs:appinfo/aos3Parent"/>
@@ -142,16 +142,10 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 							</xsl:choose>
 							<!-- Replicate DOCUMENTATION as an attribute-->
 							<xsl:attribute name="documentation"><xsl:value-of select="xs:annotation/xs:documentation"/></xsl:attribute>
-							<!-- Replicate LIFECYCLE information as an attribute-->
-							<xsl:attribute name="lifecycle_status"><xsl:value-of select="xs:annotation/xs:appinfo/lifecycle_status"/></xsl:attribute>
-							<xsl:attribute name="lifecycle_version"><xsl:value-of select="xs:annotation/xs:appinfo/lifecycle_version"/></xsl:attribute>
-							<xsl:attribute name="lifecycle_last_change"><xsl:value-of select="xs:annotation/xs:appinfo/lifecycle_last_change"/></xsl:attribute>
-							<xsl:if test="xs:annotation/xs:appinfo/specific_validation_rules">
-								<xsl:attribute name="specific_validation_rules"><xsl:value-of select="xs:annotation/xs:appinfo/specific_validation_rules"/></xsl:attribute>
-							</xsl:if>
-							<xsl:if test="xs:annotation/xs:appinfo/url">
-								<xsl:attribute name="url"><xsl:value-of select="xs:annotation/xs:appinfo/url"/></xsl:attribute>
-							</xsl:if>
+							<xsl:for-each select="xs:annotation/xs:appinfo/*">
+								<!-- Generic method for declaring all appinfo as attributes-->
+								<xsl:attribute name="{name(.)}"><xsl:value-of select="."/></xsl:attribute>
+						    </xsl:for-each>
 							<!-- Indicate whether the IDS is purely constant or contains dynamic quantities -->							
 							<xsl:choose>
 								<xsl:when test="*/*/xs:element[@ref='time']">
@@ -215,6 +209,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 		<xsl:param name="parentCoordinate4"/>
 		<xsl:param name="parentCoordinate5"/>
 		<xsl:param name="parentCoordinate6"/>
+		<xsl:param name="parentUnits"/>
 		<!-- Start implementing all child elements of the complexType -->
 		<xsl:apply-templates select="*/xs:element" mode="IMPLEMENT">
 			<xsl:with-param name="currPath" select="$currPath"/>
@@ -228,6 +223,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 			<xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/>
 			<xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/>
 			<xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/>
+			<xsl:with-param name="parentUnits" select="$parentUnits"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	<!-- Handle element definition in implement mode. Here all data types are checked -->
@@ -242,6 +238,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 		<xsl:param name="parentCoordinate4"/>
 		<xsl:param name="parentCoordinate5"/>
 		<xsl:param name="parentCoordinate6"/>
+		<xsl:param name="parentUnits"/>
 		<xsl:param name="structure_reference"/>
 		<xsl:choose>
 			<!-- If it is an external reference -->
@@ -299,7 +296,9 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 							<xsl:attribute name="data_type"><xsl:value-of select="xs:complexType/xs:group/@ref"/></xsl:attribute>
 							<xsl:for-each select="xs:annotation/xs:appinfo/*">
 								<!-- Generic method for declaring all appinfo as attributes-->
-								<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
+								<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when>
+								<!-- Resolve as_parent(_level_2) units -->
+								<xsl:when test="name(.) = 'units' and contains(., 'as_parent') and $parentUnits != ''"><xsl:value-of select="$parentUnits"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
 								<!-- Write a timebasepath attribute (coordinate path relative to the nearest AoS parent) in case the appinfo is a coordinate to a timebase -->
 								<xsl:if test="contains(lower-case(name(.)),'coordinate') and ends-with(.,'time')">
 									<xsl:attribute name="timebasepath"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/><xsl:with-param name="utilities_aoscontext" select="../utilities_aoscontext"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:attribute>
@@ -325,10 +324,19 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 								<xsl:attribute name="data_type"><xsl:value-of select="xs:complexType/xs:group/@ref"/></xsl:attribute>
 								<xsl:for-each select="xs:annotation/xs:appinfo/*[not(contains(name(.),'alternative_coordinate'))]">
 									<!-- Generic method for declaring all appinfo as attributes, but don't propagate the alternative_coordinate attribute to the errorbar nodes -->
-									<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:when test="contains(name(.),'change_nbc_previous_name')"><xsl:value-of select="."/><xsl:value-of select="'_error_upper'"/></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:when test="contains(name(.),'change_nbc_previous_name')"><xsl:value-of select="."/><xsl:value-of select="'_error_upper'"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
+									<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:when test="contains(name(.),'change_nbc_previous_name')"><xsl:value-of select="."/><xsl:value-of select="'_error_upper'"/></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:when test="contains(name(.),'change_nbc_previous_name')"><xsl:value-of select="."/><xsl:value-of select="'_error_upper'"/></xsl:when>
+									<!-- Resolve as_parent(_level_2) units -->
+									<xsl:when test="name(.) = 'units' and contains(., 'as_parent') and $parentUnits != ''"><xsl:value-of select="$parentUnits"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
 									<!-- Write a timebasepath attribute (coordinate path relative to the nearest AoS parent) in case the appinfo is a coordinate to a timebase -->
 									<xsl:if test="contains(lower-case(name(.)),'coordinate') and (ends-with(.,'time') or ../../../@name='time')">
 										<xsl:attribute name="timebasepath"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/><xsl:with-param name="utilities_aoscontext" select="../utilities_aoscontext"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:attribute>
+									</xsl:if>
+									<!-- Add a coordinate_same_as attribute when the physical quantity has coordinate 1...N, to allow checking that the size of the errorbar is consistent with the size of the physical quantity see IMAS-5280 -->
+									<xsl:if test="contains(lower-case(name(.)),'coordinate') and contains(.,'...')">
+									<xsl:attribute name="{concat(lower-case(name(.)),'_same_as')}"><xsl:choose>
+										<xsl:when test="$currPath_doc=''"><xsl:value-of select="../../../@name"/></xsl:when>
+										<xsl:otherwise><xsl:value-of select="concat($currPath_doc,'/',../../../@name)"/></xsl:otherwise>
+									</xsl:choose></xsl:attribute>
 									</xsl:if>
 								</xsl:for-each>
 							</field>
@@ -349,10 +357,19 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 								<xsl:attribute name="data_type"><xsl:value-of select="xs:complexType/xs:group/@ref"/></xsl:attribute>
 								<xsl:for-each select="xs:annotation/xs:appinfo/*[not(contains(name(.),'alternative_coordinate'))]">
 									<!-- Generic method for declaring all appinfo as attributes, but don't propagate the alternative_coordinate attribute to the errorbar nodes -->
-									<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:when test="contains(name(.),'change_nbc_previous_name')"><xsl:value-of select="."/><xsl:value-of select="'_error_lower'"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
+									<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:when test="contains(name(.),'change_nbc_previous_name')"><xsl:value-of select="."/><xsl:value-of select="'_error_lower'"/></xsl:when>
+									<!-- Resolve as_parent(_level_2) units -->
+									<xsl:when test="name(.) = 'units' and contains(., 'as_parent') and $parentUnits != ''"><xsl:value-of select="$parentUnits"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
 									<!-- Write a timebasepath attribute (coordinate path relative to the nearest AoS parent) in case the appinfo is a coordinate to a timebase -->
 									<xsl:if test="contains(lower-case(name(.)),'coordinate') and (ends-with(.,'time') or ../../../@name='time')">
 										<xsl:attribute name="timebasepath"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/><xsl:with-param name="utilities_aoscontext" select="../utilities_aoscontext"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildRelativeAosParentPath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="aosLevel" select="$aosLevel - 1"/><xsl:with-param name="structure_reference" select="$structure_reference"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:attribute>
+									</xsl:if>
+									<!-- Add a coordinate_same_as attribute when the physical quantity has coordinate 1...N, to allow checking that the size of the errorbar is consistent with the size of *_error_upper see IMAS-5280 -->
+									<xsl:if test="contains(lower-case(name(.)),'coordinate') and contains(.,'...')">
+									<xsl:attribute name="{concat(lower-case(name(.)),'_same_as')}"><xsl:choose>
+										<xsl:when test="$currPath_doc=''"><xsl:value-of select="concat(../../../@name,'_error_upper')"/></xsl:when>
+										<xsl:otherwise><xsl:value-of select="concat($currPath_doc,'/',../../../@name,'_error_upper')"/></xsl:otherwise>
+									</xsl:choose></xsl:attribute>
 									</xsl:if>
 								</xsl:for-each>
 							</field>
@@ -393,7 +410,9 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 											</xsl:choose>
 											<xsl:for-each select="xs:annotation/xs:appinfo/*">
 												<!-- Generic method for declaring all appinfo as attributes. There is a long, special treatement for coordinates because the path is indicated, otherwise treatment is just copying the attribute (see the value-of select . at the very end ...) -->
-												<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="../type='dynamic'"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat(../../../@name,'(itime)')"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name,'(itime)')"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:otherwise><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat(../../../@name,'($aosLevel)')"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name,'($aosLevel)')"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:otherwise></xsl:choose></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
+												<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="../type='dynamic'"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat(../../../@name,'(itime)')"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name,'(itime)')"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:otherwise><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat(../../../@name,'($aosLevel)')"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name,'($aosLevel)')"/><xsl:with-param name="coordinatePath" select="."/><xsl:with-param name="parentCoordinate1" select="$parentCoordinate1"/><xsl:with-param name="parentCoordinate2" select="$parentCoordinate2"/><xsl:with-param name="parentCoordinate3" select="$parentCoordinate3"/><xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/><xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/><xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:otherwise></xsl:choose></xsl:when>
+												<!-- Resolve as_parent(_level_2) units -->
+												<xsl:when test="name(.) = 'units' and contains(., 'as_parent') and $parentUnits != ''"><xsl:value-of select="$parentUnits"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
 											</xsl:for-each>
 										</xsl:when>
 										<!-- It is a regular structure -->
@@ -409,10 +428,23 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 											</xsl:choose>
 											<xsl:for-each select="xs:annotation/xs:appinfo/*">
 												<!-- Generic method for declaring all appinfo as attributes. There is a long, special treatement for coordinates because the path is indicated, otherwise treatment is just copying the attribute (see the value-of select . at the very end ...) -->
-												<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
+												<xsl:attribute name="{lower-case(name(.))}"><xsl:choose><xsl:when test="contains(lower-case(name(.)),'coordinate')"><xsl:choose><xsl:when test="$currPath=''"><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="../../../@name"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:when><xsl:otherwise><xsl:call-template name="BuildAbsolutePath"><xsl:with-param name="coordinate" select="lower-case(name(.))"/><xsl:with-param name="currPath" select="concat($currPath_doc,'/',../../../@name)"/><xsl:with-param name="coordinatePath" select="."/></xsl:call-template></xsl:otherwise></xsl:choose></xsl:when>
+												<!-- Resolve as_parent(_level_2) units -->
+												<xsl:when test="name(.) = 'units' and contains(., 'as_parent') and $parentUnits != ''"><xsl:value-of select="$parentUnits"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose></xsl:attribute>
 											</xsl:for-each>
 										</xsl:otherwise>
 									</xsl:choose>
+									<!-- select the units that (grand) children use when their unit is 'as_parent': -->
+									<xsl:variable name="parentUnitsForChild">
+										<xsl:choose>
+											<xsl:when test="contains(xs:annotation/xs:appinfo/units, 'as_parent') or string(xs:annotation/xs:appinfo/units) = ''">
+												<xsl:value-of select="$parentUnits"/> <!-- propagate parent units to grandchildren -->
+											</xsl:when>
+											<xsl:otherwise> <!-- propagate current node units children -->
+												<xsl:value-of select="xs:annotation/xs:appinfo/units"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:variable>
 									<!-- Handle type definition via template doImplementType. Need to pass an appropriate path definition -->
 									<xsl:choose>
 										<xsl:when test="$currPath=''">
@@ -432,6 +464,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 																<xsl:with-param name="parentCoordinate4" select="xs:annotation/xs:appinfo/coordinate4"/>
 																<xsl:with-param name="parentCoordinate5" select="xs:annotation/xs:appinfo/coordinate5"/>
 																<xsl:with-param name="parentCoordinate6" select="xs:annotation/xs:appinfo/coordinate6"/>
+																<xsl:with-param name="parentUnits" select="$parentUnitsForChild"/>
 															</xsl:call-template>
 														</xsl:when>
 														<xsl:otherwise>
@@ -447,6 +480,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 																<xsl:with-param name="parentCoordinate4" select="xs:annotation/xs:appinfo/coordinate4"/>
 																<xsl:with-param name="parentCoordinate5" select="xs:annotation/xs:appinfo/coordinate5"/>
 																<xsl:with-param name="parentCoordinate6" select="xs:annotation/xs:appinfo/coordinate6"/>
+																<xsl:with-param name="parentUnits" select="$parentUnitsForChild"/>
 															</xsl:call-template>
 														</xsl:otherwise>
 													</xsl:choose>
@@ -464,6 +498,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 														<xsl:with-param name="parentCoordinate4" select="xs:annotation/xs:appinfo/coordinate4"/>
 														<xsl:with-param name="parentCoordinate5" select="xs:annotation/xs:appinfo/coordinate5"/>
 														<xsl:with-param name="parentCoordinate6" select="xs:annotation/xs:appinfo/coordinate6"/>
+														<xsl:with-param name="parentUnits" select="$parentUnitsForChild"/>
 													</xsl:call-template>
 												</xsl:otherwise>
 											</xsl:choose>
@@ -485,6 +520,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 																<xsl:with-param name="parentCoordinate4" select="xs:annotation/xs:appinfo/coordinate4"/>
 																<xsl:with-param name="parentCoordinate5" select="xs:annotation/xs:appinfo/coordinate5"/>
 																<xsl:with-param name="parentCoordinate6" select="xs:annotation/xs:appinfo/coordinate6"/>
+																<xsl:with-param name="parentUnits" select="$parentUnitsForChild"/>
 															</xsl:call-template>
 														</xsl:when>
 														<xsl:otherwise>
@@ -500,6 +536,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 																<xsl:with-param name="parentCoordinate4" select="xs:annotation/xs:appinfo/coordinate4"/>
 																<xsl:with-param name="parentCoordinate5" select="xs:annotation/xs:appinfo/coordinate5"/>
 																<xsl:with-param name="parentCoordinate6" select="xs:annotation/xs:appinfo/coordinate6"/>
+																<xsl:with-param name="parentUnits" select="$parentUnitsForChild"/>
 															</xsl:call-template>
 														</xsl:otherwise>
 													</xsl:choose>
@@ -517,6 +554,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 														<xsl:with-param name="parentCoordinate4" select="xs:annotation/xs:appinfo/coordinate4"/>
 														<xsl:with-param name="parentCoordinate5" select="xs:annotation/xs:appinfo/coordinate5"/>
 														<xsl:with-param name="parentCoordinate6" select="xs:annotation/xs:appinfo/coordinate6"/>
+														<xsl:with-param name="parentUnits" select="$parentUnitsForChild"/>
 													</xsl:call-template>
 												</xsl:otherwise>
 											</xsl:choose>
@@ -591,7 +629,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 			<xsl:with-param name="actRef" select="$thisRef"/>
 			<xsl:with-param name="maxOcc" select="$maxOcc"/>
 		</xsl:apply-templates>
-		<xsl:apply-templates select="document('utilities/dd_support.xsd')/*/xs:element[@name=$thisRef]" mode="DECLARE"/>
+		<xsl:apply-templates select="document('schemas/utilities/dd_support.xsd')/*/xs:element[@name=$thisRef]" mode="DECLARE"/>
 	</xsl:template>
 	<xsl:template match="xs:include" mode="DECLARE">
 		<xsl:param name="actRef"/>
@@ -608,7 +646,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 		<xsl:param name="currPath_doc"/>
 		<xsl:param name="aosLevel"/>
 		<xsl:choose>
-			<xsl:when test="document('utilities/dd_support.xsd')/*/xs:complexType[@name=$thisRef]">
+			<xsl:when test="document('schemas/utilities/dd_support.xsd')/*/xs:complexType[@name=$thisRef]">
 				when the reference to be included is a complexType defined in utilities : NEVER HAPPENS
 				CHECK RESULT HERE IF THIS APPEARS
 				<xsl:apply-templates select="document('utilities.xsd')/*/xs:complexType[@name=$thisRef]" mode="IMPLEMENT">
@@ -618,9 +656,9 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 					<xsl:with-param name="parentmachine" select="yes"/>
 				</xsl:apply-templates>
 			</xsl:when>
-			<xsl:when test="document('utilities/dd_support.xsd')/*/xs:element[@name=$thisRef]">
+			<xsl:when test="document('schemas/utilities/dd_support.xsd')/*/xs:element[@name=$thisRef]">
 				<!-- when the reference to be included is an element defined in utilities -->
-				<xsl:apply-templates select="document('utilities/dd_support.xsd')/*/xs:element[@name=$thisRef]" mode="IMPLEMENT">
+				<xsl:apply-templates select="document('schemas/utilities/dd_support.xsd')/*/xs:element[@name=$thisRef]" mode="IMPLEMENT">
 					<xsl:with-param name="currPath" select="$currPath"/>
 					<xsl:with-param name="currPath_doc" select="$currPath_doc"/>
 					<xsl:with-param name="aosLevel" select="$aosLevel"/>
@@ -651,11 +689,12 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 		<xsl:param name="parentCoordinate4"/>
 		<xsl:param name="parentCoordinate5"/>
 		<xsl:param name="parentCoordinate6"/>
+		<xsl:param name="parentUnits"/>
 		<xsl:param name="structure_reference"/>
 		<xsl:choose>
-			<xsl:when test="document('utilities/dd_support.xsd')/*/xs:complexType[@name=$thisType]">
+			<xsl:when test="document('schemas/utilities/dd_support.xsd')/*/xs:complexType[@name=$thisType]">
 				<!-- if the complexType definition is in Utilities-->
-				<xsl:apply-templates select="document('utilities/dd_support.xsd')/*/xs:complexType[@name=$thisType]" mode="IMPLEMENT">
+				<xsl:apply-templates select="document('schemas/utilities/dd_support.xsd')/*/xs:complexType[@name=$thisType]" mode="IMPLEMENT">
 					<!--This fills the complexType from its definition in utilities (if it is there and not in the local schema)-->
 					<xsl:with-param name="currPath" select="$currPath"/>
 					<xsl:with-param name="currPath_doc" select="$currPath_doc"/>
@@ -668,6 +707,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 					<xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/>
 					<xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/>
 					<xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/>
+					<xsl:with-param name="parentUnits" select="$parentUnits"/>
 				</xsl:apply-templates>
 			</xsl:when>
 			<xsl:when test="/*/xs:complexType[@name=$thisType]">
@@ -684,6 +724,7 @@ DEBUG: 	  result="<xsl:value-of select="$result"/>"</xsl:message>
 					<xsl:with-param name="parentCoordinate4" select="$parentCoordinate4"/>
 					<xsl:with-param name="parentCoordinate5" select="$parentCoordinate5"/>
 					<xsl:with-param name="parentCoordinate6" select="$parentCoordinate6"/>
+					<xsl:with-param name="parentUnits" select="$parentUnits"/>
 				</xsl:apply-templates>
 			</xsl:when>
 		</xsl:choose>

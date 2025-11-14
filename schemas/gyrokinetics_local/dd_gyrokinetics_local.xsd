@@ -1,0 +1,2997 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="gyrokinetics_species">
+		<xs:annotation>
+			<xs:documentation>List of species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="charge_norm">
+				<xs:annotation>
+					<xs:documentation>normalized charge</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mass_norm">
+				<xs:annotation>
+					<xs:documentation>normalized mass</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_norm">
+				<xs:annotation>
+					<xs:documentation>normalized density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density_log_gradient_norm">
+				<xs:annotation>
+					<xs:documentation>normalized logarithmic gradient (with respect to r_minor_norm) of the density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_norm">
+				<xs:annotation>
+					<xs:documentation>normalized temperature</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature_log_gradient_norm">
+				<xs:annotation>
+					<xs:documentation>normalized logarithmic gradient (with respect to r_minor_norm) of the temperature</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_phi_gradient_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized gradient (with respect to r_minor_norm) of the toroidal velocity</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="potential_energy_norm">
+				<xs:annotation>
+					<xs:documentation>normalized gradient (with respect to r_minor_norm) of the effective potential energy</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+						<coordinate1>../../species_all/angle_pol_equilibrium</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="potential_energy_gradient_norm">
+				<xs:annotation>
+					<xs:documentation>Effective potential energy determining the poloidal variation of the species background density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+						<coordinate1>../../species_all/angle_pol_equilibrium</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_flux_surface">
+		<xs:annotation>
+			<xs:documentation>Flux surface characteristics</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="r_minor_norm">
+				<xs:annotation>
+					<xs:documentation>normalized minor radius of the flux surface of interest = 1/2 * (max(R) - min(R))/L_ref</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="elongation">
+				<xs:annotation>
+					<xs:documentation>Elongation</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="delongation_dr_minor_norm">
+				<xs:annotation>
+					<xs:documentation>Derivative of the elongation with respect to r_minor_norm</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dgeometric_axis_r_dr_minor">
+				<xs:annotation>
+					<xs:documentation>Derivative of the major radius of the surface geometric axis with respect to r_minor</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dgeometric_axis_z_dr_minor">
+				<xs:annotation>
+					<xs:documentation>Derivative of the height of the surface geometric axis with respect to r_minor</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="q">
+				<xs:annotation>
+					<xs:documentation>Safety factor</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="magnetic_shear_r_minor">
+				<xs:annotation>
+					<xs:documentation>Magnetic shear, defined as r_minor_norm/q . dq/dr_minor_norm (different definition from the equilibrium IDS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_gradient_norm">
+				<xs:annotation>
+					<xs:documentation>normalized pressure gradient (derivative with respect to r_minor_norm)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ip_sign">
+				<xs:annotation>
+					<xs:documentation>Sign of the plasma current</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_phi_sign">
+				<xs:annotation>
+					<xs:documentation>Sign of the toroidal magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shape_coefficients_c">
+				<xs:annotation>
+					<xs:documentation>'c' coefficients in the formula defining the shape of the flux surface</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dc_dr_minor_norm">
+				<xs:annotation>
+					<xs:documentation>Derivative of the 'c' shape coefficients with respect to r_minor_norm</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../shape_coefficients_c</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shape_coefficients_s">
+				<xs:annotation>
+					<xs:documentation>'s' coefficients in the formula defining the shape of the flux surface</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ds_dr_minor_norm">
+				<xs:annotation>
+					<xs:documentation>Derivative of the 's' shape coefficients with respect to r_minor_norm</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../shape_coefficients_s</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_input_species_global">
+		<xs:annotation>
+			<xs:documentation>Species global parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="beta_reference">
+				<xs:annotation>
+					<xs:documentation>Reference plasma beta (see detailed documentation at the root of the IDS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_phi_norm">
+				<xs:annotation>
+					<xs:documentation>normalized toroidal velocity of species (all species are assumed to have a purely toroidal velocity with a common toroidal angular frequency)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="debye_length_norm">
+				<xs:annotation>
+					<xs:documentation>Debye length computed from the reference quantities (see detailed documentation at the root of the IDS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shearing_rate_norm">
+				<xs:annotation>
+					<xs:documentation>normalized ExB shearing rate (for non-linear runs only)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angle_pol_equilibrium">
+				<xs:annotation>
+					<xs:documentation>Poloidal angle grid, from -pi to pi, on which the species dependent effective potential energy (which determines the poloidal variation of the density) is expressed. The angle is defined with respect to (R0,Z0) with R0=(Rmax-Rmin)/2 and Z0=(Zmax-Zmin)/2. It is increasing clockwise. So (r,theta,phi) is right-handed. theta=0 for Z=Z0 and R>R0 (LFS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_input_normalizing">
+		<xs:annotation>
+			<xs:documentation>GK normalizing quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="t_e">
+				<xs:annotation>
+					<xs:documentation>Electron temperature at outboard equatorial midplane of the flux surface (angle_pol = 0)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_e">
+				<xs:annotation>
+					<xs:documentation>Electron density at outboard equatorial midplane of the flux surface (angle_pol = 0)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="r">
+				<xs:annotation>
+					<xs:documentation>Major radius of the flux surface of interest, defined as (min(R)+max(R))/2</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal magnetic field at major radius r</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>T</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>b_field_phi</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_model">
+		<xs:annotation>
+			<xs:documentation>Description of the GK model assumptions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="include_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if fluctuations of the parallel vector potential are retained, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="include_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if fluctuations of the parallel magnetic field are retained, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="use_mhd_approximation">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if the geometric dependence of the grad-B drift is approximated to be that of the curvature drift (including the pressure gradient contribution), 0 otherwise. Using this approximation (Flag=1) is only recommended together with the neglect of parallel magnetic field fluctuations</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="include_coriolis_drift">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if Coriolis drift is included, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="include_centrifugal_effects">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if centrifugal effects are retained, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions_pitch_only">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if only pitch-angle scattering is retained, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions_momentum_conservation">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if the collision operator conserves momentum, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions_energy_conservation">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if the collision operator conserves energy, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="collisions_finite_larmor_radius">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if finite larmor radius effects are retained in the collision operator, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="adiabatic_electrons">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if electrons are adiabatic, 0 otherwise</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_moments_linear">
+		<xs:annotation>
+			<xs:documentation>Turbulent moments for a given eigenmode and a given species</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>normalized density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="j_parallel">
+				<xs:annotation>
+					<xs:documentation>normalized parallel current density</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_parallel">
+				<xs:annotation>
+					<xs:documentation>Normalized parallel pressure</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Normalized perpendicular pressure</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pressure">
+				<xs:annotation>
+					<xs:documentation>Normalised pressure, defined as the sum of pressure_parallel and pressure_perpendicular</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="heat_flux_parallel">
+				<xs:annotation>
+					<xs:documentation>Normalized parallel heat flux (integral of 0.5 * m * v_par * v^2)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v_parallel_energy_perpendicular">
+				<xs:annotation>
+					<xs:documentation>Normalized moment (integral over 0.5 * m * v_par * v_perp^2)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="v_perpendicular_square_energy">
+				<xs:annotation>
+					<xs:documentation>Normalized moment (integral over 0.5 * m * v_perp^2 * v^2)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+						<coordinate2>../../angle_pol</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fields_nl_1d">
+		<xs:annotation>
+			<xs:documentation>Fields intensity, 1D, flux surface averaged, summed over kx, time averaged, non-linear</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phi_potential_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed electrostatic potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel vector potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>normalized perturbed parallel magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fields_nl_2d_ky0">
+		<xs:annotation>
+			<xs:documentation>Fields 2D, ky=0, flux surface averaged, non-linear, complex</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phi_potential_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>normalized perturbed electrostatic potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../radial_wavevector_norm</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel vector potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../radial_wavevector_norm</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../radial_wavevector_norm</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fields_nl_2d_fs_average">
+		<xs:annotation>
+			<xs:documentation>Fields intensity, 2D, flux surface averaged, non-linear</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phi_potential_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed electrostatic potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel vector potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fields_nl_3d">
+		<xs:annotation>
+			<xs:documentation>Fields intensity, 3D, non-linear</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phi_potential_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed electrostatic potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<coordinate3>../../angle_pol</coordinate3>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel vector potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<coordinate3>../../angle_pol</coordinate3>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<coordinate3>../../angle_pol</coordinate3>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fields_nl_4d">
+		<xs:annotation>
+			<xs:documentation>Fields, 4D, non-linear, complex</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phi_potential_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed electrostatic potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<coordinate3>../../angle_pol</coordinate3>
+						<coordinate4>../../time_norm</coordinate4>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel vector potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<coordinate3>../../angle_pol</coordinate3>
+						<coordinate4>../../time_norm</coordinate4>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized perturbed parallel magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../binormal_wavevector_norm</coordinate1>
+						<coordinate2>../../radial_wavevector_norm</coordinate2>
+						<coordinate3>../../angle_pol</coordinate3>
+						<coordinate4>../../time_norm</coordinate4>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_4D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_1d">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 1D, non-linear, flux-surface and time averaged, summed over kx and ky</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_2d_sum_kx_ky">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 2D, non-linear, flux-surface averaged, summed over kx and ky</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_2d_sum_kx">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 2D, non-linear, time-averaged and flux-surface averaged, summed over kx</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_3d_sum_kx">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 3D, non-linear, flux-surface averaged, summed over kx</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalised particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalised particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalised particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalised energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalised energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalised energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalised toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalised toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalised toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalised toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalised toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalised toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../time_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_3d">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 3D, non-linear, time-averaged and flux-surface averaged</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_4d">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 4D, non-linear, time-averaged</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_4D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes_nl_5d">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes 5D, non-linear</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>/species</coordinate1>
+						<coordinate2>../../binormal_wavevector_norm</coordinate2>
+						<coordinate3>../../radial_wavevector_norm</coordinate3>
+						<coordinate4>../../angle_pol</coordinate4>
+						<coordinate5>../../time_norm</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_fluxes">
+		<xs:annotation>
+			<xs:documentation>Turbulent fluxes for a given eigenmode</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized particle flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the normalized energy flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_parallel_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the parallel component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_phi_potential">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed electrostatic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_a_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel electromagnetic potential to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="momentum_phi_perpendicular_b_field_parallel">
+				<xs:annotation>
+					<xs:documentation>Contribution of the perturbed parallel magnetic field to the perpendicular component of the normalized toroidal momentum flux</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>../../../../../species</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_eigenmode_fields">
+		<xs:annotation>
+			<xs:documentation>Electromagnetic fields of a gyrokinetic calculation for a given eigenmode</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phi_potential_perturbed_weight">
+				<xs:annotation>
+					<xs:documentation>Amplitude of the perturbed electrostatic potential normalized to the sum of amplitudes of all perturbed fields</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../time_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi_potential_perturbed_parity">
+				<xs:annotation>
+					<xs:documentation>Parity of the perturbed electrostatic potential with respect to theta = 0 (poloidal angle)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../time_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_weight">
+				<xs:annotation>
+					<xs:documentation>Amplitude of the perturbed parallel vector potential normalized to the sum of amplitudes of all perturbed fields</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../time_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_parity">
+				<xs:annotation>
+					<xs:documentation>Parity of the perturbed parallel vector potential with respect to theta = 0 (poloidal angle)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../time_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_weight">
+				<xs:annotation>
+					<xs:documentation>Amplitude of the perturbed parallel magnetic field normalized to the sum of amplitudes of all perturbed fields</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../time_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_parity">
+				<xs:annotation>
+					<xs:documentation>Parity of the perturbed parallel magnetic field with respect to theta = 0 (poloidal angle)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../time_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi_potential_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>normalized perturbed electrostatic potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../angle_pol</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="a_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>normalized perturbed parallel vector potential</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../angle_pol</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_parallel_perturbed_norm">
+				<xs:annotation>
+					<xs:documentation>normalized perturbed parallel magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../angle_pol</coordinate1>
+						<coordinate2>../../time_norm</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_eigenmode">
+		<xs:annotation>
+			<xs:documentation>Output of the GK calculation for a given eigenmode</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="poloidal_turns">
+				<xs:annotation>
+					<xs:documentation>Number of poloidal turns considered in the flux-tube simulation</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="growth_rate_norm">
+				<xs:annotation>
+					<xs:documentation>Growth rate</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency_norm">
+				<xs:annotation>
+					<xs:documentation>Frequency</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="growth_rate_tolerance">
+				<xs:annotation>
+					<xs:documentation>Relative tolerance on the growth rate (convergence of the simulation)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angle_pol">
+				<xs:annotation>
+					<xs:documentation>Poloidal angle grid. The angle is defined with respect to (R0,Z0) with R0=(Rmax-Rmin)/2 and Z0=(Zmax-Zmin)/2. It is increasing clockwise. So (r,theta,phi) is right-handed. theta=0 for Z=Z0 and R>R0 (LFS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_norm">
+				<xs:annotation>
+					<xs:documentation>normalized time of the gyrokinetic simulation</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fields" type="gyrokinetics_eigenmode_fields">
+				<xs:annotation>
+					<xs:documentation>Electrostatic potential, magnetic field and magnetic vector potential</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="code_partial_constant">
+				<xs:annotation>
+					<xs:documentation>Code-specific parameters used for this eigenmode</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="initial_value_run">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if this is an initial value run, 0 for an eigenvalue run</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="moments_norm_gyrocenter" type="gyrokinetics_moments_linear">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moments_norm_particle" type="gyrokinetics_moments_linear">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of particles</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moments_norm_gyrocenter_bessel_0" type="gyrokinetics_moments_linear">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters times 0th order Bessel function of the first kind</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moments_norm_gyrocenter_bessel_1" type="gyrokinetics_moments_linear">
+				<xs:annotation>
+					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters times 1st order Bessel function of the first kind</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="linear_weights" type="gyrokinetics_fluxes">
+				<xs:annotation>
+					<xs:documentation>normalized fluxes in the laboratory frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="linear_weights_rotating_frame" type="gyrokinetics_fluxes">
+				<xs:annotation>
+					<xs:documentation>normalized fluxes in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_wavevector">
+		<xs:annotation>
+			<xs:documentation>Components of the linear mode wavevector</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="radial_wavevector_norm">
+				<xs:annotation>
+					<xs:documentation>normalized radial component of the wavevector</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="binormal_wavevector_norm">
+				<xs:annotation>
+					<xs:documentation>normalized binormal component of the wavevector</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="eigenmode" type="gyrokinetics_eigenmode" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of eigenmode for this wavector</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_collisions">
+		<xs:annotation>
+			<xs:documentation>Collisions related quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="collisionality_norm">
+				<xs:annotation>
+					<xs:documentation>normalized collisionality between two species</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../../species</coordinate1>
+						<coordinate2>../../species</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_linear">
+		<xs:annotation>
+			<xs:documentation>Linear simulation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wavevector" type="gyrokinetics_wavevector" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of wavevectors</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gyrokinetics_non_linear">
+		<xs:annotation>
+			<xs:documentation>Non-linear simulation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="binormal_wavevector_norm">
+				<xs:annotation>
+					<xs:documentation>Array of normalized binormal wavevectors</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="radial_wavevector_norm">
+				<xs:annotation>
+					<xs:documentation>Array of normalized radial wavevectors</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angle_pol">
+				<xs:annotation>
+					<xs:documentation>Poloidal angle grid. The angle is defined with respect to (R0,Z0) with R0=(Rmax-Rmin)/2 and Z0=(Zmax-Zmin)/2. It is increasing clockwise. So (r,theta,phi) is right-handed. theta=0 for Z=Z0 and R>R0 (LFS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_norm">
+				<xs:annotation>
+					<xs:documentation>normalized time of the gyrokinetic simulation</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_interval_norm">
+				<xs:annotation>
+					<xs:documentation>normalized time interval used to average fluxes in non-linear runs</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+						<coordinate1>1...2</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="quasi_linear">
+				<xs:annotation>
+					<xs:documentation>Flag = 1 if the non-linear fluxes are in fact calculated by a quasi-linear model, 0 if non-linear</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="code" type="code_partial_constant">
+				<xs:annotation>
+					<xs:documentation>Code-specific parameters used for the non-linear simulation</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_5d" type="gyrokinetics_fluxes_nl_5d">
+				<xs:annotation>
+					<xs:documentation>5D fluxes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_4d" type="gyrokinetics_fluxes_nl_4d">
+				<xs:annotation>
+					<xs:documentation>4D fluxes (time averaged)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_3d" type="gyrokinetics_fluxes_nl_3d">
+				<xs:annotation>
+					<xs:documentation>3D fluxes (time and flux surface averaged)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_3d_k_x_sum" type="gyrokinetics_fluxes_nl_3d_sum_kx">
+				<xs:annotation>
+					<xs:documentation>3D fluxes (flux surface averaged, summed over kx)</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_2d_k_x_sum" type="gyrokinetics_fluxes_nl_2d_sum_kx">
+				<xs:annotation>
+					<xs:documentation>2D fluxes (time and flux-surface averaged), summed over kx</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_2d_k_x_k_y_sum" type="gyrokinetics_fluxes_nl_2d_sum_kx_ky">
+				<xs:annotation>
+					<xs:documentation>2D fluxes (flux-surface averaged), summed over kx and ky</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_1d" type="gyrokinetics_fluxes_nl_1d">
+				<xs:annotation>
+					<xs:documentation>1D fluxes (flux-surface and time averaged), summed over kx and ky</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fields_4d" type="gyrokinetics_fields_nl_4d">
+				<xs:annotation>
+					<xs:documentation>4D fields</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fields_intensity_3d" type="gyrokinetics_fields_nl_3d">
+				<xs:annotation>
+					<xs:documentation>3D fields (time averaged)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fields_intensity_2d_surface_average" type="gyrokinetics_fields_nl_2d_fs_average">
+				<xs:annotation>
+					<xs:documentation>2D fields (time averaged and flux surface averaged)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fields_zonal_2d" type="gyrokinetics_fields_nl_2d_ky0">
+				<xs:annotation>
+					<xs:documentation>2D zonal fields (taken at ky=0, flux surface averaged)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fields_intensity_1d" type="gyrokinetics_fields_nl_1d">
+				<xs:annotation>
+					<xs:documentation>1D fields (summed over kx, time averaged and flux surface averaged)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_5d_rotating_frame" type="gyrokinetics_fluxes_nl_5d">
+				<xs:annotation>
+					<xs:documentation>5D fluxes in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_4d_rotating_frame" type="gyrokinetics_fluxes_nl_4d">
+				<xs:annotation>
+					<xs:documentation>4D fluxes (time averaged) in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_3d_rotating_frame" type="gyrokinetics_fluxes_nl_3d">
+				<xs:annotation>
+					<xs:documentation>3D fluxes (time and flux surface averaged) in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_3d_k_x_sum_rotating_frame" type="gyrokinetics_fluxes_nl_3d_sum_kx">
+				<xs:annotation>
+					<xs:documentation>3D fluxes (flux surface averaged, summed over kx)</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_2d_k_x_sum_rotating_frame" type="gyrokinetics_fluxes_nl_2d_sum_kx">
+				<xs:annotation>
+					<xs:documentation>2D fluxes (time and flux-surface averaged), summed over kx in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_2d_k_x_k_y_sum_rotating_frame" type="gyrokinetics_fluxes_nl_2d_sum_kx_ky">
+				<xs:annotation>
+					<xs:documentation>2D fluxes (flux-surface averaged), summed over kx and ky in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fluxes_1d_rotating_frame" type="gyrokinetics_fluxes_nl_1d">
+				<xs:annotation>
+					<xs:documentation>1D fluxes (flux-surface and time averaged), summed over kx and ky in the rotating frame</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="gyrokinetics_local">
+		<xs:annotation>
+			<xs:documentation>Description of a local gyrokinetic simulation (delta-f, flux-tube). All quantities within this IDS are normalized (apart from time and from the normalizing quantities structure), thus independent of rhostar, consistently with the local approximation and a spectral representation is assumed in the perpendicular plane (i.e. homogeneous turbulence).</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.40.0</lifecycle_version>
+				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+				<change_nbc_version>3.40.0</change_nbc_version>
+				<change_nbc_description>ids_renamed</change_nbc_description>
+				<change_nbc_previous_name>gyrokinetics</change_nbc_previous_name>
+				<url>https://gitlab.com/gkdb/gkdb/raw/master/doc/general/IOGKDB.pdf</url>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="normalizing_quantities" type="gyrokinetics_input_normalizing">
+					<xs:annotation>
+						<xs:documentation>Physical quantities used for normalization (useful to link to the original simulation/experience)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="flux_surface" type="gyrokinetics_flux_surface">
+					<xs:annotation>
+						<xs:documentation>Flux surface characteristics</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="linear" type="gyrokinetics_linear">
+					<xs:annotation>
+						<xs:documentation>Linear simulation</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="non_linear" type="gyrokinetics_non_linear">
+					<xs:annotation>
+						<xs:documentation>Non-linear simulation</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="model" type="gyrokinetics_model">
+					<xs:annotation>
+						<xs:documentation>Assumptions of the GK calculations</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="species_all" type="gyrokinetics_input_species_global">
+					<xs:annotation>
+						<xs:documentation>Physical quantities common to all species</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="species" type="gyrokinetics_species" maxOccurs="10">
+					<xs:annotation>
+						<xs:documentation>Set of species (including electrons) used in the calculation and related quantities</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="collisions" type="gyrokinetics_collisions">
+					<xs:annotation>
+						<xs:documentation>Collisions related quantities</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="code" type="code_constant">
+					<xs:annotation>
+						<xs:documentation>Generic decription of the code-specific parameters for the code that has produced this IDS</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

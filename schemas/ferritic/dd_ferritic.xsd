@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="ferritic_object_time_slice">
+		<xs:annotation>
+			<xs:documentation>Dynamic quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="b_field_r">
+				<xs:annotation>
+					<xs:documentation>R component of the magnetic field at each centroid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../centroid/x</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the magnetic field at each centroid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../centroid/x</coordinate1>
+						<units>T</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>b_field_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_z">
+				<xs:annotation>
+					<xs:documentation>Z component of the magnetic field at each centroid</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../centroid/x</coordinate1>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="magnetic_moment_r">
+				<xs:annotation>
+					<xs:documentation>R component of the magnetic moment of each element</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../centroid/x</coordinate1>
+						<units>A.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="magnetic_moment_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the magnetic moment of each element</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../centroid/x</coordinate1>
+						<units>A.m^-2</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>magnetic_moment_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="magnetic_moment_z">
+				<xs:annotation>
+					<xs:documentation>Z component of the magnetic moment of each element</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../centroid/x</coordinate1>
+						<units>A.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ferritic_object">
+		<xs:annotation>
+			<xs:documentation>Ferritic object</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="centroid" type="xyz1d_positions_static">
+				<xs:annotation>
+					<xs:documentation>List of positions of the centroids, in Cartesian coordinates</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="volume">
+				<xs:annotation>
+					<xs:documentation>Volume of each element of this object</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^3</units>
+						<coordinate1>../centroid/x</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="saturated_relative_permeability">
+				<xs:annotation>
+					<xs:documentation>Saturated relative magnetic permeability of each element</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>H.m^-1</units>
+						<coordinate1>../centroid/x</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="permeability_table_index">
+				<xs:annotation>
+					<xs:documentation>Index of permeability table to be used for each element. If not allocated or if an element is equal to EMPTY_INT, use the sibling saturated relative permeability instead ../relative_permeability, for that element</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../centroid/x</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="axisymmetric" type="outline_2d_geometry_static" maxOccurs="33">
+				<xs:annotation>
+					<xs:documentation>Optional equivalent axisymmetric representation of the geometry of each element (e.g. for each iron core segment), typically used to represent iron core in axisymmetric equilibrium solvers</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../centroid/x</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ggd_object_index">
+				<xs:annotation>
+					<xs:documentation>Index of GGD volumic object corresponding to each element. Refers to the array /grid_ggd/space(1)/objects_per_dimension(4)/object</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../centroid/x</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_slice" type="ferritic_object_time_slice" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dynamic quantities, per time slice</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ferritic_permeability_table">
+		<xs:annotation>
+			<xs:documentation>Permeability table</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of this table</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description of this table</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field">
+				<xs:annotation>
+					<xs:documentation>Array of magnetic field values, for each of which the relative permeability is given</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>T</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="relative_permeability">
+				<xs:annotation>
+					<xs:documentation>Relative permeability as a function of the magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+						<coordinate1>../b_field</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ferritic">
+		<xs:annotation>
+			<xs:documentation>Description of ferritic material (inserts, TBMs, NBI shielding, welds, rebar, etc...)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.40.0</lifecycle_version>
+				<lifecycle_last_change>3.40.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="object" type="ferritic_object" maxOccurs="32">
+					<xs:annotation>
+						<xs:documentation>Set of n objects characterized by a list of centroids, volumes, and permeabilities. Optionally a full 3D description of the n volumes may be given in ../grid_ggd. Here the index for each element given in the grid_ggd should be referenced by the object set.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="permeability_table" type="ferritic_permeability_table" maxOccurs="10">
+					<xs:annotation>
+						<xs:documentation>Set of tables for relative permeability as a function of the magnetic field</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="grid_ggd" type="generic_grid_constant">
+					<xs:annotation>
+						<xs:documentation>GGD for describing the 3D geometry of the various objects and their elements</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

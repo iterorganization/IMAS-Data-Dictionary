@@ -17,11 +17,11 @@
       </head>
       <body>
               <p class="welcome">ITER Physics Data Model Documentation : Top level (list of all IDSs)</p>
-              <p>This version of the ITER Physics Data Model corresponds to COCOS = <xsl:value-of select="./cocos"/> coordinate convention. The COCOS conventions are defined in [O. Sauter and S.Yu. Medvedev, Computer Physics Communications 184 (2013) 293]</p>
+              <p>This version <b><xsl:value-of select="./version"/></b> of the ITER Physics Data Model corresponds to COCOS = <xsl:value-of select="./cocos"/> coordinate convention. The COCOS conventions are defined in [O. Sauter and S.Yu. Medvedev, Computer Physics Communications 184 (2013) 293]</p>
               <p>For conversion between cylindrical (R,phi,Z) and Cartesian (X,Y,Z) coordinates, IMAS follows the <a href="https://en.wikipedia.org/wiki/ISO_31-11">ISO 31-11 standard</a>, namely the origin and Z axis align and the X axis corresponds to phi = 0</p>
 			  <p>Mathematical operators :
 			  <ul>
-						<li><a href="http://www-fusion.ciemat.es/wiki/Flux_coordinates#Flux_Surface_Average">Flux surface average</a></li>
+						<li><a href="https://wiki.fusion.ciemat.es/wiki/Flux_coordinates#Flux_Surface_Average">Flux surface average</a></li>
 			  </ul>
 			  </p>
        		  <p><a href="dd_versions.html">Data Dictionary version history</a></p>
@@ -44,13 +44,13 @@
 </p>
 <table border="1">
         <thead style="color:#ff0000"><td>Generic structure name</td><td>Description</td></thead>
-<xsl:for-each select="document('utilities/dd_support.xsd')/*/xs:complexType">
+<xsl:for-each select="document('schemas/utilities/dd_support.xsd')/*/xs:complexType">
 <tr>
 	<td><xsl:value-of select="@name"/></td>
 	<td><xsl:value-of select="xs:annotation/xs:documentation"/></td>
 </tr>
 </xsl:for-each>
-<xsl:for-each select="document('utilities/dd_support.xsd')/*/xs:element">
+<xsl:for-each select="document('schemas/utilities/dd_support.xsd')/*/xs:element">
 <tr>
 	<td><xsl:value-of select="@name"/></td>
 	<td><xsl:value-of select="./xs:annotation/xs:documentation"/></td>
@@ -161,7 +161,7 @@
            <xsl:if test="@doc_identifier">. Available options (refer to the children of this identifier structure) :
                 <table border="1">
                       <thead><td>Name</td><td>Index</td><td>Description</td></thead>
-                      <xsl:apply-templates select="document(@doc_identifier)/*/int"/>
+                      <xsl:apply-templates select="document(concat('schemas/',@doc_identifier))/*/int"/>
                       <tr>
         </tr>
         </table>

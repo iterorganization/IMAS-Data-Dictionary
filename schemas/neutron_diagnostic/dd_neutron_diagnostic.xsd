@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<!-- edited with KWrite by Andrei Kovalev (ITER ORGANIZATION) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="xyz3d_static">
+		<xs:annotation>
+			<xs:documentation>Structure for list of X, Y, Z components (3D, static), one set of X,Y,Z components being given for each voxel of the emission grid</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="x">
+				<xs:annotation>
+					<xs:documentation>Components along X axis for each voxel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../emission_grid/r</coordinate1>
+						<coordinate2>../../emission_grid/z</coordinate2>
+						<coordinate3>../../emission_grid/phi</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="y">
+				<xs:annotation>
+					<xs:documentation>Component along Y axis  for each voxel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../emission_grid/r</coordinate1>
+						<coordinate2>../../emission_grid/z</coordinate2>
+						<coordinate3>../../emission_grid/phi</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z">
+				<xs:annotation>
+					<xs:documentation>Component along Z axis  for each voxel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../../emission_grid/r</coordinate1>
+						<coordinate2>../../emission_grid/z</coordinate2>
+						<coordinate3>../../emission_grid/phi</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_emissivity">
+		<xs:annotation>
+			<xs:documentation>Reconstructed emissivity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="algorithm_type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Algorithm used to reconstruct the emissivity profile</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>neutron_diagnostic/neutron_algorithm_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rho_tor_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized toroidal flux coordinate. The normalizing value for rho_tor_norm, is the toroidal flux coordinate at the equilibrium boundary (LCFS or 99.x % of the LCFS in case of a fixed boundary equilibium calculation, see time_slice/boundary in the equilibrium IDS)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>1...N</coordinate1>
+						<alternative_coordinate1>../psi_norm</alternative_coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi_norm">
+				<xs:annotation>
+					<xs:documentation>Normalized poloidal flux coordinate for the reconstructed profiles, the flux being normalized to run from 0 at the magnetic axis to 1 at the separatrix</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dd">
+				<xs:annotation>
+					<xs:documentation>Emissivity profile due to DD reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-3.s^-1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dt">
+				<xs:annotation>
+					<xs:documentation>Emissivity profile due to DT reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-3.s^-1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dd_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DD emissivity with respect to true DD emissivity. The accuracy is obtained by comparing the reconstructed emissivity profile and the emissivity profile input to the synthetic diagnostic calculation: relative error = (reconstructed-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emissivity_dt_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DT emissivity with respect to true DT emissivity. The accuracy is obtained by comparing the reconstructed emissivity profile and the emissivity profile input to the synthetic diagnostic calculation: relative error = (reconstructed-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dd">
+				<xs:annotation>
+					<xs:documentation>Fusion power profile due to DD reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dt">
+				<xs:annotation>
+					<xs:documentation>Fusion power profile due to DT reactions</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>W.m^-3</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dd_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DD fusion power with respect to true DD fusion power. The accuracy is obtained by comparing the reconstructed profile and the profile input to the synthetic diagnostic calculation: relative error = (reconstruted-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fusion_power_dt_accuracy">
+				<xs:annotation>
+					<xs:documentation>Accuracy profile of reconstructed DT fusion power with respect to true DT fusion power. The accuracy is obtained by comparing the reconstructed profile and the profile input to the synthetic diagnostic calculation: relative error = (reconstructed-input)/input</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="t_i">
+				<xs:annotation>
+					<xs:documentation>Temperature profile of D and T ions (assumed to be equal)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>eV</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fuel_ratio">
+				<xs:annotation>
+					<xs:documentation>Radio of densities nT/nD</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+						<coordinate1>../rho_tor_norm</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detectors_used">
+				<xs:annotation>
+					<xs:documentation>1 if the detector is used for the emissivity reconstruction; 0 if the detector is not used</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../detector</coordinate1>
+						<coordinate2>/time</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_event">
+		<xs:annotation>
+			<xs:documentation>Event in the detector</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Type of the event</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>neutron_diagnostic/neutron_event_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>Array of values for the event</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>mixed</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_field_of_view">
+		<xs:annotation>
+			<xs:documentation>Field of view</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="solid_angle">
+				<xs:annotation>
+					<xs:documentation>Average solid angle that the detector covers within the voxel</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>sr</units>
+						<coordinate1>../emission_grid/r</coordinate1>
+						<coordinate2>../emission_grid/z</coordinate2>
+						<coordinate3>../emission_grid/phi</coordinate3>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_3D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="emission_grid" type="rphiz1d_grid">
+				<xs:annotation>
+					<xs:documentation>Grid defining the neutron emission cells in the plasma</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="direction_to_detector" type="xyz3d_static">
+				<xs:annotation>
+					<xs:documentation>Vector that points from the centre of the voxel to the centre of the detector, described in the (X,Y,Z) coordinate system, where X is the major radius axis for phi = 0, Y is the major radius axis for phi = pi/2, and Z is the height axis.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_green">
+		<xs:annotation>
+			<xs:documentation>Green functions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="source_neutron_energies">
+				<xs:annotation>
+					<xs:documentation>Array of source neutron energy bins</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>eV</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="event_in_detector_neutron_flux" type="neutron_diagnostic_event">
+				<xs:annotation>
+					<xs:documentation>5th dimension for the neutron_flux Green function representing values of events measured in the detector. The type of events monitored depends on the detector and can be defined by the user. It can be energy of neutrons, or electrical signal, or time of flight ... (defined by type below)</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.0</introduced_after_version>
+						<change_nbc_version>3.38.1</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>event_in_detector</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neutron_flux_integrated_flags">
+				<xs:annotation>
+					<xs:documentation>Array of flags telling, for each coordinate of the neutron_flux, whether the neutron_flux has been integrated over this coordinate (1) or not (0). If it has been integrated over a coordinate, the size related to this coordinate must be equal to 1</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...5</coordinate1>
+						<introduced_after_version>3.40.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutron_flux">
+				<xs:annotation>
+					<xs:documentation>Grouped neutron flux in the detector from one neutron energy bin emitted by the current plasma voxel towards the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m^-2</units>
+						<coordinate1>../../field_of_view/emission_grid/r</coordinate1>
+						<coordinate2>../../field_of_view/emission_grid/z</coordinate2>
+						<coordinate3>../../field_of_view/emission_grid/phi</coordinate3>
+						<coordinate4>../source_neutron_energies</coordinate4>
+						<coordinate5>../event_in_detector_neutron_flux/values</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="event_in_detector_response_function" type="neutron_diagnostic_event">
+				<xs:annotation>
+					<xs:documentation>5th dimension for the response_function Green function representing values of events measured in the detector. The type of events monitored depends on the detector and can be defined by the user. It can be energy of neutrons, or electrical signal, or time of flight ... (defined by type below)</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.0</introduced_after_version>
+						<change_nbc_version>3.38.1</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>event_in_detector</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="response_function_integrated_flags">
+				<xs:annotation>
+					<xs:documentation>Array of flags telling, for each coordinate of the response_function, whether the response_function has been integrated over this coordinate (1) or not (0). If it has been integrated over a coordinate, the size related to this coordinate must be equal to 1</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...5</coordinate1>
+						<introduced_after_version>3.40.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="response_function">
+				<xs:annotation>
+					<xs:documentation>Number of events occurring in the detector from one neutron energy bin emitted by the current plasma voxel towards the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+						<coordinate1>../../field_of_view/emission_grid/r</coordinate1>
+						<coordinate2>../../field_of_view/emission_grid/z</coordinate2>
+						<coordinate3>../../field_of_view/emission_grid/phi</coordinate3>
+						<coordinate4>../source_neutron_energies</coordinate4>
+						<coordinate5>../event_in_detector_response_function/values</coordinate5>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_5D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_temperature_sensor">
+		<xs:annotation>
+			<xs:documentation>Temperature sensor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_switch">
+				<xs:annotation>
+					<xs:documentation>Power switch (1=on, 0=off)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Temperature measured by the sensor</xs:documentation>
+					<xs:appinfo>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_b_field_sensor">
+		<xs:annotation>
+			<xs:documentation>Magnetic field sensor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_switch">
+				<xs:annotation>
+					<xs:documentation>Power switch (1=on, 0=off)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Magnetic field measured by the sensor</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_test_generator">
+		<xs:annotation>
+			<xs:documentation>Test generator</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_switch">
+				<xs:annotation>
+					<xs:documentation>Power switch (1=on, 0=off)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shape" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Signal shape. Index : 1 – rectangular, 2 – gaussian</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rise_time">
+				<xs:annotation>
+					<xs:documentation>Peak rise time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fall_time">
+				<xs:annotation>
+					<xs:documentation>Peak fall time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Generated signal frequency</xs:documentation>
+					<xs:appinfo>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amplitude" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Generated signal amplitude</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_supply">
+		<xs:annotation>
+			<xs:documentation>Power supply</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_switch">
+				<xs:annotation>
+					<xs:documentation>Power switch (1=on, 0=off)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage_set" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage set</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage_out" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage at the supply output</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_adc">
+		<xs:annotation>
+			<xs:documentation>ADC</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_switch">
+				<xs:annotation>
+					<xs:documentation>Power switch (1=on, 0=off)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="discriminator_level_lower">
+				<xs:annotation>
+					<xs:documentation>Lower level discriminator of ADC</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="discriminator_level_upper">
+				<xs:annotation>
+					<xs:documentation>Upper level discriminator of ADC</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sampling_rate">
+				<xs:annotation>
+					<xs:documentation>Number of samples recorded per second</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bias">
+				<xs:annotation>
+					<xs:documentation>ADC signal bias</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="input_range">
+				<xs:annotation>
+					<xs:documentation>ADC input range</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="impedance">
+				<xs:annotation>
+					<xs:documentation>ADC impedance</xs:documentation>
+					<xs:appinfo>
+						<units>ohm</units>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_detector_mode">
+		<xs:sequence>
+			<xs:element name="identifier" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Identifier of the measuring mode</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>neutron_diagnostic/neutron_mode_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="counting" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Detected counts per second as a function of time</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="count_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum count limit under which the detector response is linear</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="count_limit_min">
+				<xs:annotation>
+					<xs:documentation>Minimum count limit above which the detector response is linear</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="brightness">
+				<xs:annotation>
+					<xs:documentation>Line-integrated emissivity along the line of sight, deduced from the measured count-rate of this detector (relevant only when mode/identifier/index = 1)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-2.s^-1</units>
+						<coordinate1>../counting/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutron_flux">
+				<xs:annotation>
+					<xs:documentation>Neutron flux impinging on the detector, deduced from the measured count-rate (relevant only when mode/identifier/index = 1)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^-2.s^-1</units>
+						<coordinate1>../counting/time</coordinate1>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="spectrum" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Detected counts per second per energy channel as a function of time (in case of spectroscopic measurement mode)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../energy_band</coordinate1>
+						<units>s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neutron_diagnostic_detectors">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="line_of_sight_index">
+				<xs:annotation>
+					<xs:documentation>Number of the line of sight where the detector is mounted</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="geometry" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Detector geometry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="material" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Name of detector's converter for resent particle</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>utilities/materials_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nuclei_n">
+				<xs:annotation>
+					<xs:documentation>Number of target nuclei in the dectector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature">
+				<xs:annotation>
+					<xs:documentation>Temperature of the detector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+						<units>K</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Description of a set of collimating apertures</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mode" type="neutron_diagnostic_detector_mode" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Set of Measuring Modes simultaneously used by the detector</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy_band" type="detector_energy_band" maxOccurs="1000">
+				<xs:annotation>
+					<xs:documentation>Set of energy bands in which neutrons are counted by the detector</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exposure_time">
+				<xs:annotation>
+					<xs:documentation>Exposure time</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="adc" type="neutron_diagnostic_adc">
+				<xs:annotation>
+					<xs:documentation>Description of analogic-digital converter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="supply_high_voltage" type="neutron_diagnostic_supply">
+				<xs:annotation>
+					<xs:documentation>Description of high voltage power supply</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="supply_low_voltage" type="neutron_diagnostic_supply">
+				<xs:annotation>
+					<xs:documentation>Description of low voltage power supply</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="test_generator" type="neutron_diagnostic_test_generator">
+				<xs:annotation>
+					<xs:documentation>Test generator characteristics</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="b_field_sensor" type="neutron_diagnostic_test_generator">
+				<xs:annotation>
+					<xs:documentation>Magnetic field sensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="temperature_sensor" type="neutron_diagnostic_test_generator">
+				<xs:annotation>
+					<xs:documentation>Temperature sensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="field_of_view" type="neutron_diagnostic_field_of_view">
+				<xs:annotation>
+					<xs:documentation>Field of view associated to this detector. The field of view is described by a voxelized plasma volume. Each voxel, with indexes i_R, i_Z, and i_phi, has an associated solid angle scalar and a detector direction vector.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="green_functions" type="neutron_diagnostic_green">
+				<xs:annotation>
+					<xs:documentation>Green function coefficients used to represent the detector response based on its field of view</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="neutron_diagnostic">
+		<xs:annotation>
+			<xs:documentation>Neutron diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.6.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="detector" type="neutron_diagnostic_detectors" maxOccurs="60">
+					<xs:annotation>
+						<xs:documentation>Set of neutron detection systems</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<change_nbc_version>3.41.0</change_nbc_version>
+							<change_nbc_description>aos_renamed</change_nbc_description>
+							<change_nbc_previous_name>detectors</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="reconstructed_emissivity" type="neutron_diagnostic_emissivity">
+					<xs:annotation>
+						<xs:documentation>Reconstructed emissivity parameters and data</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="neutron_flux_total">
+					<xs:annotation>
+						<xs:documentation>Total Neutron Flux reconstructed from the detectors signals</xs:documentation>
+						<xs:appinfo>
+							<type>dynamic</type>
+							<coordinate1>../time</coordinate1>
+							<units>s^-1</units>
+							<change_nbc_version>3.41.0</change_nbc_version>
+							<change_nbc_description>leaf_renamed</change_nbc_description>
+							<change_nbc_previous_name>synthetic_signals/total_neutron_flux</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="fusion_power">
+					<xs:annotation>
+						<xs:documentation>Fusion power reconstructed from the detectors signals</xs:documentation>
+						<xs:appinfo>
+							<type>dynamic</type>
+							<coordinate1>../time</coordinate1>
+							<units>W</units>
+							<change_nbc_version>3.41.0</change_nbc_version>
+							<change_nbc_description>leaf_renamed</change_nbc_description>
+							<change_nbc_previous_name>synthetic_signals/fusion_power</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

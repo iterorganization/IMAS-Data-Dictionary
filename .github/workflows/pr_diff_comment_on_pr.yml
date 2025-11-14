@@ -1,0 +1,48 @@
+name: Comment on Pull Request with XML diff link
+
+on:
+  workflow_run:
+    workflows: [DD XML diffs]
+    types: [completed]
+
+permissions:
+  pull-requests: write  # Required to comment on PRs
+  issues: write         # Required for PR comments via issues API
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+    - name: 'Get PR number'
+      id: pr-context
+      env:
+        # The GH CLI uses this ENV for providing an auth token:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_TARGET_REPO: ${{ github.repository }}
+        PR_BRANCH: |-
+          ${{
+            (github.event.workflow_run.head_repository.owner.login != github.event.workflow_run.repository.owner.login)
+              && format('{0}:{1}', github.event.workflow_run.head_repository.owner.login, github.event.workflow_run.head_branch)
+              || github.event.workflow_run.head_branch
+          }}
+      # Query the PR number by repo + branch, then assign to step output:
+      run: gh pr view --repo "${PR_TARGET_REPO}" "${PR_BRANCH}" --json 'number' --jq '"number=\(.number)"' >> "${GITHUB_OUTPUT}"
+    - name: Comment on PR
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const jobs = await github.rest.actions.listJobsForWorkflowRunAttempt({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: context.payload.workflow_run.id,
+            attempt_number: context.payload.workflow_run.run_attempt
+          })
+          let job = jobs.data.jobs[jobs.data.jobs.length - 1]
+          github.rest.issues.createComment({
+            issue_number: ${{ steps.pr-context.outputs.number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `[Diff of generated Data Dictionary XML file](${{ github.server_url }}/${{ github.repository }}/actions/runs/${context.payload.workflow_run.id}/attempts/${context.payload.workflow_run.run_attempt}#summary-${job.id})`
+          })

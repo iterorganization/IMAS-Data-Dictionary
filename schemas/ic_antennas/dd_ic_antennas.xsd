@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<!-- This IDS should be made simpler if we would find a way to avoid a systematic data/time construct (due to temporary limitation in the XSD processing) -->
+	<xs:complexType name="ic_antennas_matching_element">
+		<xs:annotation>
+			<xs:documentation>Matching element</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Type of the matching element. Index = 1 : capacitor (fill capacitance); Index = 2 : stub (fill phase)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capacitance" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Capacitance of the macthing element</xs:documentation>
+					<xs:appinfo>
+						<units>F</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase delay induced by the stub</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ic_antennas_measurement">
+		<xs:annotation>
+			<xs:documentation>Voltage or current measurement</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the measurement</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amplitude" type="signal_flt_1d_units_level_2">
+				<xs:annotation>
+					<xs:documentation>Amplitude of the measurement</xs:documentation>
+					<xs:appinfo>
+						<units>as_parent</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase of the measurement</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ic_antennas_strap">
+		<xs:annotation>
+			<xs:documentation>Properties of IC antenna strap</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="outline" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Strap outline</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="width_phi">
+				<xs:annotation>
+					<xs:documentation>Width of strap in the toroidal direction</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>width_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="distance_to_conductor">
+				<xs:annotation>
+					<xs:documentation>Distance to conducting wall or other conductor behind the antenna strap</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="geometry" type="outline_2d_geometry_static">
+				<xs:annotation>
+					<xs:documentation>Cross-sectional shape of the strap</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Root mean square current flowing along the strap</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase of the strap current</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ic_antennas_antenna_module">
+		<xs:annotation>
+			<xs:documentation>Module of an IC antenna</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Frequency</xs:documentation>
+					<xs:appinfo>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_launched" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power launched from this module into the vacuum vessel</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_forward" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Forward power arriving to the back of the module</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_reflected" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Reflected power</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coupling_resistance" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Coupling resistance</xs:documentation>
+					<xs:appinfo>
+						<units>ohm</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase_forward" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase of the forward power with respect to the first module</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase_reflected" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Phase of the reflected power with respect to the forward power of this module</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage" type="ic_antennas_measurement" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of voltage measurements</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current" type="ic_antennas_measurement" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of current measurements</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pressure" type="ic_antennas_measurement" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of pressure measurements</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>Pa</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="matching_element" type="ic_antennas_matching_element" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of matching elements</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="strap" type="ic_antennas_strap" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Set of IC antenna straps</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ic_antennas_surface_current">
+		<xs:annotation>
+			<xs:documentation>Description of the IC surface current on the antenna straps and on passive components.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="m_pol">
+				<xs:annotation>
+					<xs:documentation>Poloidal mode numbers, used to describe the spectrum of the antenna current. The poloidal angle is defined from the reference point; the angle at a point (R,Z) is given by atan((Z-Zref)/(R-Rref)), where Rref=reference_point/r and Zref=reference_point/z</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal mode numbers, used to describe the spectrum of the antenna current. The wave vector toroidal component is defined as k_phi = n_phi grad phi where phi is the toroidal angle so that a positive n_phi means a wave propagating in the positive phi direction</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>n_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="spectrum">
+				<xs:annotation>
+					<xs:documentation>Spectrum of the total surface current on the antenna strap and passive components expressed in poloidal and toroidal modes</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../m_pol</coordinate1>
+						<coordinate2>../n_phi</coordinate2>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ic_antennas_antenna">
+		<xs:annotation>
+			<xs:documentation>Ion Cyclotron Antenna</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Frequency (average over modules)</xs:documentation>
+					<xs:appinfo>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_launched" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power launched from this antenna into the vacuum vessel</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_forward" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Forward power arriving to the back of the antenna</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_reflected" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Reflected power</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="module" type="ic_antennas_antenna_module" maxOccurs="8">
+				<xs:annotation>
+					<xs:documentation>Set of antenna modules (each module is fed by a single transmission line)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surface_current" type="ic_antennas_surface_current" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Description of the IC surface current on the antenna straps and on passive components, for every time slice</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ic_antennas">
+		<xs:annotation>
+			<xs:documentation>Antenna systems for heating and current drive in the ion cyclotron (IC) frequencies.</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.7.0</lifecycle_version>
+				<lifecycle_last_change>4.0.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="reference_point" type="rz0d_constant">
+					<xs:annotation>
+						<xs:documentation>Reference point used to define the poloidal angle, e.g. the geometrical centre of the vacuum vessel. Used to define the poloidal mode numbers under antenna/surface_current</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="antenna" type="ic_antennas_antenna" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Set of Ion Cyclotron antennas</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="power_launched" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Power launched into the vacuum vessel by the whole ICRH system (sum over antennas)</xs:documentation>
+						<xs:appinfo>
+							<units>W</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

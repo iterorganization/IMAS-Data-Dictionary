@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="spi_species_density">
+		<xs:annotation>
+			<xs:documentation>Species included in pellet composition, with species density</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H, D, T, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="density">
+				<xs:annotation>
+					<xs:documentation>Density of the species</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_species_fraction">
+		<xs:annotation>
+			<xs:documentation>Species included in pellet composition, with species atomic fraction</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying the species (e.g. H, D, T, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fraction">
+				<xs:annotation>
+					<xs:documentation>Atomic fraction of the species</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_fragment">
+		<xs:annotation>
+			<xs:documentation>SPI pellet fragment</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="position" type="rphiz1d_dynamic_root_time">
+				<xs:annotation>
+					<xs:documentation>Position of the centre of mass of the pellet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_r">
+				<xs:annotation>
+					<xs:documentation>Major radius component of the fragment velocity</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>/time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_z">
+				<xs:annotation>
+					<xs:documentation>Vertical component of the fragment velocity</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>/time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the fragment velocity</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>/time</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>velocity_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="volume">
+				<xs:annotation>
+					<xs:documentation>Volume of the fragment</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m^3</units>
+						<coordinate1>/time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="species" type="spi_species_density" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Atomic species in the fragment composition</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_shatter_cone">
+		<xs:annotation>
+			<xs:documentation>SPI shatter cone</xs:documentation>
+			<xs:appinfo>
+				<url>spi/shatter_cone.svg</url>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="direction" type="xyz0d_constant">
+				<xs:annotation>
+					<xs:documentation>Unit vector of the cone direction</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="origin" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Coordinates of the origin of the shatter cone</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unit_vector_major" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Major unit vector describing the geometry of the elliptic shatter cone</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unit_vector_minor" type="xyz0d_static">
+				<xs:annotation>
+					<xs:documentation>Minor unit vector describing the geometry of the elliptic shatter cone</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="angle_major">
+				<xs:annotation>
+					<xs:documentation>Angle between the cone direction and unit_vector_major</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angle_minor">
+				<xs:annotation>
+					<xs:documentation>Angle between the cone direction and unit_vector_minor</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_shell">
+		<xs:annotation>
+			<xs:documentation>SPI shell</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="species" type="spi_species_density" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Atomic species in the shell composition</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="atoms_n">
+				<xs:annotation>
+					<xs:documentation>Total number of atoms of desublimated gas</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_gas">
+		<xs:annotation>
+			<xs:documentation>SPI gas</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="flow_rate">
+				<xs:annotation>
+					<xs:documentation>Flow rate of the gas at the injector exit</xs:documentation>
+					<xs:appinfo>
+						<units>s^-1</units>
+						<type>dynamic</type>
+						<coordinate1>/time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="species" type="spi_species_fraction" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Atomic species in the gas composition</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="atoms_n">
+				<xs:annotation>
+					<xs:documentation>Total number of atoms of the gas</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature">
+				<xs:annotation>
+					<xs:documentation>Gas temperature</xs:documentation>
+					<xs:appinfo>
+						<units>K</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_pellet">
+		<xs:annotation>
+			<xs:documentation>SPI pellet</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="position" type="rphiz1d_dynamic_root_time">
+				<xs:annotation>
+					<xs:documentation>Position of the centre of mass of the pellet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_r">
+				<xs:annotation>
+					<xs:documentation>Major radius component of the velocity of the centre of mass of the pellet</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>/time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_z">
+				<xs:annotation>
+					<xs:documentation>Vertical component of the velocity of the centre of mass of the pellet</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>/time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the velocity of the centre of mass of the pellet</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+						<coordinate1>/time</coordinate1>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>velocity_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_shatter">
+				<xs:annotation>
+					<xs:documentation>Norm of the velocity of the centre of mass of the pellet right before shattering</xs:documentation>
+					<xs:appinfo>
+						<units>m.s^-1</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="diameter">
+				<xs:annotation>
+					<xs:documentation>Pellet diameter</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="length">
+				<xs:annotation>
+					<xs:documentation>Pellet length (cylindrical pellet)</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shell" type="spi_shell">
+				<xs:annotation>
+					<xs:documentation>Shell-layer around of the unshattered pellet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="core" type="spi_shell">
+				<xs:annotation>
+					<xs:documentation>Core of the unshattered pellet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_opd">
+		<xs:annotation>
+			<xs:documentation>Optical pellet diagnostic</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="position" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the measurement</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_arrival">
+				<xs:annotation>
+					<xs:documentation>Arrival time at the optical pellet diagnostic, for each object</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<coordinate1>1...N</coordinate1>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="spi_single">
+		<xs:annotation>
+			<xs:documentation>Description of a single spi system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="optical_pellet_diagnostic" type="spi_opd">
+				<xs:annotation>
+					<xs:documentation>Information related to the embedded optical pellet diagnostic</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time_trigger">
+				<xs:annotation>
+					<xs:documentation>Time of trigger request to the power supply according to the DMS sequence</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time_shatter">
+				<xs:annotation>
+					<xs:documentation>Arrival time at the shattering unit</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pellet" type="spi_pellet">
+				<xs:annotation>
+					<xs:documentation>Information related to the pellet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fragmentation_gas" type="spi_gas">
+				<xs:annotation>
+					<xs:documentation>Description of the gas produced during fragmentation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="propellant_gas" type="spi_gas">
+				<xs:annotation>
+					<xs:documentation>Description of the propellant gas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="injection_direction" type="xyz0d_constant">
+				<xs:annotation>
+					<xs:documentation>Unit vector of the unshattered pellet velocity direction right before shattering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shattering_position" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position where the pellet is shattered. It is defined as the intersection of the trayectory of the pellet center of mass with the shattering element</xs:documentation>
+					<xs:appinfo>
+						<url>spi/shattering.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shattering_angle">
+				<xs:annotation>
+					<xs:documentation>Impact (or grazing) angle of the pellet with the shattering element. It is the complementary of the incidence angle with the element surface at the shattering location</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>rad</units>
+						<url>spi/shattering.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shatter_cone" type="spi_shatter_cone">
+				<xs:annotation>
+					<xs:documentation>Description of the elliptic shatter cone</xs:documentation>
+					<xs:appinfo>
+						<url>spi/shatter_cone.svg</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="velocity_mass_centre_fragments_r">
+				<xs:annotation>
+					<xs:documentation>Major radius component of the velocity of the centre of mass of the fragments at the shattering cone origin</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_mass_centre_fragments_z">
+				<xs:annotation>
+					<xs:documentation>Vertical component of the velocity velocity of the centre of mass of the fragments at the shattering cone origin</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="velocity_mass_centre_fragments_phi">
+				<xs:annotation>
+					<xs:documentation>Toroidal component of the velocity of the centre of mass of the fragments at the shattering cone origin</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>m.s^-1</units>
+						<change_nbc_version>4.1.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>velocity_mass_centre_fragments_tor</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fragment" type="spi_fragment" maxOccurs="100">
+				<xs:annotation>
+					<xs:documentation>Set of shattered pellet fragments</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="spi">
+		<xs:annotation>
+			<xs:documentation>Shattered pellets injectors</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.40.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+			<xs:appinfo/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="injector" type="spi_single" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Set of shattered pellet injectors</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="shatter_cone_definition" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Definition of the shatter cone</xs:documentation>
+						<xs:appinfo>
+							<doc_identifier>spi/shatter_cone_identifier.xml</doc_identifier>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

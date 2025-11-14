@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="numerics_restart">
+		<xs:annotation>
+			<xs:documentation>Description of a restart file</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="names">
+				<xs:annotation>
+					<xs:documentation>Names of the restart files</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="descriptions">
+				<xs:annotation>
+					<xs:documentation>Descriptions of the restart files</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../names</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_bc_ggd_current">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions for the current diffusion equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Identifier of the boundary condition type. List of options TBD.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid_index">
+				<xs:annotation>
+					<xs:documentation>Index of the grid used to represent this quantity</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="grid_subset_index">
+				<xs:annotation>
+					<xs:documentation>Index of the grid subset the data is provided on</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>List of vector components, one list per element in the grid subset. First dimenstion: element index. Second dimension: vector component index (for ID = 1 to 3, only the first position in the vector is used. For ID = 5, all three positions are used, meaning respectively a1, a2, a3)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_bc_ggd_bc">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions for a given transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Identifier of the boundary condition type. List of options TBD.</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grid_index">
+				<xs:annotation>
+					<xs:documentation>Index of the grid used to represent this quantity</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="grid_subset_index">
+				<xs:annotation>
+					<xs:documentation>Index of the grid subset the data is provided on</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="values">
+				<xs:annotation>
+					<xs:documentation>List of vector components, one list per element in the grid subset. First dimenstion: element index. Second dimension: vector component index (for ID = 1 to 3, only the first position in the vector is used. For ID = 5, all three positions are used, meaning respectively a1, a2, a3)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_bc_ggd_electrons">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions for the electron related transport equations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles" type="numerics_bc_ggd_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the electron density equation (density if ID = 1), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="numerics_bc_ggd_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the electron energy equation (temperature if ID = 1), on various grid subsets </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>W.m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_bc_ggd_ion_charge_state">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions for a given charge state related transport equations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="z_min">
+				<xs:annotation>
+					<xs:documentation>Minimum Z of the charge state bundle</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Z of the charge state bundle</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying charge state (e.g. C+, C+2 , C+3, C+4, C+5, C+6, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_level">
+				<xs:annotation>
+					<xs:documentation>Vibrational level (can be bundled)</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vibrational_mode">
+				<xs:annotation>
+					<xs:documentation>Vibrational mode of this state, e.g. "A_g". Need to define, or adopt a standard nomenclature.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="is_neutral">
+				<xs:annotation>
+					<xs:documentation>Flag specifying if this state corresponds to a neutral (1) or not (0)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Neutral type (if the considered state is a neutral), in terms of energy. ID =1: cold; 2: thermal; 3: fast; 4: NBI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="electron_configuration">
+				<xs:annotation>
+					<xs:documentation>Configuration of atomic orbitals of this state, e.g. 1s2-2s1</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles" type="numerics_bc_ggd_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the charge state density equation (density if ID = 1), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="numerics_bc_ggd_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the charge state energy equation (temperature if ID = 1), on various grid subsets </xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>W.m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_bc_ggd_ion">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions for a given ion species related transport equations</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="a">
+				<xs:annotation>
+					<xs:documentation>Mass of atom</xs:documentation>
+					<xs:appinfo>
+						<units>u</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_ion">
+				<xs:annotation>
+					<xs:documentation>Ion charge (of the dominant ionization state; lumped ions are allowed)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>e</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_n">
+				<xs:annotation>
+					<xs:documentation>Nuclear charge</xs:documentation>
+					<xs:appinfo>
+						<units>e</units>
+						<type>dynamic</type>
+						<change_nbc_version>4.0.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_0D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>String identifying ion (e.g. H+, D+, T+, He+2, C+, ...)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>label</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="particles" type="numerics_bc_ggd_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the ion density equation (density if ID = 1), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>m^-3.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="numerics_bc_ggd_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the ion energy equation (temperature if ID = 1), on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<units>W.m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple_states_flag">
+				<xs:annotation>
+					<xs:documentation>Multiple states calculation flag : 0-Only one state is considered; 1-Multiple states are considered and are described in the state structure</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state" type="numerics_bc_ggd_ion_charge_state" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the different states of the species (ionization, energy, excitation, ...)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_bc_ggd">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions of radial transport equations for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="generic_grid_dynamic">
+				<xs:annotation>
+					<xs:documentation>Grid description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current" type="numerics_bc_ggd_current" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Boundary condition for the current diffusion equation, on various grid subsets</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="electrons" type="numerics_bc_ggd_electrons">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion" type="numerics_bc_ggd_ion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the different ion species</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_convergence_equations_single_delta">
+		<xs:annotation>
+			<xs:documentation>Delta between two iterations of the solvers on a given transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Value of the relative deviation</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="expression">
+				<xs:annotation>
+					<xs:documentation>Expression used by the solver to calculate the relative deviation</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_convergence_equations_single">
+		<xs:annotation>
+			<xs:documentation>Convergence details of a given transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="iterations_n">
+				<xs:annotation>
+					<xs:documentation>Number of iterations carried out in the convergence loop</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="delta_relative" type="numerics_convergence_equations_single_delta">
+				<xs:annotation>
+					<xs:documentation>Relative deviation on the primary quantity of the transport equation between the present and the  previous iteration of the solver</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation_control_float">
+		<xs:annotation>
+			<xs:documentation>FLT0D for control parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the control parameter</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Value of the control parameter</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation_control_int">
+		<xs:annotation>
+			<xs:documentation>INT0D for control parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Name of the control parameter</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Value of the control parameter</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation_control_parameters">
+		<xs:annotation>
+			<xs:documentation>Solver-specific input or output quantities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="integer0d" type="numerics_solver_1d_equation_control_int" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of integer type scalar control parameters</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="real0d" type="numerics_solver_1d_equation_control_float" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of real type scalar control parameters</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation_coefficient">
+		<xs:annotation>
+			<xs:documentation>Coefficient for transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation>Radial profile of the numerical coefficient</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation_primary">
+		<xs:annotation>
+			<xs:documentation>Profile and derivatives a the primary quantity for a 1D transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Identifier of the primary quantity of the transport equation. The description node contains the path to the quantity in the physics IDS (example: core_profiles/profiles_1d/ion(1)/density)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ion_index">
+				<xs:annotation>
+					<xs:documentation>If the primary quantity is related to a ion species, index of the corresponding species in the core_profiles/profiles_1d/ion array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="neutral_index">
+				<xs:annotation>
+					<xs:documentation>If the primary quantity is related to a neutral species, index of the corresponding species in the core_profiles/profiles_1d/neutral array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="state_index">
+				<xs:annotation>
+					<xs:documentation>If the primary quantity is related to a particular state (of an ion or a neutral species), index of the corresponding state in the core_profiles/profiles_1d/ion (or neutral)/state array</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation>Profile of the primary quantity</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="d_dr">
+				<xs:annotation>
+					<xs:documentation>Radial derivative with respect to the primary coordinate</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="d2_dr2">
+				<xs:annotation>
+					<xs:documentation>Second order radial derivative with respect to the primary coordinate</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="d_dt">
+				<xs:annotation>
+					<xs:documentation>Time derivative</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="d_dt_cphi">
+				<xs:annotation>
+					<xs:documentation>Derivative with respect to time, at constant toroidal flux (for current diffusion equation)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<type>dynamic</type>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="d_dt_cr">
+				<xs:annotation>
+					<xs:documentation>Derivative with respect to time, at constant primary coordinate coordinate (for current diffusion equation)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
+						<type>dynamic</type>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation_bc">
+		<xs:annotation>
+			<xs:documentation>Boundary conditions for a 1D transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Boundary condition type</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>transport_solver_numerics/transport_solver_numerics_bc_type_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>Value of the boundary condition. For type/index = 1 to 3, only the first position in the vector is used. For type/index = 5, all three positions are used, meaning respectively a1, a2, a3. </xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+						<coordinate1>1...3</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position">
+				<xs:annotation>
+					<xs:documentation>Position, in terms of the primary coordinate, at which the boundary condition is imposed. Outside this position, the value of the data are considered to be prescribed (in case of a single boundary condition).</xs:documentation>
+					<xs:appinfo>
+						<units>mixed</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d_equation">
+		<xs:annotation>
+			<xs:documentation>Numeric of a given 1D transport equation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="primary_quantity" type="numerics_solver_1d_equation_primary">
+				<xs:annotation>
+					<xs:documentation>Profile and derivatives of the primary quantity of the transport equation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="computation_mode" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Computation mode for this equation</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>transport_solver_numerics/transport_solver_numerics_computation_mode_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="boundary_condition" type="numerics_solver_1d_equation_bc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of boundary conditions of the transport equation</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coefficient" type="numerics_solver_1d_equation_coefficient" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of numerical coefficients involved in the transport equation</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="convergence" type="numerics_convergence_equations_single">
+				<xs:annotation>
+					<xs:documentation>Convergence details</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="numerics_solver_1d">
+		<xs:annotation>
+			<xs:documentation>Numerics related to 1D radial solver for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="grid" type="core_radial_grid">
+				<xs:annotation>
+					<xs:documentation>Radial grid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="equation" type="numerics_solver_1d_equation" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of transport equations</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="control_parameters" type="numerics_solver_1d_equation_control_parameters">
+				<xs:annotation>
+					<xs:documentation>Solver-specific input or output quantities</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="drho_tor_dt">
+				<xs:annotation>
+					<xs:documentation>Partial derivative of the toroidal flux coordinate profile with respect to time</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<type>dynamic</type>
+						<units>m.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="d_dvolume_drho_tor_dt">
+				<xs:annotation>
+					<xs:documentation>Partial derivative with respect to time of the derivative of the volume with respect to the toroidal flux coordinate</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>../grid/rho_tor_norm</coordinate1>
+						<type>dynamic</type>
+						<units>m^2.s^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="transport_solver_numerics">
+		<xs:annotation>
+			<xs:documentation>Numerical quantities used by transport solvers and convergence details</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.1.0</lifecycle_version>
+				<lifecycle_last_change>4.0.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="time_step" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Internal time step used by the transport solver (assuming all transport equations are solved with the same time step)</xs:documentation>
+						<xs:appinfo>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="time_step_average" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Average internal time step used by the transport solver between the previous and the current time stored for this quantity (assuming all transport equations are solved with the same time step)</xs:documentation>
+						<xs:appinfo>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="time_step_min" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Minimum internal time step used by the transport solver between the previous and the current time stored for this quantity (assuming all transport equations are solved with the same time step)</xs:documentation>
+						<xs:appinfo>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="solver" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Solver identifier</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="primary_coordinate" type="identifier">
+					<xs:annotation>
+						<xs:documentation>Primary coordinate system with which the transport equations are solved. For a 1D transport solver: index = 1 means rho_tor_norm; 2 = rho_tor.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="solver_1d" type="numerics_solver_1d" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Numerics related to 1D radial solver, for various time slices.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>transport_solver_numerics.solver_1d{i}</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="boundary_conditions_ggd" type="numerics_bc_ggd" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Boundary conditions of the transport equations, provided on the GGD, for various time slices</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vacuum_toroidal_field" type="b_tor_vacuum_1">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the vacuum toroidal field (used in rho_tor definition and in the normalization of current densities)</xs:documentation>
+						<xs:appinfo>
+							<cocos_alias>IDSPATH</cocos_alias>
+							<cocos_replace>transport_solver_numerics.vacuum_toroidal_field</cocos_replace>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="restart_files" type="numerics_restart" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Set of code-specific restart files for a given time slice. These files are managed by a physical application to ensure its restart during long simulations</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="pf_supplies">
+		<xs:annotation>
+			<xs:documentation>PF power supplies</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type">
+				<xs:annotation>
+					<xs:documentation>Type of the supply; TBD add free description of non-linear power supplies</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="resistance">
+				<xs:annotation>
+					<xs:documentation>Power supply internal resistance</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>ohm</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="delay">
+				<xs:annotation>
+					<xs:documentation>Pure delay in the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filter_numerator">
+				<xs:annotation>
+					<xs:documentation>Coefficients of the numerator, in increasing order : a0 + a1*s + ... + an*s^n; used for a linear supply description</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filter_denominator">
+				<xs:annotation>
+					<xs:documentation>Coefficients of the denominator, in increasing order : b0 + b1*s + ... + bm*s^m; used for a linear supply description</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>static</type>
+						<units>mixed</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum current in the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_limit_min">
+				<xs:annotation>
+					<xs:documentation>Minimum current in the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>A</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum voltage from the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage_limit_min">
+				<xs:annotation>
+					<xs:documentation>Minimum voltage from the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_limiter_gain">
+				<xs:annotation>
+					<xs:documentation>Gain to prevent overcurrent in a linear model of the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="energy_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum energy to be dissipated in the supply during a pulse</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nonlinear_model">
+				<xs:annotation>
+					<xs:documentation>Description of the nonlinear transfer function of the supply</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage at the supply output (Vside1-Vside2)</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Current at the supply output, defined positive if it flows from point 1 to point 2 in the circuit connected to the supply (outside the supply)</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>pf_active.supply{i}.current.data</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pf_circuits">
+		<xs:annotation>
+			<xs:documentation>Circuits, connecting multiple PF coils to multiple supplies, defining the current and voltage relationships in the system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="type">
+				<xs:annotation>
+					<xs:documentation>Type of the circuit</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="connections">
+				<xs:annotation>
+					<xs:documentation>Description of the supplies and coils connections (nodes) across the circuit. Nodes of the circuit are listed as the first dimension of the matrix. Supplies (listed first) and coils (listed second) are listed as the second dimension. Thus the second dimension has a size equal to (N_supplies+N_coils). N_supplies (resp. N_coils) is the total number of supplies (resp. coils) listed in the supply (resp.coil) array of structure, i.e. including also supplies/coils that are not part of the actual circuit. The (i,j) matrix elements are 1 if the j-th supply or coil side is connected to the i-th node by its positive side, -1 if connected by its negative side, or 0 if not connected.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage on the circuit between the sides of the group of supplies (only for circuits with a single supply or in which supplies are grouped)</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Current in the circuit between the sides of the group of supplies (only for circuits with a single supply or in which supplies are grouped)</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>pf_active.circuit{i}.current.data</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pf_coils">
+		<xs:annotation>
+			<xs:documentation>Active PF coils</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="function" type="identifier_static" maxOccurs="6">
+				<xs:annotation>
+					<xs:documentation>Set of functions for which this coil may be used</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.34.0</introduced_after_version>
+						<coordinate1>1...N</coordinate1>
+						<doc_identifier>pf_active/pf_active_coil_function_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resistance">
+				<xs:annotation>
+					<xs:documentation>Coil resistance</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>ohm</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="resistance_additional" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Additional resistance due to e.g. dynamically switchable resistors. The coil effective resistance is obtained by adding this dynamic quantity to the static resistance of the coil. </xs:documentation>
+					<xs:appinfo>
+						<units>ohm</units>
+						<introduced_after_version>3.36.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum Energy to be dissipated in the coil</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>J</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="current_limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum tolerable current in the conductor</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>A</units>
+						<coordinate1>../b_field_max</coordinate1>
+						<coordinate2>../temperature</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_max">
+				<xs:annotation>
+					<xs:documentation>List of values of the maximum magnetic field on the conductor surface (coordinate for current_limit_max)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>T</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="temperature">
+				<xs:annotation>
+					<xs:documentation>List of values of the conductor temperature (coordinate for current_limit_max)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>K</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_max_timed" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Maximum absolute value of the magnetic field on the conductor surface</xs:documentation>
+					<xs:appinfo>
+						<units>T</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="element" type="pf_coils_elements" maxOccurs="328">
+				<xs:annotation>
+					<xs:documentation>Each PF coil is comprised of a number of cross-section elements described  individually and connected serially</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geometry" type="outline_2d_geometry_static">
+				<xs:annotation>
+					<xs:documentation>Cross-sectional shape of the coil</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>4.0.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="current" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Current fed in the coil (for 1 turn, to be multiplied by the number of turns to obtain the generated magnetic field), positive when the current is counter-clockwise when seen from above.</xs:documentation>
+					<xs:appinfo>
+						<units>A</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>pf_active.coil{i}.current.data</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Voltage on the coil terminals (Vside1-Vside2) - including additional resistors if any</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="force_radial" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Radial force applied on this coil (positive when outwards) </xs:documentation>
+					<xs:appinfo>
+						<units>N</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="force_vertical" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Vertical force applied on this coil (positive when upwards) </xs:documentation>
+					<xs:appinfo>
+						<units>N</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="force_radial_crushing" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Radial crushing force applied on this coil (positive when compressive) </xs:documentation>
+					<xs:appinfo>
+						<units>N</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="force_vertical_crushing" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Vertical crushing force applied on this coil (positive when compressive) </xs:documentation>
+					<xs:appinfo>
+						<units>N</units>
+						<introduced_after_version>3.39.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pf_force_limits">
+		<xs:annotation>
+			<xs:documentation>Description of force limits</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="combination_matrix">
+				<xs:annotation>
+					<xs:documentation>Force limits are expressed as a linear combination of the forces on each individual coil. The weights of the linear combination are given by this matrix, while the limits are given by the sibling nodes limit_min and limit_max. Each row of this matrix corresponds to a force limit. The columns represent, for each coil, the 4 types of forces on the coil namely [coil1_radial, coil1_vertical, coil1_radial_crush, coil1_vertical_crush, coil2_radial, coil2_vertical, coil2_radial_crush, coil2_vertical_crush, ...]. There are therefore 4*coils_n columns.</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>../limit_max</coordinate1>
+						<coordinate2>1...N</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="limit_max">
+				<xs:annotation>
+					<xs:documentation>Maximum force limit, for each limit (line of the combination matrix). EMPTY_FLT value means unbounded</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>N</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="limit_min">
+				<xs:annotation>
+					<xs:documentation>Minimum force limit, for each limit (line of the combination matrix). EMPTY_FLT value means unbounded</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>N</units>
+						<coordinate1>../limit_max</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="force" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Force (positive when upwards for a vertical force, positive when outwards for a radial force) </xs:documentation>
+					<xs:appinfo>
+						<units>N</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="pf_active">
+		<xs:annotation>
+			<xs:documentation>Description of the axisymmetric active poloidal field (PF) coils and supplies; includes the limits of these systems; includes the forces on them; does not include non-axisymmetric coil systems</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>active</lifecycle_status>
+				<lifecycle_version>4.0.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+			<xs:appinfo/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="coil" type="pf_coils" maxOccurs="32">
+					<xs:annotation>
+						<xs:documentation>Active PF coils</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="force_limits" type="pf_force_limits">
+					<xs:annotation>
+						<xs:documentation>Description of force limits on the axisymmetric PF coil system</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="circuit" type="pf_circuits" maxOccurs="32">
+					<xs:annotation>
+						<xs:documentation>Circuits, connecting multiple PF coils to multiple supplies, defining the current and voltage relationships in the system</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="supply" type="pf_supplies" maxOccurs="32">
+					<xs:annotation>
+						<xs:documentation>PF power supplies</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

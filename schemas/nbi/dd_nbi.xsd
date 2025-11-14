@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<!-- This IDS should be made simpler if we would find a way to avoid a systematic data/time construct (due to temporary limitation in the XSD processing) -->
+	<!--beamlets_group is temporarily implemented as an AoS of type 1 but should be an AoS of type 2, when they become available as a child of a type 1. It is also the case for elements of the wall substructure-->
+	<xs:complexType name="nbi_unit_beamlets_group_tilting">
+		<xs:annotation>
+			<xs:documentation>Variation of position, tangency radius and angle in case of dynamic beam tilting, for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="delta_position" type="rphiz0d_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Variation of the position of the beamlet group centre</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="delta_tangency_radius">
+				<xs:annotation>
+					<xs:documentation>Variation of the tangency radius (major radius where the central line of a NBI unit is tangent to a circle around the torus)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="delta_angle">
+				<xs:annotation>
+					<xs:documentation>Variation of the angle of inclination between a beamlet at the centre of the injection unit surface and the horiontal plane</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nbi_unit_beamlets_group_beamlets">
+		<xs:annotation>
+			<xs:documentation>Detailed information on beamlets</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="positions" type="rphiz1d_static">
+				<xs:annotation>
+					<xs:documentation>Position of each beamlet</xs:documentation>
+					<xs:appinfo>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>nbi.unit{i}.beamlets_group{j}.beamlets.positions.phi</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tangency_radii">
+				<xs:annotation>
+					<xs:documentation>Tangency radius (major radius where the central line of a beamlet is tangent to a circle around the torus), for each beamlet</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+						<coordinate1>../positions/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angles">
+				<xs:annotation>
+					<xs:documentation>Angle of inclination between a line at the centre of a beamlet and the horizontal plane, for each beamlet</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+						<coordinate1>../positions/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_fractions">
+				<xs:annotation>
+					<xs:documentation>Fraction of power of a unit injected by each beamlet</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+						<coordinate1>../positions/r</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nbi_unit_beamlets_group_divergence">
+		<xs:annotation>
+			<xs:documentation>Describes a divergence component of a group of beamlets</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="particles_fraction">
+				<xs:annotation>
+					<xs:documentation>Fraction of injected particles in the component</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vertical">
+				<xs:annotation>
+					<xs:documentation>The vertical beamlet divergence of the component. Here the divergence is defined for Gaussian beams as the angle where the beam density is reduced by a factor 1/e compared to the maximum density (equivalent to the intensity for the divergence of each individual beamlet as the energy is assumed constant). For non-Gaussian beams the divergence is mean((x-mean(x))**2)/sqrt(2), where x is the angle and the mean should be performed over the beam density, P(x): mean(y)=int(y*P(x)*dx).</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="horizontal">
+				<xs:annotation>
+					<xs:documentation>The horiztonal beamlet divergence of the component. Here the divergence is defined for Gaussian beams as the angle where the beam density is reduced by a factor 1/e compared to the maximum density (equivalent to the intensity for the divergence of each individual beamlet as the energy is assumed constant). For non-Gaussian beams the divergence is mean((x-mean(x))**2)/sqrt(2), where x is the angle and the mean should be performed over the beam density, P(x): mean(y)=int(y*P(x)*dx).</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nbi_unit_beamlets_group_focus">
+		<xs:annotation>
+			<xs:documentation>Describes of a group of beamlets is focused</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="focal_length_horizontal">
+				<xs:annotation>
+					<xs:documentation>Horizontal focal length along the beam line, i.e. the point along the centre of the beamlet-group where the beamlet-group has its minimum horizontal width</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="focal_length_vertical">
+				<xs:annotation>
+					<xs:documentation>Vertical focal length along the beam line, i.e. the point along the centre of the beamlet-group where the beamlet-group has its minimum vertical width</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="width_min_horizontal">
+				<xs:annotation>
+					<xs:documentation>The horizontal width (Full Width at Half Maximum) of the beamlets group at the horizontal focal point</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="width_min_vertical">
+				<xs:annotation>
+					<xs:documentation>The vertical width (Full Width at Half Maximum) of the beamlets group at the vertical focal point</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nbi_unit_beamlets_group">
+		<xs:annotation>
+			<xs:documentation>Group of beamlets</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="position" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>R, Z, Phi position of the beamlet group centre</xs:documentation>
+					<xs:appinfo>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>nbi.unit{i}.beamlets_group{j}.position.phi</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tangency_radius">
+				<xs:annotation>
+					<xs:documentation>Tangency radius (major radius where the central line of a NBI unit is tangent to a circle around the torus)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="angle">
+				<xs:annotation>
+					<xs:documentation>Angle of inclination between a beamlet at the centre of the injection unit surface and the horiontal plane</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tilting" type="nbi_unit_beamlets_group_tilting" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>In case of dynamic beam tilting (i.e. during the pulse), e.g. for some Beam Emission Spectroscopy use cases, variations of position, tangency radius and angle with respect to their static value, for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="direction">
+				<xs:annotation>
+					<xs:documentation>Direction of the beam seen from above the torus: -1 = clockwise; 1 = counter clockwise</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<cocos_label_transformation>tor_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_rphiz_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>nbi.unit{i}.beamlets_group{j}.direction</cocos_leaf_name_aos_indices>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="width_horizontal">
+				<xs:annotation>
+					<xs:documentation>Horizontal width (dimensions of the smallest rectangle that surrounds the outer dimensions of the beamlets) of the beamlet group at the injection unit surface (or grounded grid) </xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="width_vertical">
+				<xs:annotation>
+					<xs:documentation>Vertical width (dimensions of the smallest rectangle that surrounds the outer dimensions of the beamlets) of the beamlet group at the injection unit surface (or grounded grid)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="focus" type="nbi_unit_beamlets_group_focus">
+				<xs:annotation>
+					<xs:documentation>Describes how the beamlet group is focused. Calculations of width_min_horizontal and width_min_vertical are on a plane defined by the average normal vector of the two constituent accelerator nbi target planes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="divergence_component" type="nbi_unit_beamlets_group_divergence" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Detailed information on beamlet divergence. Divergence is described as a superposition of Gaussian components with amplitide "particles_fraction" and vertical/horizontal divergence. Note that for positive ion NBI the divergence is well described by a single Gaussian</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beamlets" type="nbi_unit_beamlets_group_beamlets">
+				<xs:annotation>
+					<xs:documentation>Detailed information on beamlets</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nbi_unit">
+		<xs:annotation>
+			<xs:documentation>NBI unit</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="species" type="plasma_composition_species">
+				<xs:annotation>
+					<xs:documentation>Injected species</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_launched" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Power launched from this unit into the vacuum vessel</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="energy" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Full energy of the injected species (acceleration of a single atom)</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beam_current_fraction" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Fractions of beam current distributed among the different energies, the first index corresponds to the fast neutrals energy (1:full, 2: half, 3: one third)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...3</coordinate1>
+						<coordinate2>time</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beam_power_fraction" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Fractions of beam power distributed among the different energies, the first index corresponds to the fast neutrals energy (1:full, 2: half, 3: one third)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...3</coordinate1>
+						<coordinate2>time</coordinate2>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beamlets_group" type="nbi_unit_beamlets_group" maxOccurs="16">
+				<xs:annotation>
+					<xs:documentation>Group of beamlets with common vertical and horizontal focal point. If there are no common focal points, then select small groups of beamlets such that a focal point description of the beamlets group provides a fair description. Beamlet groups are assumed to be Gaussian.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="source" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Description of the surface of the ion source from which the beam is extracted</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Description of a set of collimating apertures through which the beam is launched</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nbi">
+		<xs:annotation>
+			<xs:documentation>Neutral Beam Injection systems and description of the fast neutrals that arrive into the torus</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>active</lifecycle_status>
+				<lifecycle_version>4.0.0</lifecycle_version>
+				<lifecycle_last_change>3.33.0</lifecycle_last_change>
+			</xs:appinfo>
+			<xs:appinfo/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="unit" type="nbi_unit" maxOccurs="32">
+					<xs:annotation>
+						<xs:documentation>The NBI system is described as a set of units of which the power can be controlled individually.</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between input command received from the RT network and actuator starting to react. Applies globally to the system described by this IDS unless specific latencies (e.g. channel-specific or antenna-specific) are provided at a deeper level in the IDS structure.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

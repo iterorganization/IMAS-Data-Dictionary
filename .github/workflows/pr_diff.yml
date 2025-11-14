@@ -1,0 +1,51 @@
+name: DD XML diffs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  pull-requests: write  # Required to comment on PRs
+  issues: write         # Required for PR comments via issues API
+
+jobs:
+  build:
+    name: Generate diff
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # checkout full repository
+    - name: Install java and SaxonHE
+      run: |
+        sudo apt update
+        sudo apt install -y libsaxonhe-java
+    - name: Make (merged branch)
+      run: |
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make dd_data_dictionary.xml
+        mkdir build
+        mv dd_data_dictionary.xml build/merged.xml
+    - name: Make (base branch)
+      run: |
+        git checkout ${{ github.base_ref }}
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make dd_data_dictionary.xml
+        mv dd_data_dictionary.xml build/base.xml
+    - name: Text diff
+      id: text_diff
+      run: |
+        cd build
+
+        # Set up custom hunk headers for the diff
+        echo "*.xml diff=ddxml" > .gitattributes
+        git config --add diff.ddxml.xfuncname '(<(IDS|utilities).*)'
+
+        # Generate line diff
+        git diff --no-index -p base.xml merged.xml | tee diff.txt
+
+        # Display line diff in step summary
+        echo '### Changes in generated Data Dictionary XML file' >> $GITHUB_STEP_SUMMARY
+        echo '```diff' >> $GITHUB_STEP_SUMMARY
+        cat diff.txt >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY

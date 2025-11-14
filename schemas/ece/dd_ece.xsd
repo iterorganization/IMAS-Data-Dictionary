@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="int_1d_time_1_and_type_change">
+		<xs:annotation>
+			<xs:documentation>Similar to a signal (INT_1D) but with time base one level above, includes a type change information because of a historical correction specific to the ECE IDS</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="data">
+				<xs:annotation>
+					<xs:documentation>Data</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../time</coordinate1>
+						<change_nbc_version>3.41.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>FLT_1D</change_nbc_previous_type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="validity_timed">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the data for each time slice. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../../time</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="validity">
+				<xs:annotation>
+					<xs:documentation>Indicator of the validity of the data for the whole acquisition period. 0: valid from automated processing, 1: valid and certified by the diagnostic RO; - 1 means problem identified in the data processing (request verification by the diagnostic RO), -2: invalid data, should not be used (values lower than -2 have a code-specific meaning detailing the origin of their invalidity)</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ece_beam_tracing_beam">
+		<xs:annotation>
+			<xs:documentation>Beam description</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="power_initial">
+				<xs:annotation>
+					<xs:documentation>Initial power in the ray/beam</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mode">
+				<xs:annotation>
+					<xs:documentation>X or O mode for this beam</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="length">
+				<xs:annotation>
+					<xs:documentation>Ray/beam curvilinear length</xs:documentation>
+					<xs:appinfo>
+						<units>m</units>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="waves_rphizpsitheta1d_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Position of the ray/beam along its path</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wave_vector" type="waves_beam_tracing_beam_k">
+				<xs:annotation>
+					<xs:documentation>Wave vector of the ray/beam along its path</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="e_field" type="waves_beam_tracing_beam_e_field">
+				<xs:annotation>
+					<xs:documentation>Electric field polarization of the ray/beam along its path</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_flow_norm" type="waves_beam_tracing_power_flow">
+				<xs:annotation>
+					<xs:documentation>Normalised power flow</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="electrons" type="waves_beam_tracing_electrons">
+				<xs:annotation>
+					<xs:documentation>Quantities related to the electrons</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spot" type="waves_beam_spot">
+				<xs:annotation>
+					<xs:documentation>Spot ellipse characteristics</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="waves_beam_phase">
+				<xs:annotation>
+					<xs:documentation>Phase ellipse characteristics</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.38.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ece_beam_tracing">
+		<xs:annotation>
+			<xs:documentation>Beam tracing calculations for a given time slice</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="beam" type="ece_beam_tracing_beam" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of rays/beams describing the wave propagation</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ece_channel_beam_spot">
+		<xs:annotation>
+			<xs:documentation>Spot ellipse characteristics</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="size" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Size of the spot ellipse</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...2</coordinate1>
+						<coordinate2>time</coordinate2>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="angle" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Rotation angle for the spot ellipse</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ece_channel_beam_phase">
+		<xs:annotation>
+			<xs:documentation>Phase ellipse characteristics</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="curvature" type="signal_flt_2d">
+				<xs:annotation>
+					<xs:documentation>Inverse curvature radii for the phase ellipse, positive/negative for divergent/convergent beams</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...2</coordinate1>
+						<coordinate2>time</coordinate2>
+						<units>m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="angle" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Rotation angle for the phase ellipse</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ece_channel_beam">
+		<xs:annotation>
+			<xs:documentation>Beam characteristics</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="spot" type="ece_channel_beam_spot">
+				<xs:annotation>
+					<xs:documentation>Spot ellipse characteristics</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase" type="ece_channel_beam_phase">
+				<xs:annotation>
+					<xs:documentation>Phase ellipse characteristics</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ece_channel">
+		<xs:annotation>
+			<xs:documentation>Charge exchange channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequency" type="physical_quantity_flt_1d_time_1">
+				<xs:annotation>
+					<xs:documentation>Frequency of the channel</xs:documentation>
+					<xs:appinfo>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="harmonic" type="int_1d_time_1_and_type_change">
+				<xs:annotation>
+					<xs:documentation>Harmonic detected by the channel. 1 corresponds to the "O1" mode, while 2 corresponds to the "X2" mode. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="line_of_sight" type="line_of_sight_2points">
+				<xs:annotation>
+					<xs:documentation>Line of sight of this channel, defined by two points. By convention, the first point is the closest to the diagnostic. Fill only in case the channels have different lines of sight</xs:documentation>
+					<xs:appinfo>
+						<introduced_after_version>3.40.1</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="if_bandwidth">
+				<xs:annotation>
+					<xs:documentation>Full-width of the Intermediate Frequency (IF) bandpass filter</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="position" type="rphizrhopsitheta1d_dynamic_aos1_common_time_1">
+				<xs:annotation>
+					<xs:documentation>Position of the measurements (taking into account the suprathermal shift)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="delta_position_suprathermal" type="rphizrhopsitheta1d_dynamic_aos1_common_time_1">
+				<xs:annotation>
+					<xs:documentation>Simple estimate of the difference in position induced by the presence of suprathermal electrons. Position without corrections = position - delta_position_suprathermal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_radiation" type="physical_quantity_flt_1d_time_1">
+				<xs:annotation>
+					<xs:documentation>Radiation temperature</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>t_e</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_radiation_x" type="physical_quantity_flt_1d_time_1">
+				<xs:annotation>
+					<xs:documentation>Predicted radiation temperature of the e(X)traordinary mode</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<lifecycle_status>alpha</lifecycle_status>
+						<lifecycle_version>3.42.0</lifecycle_version>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_radiation_o" type="physical_quantity_flt_1d_time_1">
+				<xs:annotation>
+					<xs:documentation>Predicted radiation temperature of the Ordinary mode</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<lifecycle_status>alpha</lifecycle_status>
+						<lifecycle_version>3.42.0</lifecycle_version>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="voltage_t_radiation" type="signal_flt_1d_validity">
+				<xs:annotation>
+					<xs:documentation>Raw voltage measured on each channel, from which the calibrated temperature data is then derived</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+						<change_nbc_version>3.42.0</change_nbc_version>
+						<change_nbc_description>structure_renamed</change_nbc_description>
+						<change_nbc_previous_name>t_e_voltage</change_nbc_previous_name>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="optical_depth" type="physical_quantity_flt_1d_time_1">
+				<xs:annotation>
+					<xs:documentation>Optical depth of the plasma at the position of the measurement. This parameter is a proxy for the local / non-local character of the ECE emission. It must be greater than 1 to guarantee that the measurement is dominated by local ECE emission (non-local otherwise)</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="flt_1d_type">
+				<xs:annotation>
+					<xs:documentation>Timebase for the processed dynamic data of this channel (outside of the beam and calibration_offset structures)</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<type>dynamic</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="calibration_factor">
+				<xs:annotation>
+					<xs:documentation>Calibration factor, used as t_radiation = calibration_factor * (voltage_t_radiation - calibration_offset)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<introduced_after_version>3.41.0</introduced_after_version>
+						<units>eV.V^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calibration_offset" type="signal_flt_1d">
+				<xs:annotation>
+					<xs:documentation>Calibration offset, may be re-evaluated dynamically during long pulses on some experiments</xs:documentation>
+					<xs:appinfo>
+						<units>V</units>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beam" type="ece_channel_beam">
+				<xs:annotation>
+					<xs:documentation>ECE Gaussian optics parameters taken at the line_of_sight/first_point position (for synthetic modelling of the ECE emission)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beam_tracing" type="ece_beam_tracing" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Beam tracing calculations, for various time slices</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>time</coordinate1>
+						<type>dynamic</type>
+						<introduced_after_version>3.41.0</introduced_after_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ece">
+		<xs:annotation>
+			<xs:documentation>Electron cyclotron emission diagnostic</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.2.1</lifecycle_version>
+				<lifecycle_last_change>3.42.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="line_of_sight" type="line_of_sight_2points">
+					<xs:annotation>
+						<xs:documentation>Line of sight of the diagnostic (fill when valid for all channels), defined by two points. By convention, the first point is the closest to the diagnostic. In case the channels have different lines of sight, they should be described within the channel array of structures</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="t_radiation_central" type="signal_flt_1d_validity_position">
+					<xs:annotation>
+						<xs:documentation>Radiation temperature from the closest channel to the magnetic axis, together with its radial location</xs:documentation>
+						<xs:appinfo>
+							<units>eV</units>
+							<change_nbc_version>3.42.0</change_nbc_version>
+							<change_nbc_description>structure_renamed</change_nbc_description>
+							<change_nbc_previous_name>t_e_central</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="t_radiation_central_x" type="signal_flt_1d_validity_position">
+					<xs:annotation>
+						<xs:documentation>Predicted radiation temperature of the channel closest to the magnetic axis, together with its radial location (eXtraordinary mode)</xs:documentation>
+						<xs:appinfo>
+							<units>eV</units>
+							<lifecycle_status>alpha</lifecycle_status>
+							<lifecycle_version>3.42.0</lifecycle_version>
+							<introduced_after_version>3.41.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="t_radiation_central_o" type="signal_flt_1d_validity_position">
+					<xs:annotation>
+						<xs:documentation>Predicted radiation temperature of the channel closest to the magnetic axis, together with its radial location (Ordinary mode)</xs:documentation>
+						<xs:appinfo>
+							<units>eV</units>
+							<lifecycle_status>alpha</lifecycle_status>
+							<lifecycle_version>3.42.0</lifecycle_version>
+							<introduced_after_version>3.41.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="channel" type="ece_channel" maxOccurs="200">
+					<xs:annotation>
+						<xs:documentation>Set of channels (frequency)</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="polarizer" type="polarizer" maxOccurs="3">
+					<xs:annotation>
+						<xs:documentation>Set of polarizers placed in front of the diagnostic (if any). Polarizers are assumed to be orthogonal to the line of sight, so that the x3 unit vector is aligned with the line of sight</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="psi_normalization" type="psi_normalization">
+					<xs:annotation>
+						<xs:documentation>Quantities to use to normalize psi, as a function of time</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+							<introduced_after_version>3.32.1</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

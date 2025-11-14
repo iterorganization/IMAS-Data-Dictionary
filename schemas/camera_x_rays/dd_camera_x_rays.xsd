@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="camera_x_rays_frame">
+		<xs:annotation>
+			<xs:documentation>Frame of a camera</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="counts_n">
+				<xs:annotation>
+					<xs:documentation>Number of counts detected on each pixel during one exposure time. First dimension : line index (horizontal axis). Second dimension: column index (vertical axis).</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>1...N</coordinate1>
+						<coordinate2>1...N</coordinate2>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="camera_x_rays">
+		<xs:annotation>
+			<xs:documentation>X-rays imaging camera (can be used for soft or hard X-rays imaging systems)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.35.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="name">
+					<xs:annotation>
+						<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="description">
+					<xs:annotation>
+						<xs:documentation>Description, e.g. “channel viewing the upper divertor”</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<introduced_after_version>3</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="frame" type="camera_x_rays_frame" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Set of frames. Each time step corresponds to the beginning of the photon integration of each image </xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="t_e_magnetic_axis" type="signal_flt_1d_validity">
+					<xs:annotation>
+						<xs:documentation>Electron temperature at the magnetic axis, inferred from ratios of soft x-rays emissivity at different energies</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>4.0.0</introduced_after_version>
+							<units>eV</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="photon_energy">
+					<xs:annotation>
+						<xs:documentation>List of values of the photon energy (coordinate for quantum_effiency)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<coordinate1>1...N</coordinate1>
+							<units>eV</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_1D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="quantum_efficiency">
+					<xs:annotation>
+						<xs:documentation>Quantum efficiency of the detector, i.e. conversion factor multiplying the number of counts to obtain the number of photons impacting the detector, tabulated as a function of the photon energy, for each pixel of the detector. If all pixels have the same quantum efficiency, just set the size of the first and second dimensions to 1</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<coordinate1>1...N</coordinate1>
+							<coordinate1_same_as>../frame(itime)/counts_n OR 1...1</coordinate1_same_as>
+							<coordinate2>1...N</coordinate2>
+							<coordinate2_same_as>../frame(itime)/counts_n OR 1...1</coordinate2_same_as>
+							<coordinate3>../photon_energy</coordinate3>
+							<units>1</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_3D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="energy_threshold_lower">
+					<xs:annotation>
+						<xs:documentation>Lower energy detection threshold on each pixel of the detector (photons are counted only if their energy is above this value)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>eV</units>
+							<coordinate1>1...N</coordinate1>
+							<coordinate1_same_as>../frame(itime)/counts_n</coordinate1_same_as>
+							<coordinate2>1...N</coordinate2>
+							<coordinate2_same_as>../frame(itime)/counts_n</coordinate2_same_as>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_2D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="energy_configuration_name">
+					<xs:annotation>
+						<xs:documentation>Name of the chosen energy configuration (energy detection threshold)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pixel_status">
+					<xs:annotation>
+						<xs:documentation>Status of each pixel : +1 for valid pixels, -1 for inactive pixels, -2 for mis-calibrated pixels. </xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<coordinate1>1...N</coordinate1>
+							<coordinate1_same_as>../frame(itime)/counts_n</coordinate1_same_as>
+							<coordinate2>1...N</coordinate2>
+							<coordinate2_same_as>../frame(itime)/counts_n</coordinate2_same_as>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="INT_2D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="aperture" type="detector_aperture">
+					<xs:annotation>
+						<xs:documentation>Description of the collimating aperture of the diagnostic</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="camera" type="camera_geometry">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the camera used. The orientation of the camera is described as follows : pixels are aligned along x1 and x2 unit vectors while x3 is normal to the detector plane.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="filter_window" type="filter_window">
+					<xs:annotation>
+						<xs:documentation>Characteristics of the filter window</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="exposure_time">
+					<xs:annotation>
+						<xs:documentation>Exposure time</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="readout_time">
+					<xs:annotation>
+						<xs:documentation>Time used to read out each frame on the detector</xs:documentation>
+						<xs:appinfo>
+							<type>constant</type>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="detector_humidity" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Fraction of humidity (0-1) measured at the detector level</xs:documentation>
+						<xs:appinfo>
+							<units>1</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="detector_temperature" type="signal_flt_1d">
+					<xs:annotation>
+						<xs:documentation>Temperature measured at the detector level</xs:documentation>
+						<xs:appinfo>
+							<units>K</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

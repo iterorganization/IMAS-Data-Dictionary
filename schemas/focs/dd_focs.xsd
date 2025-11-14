@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?modxslt-stylesheet type="text/xsl" media="fuffa, screen and $GET[stylesheet]" href="./%24GET%5Bstylesheet%5D" alternate="no" title="Translation using provided stylesheet" charset="UTF-8" ?>
+<?modxslt-stylesheet type="text/xsl" media="screen" alternate="no" title="Show raw source of the XML file" charset="UTF-8" ?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by USER USER (CEA - CENTRE DE CADARACHE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
+	<xs:complexType name="stokes_dynamic">
+		<xs:annotation>
+			<xs:documentation>Dynamic Stokes vector components</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="s0">
+				<xs:annotation>
+					<xs:documentation>S0 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="s1">
+				<xs:annotation>
+					<xs:documentation>S1 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="s2">
+				<xs:annotation>
+					<xs:documentation>S2 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="s3">
+				<xs:annotation>
+					<xs:documentation>S3 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="time" type="flt_type">
+				<xs:annotation>
+					<xs:documentation>Time</xs:documentation>
+					<xs:appinfo>
+						<units>s</units>
+						<type>dynamic</type>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="stokes_initial">
+		<xs:annotation>
+			<xs:documentation>Initial Stokes vector components</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="s0">
+				<xs:annotation>
+					<xs:documentation>S0 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="s1">
+				<xs:annotation>
+					<xs:documentation>S1 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="s2">
+				<xs:annotation>
+					<xs:documentation>S2 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="s3">
+				<xs:annotation>
+					<xs:documentation>S3 component of the unit Stokes vector</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="focs_link_properties">
+		<xs:annotation>
+			<xs:documentation>Properties of a link fibre</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id">
+				<xs:annotation>
+					<xs:documentation>ID of the fibre, e.g. commercial reference</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="retardation">
+				<xs:annotation>
+					<xs:documentation>Retardation of the equivalent element</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="azimuth">
+				<xs:annotation>
+					<xs:documentation>Azimuth of the equivalent element</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rotation">
+				<xs:annotation>
+					<xs:documentation>Rotation of the equivalent element</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="faraday_mirror_angle">
+				<xs:annotation>
+					<xs:documentation>Faraday mirror rotation angle</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="focs_fibre_properties">
+		<xs:annotation>
+			<xs:documentation>Properties of the fibre</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id">
+				<xs:annotation>
+					<xs:documentation>ID of the fibre, e.g. commercial reference</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="beat_length">
+				<xs:annotation>
+					<xs:documentation>Linear beat length</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="spun">
+				<xs:annotation>
+					<xs:documentation>Spun period</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="twist">
+				<xs:annotation>
+					<xs:documentation>Twist period</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>m</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="spun_initial_azimuth">
+				<xs:annotation>
+					<xs:documentation>Spun fibre initial azimuth</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="verdet_constant">
+				<xs:annotation>
+					<xs:documentation>Verdet constant</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>rad.T^-1.m^-1</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="focs">
+		<xs:annotation>
+			<xs:documentation>Fiber Optic Current Sensor (FOCS)</xs:documentation>
+			<xs:appinfo>
+				<lifecycle_status>alpha</lifecycle_status>
+				<lifecycle_version>3.39.0</lifecycle_version>
+				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ids_properties"/>
+				<xs:element name="name">
+					<xs:annotation>
+						<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<change_nbc_version>4.1.0</change_nbc_version>
+							<change_nbc_description>leaf_renamed</change_nbc_description>
+							<change_nbc_previous_name>id</change_nbc_previous_name>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="description">
+					<xs:annotation>
+						<xs:documentation>Description, e.g. “Current sensor installed around vacuum vessel sector #5”</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<change_nbc_version>4.1.0</change_nbc_version>
+							<change_nbc_description>leaf_renamed</change_nbc_description>
+							<change_nbc_previous_name>name</change_nbc_previous_name>
+							<introduced_after_version>4.0.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="STR_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="fibre_properties" type="focs_fibre_properties">
+					<xs:annotation>
+						<xs:documentation>Intrinsic properties of the fibre installed on the vacuum vessel</xs:documentation>
+						<xs:appinfo>
+							<introduced_after_version>3.39.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fibre_length">
+					<xs:annotation>
+						<xs:documentation>Spun fibre length on the vacuum vessel</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>m</units>
+							<introduced_after_version>3.39.0</introduced_after_version>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="outline" type="rphiz1d_static">
+					<xs:annotation>
+						<xs:documentation>FOCS outline</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="b_field_z" type="signal_flt_2d_validity">
+					<xs:annotation>
+						<xs:documentation>Vertical component of the magnetic field on each point of the FOCS outline</xs:documentation>
+						<xs:appinfo>
+							<units>T</units>
+							<coordinate1>../outline/r</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="stokes_initial" type="stokes_initial">
+					<xs:annotation>
+						<xs:documentation>Initial Stokes vector at the entrance of the FOCS</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="stokes_output" type="stokes_dynamic" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Stokes vector at the output of the FOCS as a function of time</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>time</coordinate1>
+							<type>dynamic</type>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="current" type="signal_flt_1d_validity">
+					<xs:annotation>
+						<xs:documentation>Total toroidal current flowing through the area outlined by the FOCS</xs:documentation>
+						<xs:appinfo>
+							<units>A</units>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="latency">
+					<xs:annotation>
+						<xs:documentation>Upper bound of the delay between physical information received by the detector and data available on the real-time (RT) network.</xs:documentation>
+						<xs:appinfo>
+							<type>static</type>
+							<units>s</units>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:group ref="FLT_0D"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="code"/>
+				<xs:element ref="time"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
