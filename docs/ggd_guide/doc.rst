@@ -559,7 +559,7 @@ elements.
 
 .. [DD_git] Data Dictionary repository: https://github.com/iterorganization/IMAS-Data-Dictionary
 .. [IMAS_releases] IMAS Data Dictionary releases: https://github.com/iterorganization/IMAS-Data-Dictionary/releases
-.. [Thesis] M. Sc. Thesis: Visualisation of Fusion Data-Structures for Scrape-Off Layer Plasma Simulations, , University of Ljubljana, Faculty of Mechanical Engineering, September 2017
+.. [Thesis] M. Sc. Thesis: Visualisation of Fusion Data-Structures for Scrape-Off Layer Plasma Simulations, University of Ljubljana, Faculty of Mechanical Engineering, September 2017
 .. [JOREK] The JOREK non-linear MHD Code website: http://jorek.eu/
 
 .. [Czarny-Huysmans-2008] O. Czarny, G. Huysmans, J.Comput.Phys 227, 7423 (2008) https://www.sciencedirect.com/science/article/pii/S0021999108002118
