@@ -3062,33 +3062,9 @@
 					<xs:documentation>1D fluxes (flux-surface and time averaged), summed over kx and ky in the rotating frame</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="moments_norm_gyrocenter" type="gyrokinetics_moments_nl">
-				<xs:annotation>
-					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters</xs:documentation>
-					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="moments_norm_particle" type="gyrokinetics_moments_nl">
 				<xs:annotation>
 					<xs:documentation>Moments (normalized) of the perturbed distribution function of particles</xs:documentation>
-					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="moments_norm_gyrocenter_bessel_0" type="gyrokinetics_moments_nl">
-				<xs:annotation>
-					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters times 0th order Bessel function of the first kind</xs:documentation>
-					<xs:appinfo>
-						<introduced_after_version>4.0.0</introduced_after_version>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="moments_norm_gyrocenter_bessel_1" type="gyrokinetics_moments_nl">
-				<xs:annotation>
-					<xs:documentation>Moments (normalized) of the perturbed distribution function of gyrocenters times 1st order Bessel function of the first kind</xs:documentation>
 					<xs:appinfo>
 						<introduced_after_version>4.0.0</introduced_after_version>
 					</xs:appinfo>
