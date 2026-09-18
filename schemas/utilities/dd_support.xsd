@@ -14169,7 +14169,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-
 	<xs:complexType name="xyz0d_dynamic_aos3_dimensionless">
 		<xs:annotation>
 			<xs:documentation>Structure for list of X, Y, Z components (0D, dynamic within an AoS3, dimensionless). Used for unit vectors, direction vectors, and other dimensionless Cartesian triplets.</xs:documentation>
@@ -14216,7 +14215,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-
 	<xs:complexType name="xyz0d_constant_dimensionless">
 		<xs:annotation>
 			<xs:documentation>Structure for list of X, Y, Z components (0D, constant, dimensionless). Used for unit vectors, direction vectors, and other dimensionless Cartesian triplets.</xs:documentation>
@@ -15922,6 +15920,19 @@
 					<xs:documentation>Cross-sectional shape of the element</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="mass">
+				<xs:annotation>
+					<xs:documentation>Mass of the elements</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>kg</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>		
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="temperature_reference">
