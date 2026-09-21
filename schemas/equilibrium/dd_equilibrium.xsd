@@ -729,7 +729,7 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="equlibrium_global_quantities">
+	<xs:complexType name="equilibrium_global_quantities">
 		<xs:annotation>
 			<xs:documentation>0D parameters of the equilibrium</xs:documentation>
 		</xs:annotation>
@@ -2964,7 +2964,7 @@
 					<xs:documentation>In case of equilibrium reconstruction under constraints, measurements used to constrain the equilibrium, reconstructed values and accuracy of the fit. The names of the child nodes correspond to the following definition: the solver aims at minimizing a cost function defined as : J=1/2*sum_i [ weight_i^2 (reconstructed_i - measured_i)^2 / sigma_i^2 ]. in which sigma_i is the standard deviation of the measurement error (to be found in the IDS of the measurement)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="global_quantities" type="equlibrium_global_quantities">
+			<xs:element name="global_quantities" type="equilibrium_global_quantities">
 				<xs:annotation>
 					<xs:documentation>0D parameters of the equilibrium</xs:documentation>
 				</xs:annotation>

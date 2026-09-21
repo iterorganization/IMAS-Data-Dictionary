@@ -12,5 +12,8 @@ Curvature of a curved object
 <int name="cylindrical_x2"   description="Cylindrical in the X2 direction, use x2_curvature"         >3</int>
 <int name="spherical"   description="Spherical : same curvature radius in X1 and X2 directions, indicated in x1_curvature"         >4</int>
 <int name="toroidal"   description="Toroidal : x1_curvature in X1 direction and x2_curvature in X2 direction"         >5</int>
+<int name="elliptical"   description="Prolate ellipsoid (surface obtained by rotating an ellipse around its major axis). Surface defined by focus_1, focus_2 and geometry/centre (point on the surface) coordinates"         >6</int>
+<int name="hyperbolic"   description="Two-sheets hyperboloid (surface obtained rotating a hyperbola around the axis passing through its foci). Surface defined by focus_1, focus_2 and geometry/centre (point on the surface) coordinates"         >7</int>
+<int name="parabolic"   description="Circular paraboloid (surface obtained rotating a parabola around its axis). Surface defined by focus_1 and geometry/centre (point on the surface) coordinates"         >8</int>
 
 </constants>

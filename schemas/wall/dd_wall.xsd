@@ -1186,7 +1186,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="neutral" type="wall_description_ggd_particle_neutral" maxOccurs="unbounded">
+			<xs:element name="neutral" type="wall_description_ggd_energy_neutral" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Neutral species fluxes</xs:documentation>
 					<xs:appinfo>
@@ -1209,7 +1209,7 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="neutral" type="wall_description_ggd_particle_neutral" maxOccurs="unbounded">
+			<xs:element name="neutral" type="wall_description_ggd_energy_neutral" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Neutral species fluxes</xs:documentation>
 					<xs:appinfo>

@@ -1667,6 +1667,110 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="summary_local_quantities_divertor">
+		<xs:annotation>
+			<xs:documentation>Set of local quantities without radial position, for localizations outside the LCFS, with a name and specialized for divertor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="summary_static_str_0d">
+				<xs:annotation>
+					<xs:documentation>Name of the divertor plate. Standard names are : LI (resp. LO) for lower inner (resp. outer) plates;  UI (resp. UO) for upper inner (resp. outer) plates. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Electron temperature at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e_peak" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Maximum electron temperature on the target</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_e_n_e_weighted_average" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Density weighted average of the electron temperature over the target, i.e. integral(t_e * n_e*dA)/integral(n_e*dA) where the integrals are done over the target area</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="t_i_average" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Ion temperature (average over ion species) at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>eV</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Electron density at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_e_peak" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Maximum electron density on the target</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i" type="summary_species">
+				<xs:annotation>
+					<xs:documentation>Ion density per species at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_i_total" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Total ion density (sum over species) at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>m^-3</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zeff" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Effective charge at the strike point</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="flux_expansion" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Magnetic flux expansion as defined by Stangeby : ratio between the poloidal field at the midplane separatrix and the poloidal field at the strike-point see formula attached, where u means upstream (midplane separatrix) and t means at divertor target (downstream).</xs:documentation>
+					<xs:appinfo>
+						<units>1</units>
+						<url>divertors/flux_expansion.png</url>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power_flux_peak" type="summary_dynamic_flt_1d_root">
+				<xs:annotation>
+					<xs:documentation>Peak power flux on the divertor target surface</xs:documentation>
+					<xs:appinfo>
+						<units>W.m^-2</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="summary_local_quantities_stellerator">
 		<xs:annotation>
 			<xs:documentation>Set of local quantities for stellerators</xs:documentation>
@@ -2560,7 +2664,7 @@
 					<xs:documentation>Parameters at the limiter tangency point</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="divertor_target" type="summary_local_quantities_no_position_name" maxOccurs="4">
+			<xs:element name="divertor_target" type="summary_local_quantities_divertor" maxOccurs="4">
 				<xs:annotation>
 					<xs:documentation>Parameters at a divertor target</xs:documentation>
 					<xs:appinfo>
