@@ -349,6 +349,19 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="mass">
+				<xs:annotation>
+					<xs:documentation>Coil mass</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>kg</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="energy_limit_max">
 				<xs:annotation>
 					<xs:documentation>Maximum Energy to be dissipated in the coil</xs:documentation>
