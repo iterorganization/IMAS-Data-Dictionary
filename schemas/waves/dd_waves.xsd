@@ -966,7 +966,7 @@
 			</xs:element>
 			<xs:element name="power_inside_fast">
 				<xs:annotation>
-					<xs:documentation>Absorbed wave power on thermal species inside a flux surface (cumulative volume integral of the absorbed power density)</xs:documentation>
+					<xs:documentation>Absorbed wave power on the fast particle population inside a flux surface (cumulative volume integral of the absorbed power density)</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
@@ -979,7 +979,7 @@
 			</xs:element>
 			<xs:element name="power_inside_fast_n_phi">
 				<xs:annotation>
-					<xs:documentation>Absorbed wave power on thermal species inside a flux surface (cumulative volume integral of the absorbed power density), per toroidal mode number</xs:documentation>
+					<xs:documentation>Absorbed wave power on the fast particle population inside a flux surface (cumulative volume integral of the absorbed power density), per toroidal mode number</xs:documentation>
 					<xs:appinfo>
 						<units>W</units>
 						<type>dynamic</type>
