@@ -14,7 +14,8 @@
 		<xs:sequence>
 			<xs:element name="critical_type">
 				<xs:annotation>
-					<xs:documentation>Critical-point type of the poloidal flux: 0 = local minimum, 1 = saddle (X-point), 2 = local maximum, 3 = limiter point. Whether the magnetic axis is a minimum or maximum of psi depends on the sign of the plasma current. A limiter point represents a point on the first wall where the plasma boundary makes contact. Limiter point nodes are inserted by splitting an existing tree edge at the limiter point's psi level; they have degree 2 in the tree. A limiter point is valid only if it belongs to the same connected component as at least one O-point in the subgraph obtained by removing all saddle nodes (critical_type = 1). Limiter points store the last closed flux surface passing through the limiter point in their levelset</xs:documentation>					<xs:appinfo>
+					<xs:documentation>Critical-point type of the poloidal flux: 0 = local minimum, 1 = saddle (X-point), 2 = local maximum, 3 = limiter point. Whether the magnetic axis is a minimum or maximum of psi depends on the sign of the plasma current. A limiter point represents a point on the first wall where the plasma boundary makes contact. Limiter point nodes are inserted by splitting an existing tree edge at the limiter point's psi level; they have degree 2 in the tree. A limiter point is valid only if it belongs to the same connected component as at least one O-point in the subgraph obtained by removing all saddle nodes (critical_type = 1). Limiter points store the last closed flux surface passing through the limiter point in their levelset</xs:documentation>
+					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -2792,6 +2793,174 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="FLT_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="r_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the major radius on the grid (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>m</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="z_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the Height on the grid (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>m</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="psi_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the poloidal flux at the grid in the poloidal plane (when relevant for the chosen grid). The poloidal flux is integral of magnetic field passing through a contour defined by the intersection of a flux surface passing through the point of interest and a Z=constant plane. If the integration surface is flat, the surface normal vector is in the increasing vertical coordinate direction, Z, namely upwards.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>Wb</units>
+						<cocos_label_transformation>psi_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.psi_fourier</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="theta_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of poloidal angle on the grid (when relevant for the chosen grid). The poloidal angle is centered on the magnetic axis and oriented such that (grad rho_tor_norm, grad theta, grad phi) form a right-handed set where grad rho_tor_norm points away from the magnetic axis.</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>rad</units>
+						<cocos_label_transformation>pol_angle_like</cocos_label_transformation>
+						<cocos_transformation_expression>.fact_dtheta</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.theta_fourier</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phi_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the toroidal flux (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>Wb</units>
+						<cocos_label_transformation>b0_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.phi_fourier</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="j_phi_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the toroidal plasma current density (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>A.m^-2</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.j_phi_fourier</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="j_parallel_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the quantity defined as (j.B)/B0 where j and B are the current density and magnetic field vectors and B0 is the (signed) vacuum toroidal magnetic field strength at the geometric reference point (R0,Z0). It is formally not the component of the plasma current density parallel to the magnetic field</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>A.m^-2</units>
+						<cocos_label_transformation>ip_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_ip_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.j_parallel_fourier</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_r_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the R component of the poloidal magnetic field (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>T</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_phi_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the toroidal component of the magnetic field (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>T</units>
+						<cocos_label_transformation>b0_like</cocos_label_transformation>
+						<cocos_transformation_expression>.sigma_b0_eff</cocos_transformation_expression>
+						<cocos_leaf_name_aos_indices>equilibrium.time_slice{i}.profiles_2d{j}.b_field_phi_fourier</cocos_leaf_name_aos_indices>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="b_field_z_fourier">
+				<xs:annotation>
+					<xs:documentation>Fourier components of the Z component of the magnetic field (when relevant for the chosen grid)</xs:documentation>
+					<xs:appinfo>
+						<type>dynamic</type>
+						<coordinate1>../grid/dim1</coordinate1>
+						<coordinate2>../grid/dim2</coordinate2>
+						<units>T</units>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="CPX_2D"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
