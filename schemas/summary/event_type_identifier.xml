@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<constants name="event_type_identifier" identifier="yes" create_mapping_function="yes">
+<header>
+  Event type table
+</header>
+
+<ddInstance xpath="/summary/event/type"/>
+
+<int name="l_h"        description="L to H mode transition">1</int>
+<int name="h_l"        description="H to L mode transition">2</int>
+<int name="sawtooth"    description="Sawtooth crash">3</int>
+<int name="disruption" description="Disruption">4</int>
+
+</constants>

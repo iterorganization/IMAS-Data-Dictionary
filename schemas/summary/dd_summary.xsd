@@ -4428,6 +4428,33 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="summary_event">
+		<xs:annotation>
+			<xs:documentation>Event</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="identifier">
+				<xs:annotation>
+					<xs:documentation>Type of this event</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>summary/event_type_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time">
+				<xs:annotation>
+					<xs:documentation>Time at which this event started</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<units>s</units>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:element name="summary">
 		<xs:annotation>
 			<xs:documentation>Summary of physics quantities from a simulation or an experiment. Dynamic quantities are either taken at given time slices (indicated in the "time" vector) or time-averaged over an interval (in such case the "time_width" of the interval is indicated and the "time" vector represents the end of each time interval).</xs:documentation>
@@ -4715,6 +4742,14 @@
 					<xs:complexType>
 						<xs:group ref="FLT_1D"/>
 					</xs:complexType>
+				</xs:element>
+				<xs:element name="event" type="summary_event" maxOccurs="20">
+					<xs:annotation>
+						<xs:documentation>List of events that occured during the pulse</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+						</xs:appinfo>
+					</xs:annotation>
 				</xs:element>
 				<xs:element ref="code"/>
 				<xs:element ref="time"/>
