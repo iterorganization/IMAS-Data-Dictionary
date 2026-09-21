@@ -650,6 +650,64 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="pulse_schedule_ic_antenna_module">
+		<xs:annotation>
+			<xs:documentation>IC antenna module</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Description, e.g. “top row, first module from the left when looking at the antenna from the plasma”</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_type" type="identifier_static">
+				<xs:annotation>
+					<xs:documentation>Type of power used in the sibling power node (defining which power is referred to in this pulse_schedule). Index = 1: power_launched, 2: power_forward (see definitions in the ic_antennas  IDS)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="power" type="pulse_schedule_reference_ic">
+				<xs:annotation>
+					<xs:documentation>Power</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phase_forward" type="pulse_schedule_reference_ic">
+				<xs:annotation>
+					<xs:documentation>Phase of the forward power with respect to the first module</xs:documentation>
+					<xs:appinfo>
+						<units>rad</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="frequency" type="pulse_schedule_reference_ic">
+				<xs:annotation>
+					<xs:documentation>Frequency</xs:documentation>
+					<xs:appinfo>
+						<units>Hz</units>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="pulse_schedule_ic_antenna">
 		<xs:annotation>
 			<xs:documentation>IC antenna</xs:documentation>
@@ -691,19 +749,20 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="phase" type="pulse_schedule_reference_ic">
+			<xs:element name="frequency" type="pulse_schedule_reference_ic">
 				<xs:annotation>
-					<xs:documentation>Phase</xs:documentation>
+					<xs:documentation>Frequency (average over modules)</xs:documentation>
 					<xs:appinfo>
-						<units>rad</units>
+						<units>Hz</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="frequency" type="pulse_schedule_reference_ic">
+			<xs:element name="module" type="pulse_schedule_ic_antenna_module" maxOccurs="8">
 				<xs:annotation>
-					<xs:documentation>Frequency</xs:documentation>
+					<xs:documentation>Set of antenna modules (each module is fed by a single transmission line)</xs:documentation>
 					<xs:appinfo>
-						<units>Hz</units>
+						<coordinate1>1...N</coordinate1>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -1003,11 +1062,13 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="species" type="gas_mixture_constant" maxOccurs="3">
+			<xs:element name="species" type="plasma_composition_species">
 				<xs:annotation>
-					<xs:documentation>Species injected by the NBI unit (may be more than one in case the unit injects a gas mixture)</xs:documentation>
+					<xs:documentation>Injected species</xs:documentation>
 					<xs:appinfo>
-						<coordinate1>1...N</coordinate1>
+						<change_nbc_version>4.2.0</change_nbc_version>
+						<change_nbc_description>type_changed</change_nbc_description>
+						<change_nbc_previous_type>gas_mixture_constant AoS</change_nbc_previous_type>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
