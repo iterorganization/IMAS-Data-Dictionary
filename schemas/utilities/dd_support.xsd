@@ -11987,7 +11987,7 @@
 				<xs:annotation>
 					<xs:documentation>Cumulative and average ionization potential to reach a given bundle. Defined as sum (x_z* (sum of Epot from z'=0 to z-1)), where Epot is the ionization potential of ion Xz_+, and x_z is the relative concentration of a given charge state in the bundle, i.e. sum(x_z) = 1 over the bundle, given on various grid subsets</xs:documentation>
 					<xs:appinfo>
-						<units>e</units>
+						<units>eV</units>
 						<coordinate1>1...N</coordinate1>
 						<change_nbc_version>4.2.0</change_nbc_version>
 						<change_nbc_description>aos_renamed</change_nbc_description>
@@ -15029,6 +15029,22 @@
 						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
+			</xs:element>
+			<xs:element name="focus_1" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Coordinates of the first focus point, in the case of an ellipse or paraboloid or hyperboloid (geometry_type = 6-8)</xs:documentation>
+					<xs:appinfo>
+					<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="focus_2" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Coordinates of the second focus point, in the case of an ellipse or hyperboloid (geometry_type = 6-7)</xs:documentation>
+					<xs:appinfo>
+					<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+					</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
