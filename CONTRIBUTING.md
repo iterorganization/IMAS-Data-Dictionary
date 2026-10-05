@@ -19,10 +19,11 @@ its root cause (version of the Data Dictionary, OS and relevant
 dependencies, permalink to the wrongly defined quantify);
 3. apply relevant labels to the issue.
 
-## You want to make some change to the code
+## You want to make some change to the code, or to the schemas
 1. use the [issue search](https://github.com/iterorganization/IMAS-Data-Dictionary/issues) 
 to check if someone already proposed a similar idea/change;
-2. if not, create a **new issue** to describe what you intend to work on;
+2. if not, create a **new issue** to describe what you intend to work on, please take 
+backward compatibility into consideration;
 3. wait until some kind of consensus is reached about your idea being relevant;
 4. fork the repository to your own Github profile and create your own feature 
 branch off of the latest develop commit. Make sure to regularly sync your branch 

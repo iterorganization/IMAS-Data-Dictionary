@@ -1,0 +1,56 @@
+name: Update description with links
+on:
+  pull_request_target:
+    types:
+      - opened
+
+permissions:
+  pull-requests: write
+
+jobs:
+  add-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Update PR description with RTD link'
+        uses: readthedocs/actions/preview@v1
+        with:
+          project-slug: imas-data-dictionary
+      - name: 'Update PR Description with Diff Link'
+        uses: actions/github-script@v9
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pull_number = Number(process.env.PR_NUMBER);
+            // This is hardcoded because pull requests from forks do not have access to the repository variables
+            const previewUrl = `https://scdimasdictionnarysa.z6.web.core.windows.net/pr-${pull_number}/index.html`
+
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pull_number,
+            });
+
+            let body = pr.data.body || '';
+
+            const startMarker = '<!-- xml-diff imas-data-dictionary start -->';
+            const endMarker = '<!-- xml-diff imas-data-dictionary end -->';
+            const contentBlock = `${startMarker}\n----\n📚 XML Diff 📚: ${previewUrl}\n\n${endMarker}`;
+
+            const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`);
+            
+            if (regex.test(body)) {
+              body = body.replace(regex, contentBlock);
+              console.log("Existing XML Diff block found and updated.");
+            } else {
+              body = body ? `${body}\n\n${contentBlock}` : contentBlock;
+              console.log("XML Diff block added to the end of the PR description.");
+            }
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pull_number,
+              body: body,
+            });

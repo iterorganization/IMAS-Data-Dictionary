@@ -6,7 +6,7 @@
 	<xs:include schemaLocation="../utilities/dd_support.xsd"/>
 	<xs:complexType name="equilibrium_contour_tree_node">
 		<xs:annotation>
-			<xs:documentation>Node description</xs:documentation>
+			<xs:documentation>Node description for critical points and limiter points</xs:documentation>
 			<xs:appinfo>
 				<aos3Parent>yes</aos3Parent>
 			</xs:appinfo>
@@ -14,14 +14,21 @@
 		<xs:sequence>
 			<xs:element name="critical_type">
 				<xs:annotation>
-					<xs:documentation>0-minimum, 1-saddle, 2-maximum</xs:documentation>
-					<xs:appinfo>
+					<xs:documentation>Critical-point type of the poloidal flux: 0 = local minimum, 1 = saddle (X-point), 2 = local maximum, 3 = limiter point. Whether the magnetic axis is a minimum or maximum of psi depends on the sign of the plasma current. A limiter point represents a point on the first wall where the plasma boundary makes contact. Limiter point nodes are inserted by splitting an existing tree edge at the limiter point's psi level; they have degree 2 in the tree. A limiter point is valid only if it belongs to the same connected component as at least one O-point in the subgraph obtained by removing all saddle nodes (critical_type = 1). Limiter points store the last closed flux surface passing through the limiter point in their levelset</xs:documentation>					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:group ref="INT_0D"/>
 				</xs:complexType>
+			</xs:element>
+			<xs:element name="node_type" type="identifier_dynamic_aos3">
+				<xs:annotation>
+					<xs:documentation>Identifies whether this node represents a confined plasma feature or a vacuum field feature. Only meaningful for O-point nodes (critical_type 0 or 2). Limiter points are always plasma features. X-points and saddle points do not require classification</xs:documentation>
+					<xs:appinfo>
+						<doc_identifier>equilibrium/equilibrium_contour_tree_node_type_identifier.xml</doc_identifier>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 			<xs:element name="r">
 				<xs:annotation>
@@ -49,7 +56,7 @@
 			</xs:element>
 			<xs:element name="psi">
 				<xs:annotation>
-					<xs:documentation>Value of the poloidal flux at the node. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
+					<xs:documentation>Value of the poloidal flux at the node location. Whether psi increases or decreases from the magnetic axis outward depends on the sign of the plasma current. All ordering rules in the contour tree (node ordering, levelset segment ordering) are defined in terms of normalised poloidal flux, psi_norm = (psi - psi_axis) / (psi_boundary - psi_axis), which always increases from 0 at the magnetic axis to 1 at the plasma boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<units>Wb</units>
@@ -62,16 +69,19 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="levelset" type="rz1d_dynamic_aos">
+			<xs:element name="levelset" type="rz1d_dynamic_aos" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Single poloidal flux contour including critical point (x-point only)</xs:documentation>
+					<xs:documentation>Poloidal flux contour segments at the node's psi value that are topologically connected to the node. Each element of the array of structures stores one distinct contour segment. Only segments whose contour passes through the node are included; disconnected contours that share the same psi value but are spatially remote must be excluded. For O-points (flux extrema), no contour passes through the extremum and this field must contain a single entry with empty r and z arrays. For limiter points, the levelset contains the last closed flux surface (LCFS) that passes through the limiter point. For X-points, the segments are ordered as follows: segment 0 is the last closed flux surface (LCFS), the closed contour bounding the confined plasma that passes through the X-point. Segments 1..N are divertor or scrape-off layer leg contours, ordered by their departure angle from the X-point measured counterclockwise from the outboard midplane (theta=0 at R_max, Z of the X-point) in the standard (R, Z) poloidal plane. A standard single-null divertor (SND) X-point has 2 segments: the LCFS and the divertor legs. A double-null divertor (DND) has 2 segments per X-point; the primary X-point (lower psi_norm, closer to the magnetic axis) is stored at a lower node index than the secondary, so their levelsets are unambiguously associated. An exact snowflake, where two X-points merge into a single higher-order null with 6 separatrix branches, produces 3 segments: the LCFS and 2 distinct divertor channel contours.</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="equilibrium_contour_tree">
 		<xs:annotation>
-			<xs:documentation>A structure to store the location, value, and connectivity of poloidal flux critical points</xs:documentation>
+			<xs:documentation>A structure to store the location, value, and connectivity of poloidal flux critical points and limiter points</xs:documentation>
 			<xs:appinfo>
 				<aos3Parent>yes</aos3Parent>
 			</xs:appinfo>
@@ -79,7 +89,7 @@
 		<xs:sequence>
 			<xs:element name="node" type="equilibrium_contour_tree_node" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Set of nodes. A contour tree node is defined by its critical type and position within the poloidal plane. A critical type of 1 references an x-point whilst a critical type of 0 or 2 references an o-point. Both X-points and O-points are rarely coincident with nodes defining the poloidal upon which the poloidal flux map is defined. The order in which the critical points are stored in the nodes array of structure is only important for the primary plasma O-point and X-points. If present, the primary plasma O-point should be placed as the first element of the nodes array of structure. If present, the primary plasma X-point should be the second element in the nodes structure</xs:documentation>
+					<xs:documentation>Set of critical points and limiter points of the poloidal flux. Each node is defined by its critical type (see critical_type), node type (see node_type), and position within the poloidal plane. All ordering rules below are defined in terms of normalised poloidal flux, psi_norm = (psi - psi_axis) / (psi_boundary - psi_axis), which is 0 at the magnetic axis and 1 at the plasma boundary. Nodes are partitioned into two groups: critical points (critical_type 0, 1, 2) occupy the leading indices, followed by limiter points (critical_type 3). Within each partition, nodes are ordered by ascending psi_norm; ties are broken by ascending R, then ascending Z. Node 0 must contain the primary O-point (magnetic axis), which has psi_norm = 0. Node 1 must contain the primary X-point, defined as the X-point with the lowest psi_norm value. For double-null divertor (DND) configurations, the secondary X-point has a higher psi_norm value and must be stored at a higher node index than the primary; the two psi_norm values are always distinct in practice. For limiter-bounded plasmas where no X-point defines the LCFS, node 1 should contain the X-point with the lowest psi_norm value (nearest to the plasma boundary), if any X-point exists. If no X-points exist, nodes are ordered by ascending psi_norm starting from node 1. For doublet or multi-region plasmas, each confined plasma region has its own O-point; additional O-points follow the same ascending psi_norm ordering. When limiter points are absent, only the critical point partition is present and the ordering is unchanged from earlier versions. The node_type identifier distinguishes O-points that represent confined plasma regions (node_type = plasma) from vacuum field extrema (node_type = vacuum).</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
 					</xs:appinfo>
@@ -87,7 +97,7 @@
 			</xs:element>
 			<xs:element name="edges">
 				<xs:annotation>
-					<xs:documentation>Edges connect nodes to one another. A single node may connect to multiple edges such as the case where a single maximum (a hill) may topologically link to multiple minima (the floors of different valleys). For each edge (1st dimension), the index of the two connected nodes are listed (index referring to the ../node array)</xs:documentation>
+					<xs:documentation>Edges encode the Reeb graph (contour tree) of the poloidal flux by connecting topologically adjacent nodes. For each edge (1st dimension), the indices of the two connected nodes are listed (indices referring to the ../node array). An edge (i, j) indicates that sweeping the contour level continuously between the psi values at nodes i and j encounters no other critical point or limiter point. Limiter point nodes participate in edges like any other node; they are inserted by splitting an existing edge at the limiter point's psi level, replacing one edge with two. The number of edges equals n_nodes minus the number of connected components of the graph. For simply-connected 2D domains the graph is a tree with n_edges = n_nodes - 1. For doublet or multi-island configurations the graph may be a forest of disconnected trees. Each edge pair must be stored with the lower node index first (edges[k, 0] &lt; edges[k, 1]).</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
@@ -719,7 +729,7 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="equlibrium_global_quantities">
+	<xs:complexType name="equilibrium_global_quantities">
 		<xs:annotation>
 			<xs:documentation>0D parameters of the equilibrium</xs:documentation>
 		</xs:annotation>
@@ -1207,7 +1217,7 @@
 					<xs:documentation>Value calculated from the reconstructed equilibrium</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>1</units>
+						<units>as_parent</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -2937,7 +2947,7 @@
 			</xs:element>
 			<xs:element name="contour_tree" type="equilibrium_contour_tree">
 				<xs:annotation>
-					<xs:documentation>Description of the topological connectivity of the poloidal flux map critical points as an undirected graph. Critical points are ether local extremum (o-points) or saddle points (x-points) of the poloidal flux map. X-points have zero gradients in orthogonal directions but are not local extremum of the poloidal flux map whilst O-points are.</xs:documentation>
+					<xs:documentation>Contour tree (Reeb graph) of the poloidal flux, encoding the topological structure of the equilibrium through its critical points and limiter points. Nodes represent critical points of the poloidal flux (O-points, X-points) and limiter points where the plasma boundary touches the first wall. Edges connect nodes that are topologically adjacent in psi_norm space, meaning no other node lies between them. The tree captures the nesting structure of flux surfaces, the connectivity between plasma regions, the separatrix topology, and the locations of limiter contacts. Normalised poloidal flux, psi_norm = (psi - psi_axis) / (psi_boundary - psi_axis), defines all ordering conventions.</xs:documentation>
 					<xs:appinfo>
 						<introduced_with_version>4.0.0</introduced_with_version>
 						<lifecycle_status>alpha</lifecycle_status>
@@ -2954,7 +2964,7 @@
 					<xs:documentation>In case of equilibrium reconstruction under constraints, measurements used to constrain the equilibrium, reconstructed values and accuracy of the fit. The names of the child nodes correspond to the following definition: the solver aims at minimizing a cost function defined as : J=1/2*sum_i [ weight_i^2 (reconstructed_i - measured_i)^2 / sigma_i^2 ]. in which sigma_i is the standard deviation of the measurement error (to be found in the IDS of the measurement)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="global_quantities" type="equlibrium_global_quantities">
+			<xs:element name="global_quantities" type="equilibrium_global_quantities">
 				<xs:annotation>
 					<xs:documentation>0D parameters of the equilibrium</xs:documentation>
 				</xs:annotation>

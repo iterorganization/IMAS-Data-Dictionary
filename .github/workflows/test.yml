@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - name: Set up Python
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
     - name: Install python dependencies
       run: pip install setuptools_scm saxonche
     - name: Generate DD and validation

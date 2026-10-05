@@ -15,6 +15,7 @@
 <int name="database"                description="Transport specified by a database entry external to the dynamic evolution of the plasma" >4</int>
 <int name="neoclassical"            description="Neoclassical" >5</int>
 <int name="anomalous"               description="Representation of turbulent transport" >6</int>
+<int name="neutral"                 description="Neutral transport coefficient" >7</int>
 <int name="mhd"                     description="Transport arising from MHD frequency modes" >19</int>
 <int name="ntm"                     description="Transport arising from the presence of NTMs" >20</int>
 <int name="sawteeth"                description="Transport arising from the presence of sawteeth" >21</int>

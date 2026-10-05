@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<constants name="equilibrium_contour_tree_node_type" identifier="yes" create_mapping_function="yes">
+<header>Node type for contour tree nodes, distinguishing confined plasma features from vacuum field features</header>
+<dd_instance xpath="equilibrium/time_slice/contour_tree/node/node_type"/>
+
+<int name="plasma" description="Magnetic axis of a confined plasma region" unique="yes">0</int>
+<int name="vacuum" description="Vacuum field extremum, e.g. near external coils" unique="yes">1</int>
+</constants>

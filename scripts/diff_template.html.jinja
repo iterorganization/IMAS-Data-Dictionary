@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DD Diff: {{ file1 }} vs {{ file2 }}</title>
+    <style>
+        html { height: 100%; }
+        body {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            overflow: scroll;
+            font-size: 14px;
+            align-items: stretch;
+        }
+
+        .controls-header {
+            background-color: #f6f8fa;
+            border: 1px solid #d1d5da;
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-bottom: 20px;
+        }
+        .checkbox-label {
+            cursor: pointer;
+            font-weight: 600;
+            color: #24292e;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+        .checkbox-label::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #d1d5da;
+            border-radius: 3px;
+            margin-right: 8px;
+            background: #fff;
+            text-align: center;
+            line-height: 16px;
+            font-size: 14px;
+            color: white;
+            transition: all 0.2s;
+        }
+        #error-node-toggle:checked ~ .controls-header .checkbox-label::before {
+            content: '✓';
+            background-color: #0366d6;
+            border-color: #0366d6;
+        }
+        .controls-info {
+            margin-left: 15px;
+            color: #586069;
+        }
+        .controls-buttons {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+        }
+        .collapse-btn {
+            padding: 6px 12px;
+            background-color: #fff;
+            border: 1px solid #d1d5da;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #24292e;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .collapse-btn:hover {
+            background-color: #f6f8fa;
+            border-color: #1b1f23;
+        }
+        .collapse-btn:active {
+            background-color: #edeff2;
+            transform: scale(0.98);
+        }
+        .diff-container {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            align-items: flex-start;
+        }
+        .tree-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: auto;
+        }
+        .tree-header {
+            padding: 10px;
+            background: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .tree-container {
+            padding: 10px;
+            background: #fff;
+            overflow: visible;
+        }
+        details { margin-left: 18px; box-shadow: -3px 0 0 #EEEEEE; }
+        summary { cursor: pointer; list-style: none; white-space: nowrap; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before {
+            content: '▶';
+            display: inline-block;
+            width: 14px;
+            margin-right: 4px;
+            font-size: 0.8em;
+            transition: transform 0.1s;
+            color: #666;
+        }
+        details[open] > summary::before { transform: rotate(90deg); }
+
+        .tag-name { color: #4d4d4d; font-weight: 600; }
+        .attr { color: #6a737d; margin-left: 5px; }
+        .attr-child {
+            color: #586069;
+            margin-left: 18px; 
+            padding-left: 20px;
+            font-size: 0.95em;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .text-content {
+            padding-left: 20px;
+            color: #24292e;
+            white-space: pre-wrap;
+        }
+
+        /* Added / Right Side Greens */
+        .node-added > summary, .attr-added, #tree-right .text-changed, #tree-right .attr-changed {
+            background-color: #e6ffec;
+            box-shadow: -3px 0 0 #28a745;
+        }
+        .node-added .attr, .node-added .attr-child { background-color: #e6ffec; }
+        .node-added .attr-child { box-shadow: -3px 0 0 #28a745; }
+
+        /* Removed / Left Side Reds */
+        .node-removed > summary, .attr-removed, #tree-left .text-changed, #tree-left .attr-changed {
+            background-color: #ffebe9;
+            box-shadow: -3px 0 0 #d73a49;
+            opacity: 0.8;
+        }
+        .node-removed .attr, .node-removed .attr-child { background-color: #ffebe9; }
+        .node-removed .attr-child { box-shadow: -3px 0 0 #d73a49; opacity: 0.8; }
+
+        /* Ghosts (placeholders for alignment) */
+        .node-ghost, .attr-ghost { visibility: hidden; box-shadow: -3px 0 0 #d73a49; }
+
+        .error-node {
+            display: none;
+        }
+
+        #error-node-toggle {
+            display: none;
+        }
+
+        #error-node-toggle:checked ~ .diff-container .error-node {
+            display: block;
+        }
+
+        .attr-context { color: #888; }
+    </style>
+</head>
+<body>
+
+    {# MACRO: render_static_node 
+       Renders a static node (either completely added or completely removed)
+    #}
+    {% macro render_static_node(node, status_class, is_ghost) %}
+        {% set classes = [] %}
+        {% if status_class %}{% set _ = classes.append(status_class) %}{% endif %}
+        {% if is_ghost %}{% set _ = classes.append("node-ghost") %}{% endif %}
+        {% set name = node.attributes.get('name', '') %}
+        {% if name and (name.endswith('_error_upper') or name.endswith('_error_lower')) %}
+            {% set _ = classes.append("error-node") %}
+        {% endif %}
+
+        <details data-id="{{ node.path }}" {% if classes %}class="{{ classes|join(' ') }}"{% endif %}{% if status_class != 'node-removed' %} open{% endif %}>
+            <summary>
+                <span class="tag-name">{{ node.tag }}</span>
+                {% for name, value in node.attributes|dictsort %}
+                    {% if name == 'name' %}
+                        <span class="attr">{{ name }}="{{ value }}"</span>
+                    {% endif %}
+                {% endfor %}
+            </summary>
+            {% if node.text and node.text.strip() %}
+                <div class="text-content">{{ node.text.strip() }}</div>
+            {% endif %}
+            {% for name, value in node.attributes|dictsort %}
+                {% if name != 'name' %}
+                    <div class="attr-child">{{ name }} = "{{ value }}"</div>
+                {% endif %}
+            {% endfor %}
+            {% for child in node.children %}
+                {{ render_static_node(child, status_class, is_ghost) }}
+            {% endfor %}
+        </details>
+    {% endmacro %}
+
+    {# MACRO: render_diff_attr 
+       Renders a single attribute based on diff state
+    #}
+    {% macro render_diff_attr(attr, is_left, container_tag='div') %}
+        {% set cls_list = [] %}
+        {% set val = "" %}
+        {% set is_changed_wrap = false %}
+        {% set longest_val = "" %}
+        {% if attr.old_value is none %}
+            {# Attribute was added #}
+            {% set val = attr.new_value %}
+            {% set _ = cls_list.append("attr-added") %}
+            {% if is_left %}{% set _ = cls_list.append("attr-ghost") %}{% endif %}
+        {% elif attr.new_value is none %}
+            {# Attribute was removed #}
+            {% set val = attr.old_value %}
+            {% set _ = cls_list.append("attr-removed") %}
+            {% if not is_left %}{% set _ = cls_list.append("attr-ghost") %}{% endif %}
+        {% else %}
+            {# Attribute was changed #}
+            {% set val = attr.old_value if is_left else attr.new_value %}
+            {% set _ = cls_list.append("attr-changed") %}
+
+            {# Calculate longest text for alignment in block display #}
+            {% if container_tag != 'span' %}
+                 {% set is_changed_wrap = true %}
+                 {% if (attr.old_value|length) >= (attr.new_value|length) %}
+                      {% set longest_val = attr.old_value %}
+                 {% else %}
+                      {% set longest_val = attr.new_value %}
+                 {% endif %}
+            {% endif %}
+        {% endif %}
+
+        {% if container_tag == 'span' %}
+            <span class="attr {{ cls_list|join(' ') }}">{{ attr.name }}="{{ val }}"</span>
+        {% else %}
+            {% if is_changed_wrap %}
+                <div class="attr-child {{ cls_list|join(' ') }}" style="display: grid;">
+                    <div style="grid-area: 1/1; visibility: hidden;">{{ attr.name }} = "{{ longest_val }}"</div>
+                    <div style="grid-area: 1/1;">{{ attr.name }} = "{{ val }}"</div>
+                </div>
+            {% else %}
+                <div class="attr-child {{ cls_list|join(' ') }}">{{ attr.name }} = "{{ val }}"</div>
+            {% endif %}
+        {% endif %}
+    {% endmacro %}
+
+    {# MACRO: render_diff_node 
+       Renders a node that has differences (or contains differences)
+    #}
+    {% macro render_diff_node(diff, is_left) %}
+        {% if diff.state == "added" %}
+            {{ render_static_node(diff.node, "node-added", is_left) }}
+        {% elif diff.state == "removed" %}
+            {{ render_static_node(diff.node, "node-removed", not is_left) }}
+        {% else %}
+            {% set classes = [] %}
+            {# Calculate name #}
+            {% set node_name = "" %}
+            {% for attr in diff.attributes %}
+                 {% if attr.name == 'name' %}
+                      {% set val = attr.old_value if is_left else attr.new_value %}
+                      {% if val %}{% set node_name = val %}{% endif %}
+                 {% endif %}
+            {% endfor %}
+            {% if not node_name and diff.identifier and "[@name=" in diff.identifier %}
+                 {% set node_name = diff.identifier.split("[@name=")[1].rstrip("]") %}
+            {% endif %}
+
+            {% if node_name and (node_name.endswith('_error_upper') or node_name.endswith('_error_lower')) %}
+                 {% set _ = classes.append("error-node") %}
+            {% endif %}
+
+            <details data-id="{{ diff.path }}" {% if classes %}class="{{ classes|join(' ') }}"{% endif %} open>
+                <summary>
+                    <span class="tag-name">{{ diff.tag }}</span>
+                    {# Render context name (if available and 'name' attr is missing/unchanged in diff list) #}
+                    {% if diff.identifier and "[@name=" in diff.identifier %}
+                         {% set name_ctx = diff.identifier.split("[@name=")[1].rstrip("]") %}
+                         {% set ns = namespace(found=false) %}
+                         {% for attr in diff.attributes %}
+                             {% if attr.name == 'name' %}{% set ns.found = true %}{% endif %}
+                         {% endfor %}
+                         {% if not ns.found %}
+                             <span class="attr attr-context">name="{{ name_ctx }}"</span>
+                         {% endif %}
+                    {% endif %}
+
+                    {# Render 'name' attribute in summary #}
+                    {% for attr in diff.attributes|sort(attribute='name') %}
+                        {% if attr.name == 'name' %}
+                             {{ render_diff_attr(attr, is_left, 'span') }}
+                        {% endif %}
+                    {% endfor %}
+                </summary>
+                {# Render text diff #}
+                {% if diff.text_diff %}
+                    {% set txt = diff.text_diff[0] if is_left else diff.text_diff[1] %}
+                    {% if txt and txt.strip() %}
+                        <div class="text-content text-changed">{{ txt.strip() }}</div>
+                    {% endif %}
+                {% endif %}
+                {# Render other attributes as children #}
+                {% for attr in diff.attributes|sort(attribute='name') %}
+                    {% if attr.name != 'name' %}
+                         {{ render_diff_attr(attr, is_left, 'div') }}
+                    {% endif %}
+                {% endfor %}
+                {# Recursively render children #}
+                {% for child in diff.children %}
+                    {{ render_diff_node(child, is_left) }}
+                {% endfor %}
+            </details>
+        {% endif %}
+    {% endmacro %}
+
+    <input type="checkbox" id="error-node-toggle">
+    <div class="controls-header">
+        <label class="checkbox-label" for="error-node-toggle">Show error fields</label>
+        <span class="controls-info">Displays error fields (_error_upper or _error_lower suffixes) which are hidden by default.</span>
+        <div class="controls-buttons">
+            <button class="collapse-btn" id="collapse-all">Collapse All</button>
+            <button class="collapse-btn" id="expand-all">Expand All</button>
+        </div>
+    </div>
+    <div class="diff-container">
+        <div class="tree-wrapper">
+            <div class="tree-header">Base: {{ file1 }}</div>
+            <div class="tree-container" id="tree-left">
+                {% if diff_root %}
+                    {{ render_diff_node(diff_root, true) }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="tree-wrapper">
+            <div class="tree-header">Current: {{ file2 }}</div>
+            <div class="tree-container" id="tree-right">
+                 {% if diff_root %}
+                    {{ render_diff_node(diff_root, false) }}
+                 {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        const leftTree = document.getElementById('tree-left');
+        const rightTree = document.getElementById('tree-right');
+        function findCounterpart(element, encodedId) {
+            const root = element.closest('.tree-container');
+            const targetRoot = root.id === 'tree-left' ? rightTree : leftTree;
+            try {
+                return targetRoot.querySelector(`details[data-id="${encodedId.replace(/"/g, '\\\\"')}"]`);
+            } catch(e) {
+                return null;
+            }
+        }
+
+        window.addEventListener('load', function () {
+            document.addEventListener('toggle', (event) => {
+                if (event.target.tagName !== 'DETAILS') return;
+
+                // Skip events if triggered by collapse/expand all
+                if (event.target._isBulkChange) {
+                    event.target._isBulkChange = false; 
+                    return;
+                }
+
+                const targetId = event.target.getAttribute('data-id');
+                const isOpen = event.target.open;
+                const counterpart = findCounterpart(event.target, targetId);
+
+                if (counterpart && counterpart.open !== isOpen) {
+                    counterpart.open = isOpen;
+                }
+            }, true);
+
+            document.getElementById('collapse-all').addEventListener('click', function() {
+                const allDetails = document.querySelectorAll('details');
+                allDetails.forEach(detail => {
+                    const isFirstLevel = detail.parentElement.classList.contains('tree-container');
+                    const shouldBeOpen = isFirstLevel;
+
+                    if (detail.open !== shouldBeOpen) {
+                        detail._isBulkChange = true;
+                        detail.open = shouldBeOpen;
+                    }
+                });
+            });
+
+            document.getElementById('expand-all').addEventListener('click', function() {
+                const allDetails = document.querySelectorAll('details');
+                allDetails.forEach(detail => {
+                    if (detail.open !== true) {
+                        detail._isBulkChange = true;
+                        detail.open = true;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

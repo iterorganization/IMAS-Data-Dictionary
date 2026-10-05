@@ -20,18 +20,19 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y libsaxonhe-java
-    - name: Make (merged branch)
-      run: |
-        export CLASSPATH=/usr/share/java/Saxon-HE.jar
-        make dd_data_dictionary.xml
-        mkdir build
-        mv dd_data_dictionary.xml build/merged.xml
     - name: Make (base branch)
       run: |
         git checkout ${{ github.base_ref }}
         export CLASSPATH=/usr/share/java/Saxon-HE.jar
         make dd_data_dictionary.xml
+        mkdir build
         mv dd_data_dictionary.xml build/base.xml
+    - name: Make (merged branch)
+      run: |
+        git checkout refs/remotes/pull/${{ github.event.pull_request.number }}/merge
+        export CLASSPATH=/usr/share/java/Saxon-HE.jar
+        make dd_data_dictionary.xml
+        mv dd_data_dictionary.xml build/merged.xml
     - name: Text diff
       id: text_diff
       run: |
@@ -49,3 +50,28 @@ jobs:
         echo '```diff' >> $GITHUB_STEP_SUMMARY
         cat diff.txt >> $GITHUB_STEP_SUMMARY
         echo '```' >> $GITHUB_STEP_SUMMARY
+    - name: HTML diff Python setup
+      id: html_diff_python_setup
+      uses: actions/setup-python@v7
+      with:
+        python-version: '3.x'
+    - name: HTML diff dependencies
+      id: html_diff_dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jinja2
+    - name: HTML diff
+      id: html_diff
+      run: |
+        python scripts/xmldiff_html.py build/base.xml build/merged.xml -o build/index.html
+    - name: Save PR context to file
+      run: |
+        echo "${{ github.event.number }}" > build/pr_number.txt
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v7
+      with:
+        name: html-diff
+        path: |
+          build/index.html
+          build/pr_number.txt
+        retention-days: 5

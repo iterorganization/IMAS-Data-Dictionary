@@ -1,0 +1,50 @@
+name: Upload XML diff to Azure
+
+on:
+  workflow_run:
+    workflows: [DD XML diffs]
+    types: [completed]
+
+permissions:
+  actions: read
+
+jobs:
+  upload_diff:
+    environment:
+      name: azure
+      deployment: false
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+    - name: Download html-diff Artifact
+      uses: actions/download-artifact@v8
+      with:
+        name: html-diff
+        path: html-diff
+        run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract PR Number
+      id: parse_pr
+      run: |
+        PR_NUM=$(cat html-diff/pr_number.txt)
+        if ! [[ "$PR_NUM" =~ ^[0-9]+$ ]]; then
+          echo "pr_number.txt does not contain a PR number (got '$PR_NUM')."
+          exit 1
+        fi
+        echo "pr_number=$PR_NUM" >> $GITHUB_OUTPUT
+    - name: Upload to Azure
+      uses: azure/cli@v3
+      env:
+        AZURE_STORAGE_ACCOUNT: ${{ secrets.ACCOUNT_NAME }}
+        AZURE_STORAGE_KEY: ${{ secrets.ACCOUNT_KEY }}
+      with:
+        inlineScript: |
+          az storage blob upload \
+            --file "html-diff/index.html" \
+            --container-name '$web' \
+            --name "pr-${{ steps.parse_pr.outputs.pr_number }}/index.html" \
+            --content-type "text/html" \
+            --overwrite \
+            --auth-mode key
+    
