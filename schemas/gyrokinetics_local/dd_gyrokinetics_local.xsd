@@ -3082,7 +3082,7 @@
 				<change_nbc_version>3.40.0</change_nbc_version>
 				<change_nbc_description>ids_renamed</change_nbc_description>
 				<change_nbc_previous_name>gyrokinetics</change_nbc_previous_name>
-				<url>https://gitlab.com/gkdb/gkdb/raw/master/doc/general/IOGKDB.pdf</url>
+				<url>https://ops.episciences.org/articles/17447</url>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:complexType>
