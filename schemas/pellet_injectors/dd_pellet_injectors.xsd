@@ -34,7 +34,7 @@
 		<xs:sequence>
 			<xs:element name="distance">
 				<xs:annotation>
-					<xs:documentation>Distance along the pellet path, with the origin taken at path_geometry/first_point. Used as the main coordinate for the path_profiles structure </xs:documentation>
+					<xs:documentation>Distance along the pellet path, with the origin taken at path_geometry/first_point. Used as the main coordinate for the path_profiles structure</xs:documentation>
 					<xs:appinfo>
 						<units>m</units>
 						<type>dynamic</type>
