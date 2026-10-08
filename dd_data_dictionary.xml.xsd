@@ -59,6 +59,7 @@
 	<xs:include schemaLocation="schemas/nbi/dd_nbi.xsd"/>
 	<xs:include schemaLocation="schemas/ntms/dd_ntms.xsd"/>
 	<xs:include schemaLocation="schemas/pellets/dd_pellets.xsd"/>
+	<xs:include schemaLocation="schemas/pellet_injectors/dd_pellet_injectors.xsd"/>
 	<xs:include schemaLocation="schemas/pf_active/dd_pf_active.xsd"/>
 	<xs:include schemaLocation="schemas/pf_passive/dd_pf_passive.xsd"/>
 	<xs:include schemaLocation="schemas/pf_plasma/dd_pf_plasma.xsd"/>
@@ -151,6 +152,7 @@
 				<xs:element ref="neutron_diagnostic" maxOccurs="3"/>
 				<xs:element ref="ntms"/>
 				<xs:element ref="pellets" maxOccurs="2"/>
+				<xs:element ref="pellet_injectors" maxOccurs="2"/>
 				<xs:element ref="pf_active" maxOccurs="3"/>
 				<xs:element ref="pf_passive" maxOccurs="3"/>
 				<xs:element ref="pf_plasma" maxOccurs="3"/>
