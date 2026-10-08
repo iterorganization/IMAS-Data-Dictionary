@@ -102,7 +102,7 @@
 			</xs:element>
 			<xs:element name="t_e">
 				<xs:annotation>
-					<xs:documentation>Electron temperature along the pellet path </xs:documentation>
+					<xs:documentation>Electron temperature along the pellet path</xs:documentation>
 					<xs:appinfo>
 						<units>eV</units>
 						<type>dynamic</type>
