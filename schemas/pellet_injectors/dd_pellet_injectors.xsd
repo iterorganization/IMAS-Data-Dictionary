@@ -89,7 +89,7 @@
 			</xs:element>
 			<xs:element name="n_e">
 				<xs:annotation>
-					<xs:documentation>Electron density along the pellet path </xs:documentation>
+					<xs:documentation>Electron density along the pellet path</xs:documentation>
 					<xs:appinfo>
 						<units>m^-3</units>
 						<type>dynamic</type>
