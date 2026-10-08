@@ -161,7 +161,7 @@
 		<xs:sequence>
 			<xs:element name="position" type="rphiz1d_dynamic_aos3">
 				<xs:annotation>
-					<xs:documentation>Position of the centre of mass of the pellet, along its path until full ablation</xs:documentation>
+					<xs:documentation>Position of the centre of mass of the pellet along its path until full ablation</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="velocity_r">
