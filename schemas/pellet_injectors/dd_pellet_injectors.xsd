@@ -76,7 +76,7 @@
 			</xs:element>
 			<xs:element name="velocity">
 				<xs:annotation>
-					<xs:documentation>Pellet velocity along the pellet path </xs:documentation>
+					<xs:documentation>Pellet velocity along the pellet path</xs:documentation>
 					<xs:appinfo>
 						<units>m.s^-1</units>
 						<type>dynamic</type>
