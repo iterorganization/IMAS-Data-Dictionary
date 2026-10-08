@@ -574,6 +574,19 @@
 					<xs:group ref="FLT_0D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="power_stabilization">
+				<xs:annotation>
+					<xs:documentation>Power required for stabilization of this tearing mode, computed from the modified Rutherford equation. This value represents the instantaneous power requirement to drive sufficient localized current at the rational surface to suppress island growth or maintain steady-state width. This quantity serves as the setpoint input for real-time EC power and mirror steering controllers in NTM stabilization feedback loops</xs:documentation>
+					<xs:appinfo>
+						<units>W</units>
+						<type>dynamic</type>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_0D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="detailed_evolution" type="ntm_time_slice_mode_detailed_evolution">
 				<xs:annotation>
 					<xs:documentation>Detailed NTM evolution on a finer timebase than the time_slice array of structure</xs:documentation>
