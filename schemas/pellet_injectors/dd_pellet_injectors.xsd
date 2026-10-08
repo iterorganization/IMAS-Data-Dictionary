@@ -115,7 +115,7 @@
 			</xs:element>
 			<xs:element name="ablation_rate">
 				<xs:annotation>
-					<xs:documentation>Ablation rate (electrons) along the pellet path </xs:documentation>
+					<xs:documentation>Ablation rate (electrons) along the pellet path</xs:documentation>
 					<xs:appinfo>
 						<units>s^-1</units>
 						<type>dynamic</type>
