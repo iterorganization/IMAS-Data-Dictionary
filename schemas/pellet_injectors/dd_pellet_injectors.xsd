@@ -256,7 +256,7 @@
 			</xs:element>
 			<xs:element name="path_profiles" type="pi_injector_pellet_path_profiles">
 				<xs:annotation>
-					<xs:documentation>1-D profiles of plasma and pellet along the pellet path </xs:documentation>
+					<xs:documentation>1-D profiles of plasma and pellet along the pellet path</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="time" type="flt_type">
