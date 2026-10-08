@@ -128,7 +128,7 @@
 			</xs:element>
 			<xs:element name="ablated_particles">
 				<xs:annotation>
-					<xs:documentation>Number of ablated particles (electrons) along the pellet path </xs:documentation>
+					<xs:documentation>Number of ablated particles (electrons) along the pellet path</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
 						<type>dynamic</type>
