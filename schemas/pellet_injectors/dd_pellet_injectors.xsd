@@ -14,7 +14,7 @@
 			</xs:element>
 			<xs:element name="size">
 				<xs:annotation>
-					<xs:documentation>Size of the pellet in the various dimensions, depending on the shape type. Spherical pellets: size(1) is the radius of the pellet. Cylindrical pellets: size(1) is the radius and size(2) is the height of the cylinder. Rectangular pellets: size(1) is the height, size(2) is the width and size(3) is the length</xs:documentation>
+					<xs:documentation>Size of the pellet in the various dimensions, depending on the shape type. Spherical pellets: size(1) is the radius of the pellet. Cylindrical pellets: size(1) is the radius and size(2) is the height of the cylinder. Cuboid pellets: size(1) is the height, size(2) is the width and size(3) is the length</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
