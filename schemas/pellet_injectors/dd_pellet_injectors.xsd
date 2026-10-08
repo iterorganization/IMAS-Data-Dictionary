@@ -47,7 +47,7 @@
 			</xs:element>
 			<xs:element name="rho_tor_norm">
 				<xs:annotation>
-					<xs:documentation>Normalized toroidal coordinate along the pellet path </xs:documentation>
+					<xs:documentation>Normalized toroidal flux coordinate along the pellet path</xs:documentation>
 					<xs:appinfo>
 						<units>1</units>
 						<type>dynamic</type>
