@@ -664,5 +664,25 @@
 				<xs:element ref="time"/>
 			</xs:sequence>
 		</xs:complexType>
+		<xs:key name="magnetics_flux_loop_name_key">
+			<xs:selector xpath="flux_loop"/>
+			<xs:field xpath="name/data"/>
+		</xs:key>
+		<xs:key name="magnetics_b_field_pol_probe_name_key">
+			<xs:selector xpath="b_field_pol_probe"/>
+			<xs:field xpath="name/data"/>
+		</xs:key>
+		<xs:key name="magnetics_b_field_phi_probe_name_key">
+			<xs:selector xpath="b_field_phi_probe"/>
+			<xs:field xpath="name/data"/>
+		</xs:key>
+		<xs:key name="magnetics_rogowski_coil_name_key">
+			<xs:selector xpath="rogowski_coil"/>
+			<xs:field xpath="name/data"/>
+		</xs:key>
+		<xs:key name="magnetics_shunt_name_key">
+			<xs:selector xpath="shunt"/>
+			<xs:field xpath="name/data"/>
+		</xs:key>
 	</xs:element>
 </xs:schema>
