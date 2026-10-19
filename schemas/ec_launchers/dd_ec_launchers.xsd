@@ -16,8 +16,8 @@
 						<coordinate1>../time</coordinate1>
 						<introduced_with_version>4.1.0</introduced_with_version>
 						<change_nbc_version>4.1.0</change_nbc_version>
-                        <change_nbc_description>leaf_renamed</change_nbc_description>
-                        <change_nbc_previous_name>../o_mode_fraction</change_nbc_previous_name>
+						<change_nbc_description>leaf_renamed</change_nbc_description>
+						<change_nbc_previous_name>../o_mode_fraction</change_nbc_previous_name>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
@@ -269,7 +269,7 @@
 				<xs:annotation>
 					<xs:documentation>Type of movement</xs:documentation>
 					<xs:appinfo>
-						<doc_identifier>ec_launchers/frame_DOF_identifier.xml</doc_identifier>
+						<doc_identifier>ec_launchers/degrees_of_freedom_identifier.xml</doc_identifier>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -413,6 +413,115 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="ec_launchers_waveguide">
+		<xs:annotation>
+			<xs:documentation>Electron Cyclotron waveguide</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Extended description</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aperture" type="detector_aperture">
+				<xs:annotation>
+					<xs:documentation>Description of the waveguide aperture</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mirror_indices">
+				<xs:annotation>
+					<xs:documentation>Array of indices (in the mirror array of structure) of the mirrors along the optical path. An empty array means the waveguide is directly facing the plasma</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="source_index" type="signal_int_1d">
+				<xs:annotation>
+					<xs:documentation>Index of the source (in the source array of structures) connected to the waveguide aperture</xs:documentation>
+					<xs:appinfo>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ec_launchers_source">
+		<xs:annotation>
+			<xs:documentation>Electron Cyclotron source</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Short string identifier (unique for a given device)</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description">
+				<xs:annotation>
+					<xs:documentation>Extended description</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="STR_0D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="frequencies">
+				<xs:annotation>
+					<xs:documentation>Nominal frequencies</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>Hz</units>
+						<coordinate1>1...N</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="power_max">
+				<xs:annotation>
+					<xs:documentation>Maximum power achievable at each frequency</xs:documentation>
+					<xs:appinfo>
+						<type>static</type>
+						<units>W</units>
+						<coordinate1>../frequencies</coordinate1>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="FLT_1D"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="ec_launchers_beam">
 		<xs:annotation>
 			<xs:documentation>Electron Cyclotron beam</xs:documentation>
@@ -457,9 +566,21 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="waveguide_index">
+				<xs:annotation>
+					<xs:documentation>Index of the waveguide (in the waveguide array of structure) through which the beam passes</xs:documentation>
+					<xs:appinfo>
+						<type>constant</type>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="INT_0D"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="mirror_index">
 				<xs:annotation>
-					<xs:documentation>Index of the mirror (in the mirror array of structure) on which this beam has been reflected</xs:documentation>
+					<xs:documentation>Index of the last mirror (in the mirror array of structures) on which the beam is reflected before going into the plasma. If non-empty, must be the same as the last element of waveguide(waveguide_index)/mirror_indices</xs:documentation>
 					<xs:appinfo>
 						<type>constant</type>
 						<introduced_with_version>4.1.0</introduced_with_version>
@@ -544,13 +665,31 @@
 			<xs:appinfo>
 				<lifecycle_status>alpha</lifecycle_status>
 				<lifecycle_version>3.7.0</lifecycle_version>
-				<lifecycle_last_change>4.1.0</lifecycle_last_change>
+				<lifecycle_last_change>4.2.0</lifecycle_last_change>
 			</xs:appinfo>
 			<xs:appinfo/>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="ids_properties"/>
+				<xs:element name="source" type="ec_launchers_source" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Set of gyrotron/magnetron sources</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_with_version>4.2.0</introduced_with_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="waveguide" type="ec_launchers_waveguide" maxOccurs="5">
+					<xs:annotation>
+						<xs:documentation>Set of waveguides feeding the launcher's optical system</xs:documentation>
+						<xs:appinfo>
+							<coordinate1>1...N</coordinate1>
+							<introduced_with_version>4.2.0</introduced_with_version>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="mirror" type="ec_launchers_mirror" maxOccurs="20">
 					<xs:annotation>
 						<xs:documentation>Set of mirrors associated with the launcher</xs:documentation>
