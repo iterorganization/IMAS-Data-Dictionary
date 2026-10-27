@@ -90,7 +90,7 @@
 					<xs:documentation>Source term for the density transport equation</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../grid/rho_tor_norm</coordinate1>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>

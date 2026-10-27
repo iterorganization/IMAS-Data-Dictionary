@@ -7554,7 +7554,7 @@
 					<xs:documentation>Source term for the state density transport equation</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -7663,7 +7663,7 @@
 					<xs:documentation>Source term for the state density transport equation</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -7745,7 +7745,7 @@
 					<xs:documentation>Source term for ion density equation, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -7834,7 +7834,7 @@
 					<xs:documentation>Source term for ion density equation, on various grid subsets</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>1...N</coordinate1>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>

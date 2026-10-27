@@ -209,7 +209,7 @@
 					<xs:appinfo>
 						<coordinate1>../energy_band</coordinate1>
 						<coordinate2>time</coordinate2>
-						<units>s^-1.m^-2.sr^-1</units>
+						<units>m^-2.s^-1.sr^-1</units>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
