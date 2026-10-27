@@ -645,7 +645,7 @@
 				<xs:annotation>
 					<xs:documentation>Source rate of thermal particle density due to the thermalization of fast particles</xs:documentation>
 					<xs:appinfo>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 						<type>dynamic</type>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
 					</xs:appinfo>
@@ -699,7 +699,7 @@
 				<xs:annotation>
 					<xs:documentation>Source rate of thermal particle density</xs:documentation>
 					<xs:appinfo>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 						<type>dynamic</type>
 						<coordinate1>../../grid/rho_tor_norm</coordinate1>
 					</xs:appinfo>
@@ -753,7 +753,7 @@
 				<xs:annotation>
 					<xs:documentation>Source rate of thermal particle density</xs:documentation>
 					<xs:appinfo>
-						<units>s^-1.m^-3</units>
+						<units>m^-3.s^-1</units>
 						<type>dynamic</type>
 						<coordinate1>../../../grid/rho_tor_norm</coordinate1>
 					</xs:appinfo>
