@@ -14,7 +14,8 @@
 		<xs:sequence>
 			<xs:element name="critical_type">
 				<xs:annotation>
-					<xs:documentation>Critical-point type of the poloidal flux: 0 = local minimum, 1 = saddle (X-point), 2 = local maximum, 3 = limiter point. Whether the magnetic axis is a minimum or maximum of psi depends on the sign of the plasma current. A limiter point represents a point on the first wall where the plasma boundary makes contact. Limiter point nodes are inserted by splitting an existing tree edge at the limiter point's psi level; they have degree 2 in the tree. A limiter point is valid only if it belongs to the same connected component as at least one O-point in the subgraph obtained by removing all saddle nodes (critical_type = 1). Limiter points store the last closed flux surface passing through the limiter point in their levelset</xs:documentation>					<xs:appinfo>
+					<xs:documentation>Critical-point type of the poloidal flux: 0 = local minimum, 1 = saddle (X-point), 2 = local maximum, 3 = limiter point. Whether the magnetic axis is a minimum or maximum of psi depends on the sign of the plasma current. A limiter point represents a point on the first wall where the plasma boundary makes contact. Limiter point nodes are inserted by splitting an existing tree edge at the limiter point's psi level; they have degree 2 in the tree. A limiter point is valid only if it belongs to the same connected component as at least one O-point in the subgraph obtained by removing all saddle nodes (critical_type = 1). Limiter points store the last closed flux surface passing through the limiter point in their levelset</xs:documentation>
+					<xs:appinfo>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
@@ -107,6 +108,15 @@
 				<xs:complexType>
 					<xs:group ref="INT_2D"/>
 				</xs:complexType>
+			</xs:element>
+			<xs:element name="strike_point" type="rz0d_dynamic_aos" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Array of strike points, for each of them the RZ position is given</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
