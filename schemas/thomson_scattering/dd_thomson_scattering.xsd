@@ -29,7 +29,7 @@
 				<xs:annotation>
 					<xs:documentation>Position of the laser start point</xs:documentation>
 					<xs:appinfo>
-						<introduced-after-version>4.0.0</introduced-after-version>
+						<introduced_with_version>4.1.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
