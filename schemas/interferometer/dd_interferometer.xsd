@@ -132,9 +132,9 @@
 					<xs:group ref="STR_0D"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="line_of_sight" type="line_of_sight_3points">
+			<xs:element name="line_of_sight" type="line_of_sight_4points">
 				<xs:annotation>
-					<xs:documentation>Description of the line of sight of the channel, defined by two points when the beam is not reflected, a third point is added to define the reflected beam path</xs:documentation>
+					<xs:documentation>Description of the line of sight of the channel, defined by two points when the beam is not reflected, and optional third and fourth points for a reflected line-of-sight. If only the third point is provided, the reflected line of sight is described by the line between the second and third points. If the fourth point is also provided, the reflected line of sight is described by the line between the third and fourth points</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="wavelength" type="interferometer_channel_wavelength_interf" maxOccurs="2">

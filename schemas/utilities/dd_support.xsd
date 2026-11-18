@@ -15034,7 +15034,7 @@
 				<xs:annotation>
 					<xs:documentation>Coordinates of the first focus point, in the case of an ellipse or paraboloid or hyperboloid (geometry_type = 6-8)</xs:documentation>
 					<xs:appinfo>
-					<introduced_with_version>4.2.0</introduced_with_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
@@ -15042,9 +15042,9 @@
 				<xs:annotation>
 					<xs:documentation>Coordinates of the second focus point, in the case of an ellipse or hyperboloid (geometry_type = 6-7)</xs:documentation>
 					<xs:appinfo>
-					<introduced_with_version>4.2.0</introduced_with_version>
+						<introduced_with_version>4.2.0</introduced_with_version>
 					</xs:appinfo>
-					</xs:annotation>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -15310,6 +15310,33 @@
 			<xs:element name="third_point" type="rphiz0d_static">
 				<xs:annotation>
 					<xs:documentation>Position of the third point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="line_of_sight_4points">
+		<xs:annotation>
+			<xs:documentation>Generic description of a line of sight, defined by two points (one way) and optional third and fourth points for a reflected line-of-sight. If only the third point is provided, the reflected line of sight is described by the line between the second and third points. If the fourth point is also provided, the reflected line of sight is described by the line between the third and fourth points</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="first_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the first point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="second_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the second point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="third_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the third point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fourth_point" type="rphiz0d_static">
+				<xs:annotation>
+					<xs:documentation>Position of the fourth point</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
