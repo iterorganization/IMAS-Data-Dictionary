@@ -109,6 +109,15 @@
 					<xs:group ref="INT_2D"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="strike_point" type="rz0d_dynamic_aos" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Array of strike points, for each of them the RZ position is given</xs:documentation>
+					<xs:appinfo>
+						<coordinate1>1...N</coordinate1>
+						<introduced_with_version>4.2.0</introduced_with_version>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="equilibrium_gap">
