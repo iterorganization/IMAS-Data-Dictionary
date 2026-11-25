@@ -60,7 +60,7 @@
 					<xs:appinfo>
 						<introduced_with_version>4.1.0</introduced_with_version>
 						<type>static</type>
-						<units>m</units>
+						<units>m^2</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

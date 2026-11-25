@@ -89,7 +89,7 @@
 					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>W</units>
+						<units>Wb</units>
 						<coordinate1>../../time</coordinate1>
 						<cocos_label_transformation>psi_like</cocos_label_transformation>
 						<cocos_transformation_expression>.fact_psi</cocos_transformation_expression>
@@ -196,7 +196,7 @@
 					<xs:documentation>Poloidal flux. For a positive plasma current (counter-clockwise when viewed from above), increases from the magnetic axis to the boundary</xs:documentation>
 					<xs:appinfo>
 						<type>dynamic</type>
-						<units>W</units>
+						<units>Wb</units>
 						<coordinate1>1...N</coordinate1>
 						<coordinate1_same_as>../../dn_e_over_n_e</coordinate1_same_as>
 						<coordinate2>../../time</coordinate2>
