@@ -115,10 +115,10 @@
 			</xs:element>
 			<xs:element name="polarization_initial">
 				<xs:annotation>
-					<xs:documentation>Initial polarization vector before entering the plasma</xs:documentation>
+					<xs:documentation>Initial polarization angle before entering the plasma</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>m</units>
+						<units>rad</units>
 						<change_nbc_version>4.0.0</change_nbc_version>
 						<change_nbc_description>leaf_renamed</change_nbc_description>
 						<change_nbc_previous_name>polarisation_initial</change_nbc_previous_name>
@@ -133,7 +133,7 @@
 					<xs:documentation>Initial ellipticity before entering the plasma</xs:documentation>
 					<xs:appinfo>
 						<type>static</type>
-						<units>m</units>
+						<units>1</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>
