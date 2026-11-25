@@ -276,7 +276,7 @@
 						<type>dynamic</type>
 						<coordinate1>1...N</coordinate1>
 						<coordinate2>1...N</coordinate2>
-						<units>K</units>
+						<units>s</units>
 					</xs:appinfo>
 				</xs:annotation>
 				<xs:complexType>

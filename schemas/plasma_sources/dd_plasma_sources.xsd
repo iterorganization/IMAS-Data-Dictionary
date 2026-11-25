@@ -126,7 +126,7 @@
 					<xs:documentation>Explicit part of the source term</xs:documentation>
 					<xs:appinfo>
 						<coordinate1>../../../../grid/rho_tor_norm</coordinate1>
-						<units>kg.m^2.s^-2</units>
+						<units>kg.m^-1.s^-2</units>
 						<type>dynamic</type>
 					</xs:appinfo>
 				</xs:annotation>
